@@ -132,10 +132,16 @@
         </dependency>
 
         <dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-            <scope>test</scope>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.6</version>
         </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>org.hsqldb</groupId>-->
+<!--            <artifactId>hsqldb</artifactId>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
 
 
     </dependencies>
