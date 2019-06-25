@@ -53,7 +53,7 @@ import org.apache.isis.applib.annotation.Property;
 )
 
 @lombok.Getter @lombok.Setter
-@lombok.RequiredArgsConstructor
+//@lombok.RequiredArgsConstructor
 
 public class Empleado implements Comparable<Empleado> {
 
@@ -72,6 +72,12 @@ public class Empleado implements Comparable<Empleado> {
     @Property()
     private String apellido;
 
+    public Empleado(final int dni, final String nombre, final String apellido) {
+
+        this.dni = dni;
+        this.nombre = nombre;
+        this.apellido = apellido;
+    }
 
     //region > compareTo, toString
     @Override
