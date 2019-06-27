@@ -16,7 +16,7 @@
                     <bs3:row>
                         <bs3:col span="12">
                             <cpt:fieldSet name="General">
-                                <cpt:property id="dni">
+                                <cpt:property id="cuil">
                                 </cpt:property>
                                 <cpt:property id="nombre">
                                 </cpt:property>

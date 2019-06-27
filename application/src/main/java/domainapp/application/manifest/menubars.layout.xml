@@ -38,13 +38,13 @@
             <mb3:named>Empleado</mb3:named>
             <mb3:section>
                 <mb3:serviceAction objectType="Empleado" id="create">
-                    <cpt:named>Create</cpt:named>
+                    <cpt:named>Crear</cpt:named>
                 </mb3:serviceAction>
-                <mb3:serviceAction objectType="Empleado" id="findByDni">
-                    <cpt:named>Find By Name</cpt:named>
+                <mb3:serviceAction objectType="Empleado" id="findByCuil">
+                    <cpt:named>Buscar por Cuil</cpt:named>
                 </mb3:serviceAction>
                 <mb3:serviceAction objectType="Empleado" id="listAll">
-                    <cpt:named>List All</cpt:named>
+                    <cpt:named>Listar</cpt:named>
                 </mb3:serviceAction>
             </mb3:section>
         </mb3:menu>

@@ -17,6 +17,9 @@ import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.Editing;
 import org.apache.isis.applib.annotation.Property;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @PersistenceCapable(
         identityType = IdentityType.DATASTORE,
         schema = "dominio",
@@ -34,61 +37,56 @@ import org.apache.isis.applib.annotation.Property;
                 value = "SELECT "
                         + "FROM domainapp.modules.simple.dominio.Empleado "),
         @Query(
-                name = "findByDniContains", language = "JDOQL",
+                name = "findByCuilContains", language = "JDOQL",
                 value = "SELECT "
                         + "FROM domainapp.modules.simple.dominio.Empleado "
-                        + "WHERE dni.indexOf(:dni) >= 0 "),
+                        + "WHERE cuil.indexOf(:cuil) >= 0 "),
         @Query(
-                name = "findByDni", language = "JDOQL",
+                name = "findByCuil", language = "JDOQL",
                 value = "SELECT "
                         + "FROM domainapp.modules.simple.dominio.Empleado "
-                        + "WHERE dni == :dni ")
+                        + "WHERE cuil == :cuil ")
 })
-@Unique(name = "Empleado_dni_UNQ", members = { "dni" })
+@Unique(name = "Empleado_cuil_UNQ", members = { "cuil" })
 @DomainObject(
         editing = Editing.DISABLED
 )
 @DomainObjectLayout(
         bookmarking = BookmarkPolicy.AS_ROOT
 )
-
-@lombok.Getter @lombok.Setter
-//@lombok.RequiredArgsConstructor
+@Getter @Setter
 
 public class Empleado implements Comparable<Empleado> {
 
-    @Column(allowsNull = "false")
-    @lombok.NonNull
+    @Column(allowsNull = "false", length = 13)
     @Property()
-    private int dni;
+    private String cuil;
 
     @Column(allowsNull = "false", length = 40)
-    @lombok.NonNull
     @Property()
     private String nombre;
 
     @Column(allowsNull = "false", length = 40)
-    @lombok.NonNull
     @Property()
     private String apellido;
 
-    public Empleado(final int dni, final String nombre, final String apellido) {
+    public Empleado(final String cuil, final String nombre, final String apellido){
 
-        this.dni = dni;
+        this.cuil = cuil;
         this.nombre = nombre;
         this.apellido = apellido;
+
     }
 
     //region > compareTo, toString
     @Override
     public int compareTo(final Empleado other) {
-        return org.apache.isis.applib.util.ObjectContracts.compare(this, other, "dni");
+        return org.apache.isis.applib.util.ObjectContracts.compare(this, other, "cuil");
     }
 
     @Override
     public String toString() {
-        return org.apache.isis.applib.util.ObjectContracts.toString(this, "dni");
+        return org.apache.isis.applib.util.ObjectContracts.toString(this, "cuil");
     }
     //endregion
-
 }
