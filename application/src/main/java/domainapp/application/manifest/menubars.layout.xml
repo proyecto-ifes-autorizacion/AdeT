@@ -33,6 +33,22 @@
                 </mb3:serviceAction>
             </mb3:section>
         </mb3:menu>
+
+        <mb3:menu>
+            <mb3:named>Empleado</mb3:named>
+            <mb3:section>
+                <mb3:serviceAction objectType="Empleado" id="create">
+                    <cpt:named>Create</cpt:named>
+                </mb3:serviceAction>
+                <mb3:serviceAction objectType="Empleado" id="findByDni">
+                    <cpt:named>Find By Name</cpt:named>
+                </mb3:serviceAction>
+                <mb3:serviceAction objectType="Empleado" id="listAll">
+                    <cpt:named>List All</cpt:named>
+                </mb3:serviceAction>
+            </mb3:section>
+        </mb3:menu>
+
         <mb3:menu unreferencedActions="true">
             <mb3:named>Other</mb3:named>
         </mb3:menu>

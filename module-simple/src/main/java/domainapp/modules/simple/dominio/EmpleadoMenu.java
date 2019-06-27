@@ -11,13 +11,17 @@ import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.RestrictTo;
 import org.apache.isis.applib.annotation.SemanticsOf;
+
 @DomainObject(
         objectType = "Empleado"
 )
 
 @DomainService(
-        nature = NatureOfService.VIEW_MENU_ONLY
+        nature = NatureOfService.VIEW_MENU_ONLY,
+        objectType = "Empleado",
+        repositoryFor = Empleado.class
 )
+
 @DomainServiceLayout(
         named = "Empleado",
         menuOrder = ""
