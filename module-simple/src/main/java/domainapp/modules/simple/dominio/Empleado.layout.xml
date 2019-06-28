@@ -16,6 +16,8 @@
                     <bs3:row>
                         <bs3:col span="12">
                             <cpt:fieldSet name="General">
+                                <cpt:action id="delete">
+                                </cpt:action>
                                 <cpt:property id="cuil">
                                 </cpt:property>
                                 <cpt:property id="nombre">
