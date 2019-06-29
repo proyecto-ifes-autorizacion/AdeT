@@ -17,7 +17,10 @@ import org.apache.isis.applib.annotation.BookmarkPolicy;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.Editing;
+import org.apache.isis.applib.annotation.Parameter;
+import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.Property;
+import org.apache.isis.applib.annotation.SemanticsOf;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -80,6 +83,30 @@ public class Empleado implements Comparable<Empleado> {
         this.nombre = nombre;
         this.apellido = apellido;
 
+    }
+
+    public Empleado(){}
+
+    @Action(semantics = SemanticsOf.SAFE)
+    @ActionLayout(named = "Editar")
+    public Empleado update(
+
+            @Parameter(maxLength = 13)
+            @ParameterLayout(named = "Cuil: ")
+            final String cuil,
+
+            @Parameter(maxLength = 40)
+            @ParameterLayout(named = "Nombre: ")
+            final String nombre,
+
+            @Parameter(maxLength = 40)
+            @ParameterLayout(named = "Apellido: ")
+            final String apellido)
+    {
+        this.cuil = cuil;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        return this;
     }
 
     //region > compareTo, toString

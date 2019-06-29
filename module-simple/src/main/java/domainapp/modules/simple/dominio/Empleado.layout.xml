@@ -18,6 +18,8 @@
                             <cpt:fieldSet name="General">
                                 <cpt:action id="delete">
                                 </cpt:action>
+                                <cpt:action id="update">
+                                </cpt:action>
                                 <cpt:property id="cuil">
                                 </cpt:property>
                                 <cpt:property id="nombre">
