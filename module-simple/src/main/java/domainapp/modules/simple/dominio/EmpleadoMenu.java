@@ -1,5 +1,7 @@
 package domainapp.modules.simple.dominio;
 
+import java.util.Date;
+
 import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.BookmarkPolicy;
@@ -53,16 +55,19 @@ public class EmpleadoMenu {
     )
     @MemberOrder(sequence = "3")
     public Empleado create(
-            @ParameterLayout(named="Cuil: ")
+            @ParameterLayout(named = "Cuil: ")
             final String cuil,
 
-            @ParameterLayout(named="Nombre: ")
+            @ParameterLayout(named = "Nombre: ")
             final String nombre,
 
-            @ParameterLayout(named="Apellido: ")
-            final String apellido)
+            @ParameterLayout(named = "Apellido: ")
+            final String apellido,
+
+            @ParameterLayout(named = "Fecha de Nacimiento: ")
+            final Date fechaNacimiento)
     {
-        return empleadorepository.create(cuil, nombre, apellido);
+        return empleadorepository.create(cuil, nombre, apellido, fechaNacimiento);
     }
 
     @javax.inject.Inject

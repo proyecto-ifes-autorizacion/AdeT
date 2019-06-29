@@ -1,5 +1,7 @@
 package domainapp.modules.simple.dominio;
 
+import java.util.Date;
+
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.DatastoreIdentity;
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -77,11 +79,16 @@ public class Empleado implements Comparable<Empleado> {
     @Property()
     private String apellido;
 
-    public Empleado(final String cuil, final String nombre, final String apellido){
+    @Column(allowsNull = "false")
+    @Property()
+    private Date fechaNacimiento;
+
+    public Empleado(final String cuil, final String nombre, final String apellido, final Date fechaNacimiento){
 
         this.cuil = cuil;
         this.nombre = nombre;
         this.apellido = apellido;
+        this.fechaNacimiento = fechaNacimiento;
 
     }
 
@@ -101,11 +108,15 @@ public class Empleado implements Comparable<Empleado> {
 
             @Parameter(maxLength = 40)
             @ParameterLayout(named = "Apellido: ")
-            final String apellido)
+            final String apellido,
+
+            @ParameterLayout(named = "Fecha de Nacimiento: ")
+            final Date fechaNacimiento)
     {
         this.cuil = cuil;
         this.nombre = nombre;
         this.apellido = apellido;
+        this.fechaNacimiento = fechaNacimiento;
         return this;
     }
 

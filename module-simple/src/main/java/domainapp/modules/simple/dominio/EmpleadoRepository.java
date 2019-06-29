@@ -1,5 +1,7 @@
 package domainapp.modules.simple.dominio;
 
+import java.util.Date;
+
 import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.DomainService;
@@ -45,8 +47,8 @@ public class EmpleadoRepository {
     }
 
     @Programmatic
-    public Empleado create(final String cuil, final String nombre, final String apellido) {
-        Empleado empleado = new Empleado(cuil, nombre, apellido);
+    public Empleado create(final String cuil, final String nombre, final String apellido, final Date fechaNacimiento) {
+        Empleado empleado = new Empleado(cuil, nombre, apellido, fechaNacimiento);
         repositoryService.persist(empleado);
         return empleado;
     }
@@ -55,11 +57,12 @@ public class EmpleadoRepository {
     public Empleado findOrCreate(
             final String cuil,
             final String nombre,
-            final String apellido
-    ) {
+            final String apellido,
+            final Date fechaNacimiento)
+    {
         Empleado empleado = findByCuil(cuil);
         if (empleado == null) {
-            empleado = create(cuil,nombre,apellido);
+            empleado = create(cuil, nombre, apellido, fechaNacimiento);
         }
         return empleado;
     }
