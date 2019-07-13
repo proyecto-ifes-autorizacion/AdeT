@@ -23,6 +23,7 @@ import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.Property;
 import org.apache.isis.applib.annotation.SemanticsOf;
+import org.apache.isis.applib.services.i18n.TranslatableString;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -118,6 +119,24 @@ public class Empleado implements Comparable<Empleado> {
         this.apellido = apellido;
         this.fechaNacimiento = fechaNacimiento;
         return this;
+    }
+
+    //validacion del CUIL, evaluar como optimizar este metodo
+    public TranslatableString validate0Update(final String cuil) {
+        return  cuil != null &&
+                Character.isDigit(cuil.charAt(0)) &&
+                Character.isDigit(cuil.charAt(1)) &&
+                (Character.compare(cuil.charAt(2),'-') == 0)&&
+                Character.isDigit(cuil.charAt(3)) &&
+                Character.isDigit(cuil.charAt(4)) &&
+                Character.isDigit(cuil.charAt(5)) &&
+                Character.isDigit(cuil.charAt(6)) &&
+                Character.isDigit(cuil.charAt(7)) &&
+                Character.isDigit(cuil.charAt(8)) &&
+                Character.isDigit(cuil.charAt(9)) &&
+                Character.isDigit(cuil.charAt(10)) &&
+                (Character.compare(cuil.charAt(11),'-') == 0)&&
+                Character.isDigit(cuil.charAt(12)) ? null : TranslatableString.tr("Formato no valido xx-xxxxxxxx-x");
     }
 
     //region > compareTo, toString

@@ -12,6 +12,7 @@ import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.RestrictTo;
 import org.apache.isis.applib.annotation.SemanticsOf;
+import org.apache.isis.applib.services.i18n.TranslatableString;
 
 @DomainService(
         nature = NatureOfService.VIEW_MENU_ONLY,
@@ -68,6 +69,24 @@ public class EmpleadoMenu {
             final Date fechaNacimiento)
     {
         return empleadorepository.create(cuil, nombre, apellido, fechaNacimiento);
+    }
+
+    //validacion del CUIL, evaluar como optimizar este metodo
+    public TranslatableString validate0Create(final String cuil) {
+        return  cuil != null &&
+                Character.isDigit(cuil.charAt(0)) &&
+                Character.isDigit(cuil.charAt(1)) &&
+                (Character.compare(cuil.charAt(2),'-') == 0)&&
+                Character.isDigit(cuil.charAt(3)) &&
+                Character.isDigit(cuil.charAt(4)) &&
+                Character.isDigit(cuil.charAt(5)) &&
+                Character.isDigit(cuil.charAt(6)) &&
+                Character.isDigit(cuil.charAt(7)) &&
+                Character.isDigit(cuil.charAt(8)) &&
+                Character.isDigit(cuil.charAt(9)) &&
+                Character.isDigit(cuil.charAt(10)) &&
+                (Character.compare(cuil.charAt(11),'-') == 0)&&
+                Character.isDigit(cuil.charAt(12)) ? null : TranslatableString.tr("Formato no valido xx-xxxxxxxx-x");
     }
 
     @javax.inject.Inject
