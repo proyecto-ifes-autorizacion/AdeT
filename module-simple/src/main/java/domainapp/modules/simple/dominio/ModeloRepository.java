@@ -1,6 +1,5 @@
 package domainapp.modules.simple.dominio;
 
-import java.util.Date;
 import java.util.List;
 
 import org.apache.isis.applib.annotation.Action;
@@ -16,64 +15,60 @@ import static org.apache.isis.applib.annotation.SemanticsOf.NON_IDEMPOTENT_ARE_Y
 
 @DomainService(
         nature = NatureOfService.DOMAIN,
-        repositoryFor = Empleado.class
+        repositoryFor = Modelo.class
 )
-public class EmpleadoRepository {
+public class ModeloRepository {
 
     @Programmatic
-    public List<Empleado> listAll() {
-        return repositoryService.allInstances(Empleado.class);
+    public List<Modelo> listAll() {
+        return repositoryService.allInstances(Modelo.class);
     }
 
     @Programmatic
-    public Empleado findByCuil(
-            final String cuil
+    public Modelo findByNombre(
+            final String nombre
     ) {
         return container.uniqueMatch(
                 new org.apache.isis.applib.query.QueryDefault<>(
-                        Empleado.class,
-                        "findByCuil",
-                        "cuil", cuil));
+                        Modelo.class,
+                        "findByNombre",
+                        "nombre", nombre));
     }
 
     @Programmatic
-    public java.util.List<Empleado> findByCuilContains(
-            final String cuil
+    public java.util.List<Modelo> findByNombreContains(
+            final String nombre
     ) {
         return container.allMatches(
                 new org.apache.isis.applib.query.QueryDefault<>(
-                        Empleado.class,
-                        "findByCuilContains",
-                        "cuil", cuil));
+                        Modelo.class,
+                        "findByNombreContains",
+                        "nombre", nombre));
     }
 
     @Programmatic
-    public Empleado create(final String cuil, final String nombre, final String apellido, final Date fechaNacimiento) {
-        Empleado empleado = new Empleado(cuil, nombre, apellido, fechaNacimiento);
-        repositoryService.persist(empleado);
-        return empleado;
+    public Modelo create(final String nombre) {
+        Modelo modelo = new Modelo(nombre);
+        repositoryService.persist(modelo);
+        return modelo;
     }
 
     @Programmatic
-    public Empleado findOrCreate(
-            final String cuil,
-            final String nombre,
-            final String apellido,
-            final Date fechaNacimiento)
+    public Modelo findOrCreate(final String nombre)
     {
-        Empleado empleado = findByCuil(cuil);
-        if (empleado == null) {
-            empleado = create(cuil, nombre, apellido, fechaNacimiento);
+        Modelo modelo = findByNombre(nombre);
+        if (modelo == null) {
+            modelo = create(nombre);
         }
-        return empleado;
+        return modelo;
     }
 
     @Action(semantics = NON_IDEMPOTENT_ARE_YOU_SURE)
     @ActionLayout(named = "eliminar")
-    public void delete(Empleado empleado) {
-        final String title = titleService.titleOf(empleado);
+    public void delete(Modelo modelo) {
+        final String title = titleService.titleOf(modelo);
         messageService.informUser(String.format("'%s' deleted", title));
-        repositoryService.remove(empleado);
+        repositoryService.remove(modelo);
     }
 
     @javax.inject.Inject
@@ -87,6 +82,5 @@ public class EmpleadoRepository {
 
     @javax.inject.Inject
     MessageService messageService;
-
 
 }

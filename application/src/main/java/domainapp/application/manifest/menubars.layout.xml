@@ -49,6 +49,21 @@
             </mb3:section>
         </mb3:menu>
 
+        <mb3:menu>
+            <mb3:named>Modelo</mb3:named>
+            <mb3:section>
+                <mb3:serviceAction objectType="Modelo" id="create">
+                    <cpt:named>Crear</cpt:named>
+                </mb3:serviceAction>
+                <mb3:serviceAction objectType="Modelo" id="findByNombre">
+                    <cpt:named>Buscar por Cuil</cpt:named>
+                </mb3:serviceAction>
+                <mb3:serviceAction objectType="Modelo" id="listAll">
+                    <cpt:named>Listar</cpt:named>
+                </mb3:serviceAction>
+            </mb3:section>
+        </mb3:menu>
+
         <mb3:menu unreferencedActions="true">
             <mb3:named>Other</mb3:named>
         </mb3:menu>

@@ -29,6 +29,10 @@
         <class>domainapp.modules.simple.dominio.Empleado</class>
         <class>domainapp.modules.simple.dominio.EmpleadoMenu</class>
         <class>domainapp.modules.simple.dominio.EmpleadoRepository</class>
+
+        <class>domainapp.modules.simple.dominio.Modelo</class>
+        <class>domainapp.modules.simple.dominio.ModeloMenu</class>
+        <class>domainapp.modules.simple.dominio.ModeloRepository</class>
         <properties>
             <property name="datanucleus.ConnectionURL" value="jdbc:postgresql://127.0.0.1:5432/AdeT"/>
             <property name="datanucleus.ConnectionUserName" value="postgres"/>
