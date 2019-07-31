@@ -1,7 +1,8 @@
 package domainapp.modules.simple.dominio;
 
-import java.util.Collection;
+import java.util.List;
 
+import javax.inject.Inject;
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.DatastoreIdentity;
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -13,19 +14,20 @@ import javax.jdo.annotations.Unique;
 import javax.jdo.annotations.Version;
 import javax.jdo.annotations.VersionStrategy;
 
-import com.google.common.collect.Lists;
-
 import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.BookmarkPolicy;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.Editing;
+import org.apache.isis.applib.annotation.InvokeOn;
+import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.Property;
 import org.apache.isis.applib.annotation.Publishing;
 import org.apache.isis.applib.annotation.Title;
+import org.apache.isis.applib.services.actinvoc.ActionInvocationContext;
 import org.apache.isis.applib.services.message.MessageService;
 import org.apache.isis.applib.services.title.TitleService;
 
@@ -39,7 +41,7 @@ import static org.apache.isis.applib.annotation.SemanticsOf.NON_IDEMPOTENT_ARE_Y
 @PersistenceCapable(
         identityType = IdentityType.DATASTORE,
         schema = "dominio",
-        table = "Modelo"
+        table = "Marca"
 )
 @DatastoreIdentity(
         strategy = IdGeneratorStrategy.IDENTITY,
@@ -51,19 +53,19 @@ import static org.apache.isis.applib.annotation.SemanticsOf.NON_IDEMPOTENT_ARE_Y
         @Query(
                 name = "find", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.Modelo "),
+                        + "FROM domainapp.modules.simple.dominio.Marca "),
         @Query(
                 name = "findByNombreContains", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.Modelo "
+                        + "FROM domainapp.modules.simple.dominio.Marca "
                         + "WHERE nombre.indexOf(:nombre) >= 0 "),
         @Query(
                 name = "findByNombre", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.Modelo "
+                        + "FROM domainapp.modules.simple.dominio.Marca "
                         + "WHERE nombre == :nombre ")
 })
-@Unique(name = "Modelo_nombre_UNQ", members = { "nombre" })
+@Unique(name = "Marca_nombre_UNQ", members = { "nombre" })
 @DomainObject(
         editing = Editing.DISABLED
 )
@@ -71,8 +73,7 @@ import static org.apache.isis.applib.annotation.SemanticsOf.NON_IDEMPOTENT_ARE_Y
         bookmarking = BookmarkPolicy.AS_ROOT
 )
 @Getter @Setter
-
-public class Modelo implements Comparable<Modelo> {
+public class Marca implements Comparable<Marca> {
 
     @Column(allowsNull = "false", length = 40)
     @Property()
@@ -80,27 +81,30 @@ public class Modelo implements Comparable<Modelo> {
     private String nombre;
 
     @Column(allowsNull = "false")
-    @Property()
-    private Marca marca;
-
-    @Column(allowsNull = "false")
-    @Property()
+    @Property(
+            editing = Editing.DISABLED,
+            editingDisabledReason = "Utilice la accion"
+    )
     private boolean baja;
 
-    public Modelo(String nombre, boolean baja, Marca marca){
+    @Column(allowsNull = "true")
+    @Property()
+    private List<Modelo> modelos;
+
+    public Marca(String nombre, boolean baja, List<Modelo> modelos){
 
         this.nombre = nombre;
-        this.marca = marca;
         this.baja = baja;
+        this.modelos = modelos;
     }
 
-    public  Modelo(){}
+    public Marca(){}
 
     @Action(semantics = IDEMPOTENT, command = ENABLED, publishing = Publishing.ENABLED, associateWith = "nombre")
     @ActionLayout(named = "Editar")
-    public Modelo UpdateNombre(
+    public Marca UpdateNombre(
             @Parameter(maxLength = 40)
-            @ParameterLayout(named = "Modelo: ")
+            @ParameterLayout(named = "Marca: ")
             final String nombre){
         setNombre(nombre);
         return this;
@@ -110,20 +114,16 @@ public class Modelo implements Comparable<Modelo> {
         return getNombre();
     }
 
-    public Collection<Marca> choicesMarca() {
-        return marcaRepository.listAll();
-    }
-
     @Action(semantics = NON_IDEMPOTENT_ARE_YOU_SURE)
     @ActionLayout(named = "Activar/Desactivar")
-    public Modelo UpdateBaja(){
+    public Marca UpdateBaja(){
         setBaja(!this.baja);
         return this;
     }
 
     //region > compareTo, toString
     @Override
-    public int compareTo(final Modelo other) {
+    public int compareTo(final Marca other) {
         return org.apache.isis.applib.util.ObjectContracts.compare(this, other, "nombre");
     }
 
@@ -135,8 +135,8 @@ public class Modelo implements Comparable<Modelo> {
 
     @Action(semantics = NON_IDEMPOTENT_ARE_YOU_SURE)
     @ActionLayout(named = "eliminar")
-    public void delete() {
-        modeloRepository.delete(this);
+    public void delete (){
+        marcaRepository.delete(this);
         final String title = titleService.titleOf(this);
         messageService.informUser(String.format("'%s' deleted", title));
     }
@@ -144,7 +144,7 @@ public class Modelo implements Comparable<Modelo> {
     @javax.inject.Inject
     @javax.jdo.annotations.NotPersistent
     @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
-    ModeloRepository modeloRepository;
+    MarcaRepository marcaRepository;
 
     @javax.inject.Inject
     @javax.jdo.annotations.NotPersistent
@@ -156,8 +156,4 @@ public class Modelo implements Comparable<Modelo> {
     @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
     MessageService messageService;
 
-    @javax.inject.Inject
-    @javax.jdo.annotations.NotPersistent
-    @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
-    MarcaRepository marcaRepository;
 }

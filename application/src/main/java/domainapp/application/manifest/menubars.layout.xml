@@ -35,7 +35,7 @@
         </mb3:menu>
 
         <mb3:menu>
-            <mb3:named>Empleado</mb3:named>
+            <mb3:named>Empleados</mb3:named>
             <mb3:section>
                 <mb3:serviceAction objectType="Empleado" id="create">
                     <cpt:named>Crear</cpt:named>
@@ -50,16 +50,27 @@
         </mb3:menu>
 
         <mb3:menu>
-            <mb3:named>Modelo</mb3:named>
+            <mb3:named>Vehiculos</mb3:named>
+            <mb3:section>
+                <mb3:serviceAction objectType="Marca" id="create">
+                    <cpt:named>Crear Marca</cpt:named>
+                </mb3:serviceAction>
+                <mb3:serviceAction objectType="Marca" id="findByNombre">
+                    <cpt:named>Buscar Marca</cpt:named>
+                </mb3:serviceAction>
+                <mb3:serviceAction objectType="Marca" id="listAll">
+                    <cpt:named>Listar Marca</cpt:named>
+                </mb3:serviceAction>
+            </mb3:section>
             <mb3:section>
                 <mb3:serviceAction objectType="Modelo" id="create">
-                    <cpt:named>Crear</cpt:named>
+                    <cpt:named>Crear Modelo</cpt:named>
                 </mb3:serviceAction>
                 <mb3:serviceAction objectType="Modelo" id="findByNombre">
-                    <cpt:named>Buscar por Cuil</cpt:named>
+                    <cpt:named>Buscar Modelo</cpt:named>
                 </mb3:serviceAction>
                 <mb3:serviceAction objectType="Modelo" id="listAll">
-                    <cpt:named>Listar</cpt:named>
+                    <cpt:named>Listar Modelo</cpt:named>
                 </mb3:serviceAction>
             </mb3:section>
         </mb3:menu>

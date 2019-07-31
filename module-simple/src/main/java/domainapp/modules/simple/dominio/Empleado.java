@@ -23,6 +23,7 @@ import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.Property;
 import org.apache.isis.applib.annotation.SemanticsOf;
+import org.apache.isis.applib.annotation.Title;
 import org.apache.isis.applib.services.i18n.TranslatableString;
 
 import lombok.AccessLevel;
@@ -70,6 +71,7 @@ public class Empleado implements Comparable<Empleado> {
 
     @Column(allowsNull = "false", length = 13)
     @Property()
+    @Title()
     private String cuil;
 
     @Column(allowsNull = "false", length = 40)
@@ -120,6 +122,20 @@ public class Empleado implements Comparable<Empleado> {
         this.fechaNacimiento = fechaNacimiento;
         return this;
     }
+
+    public String default0Update() {
+        return getCuil();
+    }
+    public String default1Update() {
+        return getNombre();
+    }
+    public String default2Update() {
+        return getApellido();
+    }
+    public Date default3Update() {
+        return getFechaNacimiento();
+    }
+
 
     //validacion del CUIL, evaluar como optimizar este metodo
     public TranslatableString validate0Update(final String cuil) {

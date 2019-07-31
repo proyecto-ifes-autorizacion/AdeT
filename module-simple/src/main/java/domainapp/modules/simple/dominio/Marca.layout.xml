@@ -17,13 +17,13 @@
                         <bs3:col span="12">
                             <cpt:fieldSet name="General">
                                 <cpt:action id="delete"/>
-                                <cpt:property id="marca"/>
                                 <cpt:property id="nombre">
                                     <cpt:action id="UpdateNombre"/>
                                 </cpt:property>
                                 <cpt:property id="baja">
                                     <cpt:action id="UpdateBaja"/>
                                 </cpt:property>
+                                <cpt:property id="modelo"/>
                             </cpt:fieldSet>
                         </bs3:col>
                     </bs3:row>
