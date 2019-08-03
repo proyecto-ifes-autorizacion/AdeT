@@ -21,8 +21,11 @@ import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.Property;
 import org.apache.isis.applib.annotation.SemanticsOf;
+import org.apache.isis.applib.annotation.Title;
 
 import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 
 @PersistenceCapable(
         identityType = IdentityType.DATASTORE,
@@ -58,10 +61,13 @@ import lombok.AccessLevel;
 @DomainObjectLayout(
         bookmarking = BookmarkPolicy.AS_ROOT
 )
+@Getter @Setter
+
 public class Empresa implements Comparable<Empresa> {
 
     @Column(allowsNull = "false", length = 13)
     @Property()
+    @Title()
     private String nombreFantasia;
 
     @Column(allowsNull = "false", length = 40)
@@ -86,7 +92,6 @@ public class Empresa implements Comparable<Empresa> {
         this.direccion = direccion;
         this.telefono = telefono;
     }
-
 
     public Empresa(){}
 
@@ -116,6 +121,21 @@ public class Empresa implements Comparable<Empresa> {
         return this;
     }
 
+    public String default0Update() {
+        return getNombreFantasia();
+    }
+
+    public String default1Update() {
+        return getRazonSocial();
+    }
+
+    public String default2Update() {
+        return getDireccion();
+    }
+
+    public String default3Update() {
+        return getTelefono();
+    }
 
     //region > compareTo, toString
     @Override

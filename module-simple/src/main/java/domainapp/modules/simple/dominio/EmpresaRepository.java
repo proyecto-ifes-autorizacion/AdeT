@@ -1,21 +1,13 @@
 package domainapp.modules.simple.dominio;
 
-import org.apache.isis.applib.annotation.*;
+import java.util.List;
 
-import javax.jdo.annotations.*;
-
-
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.isis.applib.annotation.Action;
-import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.annotation.Programmatic;
 import org.apache.isis.applib.services.message.MessageService;
 import org.apache.isis.applib.services.repository.RepositoryService;
 import org.apache.isis.applib.services.title.TitleService;
-import static org.apache.isis.applib.annotation.SemanticsOf.NON_IDEMPOTENT_ARE_YOU_SURE;
 
 
 @DomainService(
@@ -25,8 +17,8 @@ import static org.apache.isis.applib.annotation.SemanticsOf.NON_IDEMPOTENT_ARE_Y
 public class EmpresaRepository {
 
     @Programmatic
-    public java.util.List<Empresa> listAll() {
-        return container.allInstances(Empresa.class);
+    public List<Empresa> listAll() {
+        return repositoryService.allInstances(Empresa.class);
     }
 
     @Programmatic
@@ -54,7 +46,6 @@ public class EmpresaRepository {
     @Programmatic
     public Empresa create(final String nombreFantasia, final String razonSocial, final String direccion, final String telefono) {
         Empresa empresa = new Empresa(nombreFantasia,razonSocial,direccion,telefono);
-
         repositoryService.persist(empresa);
         return empresa;
     }
