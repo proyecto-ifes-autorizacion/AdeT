@@ -35,6 +35,21 @@
         </mb3:menu>
 
         <mb3:menu>
+            <mb3:named>Empresa</mb3:named>
+            <mb3:section>
+                <mb3:serviceAction objectType="Empresa" id="create">
+                    <cpt:named>Crear</cpt:named>
+                </mb3:serviceAction>
+                <mb3:serviceAction objectType="Empresa" id="findByNombreFantasia">
+                    <cpt:named>Buscar por Nombre Fantasia</cpt:named>
+                </mb3:serviceAction>
+                <mb3:serviceAction objectType="Empresa" id="listAll">
+                    <cpt:named>Listar</cpt:named>
+                </mb3:serviceAction>
+            </mb3:section>
+        </mb3:menu>
+
+        <mb3:menu>
             <mb3:named>Empleados</mb3:named>
             <mb3:section>
                 <mb3:serviceAction objectType="Empleado" id="create">
