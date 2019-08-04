@@ -28,6 +28,8 @@
                                 </cpt:property>
                                 <cpt:property id="fechaNacimiento">
                                 </cpt:property>
+                                <cpt:property id="empresa">
+                                </cpt:property>
                             </cpt:fieldSet>
                         </bs3:col>
                     </bs3:row>

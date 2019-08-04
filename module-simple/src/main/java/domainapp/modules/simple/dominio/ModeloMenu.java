@@ -66,6 +66,7 @@ public class ModeloMenu {
     }
 
     public List<Marca> choices1Create() {
+
         return marcaRepository.listAll();
     }
 

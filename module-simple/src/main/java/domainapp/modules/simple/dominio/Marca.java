@@ -7,6 +7,7 @@ import javax.jdo.annotations.Column;
 import javax.jdo.annotations.DatastoreIdentity;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.NotPersistent;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Queries;
 import javax.jdo.annotations.Query;
@@ -24,6 +25,7 @@ import org.apache.isis.applib.annotation.InvokeOn;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
+import org.apache.isis.applib.annotation.Programmatic;
 import org.apache.isis.applib.annotation.Property;
 import org.apache.isis.applib.annotation.Publishing;
 import org.apache.isis.applib.annotation.Title;
@@ -63,7 +65,12 @@ import static org.apache.isis.applib.annotation.SemanticsOf.NON_IDEMPOTENT_ARE_Y
                 name = "findByNombre", language = "JDOQL",
                 value = "SELECT "
                         + "FROM domainapp.modules.simple.dominio.Marca "
-                        + "WHERE nombre == :nombre ")
+                        + "WHERE nombre == :nombre "),
+        @Query(
+                name = "ListByBaja", language = "JDOQL",
+                value = "SELECT "
+                        + "FROM domainapp.modules.simple.dominio.Marca "
+                        + "WHERE baja == :baja ")
 })
 @Unique(name = "Marca_nombre_UNQ", members = { "nombre" })
 @DomainObject(
@@ -81,15 +88,24 @@ public class Marca implements Comparable<Marca> {
     private String nombre;
 
     @Column(allowsNull = "false")
-    @Property(
-            editing = Editing.DISABLED,
-            editingDisabledReason = "Utilice la accion"
-    )
+    @Property()
     private boolean baja;
 
     @Column(allowsNull = "true")
     @Property()
     private List<Modelo> modelos;
+
+    @NotPersistent()
+    public List<Marca> getActivas(){
+
+        return marcaRepository.ListByBaja(false);
+    }
+
+    @NotPersistent()
+    public List<Marca> getInactivas(){
+
+        return marcaRepository.ListByBaja(true);
+    }
 
     public Marca(String nombre, boolean baja, List<Modelo> modelos){
 
@@ -111,13 +127,22 @@ public class Marca implements Comparable<Marca> {
     }
 
     public String default0UpdateNombre() {
+
         return getNombre();
     }
 
     @Action(semantics = NON_IDEMPOTENT_ARE_YOU_SURE)
     @ActionLayout(named = "Activar/Desactivar")
     public Marca UpdateBaja(){
+
         setBaja(!this.baja);
+        return this;
+    }
+
+    @Action()
+    public Marca ObtenerModelos() {
+
+        setModelos(modeloRepository.ListModeloByMarca(this));
         return this;
     }
 
@@ -145,6 +170,11 @@ public class Marca implements Comparable<Marca> {
     @javax.jdo.annotations.NotPersistent
     @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
     MarcaRepository marcaRepository;
+
+    @javax.inject.Inject
+    @javax.jdo.annotations.NotPersistent
+    @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
+    ModeloRepository modeloRepository;
 
     @javax.inject.Inject
     @javax.jdo.annotations.NotPersistent

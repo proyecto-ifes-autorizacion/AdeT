@@ -1,11 +1,13 @@
 package domainapp.modules.simple.dominio;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.DatastoreIdentity;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.NotPersistent;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Queries;
 import javax.jdo.annotations.Query;
@@ -61,7 +63,18 @@ import static org.apache.isis.applib.annotation.SemanticsOf.NON_IDEMPOTENT_ARE_Y
                 name = "findByNombre", language = "JDOQL",
                 value = "SELECT "
                         + "FROM domainapp.modules.simple.dominio.Modelo "
-                        + "WHERE nombre == :nombre ")
+                        + "WHERE nombre == :nombre "),
+        @Query(
+                name = "ModeloByMarca", language = "JDOQL",
+                value = "SELECT "
+                        + "FROM domainapp.modules.simple.dominio.Modelo "
+                        + "WHERE marca == :marca "),
+        @Query(
+                name = "ListByBaja", language = "JDOQL",
+                value = "SELECT "
+                        + "FROM domainapp.modules.simple.dominio.Modelo "
+                        + "WHERE baja == :baja ")
+
 })
 @Unique(name = "Modelo_nombre_UNQ", members = { "nombre" })
 @DomainObject(
@@ -86,6 +99,18 @@ public class Modelo implements Comparable<Modelo> {
     @Column(allowsNull = "false")
     @Property()
     private boolean baja;
+
+    @NotPersistent()
+    public List<Modelo> getActivas(){
+
+        return modeloRepository.ListByBaja(false);
+    }
+
+    @NotPersistent()
+    public List<Modelo> getInactivas(){
+
+        return modeloRepository.ListByBaja(true);
+    }
 
     public Modelo(String nombre, boolean baja, Marca marca){
 

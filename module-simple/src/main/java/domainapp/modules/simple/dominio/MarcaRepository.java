@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.annotation.Programmatic;
+import org.apache.isis.applib.query.QueryDefault;
 import org.apache.isis.applib.services.repository.RepositoryService;
 
 @DomainService(
@@ -19,11 +20,19 @@ public class MarcaRepository {
     }
 
     @Programmatic
-    public Marca findByNombre(
-            final String nombre
-    ) {
-        return container.uniqueMatch(
-                new org.apache.isis.applib.query.QueryDefault<>(
+    public List<Marca> ListByBaja(final boolean baja){
+
+        return repositoryService.allMatches(new QueryDefault<>(
+                Marca.class,
+                "ListByBaja",
+                "baja", baja));
+    }
+
+    @Programmatic
+    public Marca findByNombre(final String nombre) {
+
+        return repositoryService.uniqueMatch(
+                new QueryDefault<>(
                         Marca.class,
                         "findByNombre",
                         "nombre", nombre));
@@ -33,8 +42,8 @@ public class MarcaRepository {
     public java.util.List<Marca> findByNombreContains(
             final String nombre
     ) {
-        return container.allMatches(
-                new org.apache.isis.applib.query.QueryDefault<>(
+        return repositoryService.allMatches(
+                new QueryDefault<>(
                         Marca.class,
                         "findByNombreContains",
                         "nombre", nombre));
@@ -49,11 +58,9 @@ public class MarcaRepository {
 
     @Programmatic
     public void delete(Marca marca){
+
         repositoryService.remove(marca);
     }
-
-    @javax.inject.Inject
-    org.apache.isis.applib.DomainObjectContainer container;
 
     @javax.inject.Inject
     RepositoryService repositoryService;

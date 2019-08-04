@@ -1,6 +1,11 @@
 package domainapp.modules.simple.dominio;
 
 import java.util.Date;
+import java.util.List;
+
+import javax.inject.Inject;
+
+import com.google.common.collect.Lists;
 
 import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.ActionLayout;
@@ -9,6 +14,8 @@ import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.NatureOfService;
+import org.apache.isis.applib.annotation.Optionality;
+import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.RestrictTo;
 import org.apache.isis.applib.annotation.SemanticsOf;
@@ -66,9 +73,18 @@ public class EmpleadoMenu {
             final String apellido,
 
             @ParameterLayout(named = "Fecha de Nacimiento: ")
-            final Date fechaNacimiento)
+            final Date fechaNacimiento,
+
+            @Parameter(optionality = Optionality.MANDATORY)
+            @ParameterLayout(named = "Empresa: ")
+            final Empresa empresa)
     {
-        return empleadorepository.create(cuil, nombre, apellido, fechaNacimiento);
+        return empleadorepository.create(cuil, nombre, apellido, fechaNacimiento, empresa);
+    }
+
+    public List<Empresa> choices4Create() {
+
+        return empresaRepository.listAll();
     }
 
     //validacion del CUIL, evaluar como optimizar este metodo
@@ -91,4 +107,7 @@ public class EmpleadoMenu {
 
     @javax.inject.Inject
     EmpleadoRepository empleadorepository;
+
+    @javax.inject.Inject
+    EmpresaRepository empresaRepository;
 }

@@ -122,18 +122,22 @@ public class Empresa implements Comparable<Empresa> {
     }
 
     public String default0Update() {
+
         return getNombreFantasia();
     }
 
     public String default1Update() {
+
         return getRazonSocial();
     }
 
     public String default2Update() {
+
         return getDireccion();
     }
 
     public String default3Update() {
+
         return getTelefono();
     }
 

@@ -1,6 +1,7 @@
 package domainapp.modules.simple.dominio;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.DatastoreIdentity;
@@ -13,12 +14,15 @@ import javax.jdo.annotations.Unique;
 import javax.jdo.annotations.Version;
 import javax.jdo.annotations.VersionStrategy;
 
+import com.google.common.collect.Lists;
+
 import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.BookmarkPolicy;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.Editing;
+import org.apache.isis.applib.annotation.Optionality;
 import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.Property;
@@ -86,12 +90,17 @@ public class Empleado implements Comparable<Empleado> {
     @Property()
     private Date fechaNacimiento;
 
-    public Empleado(final String cuil, final String nombre, final String apellido, final Date fechaNacimiento){
+    @Column(allowsNull = "false")
+    @Property()
+    private Empresa empresa;
+
+    public Empleado(final String cuil, final String nombre, final String apellido, final Date fechaNacimiento, final Empresa empresa){
 
         this.cuil = cuil;
         this.nombre = nombre;
         this.apellido = apellido;
         this.fechaNacimiento = fechaNacimiento;
+        this.empresa = empresa;
 
     }
 
@@ -114,26 +123,45 @@ public class Empleado implements Comparable<Empleado> {
             final String apellido,
 
             @ParameterLayout(named = "Fecha de Nacimiento: ")
-            final Date fechaNacimiento)
+            final Date fechaNacimiento,
+
+            @Parameter(optionality = Optionality.MANDATORY)
+            @ParameterLayout(named = "Empresa: ")
+            final Empresa empresa)
     {
         this.cuil = cuil;
         this.nombre = nombre;
         this.apellido = apellido;
         this.fechaNacimiento = fechaNacimiento;
+        this.empresa = empresa;
         return this;
     }
 
     public String default0Update() {
+
         return getCuil();
     }
     public String default1Update() {
+
         return getNombre();
     }
     public String default2Update() {
+
         return getApellido();
     }
     public Date default3Update() {
+
         return getFechaNacimiento();
+    }
+
+    public Empresa default4Update() {
+
+        return getEmpresa();
+    }
+
+    public List<Empresa> choices4Update() {
+
+        return empresaRepository.listAll();
     }
 
 
@@ -177,5 +205,10 @@ public class Empleado implements Comparable<Empleado> {
     @javax.jdo.annotations.NotPersistent
     @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
     EmpleadoRepository empleadorepository;
+
+    @javax.inject.Inject
+    @javax.jdo.annotations.NotPersistent
+    @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
+    EmpresaRepository empresaRepository;
 
 }
