@@ -94,14 +94,18 @@ public class Empleado implements Comparable<Empleado> {
     @Property()
     private Empresa empresa;
 
-    public Empleado(final String cuil, final String nombre, final String apellido, final Date fechaNacimiento, final Empresa empresa){
+    @Column(allowsNull = "false")
+    @Property()
+    private EmpleadoEstado estado;
+
+    public Empleado(final String cuil, final String nombre, final String apellido, final Date fechaNacimiento, final Empresa empresa, final EmpleadoEstado estado){
 
         this.cuil = cuil;
         this.nombre = nombre;
         this.apellido = apellido;
         this.fechaNacimiento = fechaNacimiento;
         this.empresa = empresa;
-
+        this.estado = estado;
     }
 
     public Empleado(){}

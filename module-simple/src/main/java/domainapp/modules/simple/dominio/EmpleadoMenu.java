@@ -77,9 +77,10 @@ public class EmpleadoMenu {
 
             @Parameter(optionality = Optionality.MANDATORY)
             @ParameterLayout(named = "Empresa: ")
-            final Empresa empresa)
-    {
-        return empleadorepository.create(cuil, nombre, apellido, fechaNacimiento, empresa);
+            final Empresa empresa){
+
+        EmpleadoEstado estado = EmpleadoEstado.Habilitado;
+        return empleadorepository.create(cuil, nombre, apellido, fechaNacimiento, empresa, estado);
     }
 
     public List<Empresa> choices4Create() {
