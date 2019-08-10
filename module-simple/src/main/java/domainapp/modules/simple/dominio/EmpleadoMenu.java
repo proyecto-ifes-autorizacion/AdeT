@@ -3,10 +3,6 @@ package domainapp.modules.simple.dominio;
 import java.util.Date;
 import java.util.List;
 
-import javax.inject.Inject;
-
-import com.google.common.collect.Lists;
-
 import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.BookmarkPolicy;
@@ -79,7 +75,7 @@ public class EmpleadoMenu {
             @ParameterLayout(named = "Empresa: ")
             final Empresa empresa){
 
-        EmpleadoEstado estado = EmpleadoEstado.Habilitado;
+        EstadoEmpleado estado = EstadoEmpleado.Habilitado;
         return empleadorepository.create(cuil, nombre, apellido, fechaNacimiento, empresa, estado);
     }
 

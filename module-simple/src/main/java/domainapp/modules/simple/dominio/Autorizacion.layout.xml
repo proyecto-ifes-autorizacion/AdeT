@@ -16,14 +16,12 @@
                     <bs3:row>
                         <bs3:col span="12">
                             <cpt:fieldSet name="General">
-                                <cpt:action id="UpdateBaja"/>
-                                <cpt:action id="delete"/>
-                                <cpt:property id="nombre">
-                                    <cpt:action id="UpdateNombre"/>
-                                </cpt:property>
-                                <cpt:property id="marca"/>
-                                <cpt:property id="baja">
-                                </cpt:property>
+                                <cpt:property id="estado"/>
+                                <cpt:property id="titulo"/>
+                                <cpt:property id="descripcion" multiLine="10"/>
+                                <cpt:property id="ubicacion"/>
+                                <cpt:property id="apertura"/>
+                                <cpt:property id="cierre"/>
                             </cpt:fieldSet>
                         </bs3:col>
                     </bs3:row>
@@ -45,16 +43,7 @@
             </bs3:tabGroup>
         </bs3:col>
         <bs3:col span="8">
-            <bs3:tabGroup unreferencedCollections="true">
-                <bs3:tab name="Modelos">
-                    <bs3:row>
-                        <bs3:col span="12" size="MD">
-                            <cpt:collection defaultView="table" id="activas"/>
-                            <cpt:collection defaultView="table" id="inactivas"/>
-                        </bs3:col>
-                    </bs3:row>
-                </bs3:tab>
-            </bs3:tabGroup>
+            <bs3:tabGroup unreferencedCollections="true"/>
         </bs3:col>
     </bs3:row>
 </bs3:grid>

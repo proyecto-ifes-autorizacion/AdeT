@@ -112,6 +112,11 @@ public class Modelo implements Comparable<Modelo> {
         return modeloRepository.ListByBaja(true);
     }
 
+    public String title(){
+
+        return marca.getNombre()+" "+getNombre();
+    }
+
     public Modelo(String nombre, boolean baja, Marca marca){
 
         this.nombre = nombre;

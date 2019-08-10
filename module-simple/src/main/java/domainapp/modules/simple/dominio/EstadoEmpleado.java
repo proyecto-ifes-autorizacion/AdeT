@@ -1,6 +1,6 @@
 package domainapp.modules.simple.dominio;
 
-public enum EmpleadoEstado {
+public enum EstadoEmpleado {
     Ejecucion,
     Habilitado,
     Inhabilitado,

@@ -140,6 +140,18 @@ public class Marca implements Comparable<Marca> {
     }
 
     @Action()
+    @ActionLayout(named = "Agregar")
+    public Marca AgregarModelos(
+            @Parameter(maxLength = 40)
+            @ParameterLayout(named = "Modelo")
+            final String nombre){
+
+        boolean baja = false;
+        modelos.add(modeloRepository.create(nombre, baja, this));
+        return this;
+    }
+
+    @Action()
     public Marca ObtenerModelos() {
 
         setModelos(modeloRepository.ListModeloByMarca(this));

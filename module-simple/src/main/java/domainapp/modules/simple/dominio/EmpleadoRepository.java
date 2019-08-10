@@ -48,7 +48,7 @@ public class EmpleadoRepository {
     }
 
     @Programmatic
-    public Empleado create(final String cuil, final String nombre, final String apellido, final Date fechaNacimiento, final Empresa empresa, final EmpleadoEstado estado) {
+    public Empleado create(final String cuil, final String nombre, final String apellido, final Date fechaNacimiento, final Empresa empresa, final EstadoEmpleado estado) {
         Empleado empleado = new Empleado(cuil, nombre, apellido, fechaNacimiento, empresa, estado);
         repositoryService.persist(empleado);
         return empleado;
@@ -61,7 +61,7 @@ public class EmpleadoRepository {
             final String apellido,
             final Date fechaNacimiento,
             final Empresa empresa,
-            final EmpleadoEstado estado)
+            final EstadoEmpleado estado)
     {
         Empleado empleado = findByCuil(cuil);
         if (empleado == null) {

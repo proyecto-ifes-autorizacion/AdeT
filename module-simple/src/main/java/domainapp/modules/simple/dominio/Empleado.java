@@ -14,8 +14,6 @@ import javax.jdo.annotations.Unique;
 import javax.jdo.annotations.Version;
 import javax.jdo.annotations.VersionStrategy;
 
-import com.google.common.collect.Lists;
-
 import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.BookmarkPolicy;
@@ -27,7 +25,6 @@ import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.Property;
 import org.apache.isis.applib.annotation.SemanticsOf;
-import org.apache.isis.applib.annotation.Title;
 import org.apache.isis.applib.services.i18n.TranslatableString;
 
 import lombok.AccessLevel;
@@ -75,7 +72,6 @@ public class Empleado implements Comparable<Empleado> {
 
     @Column(allowsNull = "false", length = 13)
     @Property()
-    @Title()
     private String cuil;
 
     @Column(allowsNull = "false", length = 40)
@@ -96,9 +92,42 @@ public class Empleado implements Comparable<Empleado> {
 
     @Column(allowsNull = "false")
     @Property()
-    private EmpleadoEstado estado;
+    private EstadoEmpleado estado;
 
-    public Empleado(final String cuil, final String nombre, final String apellido, final Date fechaNacimiento, final Empresa empresa, final EmpleadoEstado estado){
+    public String title(){
+
+        return getApellido()+", "+getNombre();
+    }
+
+    @Action()
+    public Empleado Ejecutar(){
+
+        setEstado(EstadoEmpleado.Ejecucion);
+        return this;
+    }
+
+    @Action()
+    public Empleado Habilitar(){
+
+        setEstado(EstadoEmpleado.Habilitado);
+        return this;
+    }
+
+    @Action()
+    public Empleado Inhabilitar(){
+
+        setEstado(EstadoEmpleado.Inhabilitado);
+        return this;
+    }
+
+    @Action()
+    public Empleado Desactivar(){
+
+        setEstado(EstadoEmpleado.Desactivado);
+        return this;
+    }
+
+    public Empleado(final String cuil, final String nombre, final String apellido, final Date fechaNacimiento, final Empresa empresa, final EstadoEmpleado estado){
 
         this.cuil = cuil;
         this.nombre = nombre;
