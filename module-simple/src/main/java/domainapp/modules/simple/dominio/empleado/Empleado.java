@@ -1,4 +1,4 @@
-package domainapp.modules.simple.dominio;
+package domainapp.modules.simple.dominio.empleado;
 
 import java.util.Date;
 import java.util.List;
@@ -27,6 +27,8 @@ import org.apache.isis.applib.annotation.Property;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.services.i18n.TranslatableString;
 
+import domainapp.modules.simple.dominio.empresa.Empresa;
+import domainapp.modules.simple.dominio.empresa.EmpresaRepository;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -47,16 +49,16 @@ import static org.apache.isis.applib.annotation.SemanticsOf.NON_IDEMPOTENT_ARE_Y
         @Query(
                 name = "find", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.Empleado "),
+                        + "FROM domainapp.modules.simple.dominio.empleado.Empleado "),
         @Query(
                 name = "findByCuilContains", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.Empleado "
+                        + "FROM domainapp.modules.simple.dominio.empleado.Empleado "
                         + "WHERE cuil.indexOf(:cuil) >= 0 "),
         @Query(
                 name = "findByCuil", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.Empleado "
+                        + "FROM domainapp.modules.simple.dominio.empleado.Empleado "
                         + "WHERE cuil == :cuil ")
 })
 @Unique(name = "Empleado_cuil_UNQ", members = { "cuil" })
@@ -92,7 +94,7 @@ public class Empleado implements Comparable<Empleado> {
 
     @Column(allowsNull = "false")
     @Property()
-    private EstadoEmpleado estado;
+    private Estado estado;
 
     public String title(){
 
@@ -102,32 +104,32 @@ public class Empleado implements Comparable<Empleado> {
     @Action()
     public Empleado Ejecutar(){
 
-        setEstado(EstadoEmpleado.Ejecucion);
+        setEstado(Estado.Ejecucion);
         return this;
     }
 
     @Action()
     public Empleado Habilitar(){
 
-        setEstado(EstadoEmpleado.Habilitado);
+        setEstado(Estado.Habilitado);
         return this;
     }
 
     @Action()
     public Empleado Inhabilitar(){
 
-        setEstado(EstadoEmpleado.Inhabilitado);
+        setEstado(Estado.Inhabilitado);
         return this;
     }
 
     @Action()
     public Empleado Desactivar(){
 
-        setEstado(EstadoEmpleado.Desactivado);
+        setEstado(Estado.Desactivado);
         return this;
     }
 
-    public Empleado(final String cuil, final String nombre, final String apellido, final Date fechaNacimiento, final Empresa empresa, final EstadoEmpleado estado){
+    public Empleado(final String cuil, final String nombre, final String apellido, final Date fechaNacimiento, final Empresa empresa, final Estado estado){
 
         this.cuil = cuil;
         this.nombre = nombre;

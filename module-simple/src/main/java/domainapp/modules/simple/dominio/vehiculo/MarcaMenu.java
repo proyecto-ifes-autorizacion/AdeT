@@ -1,4 +1,4 @@
-package domainapp.modules.simple.dominio;
+package domainapp.modules.simple.dominio.vehiculo;
 
 import java.util.List;
 
@@ -9,22 +9,20 @@ import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.NatureOfService;
-import org.apache.isis.applib.annotation.Optionality;
-import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.RestrictTo;
 import org.apache.isis.applib.annotation.SemanticsOf;
 
 @DomainService(
         nature = NatureOfService.VIEW_MENU_ONLY,
-        objectType = "Modelo",
-        repositoryFor = Modelo.class
+        objectType = "Marca",
+        repositoryFor = Marca.class
 )
 @DomainServiceLayout(
         named = "",
         menuOrder = ""
 )
-public class ModeloMenu {
+public class MarcaMenu {
 
     @Action(
             semantics = SemanticsOf.SAFE,
@@ -34,8 +32,8 @@ public class ModeloMenu {
             bookmarking = BookmarkPolicy.AS_ROOT
     )
     @MemberOrder(sequence = "1")
-    public java.util.List<Modelo> listAll() {
-        return modelorepository.listAll();
+    public List<Marca> listAll() {
+        return marcarepository.listAll();
     }
 
     @Action(
@@ -45,34 +43,23 @@ public class ModeloMenu {
             bookmarking = BookmarkPolicy.AS_ROOT
     )
     @MemberOrder(sequence = "2")
-    public java.util.List<Modelo> findByNombre(
+    public java.util.List<Marca> findByNombre(
             final String nombre
     ) {
-        return modelorepository.findByNombreContains(nombre);
+        return marcarepository.findByNombreContains(nombre);
     }
 
     @Action(
     )
     @MemberOrder(sequence = "3")
-    public Modelo create(
-            @ParameterLayout(named = "Modelo: ")
-            final String nombre,
-
-            @Parameter(optionality = Optionality.MANDATORY)
+    public Marca create(
             @ParameterLayout(named = "Marca: ")
-            final Marca marca){
+            final String nombre) {
         final boolean baja = false;
-        return modelorepository.create(nombre, baja, marca);
-    }
-
-    public List<Marca> choices1Create() {
-
-        return marcaRepository.listAll();
+        final List<Modelo> modelos = null;
+        return marcarepository.create(nombre, baja, modelos);
     }
 
     @javax.inject.Inject
-    ModeloRepository modelorepository;
-
-    @javax.inject.Inject
-    MarcaRepository marcaRepository;
+    MarcaRepository marcarepository;
 }

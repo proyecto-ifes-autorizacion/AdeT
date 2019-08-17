@@ -1,4 +1,4 @@
-package domainapp.modules.simple.dominio;
+package domainapp.modules.simple.dominio.autorizacion;
 
 import java.util.Date;
 import java.util.List;
@@ -7,6 +7,7 @@ import org.apache.isis.applib.annotation.*;
 
 import javax.jdo.annotations.*;
 
+import domainapp.modules.simple.dominio.empleado.Empleado;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,16 +26,16 @@ import lombok.Setter;
         @Query(
                 name = "find", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.Autorizacion "),
+                        + "FROM domainapp.modules.simple.dominio.autorizacion.Autorizacion "),
         @Query(
                 name = "findByTituloContains", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.Autorizacion "
+                        + "FROM domainapp.modules.simple.dominio.autorizacion.Autorizacion "
                         + "WHERE titulo.indexOf(:titulo) >= 0 "),
         @Query(
                 name = "findByTitulo", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.Autorizacion "
+                        + "FROM domainapp.modules.simple.dominio.autorizacion.Autorizacion "
                         + "WHERE titulo == :titulo ")
 })
 @DomainObject(
@@ -45,6 +46,11 @@ import lombok.Setter;
 )
 @Getter @Setter
 public class Autorizacion implements Comparable<Autorizacion> {
+
+    @Unique()
+    @Column(allowsNull = "false")
+    @Property()
+    private int idAdeT;
 
     @Column(allowsNull = "false", length = 40)
     @Property()
@@ -84,7 +90,7 @@ public class Autorizacion implements Comparable<Autorizacion> {
 
     @Column(allowsNull = "false")
     @Property()
-    private EstadoAutorizacion estado;
+    private Estado estado;
 
     public Autorizacion() {
     }
@@ -99,7 +105,7 @@ public class Autorizacion implements Comparable<Autorizacion> {
             final Empleado creador,
             final Empleado solicitante,
             final List<Empleado> ejecutantes,
-            final EstadoAutorizacion estado) {
+            final Estado estado) {
 
         this.titulo = titulo;
         this.descripcion = descripcion;

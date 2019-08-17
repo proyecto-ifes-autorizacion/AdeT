@@ -1,16 +1,12 @@
-package domainapp.modules.simple.dominio;
+package domainapp.modules.simple.dominio.vehiculo;
 
 import java.util.List;
-
-import org.datanucleus.store.query.QueryResult;
 
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.annotation.Programmatic;
 import org.apache.isis.applib.query.QueryDefault;
-import org.apache.isis.applib.services.message.MessageService;
 import org.apache.isis.applib.services.repository.RepositoryService;
-import org.apache.isis.applib.services.title.TitleService;
 
 @DomainService(
         nature = NatureOfService.DOMAIN,

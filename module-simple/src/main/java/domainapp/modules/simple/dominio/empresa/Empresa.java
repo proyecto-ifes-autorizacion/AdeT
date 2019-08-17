@@ -1,4 +1,4 @@
-package domainapp.modules.simple.dominio;
+package domainapp.modules.simple.dominio.empresa;
 
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.DatastoreIdentity;
@@ -42,16 +42,16 @@ import lombok.Setter;
         @Query(
                 name = "find", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.Empresa "),
+                        + "FROM domainapp.modules.simple.dominio.empresa.Empresa "),
         @Query(
                 name = "findByNombreFantasiaContains", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.Empresa "
+                        + "FROM domainapp.modules.simple.dominio.empresa.Empresa "
                         + "WHERE nombreFantasia.indexOf(:nombreFantasia) >= 0 "),
         @Query(
                 name = "findByNombreFantasia", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.Empresa "
+                        + "FROM domainapp.modules.simple.dominio.empresa.Empresa "
                         + "WHERE nombreFantasia == :nombreFantasia ")
 })
 @Unique(name = "Empresa_nombreFantasia_UNQ", members = { "nombreFantasia" })

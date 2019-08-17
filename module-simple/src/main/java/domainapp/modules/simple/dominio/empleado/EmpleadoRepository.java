@@ -1,4 +1,4 @@
-package domainapp.modules.simple.dominio;
+package domainapp.modules.simple.dominio.empleado;
 
 import java.util.Date;
 import java.util.List;
@@ -13,6 +13,7 @@ import org.apache.isis.applib.services.message.MessageService;
 import org.apache.isis.applib.services.repository.RepositoryService;
 import org.apache.isis.applib.services.title.TitleService;
 
+import domainapp.modules.simple.dominio.empresa.Empresa;
 import static org.apache.isis.applib.annotation.SemanticsOf.NON_IDEMPOTENT_ARE_YOU_SURE;
 
 @DomainService(
@@ -48,7 +49,7 @@ public class EmpleadoRepository {
     }
 
     @Programmatic
-    public Empleado create(final String cuil, final String nombre, final String apellido, final Date fechaNacimiento, final Empresa empresa, final EstadoEmpleado estado) {
+    public Empleado create(final String cuil, final String nombre, final String apellido, final Date fechaNacimiento, final Empresa empresa, final Estado estado) {
         Empleado empleado = new Empleado(cuil, nombre, apellido, fechaNacimiento, empresa, estado);
         repositoryService.persist(empleado);
         return empleado;
@@ -61,7 +62,7 @@ public class EmpleadoRepository {
             final String apellido,
             final Date fechaNacimiento,
             final Empresa empresa,
-            final EstadoEmpleado estado)
+            final Estado estado)
     {
         Empleado empleado = findByCuil(cuil);
         if (empleado == null) {

@@ -1,4 +1,4 @@
-package domainapp.modules.simple.dominio;
+package domainapp.modules.simple.dominio.autorizacion;
 
 import java.util.Date;
 import java.util.List;
@@ -6,6 +6,8 @@ import java.util.List;
 import org.apache.isis.applib.annotation.*;
 import org.apache.isis.applib.query.QueryDefault;
 import org.apache.isis.applib.services.repository.RepositoryService;
+
+import domainapp.modules.simple.dominio.empleado.Empleado;
 
 @DomainService(
         nature = NatureOfService.DOMAIN,
@@ -52,7 +54,7 @@ public class AutorizacionRepository {
             final Empleado creador,
             final Empleado solicitante,
             final List<Empleado> ejecutantes,
-            final EstadoAutorizacion estado) {
+            final Estado estado) {
 
         Autorizacion autorizacion = new Autorizacion(
                 titulo,

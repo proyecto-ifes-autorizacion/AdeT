@@ -1,8 +1,7 @@
-package domainapp.modules.simple.dominio;
+package domainapp.modules.simple.dominio.vehiculo;
 
 import java.util.List;
 
-import javax.inject.Inject;
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.DatastoreIdentity;
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -21,15 +20,11 @@ import org.apache.isis.applib.annotation.BookmarkPolicy;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.Editing;
-import org.apache.isis.applib.annotation.InvokeOn;
-import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
-import org.apache.isis.applib.annotation.Programmatic;
 import org.apache.isis.applib.annotation.Property;
 import org.apache.isis.applib.annotation.Publishing;
 import org.apache.isis.applib.annotation.Title;
-import org.apache.isis.applib.services.actinvoc.ActionInvocationContext;
 import org.apache.isis.applib.services.message.MessageService;
 import org.apache.isis.applib.services.title.TitleService;
 
@@ -55,21 +50,21 @@ import static org.apache.isis.applib.annotation.SemanticsOf.NON_IDEMPOTENT_ARE_Y
         @Query(
                 name = "find", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.Marca "),
+                        + "FROM domainapp.modules.simple.dominio.vehiculo.Marca "),
         @Query(
                 name = "findByNombreContains", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.Marca "
+                        + "FROM domainapp.modules.simple.dominio.vehiculo.Marca "
                         + "WHERE nombre.indexOf(:nombre) >= 0 "),
         @Query(
                 name = "findByNombre", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.Marca "
+                        + "FROM domainapp.modules.simple.dominio.vehiculo.Marca "
                         + "WHERE nombre == :nombre "),
         @Query(
                 name = "ListByBaja", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.Marca "
+                        + "FROM domainapp.modules.simple.dominio.vehiculo.Marca "
                         + "WHERE baja == :baja ")
 })
 @Unique(name = "Marca_nombre_UNQ", members = { "nombre" })

@@ -26,13 +26,13 @@
         <class>domainapp.modules.simple.dom.impl.SimpleObjects</class>
         <class>domainapp.modules.simple.fixture.SimpleObjectBuilder</class>
 
-        <class>domainapp.modules.simple.dominio.Empleado</class>
-        <class>domainapp.modules.simple.dominio.EmpleadoMenu</class>
-        <class>domainapp.modules.simple.dominio.EmpleadoRepository</class>
+        <class>domainapp.modules.simple.dominio.empleado.Empleado</class>
+        <class>domainapp.modules.simple.dominio.empleado.EmpleadoMenu</class>
+        <class>domainapp.modules.simple.dominio.empleado.EmpleadoRepository</class>
 
-        <class>domainapp.modules.simple.dominio.Modelo</class>
-        <class>domainapp.modules.simple.dominio.ModeloMenu</class>
-        <class>domainapp.modules.simple.dominio.ModeloRepository</class>
+        <class>domainapp.modules.simple.dominio.vehiculo.Modelo</class>
+        <class>domainapp.modules.simple.dominio.vehiculo.ModeloMenu</class>
+        <class>domainapp.modules.simple.dominio.vehiculo.ModeloRepository</class>
         <properties>
             <property name="datanucleus.ConnectionURL" value="jdbc:postgresql://127.0.0.1:5432/AdeT"/>
             <property name="datanucleus.ConnectionUserName" value="postgres"/>

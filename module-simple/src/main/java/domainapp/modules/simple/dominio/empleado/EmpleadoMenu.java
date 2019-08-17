@@ -1,4 +1,4 @@
-package domainapp.modules.simple.dominio;
+package domainapp.modules.simple.dominio.empleado;
 
 import java.util.Date;
 import java.util.List;
@@ -16,6 +16,9 @@ import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.RestrictTo;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.services.i18n.TranslatableString;
+
+import domainapp.modules.simple.dominio.empresa.Empresa;
+import domainapp.modules.simple.dominio.empresa.EmpresaRepository;
 
 @DomainService(
         nature = NatureOfService.VIEW_MENU_ONLY,
@@ -75,7 +78,7 @@ public class EmpleadoMenu {
             @ParameterLayout(named = "Empresa: ")
             final Empresa empresa){
 
-        EstadoEmpleado estado = EstadoEmpleado.Habilitado;
+        Estado estado = Estado.Habilitado;
         return empleadorepository.create(cuil, nombre, apellido, fechaNacimiento, empresa, estado);
     }
 

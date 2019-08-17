@@ -1,9 +1,12 @@
-package domainapp.modules.simple.dominio;
+package domainapp.modules.simple.dominio.autorizacion;
 
 import java.util.Date;
 import java.util.List;
 
 import org.apache.isis.applib.annotation.*;
+
+import domainapp.modules.simple.dominio.empleado.Empleado;
+import domainapp.modules.simple.dominio.empleado.EmpleadoRepository;
 
 @DomainService(
         nature = NatureOfService.VIEW_MENU_ONLY,
@@ -69,7 +72,7 @@ public class AutorizacionMenu {
         String motivoCancelacion = null;
         Date cierre = null;
         List<Empleado> ejecutantes = null;
-        EstadoAutorizacion estado = EstadoAutorizacion.Abierta;
+        Estado estado = Estado.Abierta;
         return autorizacionrepository.create(titulo, descripcion, ubicacion, motivoCancelacion, apertura, cierre, creador, solicitante, ejecutantes, estado);
     }
 

@@ -1,4 +1,4 @@
-package domainapp.modules.simple.dominio;
+package domainapp.modules.simple.dominio.vehiculo;
 
 import java.util.Collection;
 import java.util.List;
@@ -14,8 +14,6 @@ import javax.jdo.annotations.Query;
 import javax.jdo.annotations.Unique;
 import javax.jdo.annotations.Version;
 import javax.jdo.annotations.VersionStrategy;
-
-import com.google.common.collect.Lists;
 
 import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.ActionLayout;
@@ -53,26 +51,26 @@ import static org.apache.isis.applib.annotation.SemanticsOf.NON_IDEMPOTENT_ARE_Y
         @Query(
                 name = "find", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.Modelo "),
+                        + "FROM domainapp.modules.simple.dominio.vehiculo.Modelo "),
         @Query(
                 name = "findByNombreContains", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.Modelo "
+                        + "FROM domainapp.modules.simple.dominio.vehiculo.Modelo "
                         + "WHERE nombre.indexOf(:nombre) >= 0 "),
         @Query(
                 name = "findByNombre", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.Modelo "
+                        + "FROM domainapp.modules.simple.dominio.vehiculo.Modelo "
                         + "WHERE nombre == :nombre "),
         @Query(
                 name = "ModeloByMarca", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.Modelo "
+                        + "FROM domainapp.modules.simple.dominio.vehiculo.Modelo "
                         + "WHERE marca == :marca "),
         @Query(
                 name = "ListByBaja", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.Modelo "
+                        + "FROM domainapp.modules.simple.dominio.vehiculo.Modelo "
                         + "WHERE baja == :baja ")
 
 })
