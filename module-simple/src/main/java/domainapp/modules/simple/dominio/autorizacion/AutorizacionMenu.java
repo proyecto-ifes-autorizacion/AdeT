@@ -1,12 +1,6 @@
 package domainapp.modules.simple.dominio.autorizacion;
 
-import java.util.Date;
-import java.util.List;
-
 import org.apache.isis.applib.annotation.*;
-
-import domainapp.modules.simple.dominio.empleado.Empleado;
-import domainapp.modules.simple.dominio.empleado.EmpleadoRepository;
 
 @DomainService(
         nature = NatureOfService.VIEW_MENU_ONLY,
@@ -38,64 +32,25 @@ public class AutorizacionMenu {
             bookmarking = BookmarkPolicy.AS_ROOT
     )
     @MemberOrder(sequence = "2")
-    public java.util.List<Autorizacion> findByTitulo(
-            final String titulo
+    public java.util.List<Autorizacion> findByIdAdeT(
+            final int idAdeT
     ) {
-        return autorizacionrepository.findByTituloContains(titulo);
+        return autorizacionrepository.findByIdAdeTContains(idAdeT);
     }
 
     @Action(
     )
     @MemberOrder(sequence = "3")
     public Autorizacion create(
-
-            @ParameterLayout(named = "Titulo: ")
+            final int idAdeT,
             final String titulo,
-
-            @ParameterLayout(named = "Descripcion: ")
             final String descripcion,
+            final String ubicacion) {
 
-            @ParameterLayout(named = "Ubicacion: ")
-            final String ubicacion,
-
-            @ParameterLayout(named = "Apertura: ")
-            final Date apertura,
-
-            @Parameter(optionality = Optionality.MANDATORY)
-            @ParameterLayout(named = "Creador: ")
-            final Empleado creador,
-
-            @Parameter(optionality = Optionality.MANDATORY)
-            @ParameterLayout(named = "Solicitante: ")
-            final Empleado solicitante) {
-
-        String motivoCancelacion = null;
-        Date cierre = null;
-        List<Empleado> ejecutantes = null;
-        Estado estado = Estado.Abierta;
-        return autorizacionrepository.create(titulo, descripcion, ubicacion, motivoCancelacion, apertura, cierre, creador, solicitante, ejecutantes, estado);
-    }
-
-    @Programmatic()
-    public Date default3Update() {
-
-        Date fecha = new Date();
-        return fecha;
-    }
-
-    public List<Empleado> choices4Create() {
-
-        return empleadoRepository.listAll();
-    }
-
-    public List<Empleado> choices5Create() {
-
-        return empleadoRepository.listAll();
+        AutorizacionEstado autorizacionEstado = AutorizacionEstado.Abierta;
+        return autorizacionrepository.create(idAdeT, autorizacionEstado, titulo, descripcion, ubicacion);
     }
 
     @javax.inject.Inject
     AutorizacionRepository autorizacionrepository;
-
-    @javax.inject.Inject
-    EmpleadoRepository empleadoRepository;
 }

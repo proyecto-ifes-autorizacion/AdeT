@@ -1,8 +1,9 @@
 package domainapp.modules.simple.dominio.autorizacion;
 
-public enum Estado {
+public enum AutorizacionEstado {
     Abierta,
-    Cerrada,
+    Liberada,
     Anulada,
-    Cancelada
+    Cancelada,
+    Cerrada
 }

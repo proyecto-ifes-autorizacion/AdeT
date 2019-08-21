@@ -1,13 +1,10 @@
 package domainapp.modules.simple.dominio.autorizacion;
 
-import java.util.Date;
 import java.util.List;
 
 import org.apache.isis.applib.annotation.*;
 import org.apache.isis.applib.query.QueryDefault;
 import org.apache.isis.applib.services.repository.RepositoryService;
-
-import domainapp.modules.simple.dominio.empleado.Empleado;
 
 @DomainService(
         nature = NatureOfService.DOMAIN,
@@ -17,57 +14,44 @@ public class AutorizacionRepository {
 
     @Programmatic
     public List<Autorizacion> listAll() {
-
         return repositoryService.allInstances(Autorizacion.class);
     }
 
     @Programmatic
-    public Autorizacion findByTitulo(
-            final String titulo
+    public Autorizacion findByIdAdeT(
+            final int idAdeT
     ) {
         return repositoryService.uniqueMatch(
                 new QueryDefault<>(
                         Autorizacion.class,
-                        "findByTitulo",
-                        "titulo", titulo));
+                        "findByIdAdeT",
+                        "idAdeT", idAdeT));
     }
 
     @Programmatic
-    public List<Autorizacion> findByTituloContains(
-            final String titulo
+    public List<Autorizacion> findByIdAdeTContains(
+            final int idAdeT
     ) {
         return repositoryService.allMatches(
                 new QueryDefault<>(
                         Autorizacion.class,
-                        "findByTituloContains",
-                        "titulo", titulo));
+                        "findByIdAdeTContains",
+                        "idAdeT", idAdeT));
     }
 
     @Programmatic
-    public Autorizacion create(
-            final String titulo,
-            final String descripcion,
-            final String ubicacion,
-            final String motivoCancelacion,
-            final Date apertura,
-            final Date cierre,
-            final Empleado creador,
-            final Empleado solicitante,
-            final List<Empleado> ejecutantes,
-            final Estado estado) {
-
-        Autorizacion autorizacion = new Autorizacion(
-                titulo,
-                descripcion,
-                ubicacion,
-                motivoCancelacion,
-                apertura,
-                cierre,
-                creador,
-                solicitante,
-                ejecutantes,
-                estado);
+    public Autorizacion create(final int idAdeT, final AutorizacionEstado autorizacionEstado, final String titulo, final String descripcion, final String ubicacion) {
+        Autorizacion autorizacion = new Autorizacion(idAdeT, autorizacionEstado, titulo, descripcion, ubicacion);
         repositoryService.persist(autorizacion);
+        return autorizacion;
+    }
+
+    @Programmatic
+    public Autorizacion findOrCreate(final int idAdeT, final AutorizacionEstado autorizacionEstado, final String titulo, final String descripcion, final String ubicacion) {
+        Autorizacion autorizacion = findByIdAdeT(idAdeT);
+        if (autorizacion == null) {
+            autorizacion = create(idAdeT, autorizacionEstado, titulo, descripcion, ubicacion);
+        }
         return autorizacion;
     }
 

@@ -16,8 +16,8 @@
                     <bs3:row>
                         <bs3:col span="12">
                             <cpt:fieldSet name="General">
-                                <cpt:property id="idAdeT">
-                                    <cpt:action id="updateIdAdeT"/>
+                                <cpt:property id="autorizacion">
+                                    <cpt:action id="updateAutorizacion"/>
                                 </cpt:property>
                             </cpt:fieldSet>
                         </bs3:col>

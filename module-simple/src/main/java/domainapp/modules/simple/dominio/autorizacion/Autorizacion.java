@@ -28,16 +28,17 @@ import lombok.Setter;
                 value = "SELECT "
                         + "FROM domainapp.modules.simple.dominio.autorizacion.Autorizacion "),
         @Query(
-                name = "findByTituloContains", language = "JDOQL",
+                name = "findByIdAdeTContains", language = "JDOQL",
                 value = "SELECT "
                         + "FROM domainapp.modules.simple.dominio.autorizacion.Autorizacion "
-                        + "WHERE titulo.indexOf(:titulo) >= 0 "),
+                        + "WHERE idAdeT.indexOf(:idAdeT) >= 0 "),
         @Query(
-                name = "findByTitulo", language = "JDOQL",
+                name = "findByIdAdeT", language = "JDOQL",
                 value = "SELECT "
                         + "FROM domainapp.modules.simple.dominio.autorizacion.Autorizacion "
-                        + "WHERE titulo == :titulo ")
+                        + "WHERE idAdeT == :idAdeT ")
 })
+@Unique(name = "Autorizacion_idAdeT_UNQ", members = { "idAdeT" })
 @DomainObject(
         editing = Editing.DISABLED
 )
@@ -47,10 +48,13 @@ import lombok.Setter;
 @Getter @Setter
 public class Autorizacion implements Comparable<Autorizacion> {
 
-    @Unique()
     @Column(allowsNull = "false")
     @Property()
     private int idAdeT;
+
+    @Column(allowsNull = "false")
+    @Property()
+    private AutorizacionEstado autorizacionEstado;
 
     @Column(allowsNull = "false", length = 40)
     @Property()
@@ -60,15 +64,11 @@ public class Autorizacion implements Comparable<Autorizacion> {
     @Property()
     private String descripcion;
 
-    @Column(allowsNull = "false", length = 120)
+    @Column(allowsNull = "false", length = 60)
     @Property()
     private String ubicacion;
 
-    @Column(allowsNull = "true", length = 4000)
-    @Property()
-    private String motivoCancelacion;
-
-    @Column(allowsNull = "false")
+    @Column(allowsNull = "true")
     @Property()
     private Date apertura;
 
@@ -76,58 +76,58 @@ public class Autorizacion implements Comparable<Autorizacion> {
     @Property()
     private Date cierre;
 
-    @Column(allowsNull = "false")
-    @Property()
-    private Empleado creador;
-
-    @Column(allowsNull = "false")
-    @Property()
-    private Empleado solicitante;
+//    @Column(allowsNull = "false")
+//    @Property()
+//    private Empleado creador;
 
     @Column(allowsNull = "true")
     @Property()
-    private List<Empleado> ejecutantes;
+    private Empleado solicitante;
 
-    @Column(allowsNull = "false")
+//    @Column(allowsNull = "true")
+//    @Property()
+//    private Vehiculo solicitanteVehiculo;
+
+    @Column(allowsNull = "true")
     @Property()
-    private Estado estado;
+    private List<Ejecutante> ejecutantes;
 
-    public Autorizacion() {
-    }
+    public Autorizacion(){}
 
     public Autorizacion(
-            final String titulo,
-            final String descripcion,
-            final String ubicacion,
-            final String motivoCancelacion,
-            final Date apertura,
-            final Date cierre,
-            final Empleado creador,
-            final Empleado solicitante,
-            final List<Empleado> ejecutantes,
-            final Estado estado) {
+            int idAdeT, AutorizacionEstado autorizacionEstado, String titulo, String descripcion, String ubicacion){
 
+        this.idAdeT = idAdeT;
+        this.autorizacionEstado = autorizacionEstado;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.ubicacion = ubicacion;
-        this.motivoCancelacion = motivoCancelacion;
+    }
+
+    public Autorizacion(
+            int idAdeT, AutorizacionEstado autorizacionEstado, String titulo, String descripcion, String ubicacion,
+            Date apertura, Date cierre, Empleado solicitante, List<Ejecutante> ejecutantes){
+
+        this.idAdeT = idAdeT;
+        this.autorizacionEstado = autorizacionEstado;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.ubicacion = ubicacion;
         this.apertura = apertura;
         this.cierre = cierre;
-        this.creador = creador;
         this.solicitante = solicitante;
         this.ejecutantes = ejecutantes;
-        this.estado = estado;
     }
 
     //region > compareTo, toString
     @Override
     public int compareTo(final Autorizacion other) {
-        return org.apache.isis.applib.util.ObjectContracts.compare(this, other, "titulo");
+        return org.apache.isis.applib.util.ObjectContracts.compare(this, other, "idAdeT");
     }
 
     @Override
     public String toString() {
-        return org.apache.isis.applib.util.ObjectContracts.toString(this, "titulo");
+        return org.apache.isis.applib.util.ObjectContracts.toString(this, "idAdeT");
     }
     //endregion
 
