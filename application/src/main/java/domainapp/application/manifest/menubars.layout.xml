@@ -87,6 +87,9 @@
                 <mb3:serviceAction objectType="Modelo" id="listAll">
                     <cpt:named>Listar Modelo</cpt:named>
                 </mb3:serviceAction>
+                <mb3:serviceAction objectType="Modelo" id="ListActivos">
+                    <cpt:named>Listar Activos</cpt:named>
+                </mb3:serviceAction>
             </mb3:section>
         </mb3:menu>
 

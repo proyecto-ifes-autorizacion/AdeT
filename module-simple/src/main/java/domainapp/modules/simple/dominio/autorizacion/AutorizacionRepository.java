@@ -40,17 +40,17 @@ public class AutorizacionRepository {
     }
 
     @Programmatic
-    public Autorizacion create(final int idAdeT, final AutorizacionEstado autorizacionEstado, final String titulo, final String descripcion, final String ubicacion) {
-        Autorizacion autorizacion = new Autorizacion(idAdeT, autorizacionEstado, titulo, descripcion, ubicacion);
+    public Autorizacion create(final int idAdeT, final EstadoAutorizacion estadoAutorizacion, final String titulo, final String descripcion, final String ubicacion) {
+        Autorizacion autorizacion = new Autorizacion(idAdeT, estadoAutorizacion, titulo, descripcion, ubicacion);
         repositoryService.persist(autorizacion);
         return autorizacion;
     }
 
     @Programmatic
-    public Autorizacion findOrCreate(final int idAdeT, final AutorizacionEstado autorizacionEstado, final String titulo, final String descripcion, final String ubicacion) {
+    public Autorizacion findOrCreate(final int idAdeT, final EstadoAutorizacion estadoAutorizacion, final String titulo, final String descripcion, final String ubicacion) {
         Autorizacion autorizacion = findByIdAdeT(idAdeT);
         if (autorizacion == null) {
-            autorizacion = create(idAdeT, autorizacionEstado, titulo, descripcion, ubicacion);
+            autorizacion = create(idAdeT, estadoAutorizacion, titulo, descripcion, ubicacion);
         }
         return autorizacion;
     }

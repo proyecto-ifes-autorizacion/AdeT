@@ -39,6 +39,18 @@ public class ModeloMenu {
     }
 
     @Action(
+            semantics = SemanticsOf.SAFE,
+            restrictTo = RestrictTo.PROTOTYPING
+    )
+    @ActionLayout(
+            bookmarking = BookmarkPolicy.AS_ROOT
+    )
+    @MemberOrder(sequence = "4")
+    public List<Modelo> ListActivos() {
+        return modelorepository.ListActivos();
+    }
+
+    @Action(
             semantics = SemanticsOf.SAFE
     )
     @ActionLayout(
@@ -61,8 +73,8 @@ public class ModeloMenu {
             @Parameter(optionality = Optionality.MANDATORY)
             @ParameterLayout(named = "Marca: ")
             final Marca marca){
-        final boolean baja = false;
-        return modelorepository.create(nombre, baja, marca);
+
+        return modelorepository.create(nombre, marca);
     }
 
     public List<Marca> choices1Create() {

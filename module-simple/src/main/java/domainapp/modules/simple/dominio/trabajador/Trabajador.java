@@ -1,4 +1,4 @@
-package domainapp.modules.simple.dominio.empleado;
+package domainapp.modules.simple.dominio.trabajador;
 
 import java.util.Date;
 import java.util.List;
@@ -27,6 +27,10 @@ import org.apache.isis.applib.annotation.Property;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.services.i18n.TranslatableString;
 
+import domainapp.modules.simple.dominio.EstadoGeneral;
+import domainapp.modules.simple.dominio.ObservadorAutorizacion;
+import domainapp.modules.simple.dominio.ObservadorGeneral;
+import domainapp.modules.simple.dominio.autorizacion.EstadoAutorizacion;
 import domainapp.modules.simple.dominio.empresa.Empresa;
 import domainapp.modules.simple.dominio.empresa.EmpresaRepository;
 import lombok.AccessLevel;
@@ -49,16 +53,16 @@ import static org.apache.isis.applib.annotation.SemanticsOf.NON_IDEMPOTENT_ARE_Y
         @Query(
                 name = "find", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.empleado.Empleado "),
+                        + "FROM domainapp.modules.simple.dominio.trabajador.Trabajador "),
         @Query(
                 name = "findByCuilContains", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.empleado.Empleado "
+                        + "FROM domainapp.modules.simple.dominio.trabajador.Trabajador "
                         + "WHERE cuil.indexOf(:cuil) >= 0 "),
         @Query(
                 name = "findByCuil", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.empleado.Empleado "
+                        + "FROM domainapp.modules.simple.dominio.trabajador.Trabajador "
                         + "WHERE cuil == :cuil ")
 })
 @Unique(name = "Empleado_cuil_UNQ", members = { "cuil" })
@@ -70,7 +74,7 @@ import static org.apache.isis.applib.annotation.SemanticsOf.NON_IDEMPOTENT_ARE_Y
 )
 @Getter @Setter
 
-public class Empleado implements Comparable<Empleado> {
+public class Trabajador implements Comparable<Trabajador>, ObservadorGeneral, ObservadorAutorizacion {
 
     @Column(allowsNull = "false", length = 13)
     @Property()
@@ -94,7 +98,7 @@ public class Empleado implements Comparable<Empleado> {
 
     @Column(allowsNull = "false")
     @Property()
-    private Estado estado;
+    private EstadoGeneral estado;
 
     public String title(){
 
@@ -102,34 +106,34 @@ public class Empleado implements Comparable<Empleado> {
     }
 
     @Action()
-    public Empleado Ejecutar(){
+    public Trabajador Ejecutar(){
 
-        setEstado(Estado.Ejecucion);
+        setEstado(EstadoGeneral.Ejecucion);
         return this;
     }
 
     @Action()
-    public Empleado Habilitar(){
+    public Trabajador Habilitar(){
 
-        setEstado(Estado.Habilitado);
+        setEstado(EstadoGeneral.Habilitado);
         return this;
     }
 
     @Action()
-    public Empleado Inhabilitar(){
+    public Trabajador Inhabilitar(){
 
-        setEstado(Estado.Inhabilitado);
+        setEstado(EstadoGeneral.Inhabilitado);
         return this;
     }
 
     @Action()
-    public Empleado Desactivar(){
+    public Trabajador Borrar(){
 
-        setEstado(Estado.Desactivado);
+        setEstado(EstadoGeneral.Borrado);
         return this;
     }
 
-    public Empleado(final String cuil, final String nombre, final String apellido, final Date fechaNacimiento, final Empresa empresa, final Estado estado){
+    public Trabajador(final String cuil, final String nombre, final String apellido, final Date fechaNacimiento, final Empresa empresa, final EstadoGeneral estado){
 
         this.cuil = cuil;
         this.nombre = nombre;
@@ -139,11 +143,11 @@ public class Empleado implements Comparable<Empleado> {
         this.estado = estado;
     }
 
-    public Empleado(){}
+    public Trabajador(){}
 
     @Action(semantics = SemanticsOf.SAFE)
     @ActionLayout(named = "Editar")
-    public Empleado update(
+    public Trabajador update(
 
             @Parameter(maxLength = 13)
             @ParameterLayout(named = "Cuil: ")
@@ -220,7 +224,7 @@ public class Empleado implements Comparable<Empleado> {
 
     //region > compareTo, toString
     @Override
-    public int compareTo(final Empleado other) {
+    public int compareTo(final Trabajador other) {
         return org.apache.isis.applib.util.ObjectContracts.compare(this, other, "cuil");
     }
 
@@ -233,13 +237,23 @@ public class Empleado implements Comparable<Empleado> {
     @Action(semantics = NON_IDEMPOTENT_ARE_YOU_SURE)
     @ActionLayout(named = "eliminar")
     public void delete() {
-        empleadorepository.delete(this);
+        trabajadorRepository.delete(this);
+    }
+
+    @Override
+    public void Actuliazar() {
+
+    }
+
+    @Override
+    public void Actuliazar(final EstadoAutorizacion estadoAutorizacion) {
+
     }
 
     @javax.inject.Inject
     @javax.jdo.annotations.NotPersistent
     @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
-    EmpleadoRepository empleadorepository;
+    TrabajadorRepository trabajadorRepository;
 
     @javax.inject.Inject
     @javax.jdo.annotations.NotPersistent

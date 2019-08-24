@@ -6,12 +6,7 @@ import org.apache.isis.applib.annotation.*;
 import org.apache.isis.applib.query.QueryDefault;
 import org.apache.isis.applib.services.repository.RepositoryService;
 
-import javax.jdo.annotations.*;
-
-import domainapp.modules.simple.dominio.empleado.Empleado;
 import domainapp.modules.simple.dominio.empresa.Empresa;
-import lombok.Getter;
-import lombok.Setter;
 
 @DomainService(
         nature = NatureOfService.DOMAIN,

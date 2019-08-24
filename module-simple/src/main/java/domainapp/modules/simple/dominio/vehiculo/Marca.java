@@ -28,6 +28,7 @@ import org.apache.isis.applib.annotation.Title;
 import org.apache.isis.applib.services.message.MessageService;
 import org.apache.isis.applib.services.title.TitleService;
 
+import domainapp.modules.simple.dominio.SujetoGeneral;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -75,20 +76,20 @@ import static org.apache.isis.applib.annotation.SemanticsOf.NON_IDEMPOTENT_ARE_Y
         bookmarking = BookmarkPolicy.AS_ROOT
 )
 @Getter @Setter
-public class Marca implements Comparable<Marca> {
+public class Marca implements Comparable<Marca>, SujetoGeneral {
 
     @Column(allowsNull = "false", length = 40)
     @Property()
     @Title()
     private String nombre;
 
-    @Column(allowsNull = "false")
-    @Property()
-    private boolean baja;
-
     @Column(allowsNull = "true")
     @Property()
     private List<Modelo> modelos;
+
+    @Column(allowsNull = "false")
+    @Property()
+    private boolean baja;
 
     @NotPersistent()
     public List<Marca> getActivas(){
@@ -107,6 +108,10 @@ public class Marca implements Comparable<Marca> {
         this.nombre = nombre;
         this.baja = baja;
         this.modelos = modelos;
+    }
+
+    public boolean getBaja(){
+        return this.baja;
     }
 
     public Marca(){}
@@ -131,6 +136,7 @@ public class Marca implements Comparable<Marca> {
     public Marca UpdateBaja(){
 
         setBaja(!this.baja);
+        Notificar();
         return this;
     }
 
@@ -141,8 +147,7 @@ public class Marca implements Comparable<Marca> {
             @ParameterLayout(named = "Modelo")
             final String nombre){
 
-        boolean baja = false;
-        modelos.add(modeloRepository.create(nombre, baja, this));
+        modelos.add(modeloRepository.create(nombre,this));
         return this;
     }
 
@@ -151,6 +156,13 @@ public class Marca implements Comparable<Marca> {
 
         setModelos(modeloRepository.ListModeloByMarca(this));
         return this;
+    }
+
+    @Override
+    public void Notificar() {
+        for (Modelo modelo: modelos) {
+            modelo.Actuliazar();
+        }
     }
 
     //region > compareTo, toString
@@ -169,8 +181,6 @@ public class Marca implements Comparable<Marca> {
     @ActionLayout(named = "eliminar")
     public void delete (){
         marcaRepository.delete(this);
-        final String title = titleService.titleOf(this);
-        messageService.informUser(String.format("'%s' deleted", title));
     }
 
     @javax.inject.Inject
@@ -183,14 +193,5 @@ public class Marca implements Comparable<Marca> {
     @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
     ModeloRepository modeloRepository;
 
-    @javax.inject.Inject
-    @javax.jdo.annotations.NotPersistent
-    @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
-    TitleService titleService;
-
-    @javax.inject.Inject
-    @javax.jdo.annotations.NotPersistent
-    @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
-    MessageService messageService;
 
 }

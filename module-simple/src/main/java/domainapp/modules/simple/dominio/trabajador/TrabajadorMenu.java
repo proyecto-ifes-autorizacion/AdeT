@@ -1,4 +1,4 @@
-package domainapp.modules.simple.dominio.empleado;
+package domainapp.modules.simple.dominio.trabajador;
 
 import java.util.Date;
 import java.util.List;
@@ -17,19 +17,20 @@ import org.apache.isis.applib.annotation.RestrictTo;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.services.i18n.TranslatableString;
 
+import domainapp.modules.simple.dominio.EstadoGeneral;
 import domainapp.modules.simple.dominio.empresa.Empresa;
 import domainapp.modules.simple.dominio.empresa.EmpresaRepository;
 
 @DomainService(
         nature = NatureOfService.VIEW_MENU_ONLY,
         objectType = "Empleado",
-        repositoryFor = Empleado.class
+        repositoryFor = Trabajador.class
 )
 @DomainServiceLayout(
         named = "",
         menuOrder = ""
 )
-public class EmpleadoMenu {
+public class TrabajadorMenu {
 
     @Action(
             semantics = SemanticsOf.SAFE,
@@ -40,7 +41,7 @@ public class EmpleadoMenu {
             named = "Listar"
     )
     @MemberOrder(sequence = "1")
-    public java.util.List<Empleado> listAll() {
+    public java.util.List<Trabajador> listAll() {
         return empleadorepository.listAll();
     }
 
@@ -52,7 +53,7 @@ public class EmpleadoMenu {
             named = "Buscar por Cuil"
     )
     @MemberOrder(sequence = "2")
-    public java.util.List<Empleado> findByCuil(
+    public java.util.List<Trabajador> findByCuil(
             final String cuil
     ) {
         return empleadorepository.findByCuilContains(cuil);
@@ -61,7 +62,7 @@ public class EmpleadoMenu {
     @Action(
     )
     @MemberOrder(sequence = "3")
-    public Empleado create(
+    public Trabajador create(
             @ParameterLayout(named = "Cuil: ")
             final String cuil,
 
@@ -78,8 +79,8 @@ public class EmpleadoMenu {
             @ParameterLayout(named = "Empresa: ")
             final Empresa empresa){
 
-        Estado estado = Estado.Habilitado;
-        return empleadorepository.create(cuil, nombre, apellido, fechaNacimiento, empresa, estado);
+        EstadoGeneral estadoGeneral = EstadoGeneral.Habilitado;
+        return empleadorepository.create(cuil, nombre, apellido, fechaNacimiento, empresa, estadoGeneral);
     }
 
     public List<Empresa> choices4Create() {
@@ -106,7 +107,7 @@ public class EmpleadoMenu {
     }
 
     @javax.inject.Inject
-    EmpleadoRepository empleadorepository;
+    TrabajadorRepository empleadorepository;
 
     @javax.inject.Inject
     EmpresaRepository empresaRepository;

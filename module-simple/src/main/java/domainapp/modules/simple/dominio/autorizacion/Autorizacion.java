@@ -7,7 +7,8 @@ import org.apache.isis.applib.annotation.*;
 
 import javax.jdo.annotations.*;
 
-import domainapp.modules.simple.dominio.empleado.Empleado;
+import domainapp.modules.simple.dominio.SujetoGeneral;
+import domainapp.modules.simple.dominio.trabajador.Trabajador;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -46,15 +47,11 @@ import lombok.Setter;
         bookmarking = BookmarkPolicy.AS_ROOT
 )
 @Getter @Setter
-public class Autorizacion implements Comparable<Autorizacion> {
+public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
 
     @Column(allowsNull = "false")
     @Property()
     private int idAdeT;
-
-    @Column(allowsNull = "false")
-    @Property()
-    private AutorizacionEstado autorizacionEstado;
 
     @Column(allowsNull = "false", length = 40)
     @Property()
@@ -76,13 +73,17 @@ public class Autorizacion implements Comparable<Autorizacion> {
     @Property()
     private Date cierre;
 
-//    @Column(allowsNull = "false")
-//    @Property()
-//    private Empleado creador;
+    @Column(allowsNull = "false")
+    @Property()
+    private EstadoAutorizacion estado;
 
     @Column(allowsNull = "true")
     @Property()
-    private Empleado solicitante;
+    private Trabajador creador;
+
+    @Column(allowsNull = "true")
+    @Property()
+    private Trabajador solicitante;
 
 //    @Column(allowsNull = "true")
 //    @Property()
@@ -95,21 +96,21 @@ public class Autorizacion implements Comparable<Autorizacion> {
     public Autorizacion(){}
 
     public Autorizacion(
-            int idAdeT, AutorizacionEstado autorizacionEstado, String titulo, String descripcion, String ubicacion){
+            int idAdeT, EstadoAutorizacion estado, String titulo, String descripcion, String ubicacion){
 
         this.idAdeT = idAdeT;
-        this.autorizacionEstado = autorizacionEstado;
+        this.estado = estado;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.ubicacion = ubicacion;
     }
 
     public Autorizacion(
-            int idAdeT, AutorizacionEstado autorizacionEstado, String titulo, String descripcion, String ubicacion,
-            Date apertura, Date cierre, Empleado solicitante, List<Ejecutante> ejecutantes){
+            int idAdeT, EstadoAutorizacion estado, String titulo, String descripcion, String ubicacion,
+            Date apertura, Date cierre, Trabajador solicitante, List<Ejecutante> ejecutantes){
 
         this.idAdeT = idAdeT;
-        this.autorizacionEstado = autorizacionEstado;
+        this.estado = estado;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.ubicacion = ubicacion;
@@ -125,9 +126,24 @@ public class Autorizacion implements Comparable<Autorizacion> {
         return org.apache.isis.applib.util.ObjectContracts.compare(this, other, "idAdeT");
     }
 
+    @Action()
+    @ActionLayout(named = "Cambiar Estado")
+    public void CambiarEstado(
+            @Parameter(optionality = Optionality.MANDATORY)
+            @ParameterLayout(named = "Estado")
+            final EstadoAutorizacion estadoAutorizacion){
+
+        this.estado = estadoAutorizacion;
+    }
+
     @Override
     public String toString() {
         return org.apache.isis.applib.util.ObjectContracts.toString(this, "idAdeT");
+    }
+
+    @Override
+    public void Notificar() {
+
     }
     //endregion
 

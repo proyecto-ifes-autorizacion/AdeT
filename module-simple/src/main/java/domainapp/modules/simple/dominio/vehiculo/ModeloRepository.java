@@ -21,6 +21,13 @@ public class ModeloRepository {
     }
 
     @Programmatic
+    public List<Modelo> ListActivos(){
+        return repositoryService.allMatches(new QueryDefault<>(
+                Modelo.class,
+                "ListActivo"));
+    }
+
+    @Programmatic
     public List<Modelo> ListModeloByMarca(final Marca marca){
 
         return repositoryService.allMatches(new QueryDefault<>(
@@ -59,9 +66,9 @@ public class ModeloRepository {
     }
 
     @Programmatic
-    public Modelo create(final String nombre, final boolean baja, final Marca marca) {
+    public Modelo create(final String nombre, final Marca marca) {
 
-        Modelo modelo = new Modelo(nombre, baja, marca);
+        Modelo modelo = new Modelo(nombre, marca);
         repositoryService.persist(modelo);
         return modelo;
     }

@@ -29,6 +29,7 @@ import org.apache.isis.applib.annotation.Title;
 import org.apache.isis.applib.services.message.MessageService;
 import org.apache.isis.applib.services.title.TitleService;
 
+import domainapp.modules.simple.dominio.ObservadorGeneral;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -71,7 +72,12 @@ import static org.apache.isis.applib.annotation.SemanticsOf.NON_IDEMPOTENT_ARE_Y
                 name = "ListByBaja", language = "JDOQL",
                 value = "SELECT "
                         + "FROM domainapp.modules.simple.dominio.vehiculo.Modelo "
-                        + "WHERE baja == :baja ")
+                        + "WHERE baja == :baja "),
+        @Query(
+                name = "ListActivo", language = "JDOQL",
+                value = "SELECT "
+                        + "FROM domainapp.modules.simple.dominio.vehiculo.Modelo "
+                        + "WHERE baja == false && bajaMarca == false")
 
 })
 @Unique(name = "Modelo_nombre_UNQ", members = { "nombre" })
@@ -83,7 +89,7 @@ import static org.apache.isis.applib.annotation.SemanticsOf.NON_IDEMPOTENT_ARE_Y
 )
 @Getter @Setter
 
-public class Modelo implements Comparable<Modelo> {
+public class Modelo implements Comparable<Modelo>, ObservadorGeneral {
 
     @Column(allowsNull = "false", length = 40)
     @Property()
@@ -97,6 +103,11 @@ public class Modelo implements Comparable<Modelo> {
     @Column(allowsNull = "false")
     @Property()
     private boolean baja;
+
+    @Column(allowsNull = "false")
+    @Property()
+    private boolean bajaMarca;
+
 
     @NotPersistent()
     public List<Modelo> getActivas(){
@@ -115,11 +126,20 @@ public class Modelo implements Comparable<Modelo> {
         return marca.getNombre()+" "+getNombre();
     }
 
-    public Modelo(String nombre, boolean baja, Marca marca){
+    public Modelo(String nombre, Marca marca, boolean baja, boolean bajaMarca){
 
         this.nombre = nombre;
         this.marca = marca;
         this.baja = baja;
+        this.bajaMarca = bajaMarca;
+    }
+
+    public Modelo(String nombre, Marca marca){
+
+        this.nombre = nombre;
+        this.marca = marca;
+        this.baja = false;
+        this.bajaMarca = marca.getBaja();
     }
 
     public  Modelo(){}
@@ -149,6 +169,10 @@ public class Modelo implements Comparable<Modelo> {
         return this;
     }
 
+    @Override public void Actuliazar() {
+        setBajaMarca(marca.getBaja());
+    }
+
     //region > compareTo, toString
     @Override
     public int compareTo(final Modelo other) {
@@ -165,8 +189,6 @@ public class Modelo implements Comparable<Modelo> {
     @ActionLayout(named = "eliminar")
     public void delete() {
         modeloRepository.delete(this);
-        final String title = titleService.titleOf(this);
-        messageService.informUser(String.format("'%s' deleted", title));
     }
 
     @javax.inject.Inject
@@ -177,15 +199,6 @@ public class Modelo implements Comparable<Modelo> {
     @javax.inject.Inject
     @javax.jdo.annotations.NotPersistent
     @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
-    TitleService titleService;
-
-    @javax.inject.Inject
-    @javax.jdo.annotations.NotPersistent
-    @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
-    MessageService messageService;
-
-    @javax.inject.Inject
-    @javax.jdo.annotations.NotPersistent
-    @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
     MarcaRepository marcaRepository;
+
 }

@@ -30,7 +30,7 @@
                                 </cpt:property>
                                 <cpt:property id="empresa">
                                 </cpt:property>
-                                <cpt:property id="autorizacionEstado">
+                                <cpt:property id="estadoAutorizacion">
                                 </cpt:property>
                             </cpt:fieldSet>
                         </bs3:col>

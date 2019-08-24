@@ -6,7 +6,9 @@ import org.apache.isis.applib.annotation.*;
 
 import javax.jdo.annotations.*;
 
-import domainapp.modules.simple.dominio.empleado.Empleado;
+import domainapp.modules.simple.dominio.ObservadorGeneral;
+import domainapp.modules.simple.dominio.SujetoGeneral;
+import domainapp.modules.simple.dominio.trabajador.Trabajador;
 import domainapp.modules.simple.dominio.empresa.Empresa;
 import lombok.Getter;
 import lombok.Setter;
@@ -46,7 +48,7 @@ import lombok.Setter;
         bookmarking = BookmarkPolicy.AS_ROOT
 )
 @Getter @Setter
-public class Ejecutante implements Comparable<Ejecutante> {
+public class Ejecutante implements Comparable<Ejecutante>, ObservadorGeneral, SujetoGeneral {
 
     @Column(allowsNull = "false")
     @Property()
@@ -58,7 +60,11 @@ public class Ejecutante implements Comparable<Ejecutante> {
 
     @Column(allowsNull = "false")
     @Property()
-    private List<Empleado> empleados;
+    private List<Trabajador> trabajadores;
+
+//    @Column(allowsNull = "false")
+//    @Property()
+//    private List<Vehiculo> vehiculos;
 
     public Ejecutante(){}
 
@@ -68,11 +74,11 @@ public class Ejecutante implements Comparable<Ejecutante> {
         this.empresa = empresa;
     }
 
-    public Ejecutante(Autorizacion autorizacion, Empresa empresa, List<Empleado> empleados){
+    public Ejecutante(Autorizacion autorizacion, Empresa empresa, List<Trabajador> trabajadores){
 
         this.autorizacion = autorizacion;
         this.empresa = empresa;
-        this.empleados = empleados;
+        this.trabajadores = trabajadores;
     }
 
     //region > compareTo, toString
@@ -84,6 +90,16 @@ public class Ejecutante implements Comparable<Ejecutante> {
     @Override
     public String toString() {
         return org.apache.isis.applib.util.ObjectContracts.toString(this, "autorizacion");
+    }
+
+    @Override
+    public void Actuliazar() {
+
+    }
+
+    @Override
+    public void Notificar() {
+
     }
     //endregion
 

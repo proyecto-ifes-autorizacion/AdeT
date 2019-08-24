@@ -1,5 +1,7 @@
 package domainapp.modules.simple.dominio.empresa;
 
+import java.util.List;
+
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.DatastoreIdentity;
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -23,6 +25,8 @@ import org.apache.isis.applib.annotation.Property;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.annotation.Title;
 
+import domainapp.modules.simple.dominio.SujetoGeneral;
+import domainapp.modules.simple.dominio.trabajador.Trabajador;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -63,7 +67,7 @@ import lombok.Setter;
 )
 @Getter @Setter
 
-public class Empresa implements Comparable<Empresa> {
+public class Empresa implements Comparable<Empresa>, SujetoGeneral {
 
     @Column(allowsNull = "false", length = 13)
     @Property()
@@ -82,6 +86,29 @@ public class Empresa implements Comparable<Empresa> {
     @Property()
     private String telefono;
 
+    @Column(allowsNull = "false")
+    @Property()
+    private EstadoEmpresa estado;
+
+    @Column(allowsNull = "true")
+    @Property()
+    private List<Trabajador> trabajadores;
+
+    public Empresa(
+            final String nombreFantasia,
+            final String razonSocial,
+            final String direccion,
+            final String telefono,
+            final EstadoEmpresa estado,
+            final List<Trabajador> trabajadores) {
+        this.nombreFantasia = nombreFantasia;
+        this.razonSocial = razonSocial;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.estado = estado;
+        this.trabajadores = trabajadores;
+    }
+
     public Empresa(
             final String nombreFantasia,
             final String razonSocial,
@@ -91,7 +118,9 @@ public class Empresa implements Comparable<Empresa> {
         this.razonSocial = razonSocial;
         this.direccion = direccion;
         this.telefono = telefono;
+        this.estado = EstadoEmpresa.Habilitada;
     }
+
 
     public Empresa(){}
 
@@ -157,4 +186,8 @@ public class Empresa implements Comparable<Empresa> {
     @javax.jdo.annotations.NotPersistent
     @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
     EmpresaRepository empresaRepository;
+
+    @Override public void Notificar() {
+
+    }
 }

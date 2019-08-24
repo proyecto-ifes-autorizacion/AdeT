@@ -47,8 +47,8 @@ public class AutorizacionMenu {
             final String descripcion,
             final String ubicacion) {
 
-        AutorizacionEstado autorizacionEstado = AutorizacionEstado.Abierta;
-        return autorizacionrepository.create(idAdeT, autorizacionEstado, titulo, descripcion, ubicacion);
+        EstadoAutorizacion estadoAutorizacion = EstadoAutorizacion.Abierta;
+        return autorizacionrepository.create(idAdeT, estadoAutorizacion, titulo, descripcion, ubicacion);
     }
 
     @javax.inject.Inject
