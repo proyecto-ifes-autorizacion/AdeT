@@ -2,32 +2,17 @@ package domainapp.modules.simple.dominio.empresa;
 
 import java.util.List;
 
-import javax.jdo.annotations.Column;
-import javax.jdo.annotations.DatastoreIdentity;
-import javax.jdo.annotations.IdGeneratorStrategy;
-import javax.jdo.annotations.IdentityType;
-import javax.jdo.annotations.PersistenceCapable;
-import javax.jdo.annotations.Queries;
-import javax.jdo.annotations.Query;
-import javax.jdo.annotations.Unique;
-import javax.jdo.annotations.Version;
-import javax.jdo.annotations.VersionStrategy;
+import org.apache.isis.applib.annotation.*;
+import org.apache.isis.applib.services.i18n.TranslatableString;
 
-import org.apache.isis.applib.annotation.Action;
-import org.apache.isis.applib.annotation.ActionLayout;
-import org.apache.isis.applib.annotation.BookmarkPolicy;
-import org.apache.isis.applib.annotation.DomainObject;
-import org.apache.isis.applib.annotation.DomainObjectLayout;
-import org.apache.isis.applib.annotation.Editing;
-import org.apache.isis.applib.annotation.Parameter;
-import org.apache.isis.applib.annotation.ParameterLayout;
-import org.apache.isis.applib.annotation.Property;
-import org.apache.isis.applib.annotation.SemanticsOf;
-import org.apache.isis.applib.annotation.Title;
+import javax.jdo.annotations.*;
 
 import domainapp.modules.simple.dominio.SujetoGeneral;
 import domainapp.modules.simple.dominio.trabajador.Trabajador;
+import domainapp.modules.simple.dominio.trabajador.TrabajadorRepository;
+import domainapp.modules.simple.dominio.vehiculo.Vehiculo;
 import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -56,7 +41,12 @@ import lombok.Setter;
                 name = "findByNombreFantasia", language = "JDOQL",
                 value = "SELECT "
                         + "FROM domainapp.modules.simple.dominio.empresa.Empresa "
-                        + "WHERE nombreFantasia == :nombreFantasia ")
+                        + "WHERE nombreFantasia == :nombreFantasia "),
+        @Query(
+                name = "findByEstado", language = "JDOQL",
+                value = "SELECT "
+                        + "FROM domainapp.modules.simple.dominio.empresa.Empresa "
+                        + "WHERE estado == :estado ")
 })
 @Unique(name = "Empresa_nombreFantasia_UNQ", members = { "nombreFantasia" })
 @DomainObject(
@@ -66,23 +56,22 @@ import lombok.Setter;
         bookmarking = BookmarkPolicy.AS_ROOT
 )
 @Getter @Setter
-
 public class Empresa implements Comparable<Empresa>, SujetoGeneral {
 
-    @Column(allowsNull = "false", length = 13)
+    @Column(allowsNull = "false", length = largo)
     @Property()
     @Title()
     private String nombreFantasia;
 
-    @Column(allowsNull = "false", length = 40)
+    @Column(allowsNull = "false", length = largo)
     @Property()
     private String razonSocial;
 
-    @Column(allowsNull = "false", length = 40)
+    @Column(allowsNull = "false", length = largo)
     @Property()
     private String direccion;
 
-    @Column(allowsNull = "false")
+    @Column(allowsNull = "false", length = largo)
     @Property()
     private String telefono;
 
@@ -94,26 +83,27 @@ public class Empresa implements Comparable<Empresa>, SujetoGeneral {
     @Property()
     private List<Trabajador> trabajadores;
 
-    public Empresa(
-            final String nombreFantasia,
-            final String razonSocial,
-            final String direccion,
-            final String telefono,
-            final EstadoEmpresa estado,
-            final List<Trabajador> trabajadores) {
-        this.nombreFantasia = nombreFantasia;
-        this.razonSocial = razonSocial;
-        this.direccion = direccion;
-        this.telefono = telefono;
-        this.estado = estado;
-        this.trabajadores = trabajadores;
+    @Column(allowsNull = "true")
+    @Property()
+    private List<Vehiculo> vehiculos;
+
+    @NotPersistent()
+    @Property(hidden = Where.EVERYWHERE)
+    private final int largo = 40;
+
+    @Programmatic()
+    private String longitudExcesiva(final int longitud){
+        return "Longitud Excedida en: " + (longitud-largo)+" "+((longitud-largo) == 1 ? "caracter.":"caracteres.");
     }
 
+    public Empresa(){}
+
     public Empresa(
-            final String nombreFantasia,
-            final String razonSocial,
-            final String direccion,
-            final String telefono) {
+            String nombreFantasia,
+            String razonSocial,
+            String direccion,
+            String telefono){
+
         this.nombreFantasia = nombreFantasia;
         this.razonSocial = razonSocial;
         this.direccion = direccion;
@@ -121,28 +111,36 @@ public class Empresa implements Comparable<Empresa>, SujetoGeneral {
         this.estado = EstadoEmpresa.Habilitada;
     }
 
+    public Empresa(
+            String nombreFantasia,
+            String razonSocial,
+            String direccion,
+            String telefono,
+            EstadoEmpresa estado,
+            List<Trabajador> trabajadores,
+            List<Vehiculo> vehiculos){
 
-    public Empresa(){}
+        this.nombreFantasia = nombreFantasia;
+        this.razonSocial = razonSocial;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.estado = estado;
+        this.trabajadores = trabajadores;
+        this.vehiculos = vehiculos;
+    }
 
-    @Action(semantics = SemanticsOf.SAFE)
+    @Action()
     @ActionLayout(named = "Editar")
     public Empresa update(
-
-            @Parameter(maxLength = 13)
-            @ParameterLayout(named = "Nombre de Fantasia: ")
-            final String nombreFantasia,
-
-            @Parameter(maxLength = 40)
+            @ParameterLayout(named = "Nombre Fantasia: ")
+            String nombreFantasia,
             @ParameterLayout(named = "Razon Social: ")
-            final String razonSocial,
-
-            @Parameter(maxLength = 40)
+            String razonSocial,
             @ParameterLayout(named = "Direccion: ")
-            final String direccion,
-
+            String direccion,
             @ParameterLayout(named = "Telefono: ")
-            final String telefono)
-    {
+            String telefono){
+
         this.nombreFantasia = nombreFantasia;
         this.razonSocial = razonSocial;
         this.direccion = direccion;
@@ -150,26 +148,81 @@ public class Empresa implements Comparable<Empresa>, SujetoGeneral {
         return this;
     }
 
-    public String default0Update() {
+    public String default0Update() {return getNombreFantasia();}
 
-        return getNombreFantasia();
+    public TranslatableString validate0Update(final String nombreFantasia) {
+        return nombreFantasia.length() <= largo ? null : TranslatableString.tr(longitudExcesiva(nombreFantasia.length()));
     }
 
-    public String default1Update() {
+    public String default1Update() {return getRazonSocial();}
 
-        return getRazonSocial();
+    public TranslatableString validate1Update(final String razonSocial) {
+        return razonSocial.length() <= largo ? null : TranslatableString.tr(longitudExcesiva(razonSocial.length()));
     }
 
-    public String default2Update() {
+    public String default2Update() {return getDireccion();}
 
-        return getDireccion();
+    public TranslatableString validate2Update(final String direccion) {
+        return direccion.length() <= largo ? null : TranslatableString.tr(longitudExcesiva(direccion.length()));
     }
 
-    public String default3Update() {
+    public String default3Update() {return getTelefono();}
 
-        return getTelefono();
+    public TranslatableString validate3Update(final String telefono) {
+        return telefono.length() <= largo ? null : TranslatableString.tr(longitudExcesiva(telefono.length()));
     }
 
+    @Programmatic
+    public void CambiarEstado(EstadoEmpresa estado){
+        this.estado = estado;
+        Notificar();
+    }
+
+    @Action()
+    public Empresa Habilitar(){
+        CambiarEstado(EstadoEmpresa.Habilitada);
+        return this;
+    }
+
+    public boolean hideHabilitar() {return this.estado == EstadoEmpresa.Habilitada;}
+
+    @Action()
+    public Empresa Inhabilitar(){
+        CambiarEstado(EstadoEmpresa.Inhabilitada);
+        return this;
+    }
+
+    public boolean hideInhabilitar() {return this.estado == EstadoEmpresa.Inhabilitada;}
+
+    @Action()
+    public Empresa Borrar(){
+        CambiarEstado(EstadoEmpresa.Borrada);
+        return this;
+    }
+
+    public boolean hideBorrar() {return this.estado == EstadoEmpresa.Borrada;}
+
+    @Override
+    public void Notificar() {
+
+        for (Trabajador trabajador : trabajadores){
+            trabajador.Actuliazar();
+        }
+        for (Vehiculo vehiculo : vehiculos){
+            vehiculo.Actuliazar();
+        }
+    }
+
+    @Programmatic
+    public EstadoEmpresa ObtenerEstado(){
+        return this.estado;
+    }
+
+    @Action()
+    public Empresa Obtener(){
+        setTrabajadores(trabajadorRepository.Listar(this));
+        return this;
+    }
     //region > compareTo, toString
     @Override
     public int compareTo(final Empresa other) {
@@ -185,9 +238,6 @@ public class Empresa implements Comparable<Empresa>, SujetoGeneral {
     @javax.inject.Inject
     @javax.jdo.annotations.NotPersistent
     @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
-    EmpresaRepository empresaRepository;
+    TrabajadorRepository trabajadorRepository;
 
-    @Override public void Notificar() {
-
-    }
 }

@@ -1,4 +1,4 @@
-package domainapp.modules.simple.dominio.vehiculo;
+package domainapp.modules.simple.dominio.vehiculo.adicional;
 
 import java.util.Collection;
 import java.util.List;
@@ -23,11 +23,10 @@ import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.Editing;
 import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
+import org.apache.isis.applib.annotation.Programmatic;
 import org.apache.isis.applib.annotation.Property;
 import org.apache.isis.applib.annotation.Publishing;
 import org.apache.isis.applib.annotation.Title;
-import org.apache.isis.applib.services.message.MessageService;
-import org.apache.isis.applib.services.title.TitleService;
 
 import domainapp.modules.simple.dominio.ObservadorGeneral;
 import lombok.AccessLevel;
@@ -52,31 +51,31 @@ import static org.apache.isis.applib.annotation.SemanticsOf.NON_IDEMPOTENT_ARE_Y
         @Query(
                 name = "find", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.vehiculo.Modelo "),
+                        + "FROM domainapp.modules.simple.dominio.vehiculo.adicional.Modelo "),
         @Query(
                 name = "findByNombreContains", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.vehiculo.Modelo "
+                        + "FROM domainapp.modules.simple.dominio.vehiculo.adicional.Modelo "
                         + "WHERE nombre.indexOf(:nombre) >= 0 "),
         @Query(
                 name = "findByNombre", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.vehiculo.Modelo "
+                        + "FROM domainapp.modules.simple.dominio.vehiculo.adicional.Modelo "
                         + "WHERE nombre == :nombre "),
         @Query(
                 name = "ModeloByMarca", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.vehiculo.Modelo "
+                        + "FROM domainapp.modules.simple.dominio.vehiculo.adicional.Modelo "
                         + "WHERE marca == :marca "),
         @Query(
                 name = "ListByBaja", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.vehiculo.Modelo "
+                        + "FROM domainapp.modules.simple.dominio.vehiculo.adicional.Modelo "
                         + "WHERE baja == :baja "),
         @Query(
                 name = "ListActivo", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.vehiculo.Modelo "
+                        + "FROM domainapp.modules.simple.dominio.vehiculo.adicional.Modelo "
                         + "WHERE baja == false && bajaMarca == false")
 
 })
@@ -93,7 +92,6 @@ public class Modelo implements Comparable<Modelo>, ObservadorGeneral {
 
     @Column(allowsNull = "false", length = 40)
     @Property()
-    @Title()
     private String nombre;
 
     @Column(allowsNull = "false")
@@ -144,9 +142,9 @@ public class Modelo implements Comparable<Modelo>, ObservadorGeneral {
 
     public  Modelo(){}
 
-    @Action(semantics = IDEMPOTENT, command = ENABLED, publishing = Publishing.ENABLED, associateWith = "nombre")
+    @Action()
     @ActionLayout(named = "Editar")
-    public Modelo UpdateNombre(
+    public Modelo Update(
             @Parameter(maxLength = 40)
             @ParameterLayout(named = "Modelo: ")
             final String nombre){
@@ -154,7 +152,7 @@ public class Modelo implements Comparable<Modelo>, ObservadorGeneral {
         return this;
     }
 
-    public String default0UpdateNombre() {
+    public String default0Update() {
         return getNombre();
     }
 
@@ -162,12 +160,25 @@ public class Modelo implements Comparable<Modelo>, ObservadorGeneral {
         return marcaRepository.listAll();
     }
 
-    @Action(semantics = NON_IDEMPOTENT_ARE_YOU_SURE)
-    @ActionLayout(named = "Activar/Desactivar")
-    public Modelo UpdateBaja(){
-        setBaja(!this.baja);
+    @Programmatic
+    public void CambiarEstado(boolean estado){
+        setBaja(estado);
+    }
+
+    @Action()
+    public Modelo Activar(){
+        CambiarEstado(false);
         return this;
     }
+
+    @Action
+    public Modelo Desactivar(){
+        CambiarEstado(true);
+        return this;
+    }
+
+    public boolean hideActivar() {return !this.baja;}
+    public boolean hideDesactivar() {return this.baja;}
 
     @Override public void Actuliazar() {
         setBajaMarca(marca.getBaja());

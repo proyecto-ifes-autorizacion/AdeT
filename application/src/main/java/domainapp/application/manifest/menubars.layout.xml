@@ -41,7 +41,7 @@
                     <cpt:named>Crear</cpt:named>
                 </mb3:serviceAction>
                 <mb3:serviceAction objectType="Empresa" id="findByNombreFantasia">
-                    <cpt:named>Buscar por Nombre Fantasia</cpt:named>
+                    <cpt:named>Buscar</cpt:named>
                 </mb3:serviceAction>
                 <mb3:serviceAction objectType="Empresa" id="listAll">
                     <cpt:named>Listar</cpt:named>
@@ -50,15 +50,15 @@
         </mb3:menu>
 
         <mb3:menu>
-            <mb3:named>Empleados</mb3:named>
+            <mb3:named>Trabajadores</mb3:named>
             <mb3:section>
-                <mb3:serviceAction objectType="Empleado" id="create">
+                <mb3:serviceAction objectType="Trabajador" id="create">
                     <cpt:named>Crear</cpt:named>
                 </mb3:serviceAction>
-                <mb3:serviceAction objectType="Empleado" id="findByCuil">
-                    <cpt:named>Buscar por Cuil</cpt:named>
+                <mb3:serviceAction objectType="Trabajador" id="findByCuil">
+                    <cpt:named>Buscar</cpt:named>
                 </mb3:serviceAction>
-                <mb3:serviceAction objectType="Empleado" id="listAll">
+                <mb3:serviceAction objectType="Trabajador" id="listAll">
                     <cpt:named>Listar</cpt:named>
                 </mb3:serviceAction>
             </mb3:section>
@@ -66,6 +66,17 @@
 
         <mb3:menu>
             <mb3:named>Vehiculos</mb3:named>
+            <mb3:section>
+                <mb3:serviceAction objectType="Vehiculo" id="create">
+                    <cpt:named>Crear Vehiculo</cpt:named>
+                </mb3:serviceAction>
+                <mb3:serviceAction objectType="Vehiculo" id="findByDominio">
+                    <cpt:named>Buscar Vehiculo</cpt:named>
+                </mb3:serviceAction>
+                <mb3:serviceAction objectType="Vehiculo" id="listAll">
+                    <cpt:named>Listar Vehiculo</cpt:named>
+                </mb3:serviceAction>
+            </mb3:section>
             <mb3:section>
                 <mb3:serviceAction objectType="Marca" id="create">
                     <cpt:named>Crear Marca</cpt:named>
@@ -86,9 +97,6 @@
                 </mb3:serviceAction>
                 <mb3:serviceAction objectType="Modelo" id="listAll">
                     <cpt:named>Listar Modelo</cpt:named>
-                </mb3:serviceAction>
-                <mb3:serviceAction objectType="Modelo" id="ListActivos">
-                    <cpt:named>Listar Activos</cpt:named>
                 </mb3:serviceAction>
             </mb3:section>
         </mb3:menu>

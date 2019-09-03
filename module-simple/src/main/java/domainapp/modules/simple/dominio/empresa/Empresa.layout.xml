@@ -16,9 +16,12 @@
                     <bs3:row>
                         <bs3:col span="12">
                             <cpt:fieldSet name="General">
-                                <cpt:property id="cuil">
-                                    <cpt:action id="updateCuil"/>
-                                </cpt:property>
+                                <cpt:property id="nombreFantasia"/>
+                                <cpt:property id="razonSocial"/>
+                                <cpt:property id="direccion"/>
+                                <cpt:property id="telefono"/>
+                                <cpt:property id="estado"/>
+                                <cpt:property id="largo"/>
                             </cpt:fieldSet>
                         </bs3:col>
                     </bs3:row>

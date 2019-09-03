@@ -16,14 +16,14 @@
                     <bs3:row>
                         <bs3:col span="12">
                             <cpt:fieldSet name="General">
-                                <cpt:action id="UpdateBaja"/>
+                                <cpt:action id="Update"/>
+                                <cpt:action id="Activar"/>
+                                <cpt:action id="Desactivar"/>
                                 <cpt:action id="delete"/>
-                                <cpt:property id="nombre">
-                                    <cpt:action id="UpdateNombre"/>
-                                </cpt:property>
+                                <cpt:property id="nombre"/>
                                 <cpt:property id="marca"/>
-                                <cpt:property id="baja">
-                                </cpt:property>
+                                <cpt:property id="baja"/>
+                                <cpt:property id="bajaMarca"/>
                             </cpt:fieldSet>
                         </bs3:col>
                     </bs3:row>

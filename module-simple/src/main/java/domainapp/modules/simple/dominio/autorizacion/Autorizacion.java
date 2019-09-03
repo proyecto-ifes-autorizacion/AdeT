@@ -81,9 +81,9 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     @Property()
     private Trabajador creador;
 
-    @Column(allowsNull = "true")
-    @Property()
-    private Trabajador solicitante;
+//    @Column(allowsNull = "true")
+//    @Property()
+//    private Trabajador solicitante;
 
 //    @Column(allowsNull = "true")
 //    @Property()
@@ -116,7 +116,7 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
         this.ubicacion = ubicacion;
         this.apertura = apertura;
         this.cierre = cierre;
-        this.solicitante = solicitante;
+//        this.solicitante = solicitante;
         this.ejecutantes = ejecutantes;
     }
 

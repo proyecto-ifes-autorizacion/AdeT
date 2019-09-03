@@ -1,33 +1,21 @@
 package domainapp.modules.simple.dominio.trabajador;
 
-import java.util.Date;
 import java.util.List;
 
-import org.apache.isis.applib.annotation.Action;
-import org.apache.isis.applib.annotation.ActionLayout;
-import org.apache.isis.applib.annotation.BookmarkPolicy;
-import org.apache.isis.applib.annotation.DomainService;
-import org.apache.isis.applib.annotation.DomainServiceLayout;
-import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.NatureOfService;
-import org.apache.isis.applib.annotation.Optionality;
-import org.apache.isis.applib.annotation.Parameter;
-import org.apache.isis.applib.annotation.ParameterLayout;
-import org.apache.isis.applib.annotation.RestrictTo;
-import org.apache.isis.applib.annotation.SemanticsOf;
-import org.apache.isis.applib.services.i18n.TranslatableString;
+import org.joda.time.LocalDate;
 
-import domainapp.modules.simple.dominio.EstadoGeneral;
+import org.apache.isis.applib.annotation.*;
+
 import domainapp.modules.simple.dominio.empresa.Empresa;
 import domainapp.modules.simple.dominio.empresa.EmpresaRepository;
 
 @DomainService(
         nature = NatureOfService.VIEW_MENU_ONLY,
-        objectType = "Empleado",
+        objectType = "Trabajador",
         repositoryFor = Trabajador.class
 )
 @DomainServiceLayout(
-        named = "",
+        named = "Trabajador",
         menuOrder = ""
 )
 public class TrabajadorMenu {
@@ -37,32 +25,31 @@ public class TrabajadorMenu {
             restrictTo = RestrictTo.PROTOTYPING
     )
     @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT,
-            named = "Listar"
+            bookmarking = BookmarkPolicy.AS_ROOT
     )
     @MemberOrder(sequence = "1")
     public java.util.List<Trabajador> listAll() {
-        return empleadorepository.listAll();
+        return trabajadorrepository.Listar();
     }
 
     @Action(
             semantics = SemanticsOf.SAFE
     )
     @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT,
-            named = "Buscar por Cuil"
+            bookmarking = BookmarkPolicy.AS_ROOT
     )
     @MemberOrder(sequence = "2")
     public java.util.List<Trabajador> findByCuil(
             final String cuil
     ) {
-        return empleadorepository.findByCuilContains(cuil);
+        return trabajadorrepository.findByCuilContains(cuil);
     }
 
     @Action(
     )
     @MemberOrder(sequence = "3")
     public Trabajador create(
+
             @ParameterLayout(named = "Cuil: ")
             final String cuil,
 
@@ -72,42 +59,20 @@ public class TrabajadorMenu {
             @ParameterLayout(named = "Apellido: ")
             final String apellido,
 
-            @ParameterLayout(named = "Fecha de Nacimiento: ")
-            final Date fechaNacimiento,
+            @ParameterLayout(named = "Fecha Nacimiento: ")
+            final LocalDate fechaNacimiento,
 
             @Parameter(optionality = Optionality.MANDATORY)
             @ParameterLayout(named = "Empresa: ")
-            final Empresa empresa){
+            final Empresa empresa) {
 
-        EstadoGeneral estadoGeneral = EstadoGeneral.Habilitado;
-        return empleadorepository.create(cuil, nombre, apellido, fechaNacimiento, empresa, estadoGeneral);
+        return trabajadorrepository.create(cuil, nombre, apellido, fechaNacimiento, empresa);
     }
 
-    public List<Empresa> choices4Create() {
-
-        return empresaRepository.listAll();
-    }
-
-    //validacion del CUIL, evaluar como optimizar este metodo
-    public TranslatableString validate0Create(final String cuil) {
-        return  cuil != null &&
-                Character.isDigit(cuil.charAt(0)) &&
-                Character.isDigit(cuil.charAt(1)) &&
-                (Character.compare(cuil.charAt(2),'-') == 0)&&
-                Character.isDigit(cuil.charAt(3)) &&
-                Character.isDigit(cuil.charAt(4)) &&
-                Character.isDigit(cuil.charAt(5)) &&
-                Character.isDigit(cuil.charAt(6)) &&
-                Character.isDigit(cuil.charAt(7)) &&
-                Character.isDigit(cuil.charAt(8)) &&
-                Character.isDigit(cuil.charAt(9)) &&
-                Character.isDigit(cuil.charAt(10)) &&
-                (Character.compare(cuil.charAt(11),'-') == 0)&&
-                Character.isDigit(cuil.charAt(12)) ? null : TranslatableString.tr("Formato no valido xx-xxxxxxxx-x");
-    }
+    public List<Empresa> choices4Create() {return empresaRepository.Listar();}
 
     @javax.inject.Inject
-    TrabajadorRepository empleadorepository;
+    TrabajadorRepository trabajadorrepository;
 
     @javax.inject.Inject
     EmpresaRepository empresaRepository;

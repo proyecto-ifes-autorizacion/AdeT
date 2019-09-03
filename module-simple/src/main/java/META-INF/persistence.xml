@@ -30,9 +30,9 @@
         <class>domainapp.modules.simple.dominio.trabajador.TrabajadorMenu</class>
         <class>domainapp.modules.simple.dominio.trabajador.TrabajadorRepository</class>
 
-        <class>domainapp.modules.simple.dominio.vehiculo.Modelo</class>
-        <class>domainapp.modules.simple.dominio.vehiculo.ModeloMenu</class>
-        <class>domainapp.modules.simple.dominio.vehiculo.ModeloRepository</class>
+        <class>domainapp.modules.simple.dominio.vehiculo.adicional.Modelo</class>
+        <class>domainapp.modules.simple.dominio.vehiculo.adicional.ModeloMenu</class>
+        <class>domainapp.modules.simple.dominio.vehiculo.adicional.ModeloRepository</class>
         <properties>
             <property name="datanucleus.ConnectionURL" value="jdbc:postgresql://127.0.0.1:5432/AdeT"/>
             <property name="datanucleus.ConnectionUserName" value="postgres"/>

@@ -1,4 +1,4 @@
-package domainapp.modules.simple.dominio.vehiculo;
+package domainapp.modules.simple.dominio.vehiculo.adicional;
 
 import java.util.List;
 

@@ -2,11 +2,14 @@ package domainapp.modules.simple.dominio.empresa;
 
 import java.util.List;
 
-import org.apache.isis.applib.annotation.DomainService;
-import org.apache.isis.applib.annotation.NatureOfService;
-import org.apache.isis.applib.annotation.Programmatic;
+import org.apache.isis.applib.annotation.*;
 import org.apache.isis.applib.query.QueryDefault;
 import org.apache.isis.applib.services.repository.RepositoryService;
+
+import javax.jdo.annotations.*;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @DomainService(
         nature = NatureOfService.DOMAIN,
@@ -15,13 +18,20 @@ import org.apache.isis.applib.services.repository.RepositoryService;
 public class EmpresaRepository {
 
     @Programmatic
-    public List<Empresa> listAll() {
+    public List<Empresa> Listar() {return repositoryService.allInstances(Empresa.class);}
 
-        return repositoryService.allInstances(Empresa.class);
+    @Programmatic
+    public List<Empresa> Listar(final EstadoEmpresa estado){
+
+        return repositoryService.allMatches(
+                new QueryDefault<>(
+                        Empresa.class,
+                        "findByEstado",
+                        "estado", estado));
     }
 
     @Programmatic
-    public Empresa findByNombreFantasia(final String nombreFantasia) {
+    public Empresa findByNombreFantacia(final String nombreFantasia) {
 
         return repositoryService.uniqueMatch(
                 new QueryDefault<>(
@@ -31,7 +41,7 @@ public class EmpresaRepository {
     }
 
     @Programmatic
-    public java.util.List<Empresa> findByNombreFantasiaContains(final String nombreFantasia) {
+    public List<Empresa> findByNombreFantaciaContains(final String nombreFantasia) {
 
         return repositoryService.allMatches(
                 new QueryDefault<>(
@@ -41,8 +51,13 @@ public class EmpresaRepository {
     }
 
     @Programmatic
-    public Empresa create(final String nombreFantasia, final String razonSocial, final String direccion, final String telefono) {
-        Empresa empresa = new Empresa(nombreFantasia,razonSocial,direccion,telefono);
+    public Empresa create(
+            final String nombreFantasia,
+            final String razonSocial,
+            final String direccion,
+            final String telefono) {
+
+        final Empresa empresa = new Empresa(nombreFantasia, razonSocial, direccion, telefono);
         repositoryService.persist(empresa);
         return empresa;
     }
@@ -52,11 +67,11 @@ public class EmpresaRepository {
             final String nombreFantasia,
             final String razonSocial,
             final String direccion,
-            final String telefono
-    ) {
-        Empresa empresa = findByNombreFantasia(nombreFantasia);
+            final String telefono) {
+
+        Empresa empresa = findByNombreFantacia(nombreFantasia);
         if (empresa == null) {
-            empresa = create(nombreFantasia, razonSocial,direccion,telefono);
+            empresa = create(nombreFantasia, razonSocial, direccion, telefono);
         }
         return empresa;
     }

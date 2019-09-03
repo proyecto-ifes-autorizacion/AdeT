@@ -1,4 +1,4 @@
-package domainapp.modules.simple.dominio.vehiculo;
+package domainapp.modules.simple.dominio.vehiculo.adicional;
 
 import java.util.List;
 
@@ -22,11 +22,10 @@ import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.Editing;
 import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
+import org.apache.isis.applib.annotation.Programmatic;
 import org.apache.isis.applib.annotation.Property;
 import org.apache.isis.applib.annotation.Publishing;
 import org.apache.isis.applib.annotation.Title;
-import org.apache.isis.applib.services.message.MessageService;
-import org.apache.isis.applib.services.title.TitleService;
 
 import domainapp.modules.simple.dominio.SujetoGeneral;
 import lombok.AccessLevel;
@@ -51,21 +50,21 @@ import static org.apache.isis.applib.annotation.SemanticsOf.NON_IDEMPOTENT_ARE_Y
         @Query(
                 name = "find", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.vehiculo.Marca "),
+                        + "FROM domainapp.modules.simple.dominio.vehiculo.adicional.Marca "),
         @Query(
                 name = "findByNombreContains", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.vehiculo.Marca "
+                        + "FROM domainapp.modules.simple.dominio.vehiculo.adicional.Marca "
                         + "WHERE nombre.indexOf(:nombre) >= 0 "),
         @Query(
                 name = "findByNombre", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.vehiculo.Marca "
+                        + "FROM domainapp.modules.simple.dominio.vehiculo.adicional.Marca "
                         + "WHERE nombre == :nombre "),
         @Query(
                 name = "ListByBaja", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.vehiculo.Marca "
+                        + "FROM domainapp.modules.simple.dominio.vehiculo.adicional.Marca "
                         + "WHERE baja == :baja ")
 })
 @Unique(name = "Marca_nombre_UNQ", members = { "nombre" })
@@ -116,9 +115,9 @@ public class Marca implements Comparable<Marca>, SujetoGeneral {
 
     public Marca(){}
 
-    @Action(semantics = IDEMPOTENT, command = ENABLED, publishing = Publishing.ENABLED, associateWith = "nombre")
+    @Action()
     @ActionLayout(named = "Editar")
-    public Marca UpdateNombre(
+    public Marca Update(
             @Parameter(maxLength = 40)
             @ParameterLayout(named = "Marca: ")
             final String nombre){
@@ -126,18 +125,27 @@ public class Marca implements Comparable<Marca>, SujetoGeneral {
         return this;
     }
 
-    public String default0UpdateNombre() {
+    public String default0Update() {return getNombre();}
 
-        return getNombre();
+    @Action()
+    public Marca Activar(){
+        CambiarEstado(false);
+        return this;
     }
 
-    @Action(semantics = NON_IDEMPOTENT_ARE_YOU_SURE)
-    @ActionLayout(named = "Activar/Desactivar")
-    public Marca UpdateBaja(){
-
-        setBaja(!this.baja);
-        Notificar();
+    @Action()
+    public Marca Desactivar(){
+        CambiarEstado(true);
         return this;
+    }
+
+    public boolean hideActivar() {return !this.baja;}
+    public boolean hideDesactivar() {return this.baja;}
+
+    @Programmatic
+    public void CambiarEstado(boolean estado){
+        this.baja = estado;
+        Notificar();
     }
 
     @Action()

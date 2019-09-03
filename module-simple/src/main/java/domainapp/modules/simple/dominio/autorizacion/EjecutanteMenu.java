@@ -2,11 +2,7 @@ package domainapp.modules.simple.dominio.autorizacion;
 
 import org.apache.isis.applib.annotation.*;
 
-import javax.jdo.annotations.*;
-
 import domainapp.modules.simple.dominio.empresa.Empresa;
-import lombok.Getter;
-import lombok.Setter;
 
 @DomainService(
         nature = NatureOfService.VIEW_MENU_ONLY,

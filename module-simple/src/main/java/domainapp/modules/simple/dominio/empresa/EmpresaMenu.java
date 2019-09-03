@@ -1,15 +1,14 @@
 package domainapp.modules.simple.dominio.empresa;
 
-import org.apache.isis.applib.annotation.Action;
-import org.apache.isis.applib.annotation.ActionLayout;
-import org.apache.isis.applib.annotation.BookmarkPolicy;
-import org.apache.isis.applib.annotation.DomainService;
-import org.apache.isis.applib.annotation.DomainServiceLayout;
-import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.NatureOfService;
-import org.apache.isis.applib.annotation.ParameterLayout;
-import org.apache.isis.applib.annotation.RestrictTo;
-import org.apache.isis.applib.annotation.SemanticsOf;
+import org.apache.isis.applib.annotation.*;
+import org.apache.isis.applib.services.i18n.TranslatableString;
+
+import javax.jdo.annotations.*;
+
+import com.google.inject.internal.cglib.proxy.$MethodProxy;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @DomainService(
         nature = NatureOfService.VIEW_MENU_ONLY,
@@ -17,7 +16,7 @@ import org.apache.isis.applib.annotation.SemanticsOf;
         repositoryFor = Empresa.class
 )
 @DomainServiceLayout(
-        named = "Empresa",
+        named = "",
         menuOrder = ""
 )
 public class EmpresaMenu {
@@ -27,33 +26,29 @@ public class EmpresaMenu {
             restrictTo = RestrictTo.PROTOTYPING
     )
     @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT,
-            named = "Listar"
+            bookmarking = BookmarkPolicy.AS_ROOT
     )
     @MemberOrder(sequence = "1")
-    public java.util.List<Empresa> listAll() {
-        return empresarepository.listAll();
-    }
+    public java.util.List<Empresa> listAll() {return empresarepository.Listar();}
 
     @Action(
             semantics = SemanticsOf.SAFE
     )
     @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT,
-            named = "Buscar por nombre"
+            bookmarking = BookmarkPolicy.AS_ROOT
     )
     @MemberOrder(sequence = "2")
     public java.util.List<Empresa> findByNombreFantasia(
             final String nombreFantasia
     ) {
-        return empresarepository.findByNombreFantasiaContains(nombreFantasia);
+        return empresarepository.findByNombreFantaciaContains(nombreFantasia);
     }
 
     @Action(
     )
     @MemberOrder(sequence = "3")
     public Empresa create(
-            @ParameterLayout(named = "Nombre de Fantasia: ")
+            @ParameterLayout(named = "Nombre Fantasia: ")
             final String nombreFantasia,
 
             @ParameterLayout(named = "Razon Social: ")
@@ -63,9 +58,9 @@ public class EmpresaMenu {
             final String direccion,
 
             @ParameterLayout(named = "Telefono: ")
-            final String telefono)
-    {
-        return empresarepository.create(nombreFantasia,razonSocial,direccion,telefono);
+            final String telefono) {
+
+        return empresarepository.create(nombreFantasia, razonSocial, direccion, telefono);
     }
 
     @javax.inject.Inject

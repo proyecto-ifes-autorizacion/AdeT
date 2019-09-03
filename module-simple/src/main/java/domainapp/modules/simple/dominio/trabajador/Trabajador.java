@@ -3,45 +3,28 @@ package domainapp.modules.simple.dominio.trabajador;
 import java.util.Date;
 import java.util.List;
 
-import javax.jdo.annotations.Column;
-import javax.jdo.annotations.DatastoreIdentity;
-import javax.jdo.annotations.IdGeneratorStrategy;
-import javax.jdo.annotations.IdentityType;
-import javax.jdo.annotations.PersistenceCapable;
-import javax.jdo.annotations.Queries;
-import javax.jdo.annotations.Query;
-import javax.jdo.annotations.Unique;
-import javax.jdo.annotations.Version;
-import javax.jdo.annotations.VersionStrategy;
-
-import org.apache.isis.applib.annotation.Action;
-import org.apache.isis.applib.annotation.ActionLayout;
-import org.apache.isis.applib.annotation.BookmarkPolicy;
-import org.apache.isis.applib.annotation.DomainObject;
-import org.apache.isis.applib.annotation.DomainObjectLayout;
-import org.apache.isis.applib.annotation.Editing;
-import org.apache.isis.applib.annotation.Optionality;
-import org.apache.isis.applib.annotation.Parameter;
-import org.apache.isis.applib.annotation.ParameterLayout;
-import org.apache.isis.applib.annotation.Property;
-import org.apache.isis.applib.annotation.SemanticsOf;
+import org.apache.isis.applib.annotation.*;
 import org.apache.isis.applib.services.i18n.TranslatableString;
 
+import javax.jdo.annotations.*;
+
+import com.google.common.collect.Lists;
+
+import org.joda.time.LocalDate;
+
 import domainapp.modules.simple.dominio.EstadoGeneral;
-import domainapp.modules.simple.dominio.ObservadorAutorizacion;
 import domainapp.modules.simple.dominio.ObservadorGeneral;
-import domainapp.modules.simple.dominio.autorizacion.EstadoAutorizacion;
 import domainapp.modules.simple.dominio.empresa.Empresa;
 import domainapp.modules.simple.dominio.empresa.EmpresaRepository;
+import domainapp.modules.simple.dominio.empresa.EstadoEmpresa;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
-import static org.apache.isis.applib.annotation.SemanticsOf.NON_IDEMPOTENT_ARE_YOU_SURE;
 
 @PersistenceCapable(
         identityType = IdentityType.DATASTORE,
         schema = "dominio",
-        table = "Empleado"
+        table = "Trabajador"
 )
 @DatastoreIdentity(
         strategy = IdGeneratorStrategy.IDENTITY,
@@ -63,9 +46,19 @@ import static org.apache.isis.applib.annotation.SemanticsOf.NON_IDEMPOTENT_ARE_Y
                 name = "findByCuil", language = "JDOQL",
                 value = "SELECT "
                         + "FROM domainapp.modules.simple.dominio.trabajador.Trabajador "
-                        + "WHERE cuil == :cuil ")
+                        + "WHERE cuil == :cuil "),
+        @Query(
+                name = "findByEstado", language = "JDOQL",
+                value = "SELECT "
+                        + "FROM domainapp.modules.simple.dominio.trabajador.Trabajador "
+                        + "WHERE estado == :estado "),
+        @Query(
+                name = "findByEmpresa", language = "JDOQL",
+                value = "SELECT "
+                        + "FROM domainapp.modules.simple.dominio.trabajador.Trabajador "
+                        + "WHERE empresa == :empresa ")
 })
-@Unique(name = "Empleado_cuil_UNQ", members = { "cuil" })
+@Unique(name = "Trabajador_cuil_UNQ", members = { "cuil" })
 @DomainObject(
         editing = Editing.DISABLED
 )
@@ -73,24 +66,23 @@ import static org.apache.isis.applib.annotation.SemanticsOf.NON_IDEMPOTENT_ARE_Y
         bookmarking = BookmarkPolicy.AS_ROOT
 )
 @Getter @Setter
-
-public class Trabajador implements Comparable<Trabajador>, ObservadorGeneral, ObservadorAutorizacion {
+public class Trabajador implements Comparable<Trabajador>, ObservadorGeneral {
 
     @Column(allowsNull = "false", length = 13)
     @Property()
     private String cuil;
 
-    @Column(allowsNull = "false", length = 40)
+    @Column(allowsNull = "false", length = largo)
     @Property()
     private String nombre;
 
-    @Column(allowsNull = "false", length = 40)
+    @Column(allowsNull = "false", length = largo)
     @Property()
     private String apellido;
 
     @Column(allowsNull = "false")
     @Property()
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
 
     @Column(allowsNull = "false")
     @Property()
@@ -100,40 +92,49 @@ public class Trabajador implements Comparable<Trabajador>, ObservadorGeneral, Ob
     @Property()
     private EstadoGeneral estado;
 
-    public String title(){
+    @Column(allowsNull = "false")
+    @Property()
+    private boolean bajaEmpresa;
 
+    @NotPersistent()
+    @Property(hidden = Where.EVERYWHERE)
+    private final int largo = 40;
+
+    @Programmatic()
+    private String longitudExcesiva(final int longitud){
+        return "Longitud Excedida en: " + (longitud-largo)+" "+((longitud-largo) == 1 ? "caracter.":"caracteres.");
+    }
+
+    public String title(){
         return getApellido()+", "+getNombre();
     }
 
-    @Action()
-    public Trabajador Ejecutar(){
+    public Trabajador(){}
 
-        setEstado(EstadoGeneral.Ejecucion);
-        return this;
+    public Trabajador(
+            final String cuil,
+            final String nombre,
+            final String apellido,
+            final LocalDate fechaNacimiento,
+            final Empresa empresa){
+
+        this.cuil = cuil;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.fechaNacimiento = fechaNacimiento;
+        this.empresa = empresa;
+        this.estado = EstadoGeneral.Habilitado;
+        this.bajaEmpresa = BajaEmpresa();
     }
 
-    @Action()
-    public Trabajador Habilitar(){
-
-        setEstado(EstadoGeneral.Habilitado);
-        return this;
-    }
-
-    @Action()
-    public Trabajador Inhabilitar(){
-
-        setEstado(EstadoGeneral.Inhabilitado);
-        return this;
-    }
-
-    @Action()
-    public Trabajador Borrar(){
-
-        setEstado(EstadoGeneral.Borrado);
-        return this;
-    }
-
-    public Trabajador(final String cuil, final String nombre, final String apellido, final Date fechaNacimiento, final Empresa empresa, final EstadoGeneral estado){
+    public Trabajador(
+            final String cuil,
+            final String nombre,
+            final String apellido,
+            final LocalDate fechaNacimiento,
+            final Empresa empresa,
+            final EstadoGeneral estado,
+            final boolean bajaEmpresa){
 
         this.cuil = cuil;
         this.nombre = nombre;
@@ -141,33 +142,24 @@ public class Trabajador implements Comparable<Trabajador>, ObservadorGeneral, Ob
         this.fechaNacimiento = fechaNacimiento;
         this.empresa = empresa;
         this.estado = estado;
+        this.bajaEmpresa = bajaEmpresa;
     }
 
-    public Trabajador(){}
-
-    @Action(semantics = SemanticsOf.SAFE)
+    @Action()
     @ActionLayout(named = "Editar")
-    public Trabajador update(
-
-            @Parameter(maxLength = 13)
+    public Trabajador Update(
             @ParameterLayout(named = "Cuil: ")
-            final String cuil,
-
-            @Parameter(maxLength = 40)
+            String cuil,
             @ParameterLayout(named = "Nombre: ")
-            final String nombre,
-
-            @Parameter(maxLength = 40)
+            String nombre,
             @ParameterLayout(named = "Apellido: ")
-            final String apellido,
-
-            @ParameterLayout(named = "Fecha de Nacimiento: ")
-            final Date fechaNacimiento,
-
+            String apellido,
+            @ParameterLayout(named = "Fecha Nacimiento: ")
+            LocalDate fechaNacimiento,
             @Parameter(optionality = Optionality.MANDATORY)
             @ParameterLayout(named = "Empresa: ")
-            final Empresa empresa)
-    {
+            Empresa empresa){
+
         this.cuil = cuil;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -176,50 +168,70 @@ public class Trabajador implements Comparable<Trabajador>, ObservadorGeneral, Ob
         return this;
     }
 
-    public String default0Update() {
+    public String default0Update() {return getCuil();}
 
-        return getCuil();
-    }
-    public String default1Update() {
-
-        return getNombre();
-    }
-    public String default2Update() {
-
-        return getApellido();
-    }
-    public Date default3Update() {
-
-        return getFechaNacimiento();
+    public String default1Update() {return getNombre();}
+    public TranslatableString validate1Update(final String nombre) {
+        return nombre.length() <= largo ? null : TranslatableString.tr(longitudExcesiva(nombre.length()));
     }
 
-    public Empresa default4Update() {
-
-        return getEmpresa();
+    public String default2Update() {return getApellido();}
+    public TranslatableString validate2Update(final String apellido) {
+        return apellido.length() <= largo ? null : TranslatableString.tr(longitudExcesiva(apellido.length()));
     }
 
+    public LocalDate default3Update() {return getFechaNacimiento();}
+
+    public Empresa default4Update() {return getEmpresa();}
     public List<Empresa> choices4Update() {
-
-        return empresaRepository.listAll();
+        return empresaRepository.Listar(EstadoEmpresa.Habilitada);
     }
 
+    @Programmatic
+    public void CambiarEstado(EstadoGeneral estado){
+        this.estado = estado;
+    }
+    
+    @Programmatic
+    public Trabajador Ejecutar(){
+        CambiarEstado(EstadoGeneral.Ejecucion);
+        return this;
+    }
 
-    //validacion del CUIL, evaluar como optimizar este metodo
-    public TranslatableString validate0Update(final String cuil) {
-        return  cuil != null &&
-                Character.isDigit(cuil.charAt(0)) &&
-                Character.isDigit(cuil.charAt(1)) &&
-                (Character.compare(cuil.charAt(2),'-') == 0)&&
-                Character.isDigit(cuil.charAt(3)) &&
-                Character.isDigit(cuil.charAt(4)) &&
-                Character.isDigit(cuil.charAt(5)) &&
-                Character.isDigit(cuil.charAt(6)) &&
-                Character.isDigit(cuil.charAt(7)) &&
-                Character.isDigit(cuil.charAt(8)) &&
-                Character.isDigit(cuil.charAt(9)) &&
-                Character.isDigit(cuil.charAt(10)) &&
-                (Character.compare(cuil.charAt(11),'-') == 0)&&
-                Character.isDigit(cuil.charAt(12)) ? null : TranslatableString.tr("Formato no valido xx-xxxxxxxx-x");
+    @Action()
+    public Trabajador Habilitar(){
+        CambiarEstado(EstadoGeneral.Habilitado);
+        return this;
+    }
+
+    @Action()
+    public Trabajador Inhabilitar(){
+        CambiarEstado(EstadoGeneral.Inhabilitado);
+        return this;
+    }
+
+    @Action()
+    public Trabajador Borrar(){
+        CambiarEstado(EstadoGeneral.Borrado);
+        return this;
+    }
+
+    public boolean hideHabilitar() {return this.estado == EstadoGeneral.Habilitado;}
+    public boolean hideInhabilitar() {return this.estado == EstadoGeneral.Inhabilitado;}
+    public boolean hideBorrar() {return this.estado == EstadoGeneral.Borrado;}
+
+    @Override
+    public void Actuliazar() {
+        if (empresa.ObtenerEstado() == EstadoEmpresa.Habilitada){
+            this.bajaEmpresa = false;
+        } else {
+            this.bajaEmpresa = true;
+        }
+    }
+
+    public boolean BajaEmpresa(){
+        Actuliazar();
+        return this.bajaEmpresa;
     }
 
     //region > compareTo, toString
@@ -233,27 +245,6 @@ public class Trabajador implements Comparable<Trabajador>, ObservadorGeneral, Ob
         return org.apache.isis.applib.util.ObjectContracts.toString(this, "cuil");
     }
     //endregion
-
-    @Action(semantics = NON_IDEMPOTENT_ARE_YOU_SURE)
-    @ActionLayout(named = "eliminar")
-    public void delete() {
-        trabajadorRepository.delete(this);
-    }
-
-    @Override
-    public void Actuliazar() {
-
-    }
-
-    @Override
-    public void Actuliazar(final EstadoAutorizacion estadoAutorizacion) {
-
-    }
-
-    @javax.inject.Inject
-    @javax.jdo.annotations.NotPersistent
-    @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
-    TrabajadorRepository trabajadorRepository;
 
     @javax.inject.Inject
     @javax.jdo.annotations.NotPersistent

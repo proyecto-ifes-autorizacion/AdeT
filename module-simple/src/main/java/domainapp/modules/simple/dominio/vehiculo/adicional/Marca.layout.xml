@@ -10,16 +10,27 @@
         </bs3:col>
     </bs3:row>
     <bs3:row>
-        <bs3:col span="4">
+        <bs3:col span="6">
             <bs3:tabGroup>
                 <bs3:tab name="General">
                     <bs3:row>
                         <bs3:col span="12">
                             <cpt:fieldSet name="General">
-                                <cpt:property id="cuil">
-                                    <cpt:action id="updateCuil"/>
-                                </cpt:property>
+                                <cpt:action id="Update"/>
+                                <cpt:action id="Activar"/>
+                                <cpt:action id="Desactivar"/>
+                                <cpt:action id="delete"/>
+                                <cpt:property id="nombre"/>
+                                <cpt:property id="baja"/>
                             </cpt:fieldSet>
+                        </bs3:col>
+                    </bs3:row>
+                    <bs3:row>
+                        <bs3:col span="12" size="MD">
+                            <cpt:collection defaultView="table" id="modelos">
+                                <cpt:action id="AgregarModelos"/>
+                                <cpt:action id="ObtenerModelos"/>
+                            </cpt:collection>
                         </bs3:col>
                     </bs3:row>
                 </bs3:tab>
@@ -39,8 +50,17 @@
                 </bs3:tab>
             </bs3:tabGroup>
         </bs3:col>
-        <bs3:col span="8">
-            <bs3:tabGroup unreferencedCollections="true"/>
+        <bs3:col span="6">
+            <bs3:tabGroup unreferencedCollections="true">
+                <bs3:tab name="Marcas">
+                    <bs3:row>
+                        <bs3:col span="12" size="MD">
+                            <cpt:collection defaultView="table" id="activas"/>
+                            <cpt:collection defaultView="table" id="inactivas"/>
+                        </bs3:col>
+                    </bs3:row>
+                </bs3:tab>
+            </bs3:tabGroup>
         </bs3:col>
     </bs3:row>
 </bs3:grid>

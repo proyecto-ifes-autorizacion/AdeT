@@ -8,8 +8,8 @@ import javax.jdo.annotations.*;
 
 import domainapp.modules.simple.dominio.ObservadorGeneral;
 import domainapp.modules.simple.dominio.SujetoGeneral;
-import domainapp.modules.simple.dominio.trabajador.Trabajador;
 import domainapp.modules.simple.dominio.empresa.Empresa;
+import domainapp.modules.simple.dominio.trabajador.Trabajador;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -58,9 +58,9 @@ public class Ejecutante implements Comparable<Ejecutante>, ObservadorGeneral, Su
     @Property()
     private Empresa empresa;
 
-    @Column(allowsNull = "false")
-    @Property()
-    private List<Trabajador> trabajadores;
+//    @Column(allowsNull = "false")
+//    @Property()
+//    private List<Trabajador> trabajadores;
 
 //    @Column(allowsNull = "false")
 //    @Property()
@@ -78,7 +78,7 @@ public class Ejecutante implements Comparable<Ejecutante>, ObservadorGeneral, Su
 
         this.autorizacion = autorizacion;
         this.empresa = empresa;
-        this.trabajadores = trabajadores;
+//        this.trabajadores = trabajadores;
     }
 
     //region > compareTo, toString
