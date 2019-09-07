@@ -2,6 +2,8 @@ package domainapp.modules.simple.dominio.vehiculo.adicional;
 
 import java.util.List;
 
+import com.google.common.collect.Lists;
+
 import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.BookmarkPolicy;
@@ -31,7 +33,8 @@ public class ModeloMenu {
             restrictTo = RestrictTo.PROTOTYPING
     )
     @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT
+            bookmarking = BookmarkPolicy.AS_ROOT,
+            named = "Listado de Modelos"
     )
     @MemberOrder(sequence = "1")
     public java.util.List<Modelo> listAll() {
@@ -54,17 +57,23 @@ public class ModeloMenu {
             semantics = SemanticsOf.SAFE
     )
     @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT
+            bookmarking = BookmarkPolicy.AS_ROOT,
+            named = "Buscar"
     )
     @MemberOrder(sequence = "2")
-    public java.util.List<Modelo> findByNombre(
-            final String nombre
-    ) {
-        return modelorepository.findByNombreContains(nombre);
+    public Modelo findByNombre(
+            @Parameter(optionality = Optionality.MANDATORY)
+            @ParameterLayout(named = "Modelo: ")
+            final Modelo modelo) {
+
+        return modelo;
     }
+
+    public List<Modelo> choices0FindByNombre() {return modelorepository.listAll();}
 
     @Action(
     )
+    @ActionLayout(named = "Crear")
     @MemberOrder(sequence = "3")
     public Modelo create(
             @ParameterLayout(named = "Modelo: ")

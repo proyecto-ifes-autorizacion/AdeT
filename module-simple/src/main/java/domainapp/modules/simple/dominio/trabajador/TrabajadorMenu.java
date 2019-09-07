@@ -2,6 +2,8 @@ package domainapp.modules.simple.dominio.trabajador;
 
 import java.util.List;
 
+import com.google.common.collect.Lists;
+
 import org.joda.time.LocalDate;
 
 import org.apache.isis.applib.annotation.*;
@@ -25,7 +27,8 @@ public class TrabajadorMenu {
             restrictTo = RestrictTo.PROTOTYPING
     )
     @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT
+            bookmarking = BookmarkPolicy.AS_ROOT,
+            named = "Listado de Trabajadores"
     )
     @MemberOrder(sequence = "1")
     public java.util.List<Trabajador> listAll() {
@@ -36,17 +39,23 @@ public class TrabajadorMenu {
             semantics = SemanticsOf.SAFE
     )
     @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT
+            bookmarking = BookmarkPolicy.AS_ROOT,
+            named = "Buscar"
     )
     @MemberOrder(sequence = "2")
-    public java.util.List<Trabajador> findByCuil(
-            final String cuil
-    ) {
-        return trabajadorrepository.findByCuilContains(cuil);
+    public Trabajador findByCuil(
+            @Parameter(optionality = Optionality.MANDATORY)
+            @ParameterLayout(named = "Trabajador: ")
+            final Trabajador trabajador) {
+
+        return trabajador;
     }
+
+    public List<Trabajador> choices0FindByCuil() {return trabajadorrepository.Listar();}
 
     @Action(
     )
+    @ActionLayout(named = "Crear")
     @MemberOrder(sequence = "3")
     public Trabajador create(
 

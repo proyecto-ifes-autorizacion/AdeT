@@ -3,6 +3,8 @@ package domainapp.modules.simple.dominio.vehiculo;
 import java.util.Date;
 import java.util.List;
 
+import com.google.common.collect.Lists;
+
 import org.joda.time.LocalDate;
 
 import org.apache.isis.applib.annotation.*;
@@ -28,7 +30,8 @@ public class VehiculoMenu {
             restrictTo = RestrictTo.PROTOTYPING
     )
     @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT
+            bookmarking = BookmarkPolicy.AS_ROOT,
+            named = "Listado de Vehiculos"
     )
     @MemberOrder(sequence = "1")
     public List<Vehiculo> listAll() {return vehiculorepository.List();}
@@ -37,16 +40,23 @@ public class VehiculoMenu {
             semantics = SemanticsOf.SAFE
     )
     @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT
+            bookmarking = BookmarkPolicy.AS_ROOT,
+            named = "Buscar"
     )
     @MemberOrder(sequence = "2")
-    public List<Vehiculo> findByDominio(final String dominio) {
+    public Vehiculo findByDominio(
+            @Parameter(optionality = Optionality.MANDATORY)
+            @ParameterLayout(named = "Vehiculo: ")
+            final Vehiculo vehiculo) {
 
-        return vehiculorepository.findByDominioContains(dominio);
+        return vehiculo;
     }
+
+    public List<Vehiculo> choices0FindByDominio() {return vehiculorepository.List();}
 
     @Action(
     )
+    @ActionLayout(named = "Crear")
     @MemberOrder(sequence = "3")
     public Vehiculo create(
 
