@@ -29,7 +29,6 @@
                         <bs3:col span="12" size="MD">
                             <cpt:collection defaultView="table" id="modelos">
                                 <cpt:action id="AgregarModelos"/>
-                                <cpt:action id="ObtenerModelos"/>
                             </cpt:collection>
                         </bs3:col>
                     </bs3:row>

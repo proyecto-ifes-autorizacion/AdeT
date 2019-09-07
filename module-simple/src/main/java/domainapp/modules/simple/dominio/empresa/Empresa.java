@@ -11,6 +11,7 @@ import domainapp.modules.simple.dominio.SujetoGeneral;
 import domainapp.modules.simple.dominio.trabajador.Trabajador;
 import domainapp.modules.simple.dominio.trabajador.TrabajadorRepository;
 import domainapp.modules.simple.dominio.vehiculo.Vehiculo;
+import domainapp.modules.simple.dominio.vehiculo.VehiculoRepository;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -129,6 +130,21 @@ public class Empresa implements Comparable<Empresa>, SujetoGeneral {
         this.vehiculos = vehiculos;
     }
 
+    @NotPersistent
+    public List<Empresa> getHabilitada(){
+        return empresaRepository.Listar(EstadoEmpresa.Habilitada);
+    }
+
+    @NotPersistent
+    public List<Empresa> getInhabilitada(){
+        return empresaRepository.Listar(EstadoEmpresa.Inhabilitada);
+    }
+
+    @NotPersistent
+    public List<Empresa> getBorrada(){
+        return empresaRepository.Listar(EstadoEmpresa.Borrada);
+    }
+
     @Action()
     @ActionLayout(named = "Editar")
     public Empresa update(
@@ -216,11 +232,13 @@ public class Empresa implements Comparable<Empresa>, SujetoGeneral {
         return this.estado;
     }
 
-    @Action()
-    public Empresa Obtener(){
+    @Programmatic
+    public Empresa ObtenerTrabadoresYVehiculos(){
         setTrabajadores(trabajadorRepository.Listar(this));
+        setVehiculos(vehiculoRepository.List(this));
         return this;
     }
+
     //region > compareTo, toString
     @Override
     public int compareTo(final Empresa other) {
@@ -238,4 +256,13 @@ public class Empresa implements Comparable<Empresa>, SujetoGeneral {
     @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
     TrabajadorRepository trabajadorRepository;
 
+    @javax.inject.Inject
+    @javax.jdo.annotations.NotPersistent
+    @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
+    VehiculoRepository vehiculoRepository;
+
+    @javax.inject.Inject
+    @javax.jdo.annotations.NotPersistent
+    @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
+    EmpresaRepository empresaRepository;
 }

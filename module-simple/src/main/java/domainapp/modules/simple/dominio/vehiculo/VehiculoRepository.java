@@ -22,12 +22,12 @@ import domainapp.modules.simple.dominio.vehiculo.adicional.Modelo;
 public class VehiculoRepository {
 
     @Programmatic
-    public List<Vehiculo> listAll() {
+    public List<Vehiculo> List() {
         return repositoryService.allInstances(Vehiculo.class);
     }
 
     @Programmatic
-    public List<Vehiculo> ListEmpresa(Empresa empresa){
+    public List<Vehiculo> List(Empresa empresa){
 
         return repositoryService.allMatches(
                 new QueryDefault<>(
@@ -37,7 +37,7 @@ public class VehiculoRepository {
     }
 
     @Programmatic
-    public List<Vehiculo> ListEstado(EstadoGeneral estado){
+    public List<Vehiculo> List(EstadoGeneral estado){
 
         return repositoryService.allMatches(
                 new QueryDefault<>(

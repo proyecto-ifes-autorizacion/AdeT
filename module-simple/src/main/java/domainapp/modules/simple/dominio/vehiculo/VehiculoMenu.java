@@ -31,9 +31,7 @@ public class VehiculoMenu {
             bookmarking = BookmarkPolicy.AS_ROOT
     )
     @MemberOrder(sequence = "1")
-    public List<Vehiculo> listAll() {
-        return vehiculorepository.listAll();
-    }
+    public List<Vehiculo> listAll() {return vehiculorepository.List();}
 
     @Action(
             semantics = SemanticsOf.SAFE

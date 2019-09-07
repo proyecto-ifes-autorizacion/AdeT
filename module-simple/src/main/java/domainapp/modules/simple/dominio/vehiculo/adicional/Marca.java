@@ -159,7 +159,7 @@ public class Marca implements Comparable<Marca>, SujetoGeneral {
         return this;
     }
 
-    @Action()
+    @Programmatic
     public Marca ObtenerModelos() {
 
         setModelos(modeloRepository.ListModeloByMarca(this));

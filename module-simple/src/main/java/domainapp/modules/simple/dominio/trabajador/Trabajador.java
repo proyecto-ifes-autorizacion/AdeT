@@ -145,6 +145,26 @@ public class Trabajador implements Comparable<Trabajador>, ObservadorGeneral {
         this.bajaEmpresa = bajaEmpresa;
     }
 
+    @NotPersistent
+    public List<Trabajador> getEjecucion(){
+        return trabajadorRepository.Listar(EstadoGeneral.Ejecucion);
+    }
+
+    @NotPersistent
+    public List<Trabajador> getHabilitado(){
+        return trabajadorRepository.Listar(EstadoGeneral.Habilitado);
+    }
+
+    @NotPersistent
+    public List<Trabajador> getInhabilitado(){
+        return trabajadorRepository.Listar(EstadoGeneral.Inhabilitado);
+    }
+
+    @NotPersistent
+    public List<Trabajador> getBorrado(){
+        return trabajadorRepository.Listar(EstadoGeneral.Borrado);
+    }
+
     @Action()
     @ActionLayout(named = "Editar")
     public Trabajador update(
@@ -251,5 +271,10 @@ public class Trabajador implements Comparable<Trabajador>, ObservadorGeneral {
     @javax.jdo.annotations.NotPersistent
     @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
     EmpresaRepository empresaRepository;
+
+    @javax.inject.Inject
+    @javax.jdo.annotations.NotPersistent
+    @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
+    TrabajadorRepository trabajadorRepository;
 
 }

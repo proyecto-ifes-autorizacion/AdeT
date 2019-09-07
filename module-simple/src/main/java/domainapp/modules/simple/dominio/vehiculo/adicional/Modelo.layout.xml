@@ -45,16 +45,21 @@
             </bs3:tabGroup>
         </bs3:col>
         <bs3:col span="8">
-            <bs3:tabGroup unreferencedCollections="true">
+            <bs3:tabGroup>
                 <bs3:tab name="Modelos">
                     <bs3:row>
-                        <bs3:col span="12" size="MD">
+                        <bs3:col span="6" size="MD">
                             <cpt:collection defaultView="table" id="activas"/>
+                        </bs3:col>
+                        <bs3:col span="6" size="MD">
                             <cpt:collection defaultView="table" id="inactivas"/>
                         </bs3:col>
                     </bs3:row>
                 </bs3:tab>
             </bs3:tabGroup>
+        </bs3:col>
+        <bs3:col>
+            <bs3:tabGroup unreferencedCollections="true"/>
         </bs3:col>
     </bs3:row>
 </bs3:grid>

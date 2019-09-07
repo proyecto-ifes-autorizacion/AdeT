@@ -127,6 +127,26 @@ public class Vehiculo implements Comparable<Vehiculo>, ObservadorGeneral {
         this.bajaEmpresa = bajaEmpresa;
     }
 
+    @NotPersistent
+    public List<Vehiculo> getEjecucion(){
+        return vehiculoRepository.List(EstadoGeneral.Ejecucion);
+    }
+
+    @NotPersistent
+    public List<Vehiculo> getHabilitado(){
+        return vehiculoRepository.List(EstadoGeneral.Habilitado);
+    }
+
+    @NotPersistent
+    public List<Vehiculo> getInhabilitado(){
+        return vehiculoRepository.List(EstadoGeneral.Inhabilitado);
+    }
+
+    @NotPersistent
+    public List<Vehiculo> getBorrado(){
+        return vehiculoRepository.List(EstadoGeneral.Borrado);
+    }
+
     @Action(semantics = SemanticsOf.SAFE)
     @ActionLayout(named = "Editar")
     public Vehiculo update(
@@ -233,5 +253,10 @@ public class Vehiculo implements Comparable<Vehiculo>, ObservadorGeneral {
     @javax.jdo.annotations.NotPersistent
     @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
     EmpresaRepository empresaRepository;
+
+    @javax.inject.Inject
+    @javax.jdo.annotations.NotPersistent
+    @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
+    VehiculoRepository vehiculoRepository;
 
 }

@@ -1,5 +1,7 @@
 package domainapp.modules.simple.dominio.empresa;
 
+import java.util.List;
+
 import org.apache.isis.applib.annotation.*;
 import org.apache.isis.applib.services.i18n.TranslatableString;
 
@@ -29,7 +31,13 @@ public class EmpresaMenu {
             bookmarking = BookmarkPolicy.AS_ROOT
     )
     @MemberOrder(sequence = "1")
-    public java.util.List<Empresa> listAll() {return empresarepository.Listar();}
+    public List<Empresa> listAll() {
+        List<Empresa> empresas = empresarepository.Listar();
+        for (Empresa empresa : empresas){
+            empresa.ObtenerTrabadoresYVehiculos();
+        }
+        return empresas;
+    }
 
     @Action(
             semantics = SemanticsOf.SAFE
