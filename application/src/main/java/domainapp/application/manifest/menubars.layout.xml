@@ -68,15 +68,19 @@
             <mb3:named>Vehiculos</mb3:named>
             <mb3:section>
                 <mb3:serviceAction objectType="Vehiculo" id="create">
-                    <cpt:named>Crear Vehiculo</cpt:named>
+                    <cpt:named>Crear</cpt:named>
                 </mb3:serviceAction>
                 <mb3:serviceAction objectType="Vehiculo" id="findByDominio">
-                    <cpt:named>Buscar Vehiculo</cpt:named>
+                    <cpt:named>Buscar</cpt:named>
                 </mb3:serviceAction>
                 <mb3:serviceAction objectType="Vehiculo" id="listAll">
-                    <cpt:named>Listar Vehiculo</cpt:named>
+                    <cpt:named>Listar</cpt:named>
                 </mb3:serviceAction>
             </mb3:section>
+        </mb3:menu>
+
+        <mb3:menu>
+            <mb3:named>Datos Maestros</mb3:named>
             <mb3:section>
                 <mb3:serviceAction objectType="Marca" id="create">
                     <cpt:named>Crear Marca</cpt:named>

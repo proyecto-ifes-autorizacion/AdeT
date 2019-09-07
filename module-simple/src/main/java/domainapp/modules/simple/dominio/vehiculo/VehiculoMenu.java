@@ -51,26 +51,27 @@ public class VehiculoMenu {
     )
     @MemberOrder(sequence = "3")
     public Vehiculo create(
-            @ParameterLayout(named = "Dominio: ")
-            final String dominio,
+
+            @Parameter(optionality = Optionality.MANDATORY)
+            @ParameterLayout(named = "Empresa: ")
+            final Empresa empresa,
 
             @Parameter(optionality = Optionality.MANDATORY)
             @ParameterLayout(named = "Modelo: ")
             final Modelo modelo,
 
-            @ParameterLayout(named = "Fecha Alta: ")
-            final LocalDate fechaAlta,
+            @ParameterLayout(named = "Dominio: ")
+            final String dominio,
 
-            @Parameter(optionality = Optionality.MANDATORY)
-            @ParameterLayout(named = "Empresa: ")
-            final Empresa empresa) {
+            @ParameterLayout(named = "Fecha Alta: ")
+            final LocalDate fechaAlta) {
 
         return vehiculorepository.create(dominio, modelo, fechaAlta, empresa);
     }
 
-    public List<Modelo> choices1Create() {return modeloRepository.ListActivos();}
+    public List<Empresa> choices0Create() {return empresaRepository.Listar();}
 
-    public List<Empresa> choices3Create() {return empresaRepository.Listar();}
+    public List<Modelo> choices1Create() {return modeloRepository.ListActivos();}
 
     @javax.inject.Inject
     VehiculoRepository vehiculorepository;

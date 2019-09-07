@@ -3,6 +3,7 @@ package domainapp.modules.simple.dominio.vehiculo;
 import java.util.List;
 
 import org.apache.isis.applib.annotation.*;
+import org.apache.isis.applib.services.i18n.TranslatableString;
 
 import javax.jdo.annotations.*;
 
@@ -12,6 +13,7 @@ import domainapp.modules.simple.dominio.EstadoGeneral;
 import domainapp.modules.simple.dominio.ObservadorGeneral;
 import domainapp.modules.simple.dominio.empresa.Empresa;
 import domainapp.modules.simple.dominio.empresa.EmpresaRepository;
+import domainapp.modules.simple.dominio.empresa.EstadoEmpresa;
 import domainapp.modules.simple.dominio.vehiculo.adicional.Modelo;
 import domainapp.modules.simple.dominio.vehiculo.adicional.ModeloRepository;
 import lombok.AccessLevel;
@@ -43,7 +45,17 @@ import lombok.Setter;
                 name = "findByDominio", language = "JDOQL",
                 value = "SELECT "
                         + "FROM domainapp.modules.simple.dominio.vehiculo.Vehiculo "
-                        + "WHERE dominio == :dominio ")
+                        + "WHERE dominio == :dominio "),
+        @Query(
+                name = "findByEmpresa", language = "JDOQL",
+                value = "SELECT "
+                        + "FROM domainapp.modules.simple.dominio.vehiculo.Vehiculo "
+                        + "WHERE empresa == :empresa "),
+        @Query(
+                name = "findByEstado", language = "JDOQL",
+                value = "SELECT "
+                        + "FROM domainapp.modules.simple.dominio.vehiculo.Vehiculo "
+                        + "WHERE estado == :estado ")
 })
 @Unique(name = "Vehiculo_dominio_UNQ", members = { "dominio" })
 @DomainObject(
@@ -55,8 +67,9 @@ import lombok.Setter;
 @Getter @Setter
 public class Vehiculo implements Comparable<Vehiculo>, ObservadorGeneral {
 
-    @Column(allowsNull = "false")
+    @Column(allowsNull = "false", length = largo)
     @Property()
+    @Title()
     private String dominio;
 
     @Column(allowsNull = "false")
@@ -79,6 +92,19 @@ public class Vehiculo implements Comparable<Vehiculo>, ObservadorGeneral {
     @Property()
     private boolean bajaEmpresa;
 
+    @NotPersistent()
+    @Property(hidden = Where.EVERYWHERE)
+    private final int largo = 20;
+
+    @Programmatic()
+    private String longitudExcesiva(final int longitud){
+        return "Longitud Excedida en: " + (longitud-largo)+" "+((longitud-largo) == 1 ? "caracter.":"caracteres.");
+    }
+
+    public String title(){
+        return modelo.title()+", "+getDominio();
+    }
+
     public Vehiculo(){}
 
     public Vehiculo(String dominio, Modelo modelo, LocalDate fechaAlta, Empresa empresa){
@@ -88,7 +114,7 @@ public class Vehiculo implements Comparable<Vehiculo>, ObservadorGeneral {
         this.fechaAlta = fechaAlta;
         this.empresa = empresa;
         this.estado = EstadoGeneral.Habilitado;
-        this.bajaEmpresa = false;
+        this.bajaEmpresa = BajaEmpresa();
     }
 
     public Vehiculo(String dominio, Modelo modelo, LocalDate fechaAlta, Empresa empresa, EstadoGeneral estado, boolean bajaEmpresa){
@@ -105,20 +131,20 @@ public class Vehiculo implements Comparable<Vehiculo>, ObservadorGeneral {
     @ActionLayout(named = "Editar")
     public Vehiculo update(
 
-            @Parameter(maxLength = 20)
-            @ParameterLayout(named = "Dominio: ")
-            final String dominio,
+            @Parameter(optionality = Optionality.MANDATORY)
+            @ParameterLayout(named = "Empresa: ")
+            final Empresa empresa,
 
             @Parameter(optionality = Optionality.MANDATORY)
             @ParameterLayout(named = "Modelo: ")
             final Modelo modelo,
 
-            @ParameterLayout(named = "Fecha Alta: ")
-            final LocalDate fechaAlta,
+            @Parameter(maxLength = 20)
+            @ParameterLayout(named = "Dominio: ")
+            final String dominio,
 
-            @Parameter(optionality = Optionality.MANDATORY)
-            @ParameterLayout(named = "Empresa: ")
-            final Empresa empresa){
+            @ParameterLayout(named = "Fecha Alta: ")
+            final LocalDate fechaAlta){
 
         this.dominio = dominio;
         this.modelo = modelo;
@@ -127,20 +153,64 @@ public class Vehiculo implements Comparable<Vehiculo>, ObservadorGeneral {
         return this;
     }
 
-    public String default0Update() {return getDominio();}
+    public Empresa default0Update() {return getEmpresa();}
+    public List<Empresa> choices0Update() {return empresaRepository.Listar();}
 
     public Modelo default1Update() {return getModelo();}
     public List<Modelo> choices1Update() {return modeloRepository.ListActivos();}
 
-    public LocalDate default2Update() {return getFechaAlta();}
+    public String default2Update() {return getDominio();}
+    public TranslatableString validate2Update(final String dominio) {
+        return dominio.length() <= largo ? null : TranslatableString.tr(longitudExcesiva(dominio.length()));
+    }
 
-    public Empresa default3Update() {return getEmpresa();}
-    public List<Empresa> choices3Update() {return empresaRepository.Listar();}
+    public LocalDate default3Update() {return getFechaAlta();}
 
+    @Programmatic
+    public void CambiarEstado(EstadoGeneral estado){this.estado = estado;}
 
+    @Programmatic
+    public Vehiculo Ejecutar(){
+        CambiarEstado(EstadoGeneral.Ejecucion);
+        return this;
+    }
 
+    @Action()
+    public Vehiculo Habilitar(){
+        CambiarEstado(EstadoGeneral.Habilitado);
+        return this;
+    }
 
+    @Action()
+    public Vehiculo Inhabilitar(){
+        CambiarEstado(EstadoGeneral.Inhabilitado);
+        return this;
+    }
 
+    @Action()
+    public Vehiculo Borrar(){
+        CambiarEstado(EstadoGeneral.Borrado);
+        return this;
+    }
+
+    public boolean hideHabilitar() {return this.estado == EstadoGeneral.Habilitado;}
+    public boolean hideInhabilitar() {return this.estado == EstadoGeneral.Inhabilitado;}
+    public boolean hideBorrar() {return this.estado == EstadoGeneral.Borrado;}
+
+    @Override
+    public void Actuliazar() {
+        if (empresa.ObtenerEstado() == EstadoEmpresa.Habilitada){
+            this.bajaEmpresa = false;
+        } else {
+            this.bajaEmpresa = true;
+        }
+    }
+
+    @Programmatic
+    public boolean BajaEmpresa(){
+        Actuliazar();
+        return this.bajaEmpresa;
+    }
 
     //region > compareTo, toString
     @Override
@@ -164,8 +234,4 @@ public class Vehiculo implements Comparable<Vehiculo>, ObservadorGeneral {
     @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
     EmpresaRepository empresaRepository;
 
-    @Override
-    public void Actuliazar() {
-
-    }
 }

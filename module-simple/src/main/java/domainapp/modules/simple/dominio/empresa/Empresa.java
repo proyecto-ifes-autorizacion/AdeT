@@ -184,15 +184,11 @@ public class Empresa implements Comparable<Empresa>, SujetoGeneral {
         return this;
     }
 
-    public boolean hideHabilitar() {return this.estado == EstadoEmpresa.Habilitada;}
-
     @Action()
     public Empresa Inhabilitar(){
         CambiarEstado(EstadoEmpresa.Inhabilitada);
         return this;
     }
-
-    public boolean hideInhabilitar() {return this.estado == EstadoEmpresa.Inhabilitada;}
 
     @Action()
     public Empresa Borrar(){
@@ -200,6 +196,8 @@ public class Empresa implements Comparable<Empresa>, SujetoGeneral {
         return this;
     }
 
+    public boolean hideHabilitar() {return this.estado == EstadoEmpresa.Habilitada;}
+    public boolean hideInhabilitar() {return this.estado == EstadoEmpresa.Inhabilitada;}
     public boolean hideBorrar() {return this.estado == EstadoEmpresa.Borrada;}
 
     @Override

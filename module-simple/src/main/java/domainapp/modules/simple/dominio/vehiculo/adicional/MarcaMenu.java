@@ -33,7 +33,11 @@ public class MarcaMenu {
     )
     @MemberOrder(sequence = "1")
     public List<Marca> listAll() {
-        return marcarepository.listAll();
+        List<Marca> marcas = marcarepository.listAll();
+        for(Marca marca : marcas){
+            marca.ObtenerModelos();
+        }
+        return marcas;
     }
 
     @Action(

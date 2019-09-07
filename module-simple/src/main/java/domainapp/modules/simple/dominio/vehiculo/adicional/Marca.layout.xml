@@ -15,13 +15,13 @@
                 <bs3:tab name="General">
                     <bs3:row>
                         <bs3:col span="12">
-                            <cpt:fieldSet name="General">
+                            <cpt:fieldSet name="Datos">
                                 <cpt:action id="Update"/>
                                 <cpt:action id="Activar"/>
                                 <cpt:action id="Desactivar"/>
                                 <cpt:action id="delete"/>
                                 <cpt:property id="nombre"/>
-                                <cpt:property id="baja"/>
+                                <cpt:property id="baja" hidden="ALL_TABLES"/>
                             </cpt:fieldSet>
                         </bs3:col>
                     </bs3:row>
@@ -51,16 +51,21 @@
             </bs3:tabGroup>
         </bs3:col>
         <bs3:col span="6">
-            <bs3:tabGroup unreferencedCollections="true">
+            <bs3:tabGroup>
                 <bs3:tab name="Marcas">
                     <bs3:row>
-                        <bs3:col span="12" size="MD">
+                        <bs3:col span="6" size="MD">
                             <cpt:collection defaultView="table" id="activas"/>
+                        </bs3:col>
+                        <bs3:col span="6" size="MD">
                             <cpt:collection defaultView="table" id="inactivas"/>
                         </bs3:col>
                     </bs3:row>
                 </bs3:tab>
             </bs3:tabGroup>
+        </bs3:col>
+        <bs3:col>
+            <bs3:tabGroup unreferencedCollections="true"/>
         </bs3:col>
     </bs3:row>
 </bs3:grid>

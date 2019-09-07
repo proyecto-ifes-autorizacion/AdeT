@@ -147,7 +147,7 @@ public class Trabajador implements Comparable<Trabajador>, ObservadorGeneral {
 
     @Action()
     @ActionLayout(named = "Editar")
-    public Trabajador Update(
+    public Trabajador update(
             @ParameterLayout(named = "Cuil: ")
             String cuil,
             @ParameterLayout(named = "Nombre: ")
@@ -229,6 +229,7 @@ public class Trabajador implements Comparable<Trabajador>, ObservadorGeneral {
         }
     }
 
+    @Programmatic
     public boolean BajaEmpresa(){
         Actuliazar();
         return this.bajaEmpresa;
