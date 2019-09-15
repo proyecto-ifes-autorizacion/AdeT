@@ -80,10 +80,12 @@ public class Empresa implements Comparable<Empresa>, SujetoGeneral {
     @Property()
     private EstadoEmpresa estado;
 
+    @Persistent(mappedBy = "empresa", dependentElement = "true")
     @Column(allowsNull = "true")
     @Property()
     private List<Trabajador> trabajadores;
 
+    @Persistent(mappedBy = "empresa", dependentElement = "true")
     @Column(allowsNull = "true")
     @Property()
     private List<Vehiculo> vehiculos;

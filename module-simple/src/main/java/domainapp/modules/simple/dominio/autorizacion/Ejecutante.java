@@ -40,7 +40,6 @@ import lombok.Setter;
                         + "FROM domainapp.modules.simple.dominio.autorizacion.Ejecutante "
                         + "WHERE autorizacion == :autorizacion ")
 })
-@Unique(name = "Ejecutantes_autorizacion_UNQ", members = { "autorizacion" })
 @DomainObject(
         editing = Editing.DISABLED
 )
