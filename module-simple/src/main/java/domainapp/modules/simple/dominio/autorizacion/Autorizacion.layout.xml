@@ -37,8 +37,12 @@
                             <cpt:fieldSet name="Solicitante">
                                 <cpt:action id="AgregarSolicitante"/>
                                 <cpt:action id="EditarSolicitante"/>
-                                <cpt:property id="solicitante"/>
-                                <cpt:property id="solicitanteVehiculo"/>
+                                <cpt:property id="solicitante">
+                                    <cpt:action id="QuitarSolicitanteTrabajador"/>
+                                </cpt:property>
+                                <cpt:property id="solicitanteVehiculo">
+                                    <cpt:action id="QuitarSolicitanteVehiculo"/>
+                                </cpt:property>
                             </cpt:fieldSet>
                         </bs3:col>
                     </bs3:row>
@@ -64,7 +68,9 @@
                 <bs3:tab name="Ejecutantes">
                     <bs3:row>
                         <bs3:col span="12" size="MD">
-                            <cpt:collection defaultView="table" id="ejecutantes"/>
+                            <cpt:collection defaultView="table" id="ejecutantes">
+                                <cpt:action id="AgregarEjecutante"/>
+                            </cpt:collection>
                         </bs3:col>
                     </bs3:row>
                 </bs3:tab>

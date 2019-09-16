@@ -43,8 +43,14 @@ public class AutorizacionMenu {
     @MemberOrder(sequence = "3")
     public Autorizacion create(
             final int idAdeT,
+
+            @ParameterLayout(named = "Titulo: ")
             final String titulo,
+
+            @ParameterLayout(named = "Descripcion", multiLine = 10)
             final String descripcion,
+
+            @ParameterLayout(named = "Ubicacion: ")
             final String ubicacion) {
 
         return autorizacionrepository.create(idAdeT, titulo, descripcion, ubicacion);

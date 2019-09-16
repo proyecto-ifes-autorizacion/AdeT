@@ -1,6 +1,5 @@
 package domainapp.modules.simple.dominio.autorizacion;
 
-import java.util.Date;
 import java.util.List;
 
 import org.apache.isis.applib.annotation.*;
@@ -8,8 +7,6 @@ import org.apache.isis.schema.utils.jaxbadapters.PersistentEntityAdapter;
 
 import javax.jdo.annotations.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-
-import com.google.common.collect.Lists;
 
 import org.joda.time.LocalDateTime;
 
@@ -145,7 +142,7 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
             @ParameterLayout(named = "Titulo: ")
             final String titulo,
 
-            @ParameterLayout(named = "Descripcion: ")
+            @ParameterLayout(named = "Descripcion: ", multiLine = 10)
             final String descripcion,
 
             @ParameterLayout(named = "Ubicacion: ")
@@ -167,9 +164,32 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     }
 
     @Action()
-    public Autorizacion Liberar(){
+    public Autorizacion Liberar(
+
+            @ParameterLayout(named = "Apertura: ")
+            final LocalDateTime apertura){
+
+        this.apertura = apertura;
         CambiarEstado(EstadoAutorizacion.Liberada);
         return this;
+    }
+
+    public LocalDateTime default0Liberar() {
+        return LocalDateTime.now();
+    }
+
+    public String disableLiberar() {
+        String error = null;
+        if (this.solicitante == null){
+            error ="Complete Solicitante";
+        } else if (this.solicitanteVehiculo == null){
+            error = "Complete Vehiculo Solicitante";
+        }
+        return error;
+    }
+
+    public boolean hideLiberar() {
+        return this.estado != EstadoAutorizacion.Abierta;
     }
 
     @Action()
@@ -178,15 +198,51 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
         return this;
     }
 
+    public boolean hideAnular() {
+        return this.estado != EstadoAutorizacion.Abierta;
+    }
+
     @Action()
-    public Autorizacion Cancelar(){
+    public Autorizacion Cancelar(
+
+            @ParameterLayout(named = "Cierre: ")
+            final LocalDateTime cierre){
+
+        this.cierre = cierre;
         CambiarEstado(EstadoAutorizacion.Cancelada);
         return this;
     }
 
+    public LocalDateTime default0Cancelar() {
+        return LocalDateTime.now();
+    }
+
+    public boolean hideCancelar() {
+        return this.estado != EstadoAutorizacion.Liberada;
+    }
+
     @Action()
-    public Autorizacion Cerrar(){
+    public Autorizacion Cerrar(
+
+            @ParameterLayout(named = "Cierre: ")
+            final LocalDateTime cierre){
+
+        this.cierre = cierre;
         CambiarEstado(EstadoAutorizacion.Cerrada);
+        return this;
+    }
+
+    public LocalDateTime default0Cerrar() {
+        return LocalDateTime.now();
+    }
+
+    public boolean hideCerrar() {
+        return this.estado != EstadoAutorizacion.Liberada;
+    }
+
+    @Action()
+    public Autorizacion Abrir(){
+        CambiarEstado(EstadoAutorizacion.Abierta);
         return this;
     }
 
@@ -208,6 +264,13 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
 
     public List<Trabajador> choices0AgregarSolicitante() {return trabajadorRepository.Listar(EstadoGeneral.Habilitado);}
     public List<Vehiculo> choices1AgregarSolicitante() {return vehiculoRepository.List(EstadoGeneral.Habilitado);}
+
+    public boolean hideAgregarSolicitante() {
+        if (this.estado == EstadoAutorizacion.Abierta){
+            return !(this.solicitante == null && this.solicitanteVehiculo == null);
+        }
+        return true;
+    }
 
     @Action()
     @ActionLayout(named = "Editar")
@@ -231,6 +294,42 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     public Vehiculo default1EditarSolicitante() {return this.solicitanteVehiculo;}
     public List<Vehiculo> choices1EditarSolicitante() {return vehiculoRepository.List(EstadoGeneral.Habilitado);}
 
+    public boolean hideEditarSolicitante() {
+        if (this.estado == EstadoAutorizacion.Abierta){
+            return this.solicitante == null && this.solicitanteVehiculo == null;
+        }
+        return true;
+    }
+
+    @Action()
+    @ActionLayout(named = "Quitar", position = ActionLayout.Position.RIGHT)
+    public Autorizacion QuitarSolicitanteTrabajador(){
+        this.solicitante = null;
+        return this;
+    }
+
+    public boolean hideQuitarSolicitanteTrabajador() {
+        if (this.estado == EstadoAutorizacion.Abierta) {
+            return this.solicitante == null;
+        } else {
+            return true;
+        }
+    }
+
+    @Action()
+    @ActionLayout(named = "Quitar", position = ActionLayout.Position.RIGHT)
+    public Autorizacion QuitarSolicitanteVehiculo(){
+        this.solicitanteVehiculo = null;
+        return this;
+    }
+
+    public boolean hideQuitarSolicitanteVehiculo() {
+        if (this.estado == EstadoAutorizacion.Abierta){
+            return this.solicitanteVehiculo == null;
+        } else {
+            return true;
+        }
+    }
 
     @Action()
     @ActionLayout(named = "Agregar")
