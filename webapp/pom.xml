@@ -123,6 +123,14 @@
             <type>pom</type>
         </dependency>
 
+        <!-- WebServer -->
+        <dependency>
+            <groupId>org.apache.isis.core</groupId>
+            <artifactId>isis-core-webserver</artifactId>
+            <version>1.17.0</version>
+            <scope>runtime</scope>
+        </dependency>
+
     </dependencies>
 
     <profiles>
