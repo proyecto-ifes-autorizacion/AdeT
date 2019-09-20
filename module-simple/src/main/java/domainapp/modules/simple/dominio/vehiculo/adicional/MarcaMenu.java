@@ -60,16 +60,14 @@ public class MarcaMenu {
 
     public List<Marca> choices0FindByNombre() {return marcarepository.listAll();}
 
-    @Action(
-    )
+    @Action()
     @ActionLayout(named = "Crear")
     @MemberOrder(sequence = "3")
     public Marca create(
             @ParameterLayout(named = "Marca: ")
             final String nombre) {
-        final boolean baja = false;
-        final List<Modelo> modelos = null;
-        return marcarepository.create(nombre, baja, modelos);
+
+        return marcarepository.create(nombre);
     }
 
     @javax.inject.Inject

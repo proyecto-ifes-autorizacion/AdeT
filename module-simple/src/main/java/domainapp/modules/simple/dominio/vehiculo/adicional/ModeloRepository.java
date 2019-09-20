@@ -73,12 +73,6 @@ public class ModeloRepository {
         return modelo;
     }
 
-    @Programmatic
-    public void delete(Modelo modelo) {
-
-        repositoryService.remove(modelo);
-    }
-
     @javax.inject.Inject
     RepositoryService repositoryService;
 

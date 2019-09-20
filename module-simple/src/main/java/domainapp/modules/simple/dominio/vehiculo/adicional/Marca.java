@@ -105,6 +105,15 @@ public class Marca implements Comparable<Marca>, SujetoGeneral {
         return marcaRepository.ListByBaja(true);
     }
 
+    public Marca(){}
+
+    public Marca(String nombre){
+
+        this.nombre = nombre;
+        this.baja = false;
+        this.modelos = null;
+    }
+
     public Marca(String nombre, boolean baja, List<Modelo> modelos){
 
         this.nombre = nombre;
@@ -115,8 +124,6 @@ public class Marca implements Comparable<Marca>, SujetoGeneral {
     public boolean getBaja(){
         return this.baja;
     }
-
-    public Marca(){}
 
     @Action()
     @ActionLayout(named = "Editar")
@@ -180,12 +187,6 @@ public class Marca implements Comparable<Marca>, SujetoGeneral {
         return org.apache.isis.applib.util.ObjectContracts.toString(this, "nombre");
     }
     //endregion
-
-    @Action(semantics = NON_IDEMPOTENT_ARE_YOU_SURE)
-    @ActionLayout(named = "eliminar")
-    public void delete (){
-        marcaRepository.delete(this);
-    }
 
     @javax.inject.Inject
     @javax.jdo.annotations.NotPersistent

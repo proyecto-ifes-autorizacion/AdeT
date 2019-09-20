@@ -19,7 +19,6 @@
                                 <cpt:action id="Update"/>
                                 <cpt:action id="Activar"/>
                                 <cpt:action id="Desactivar"/>
-                                <cpt:action id="delete"/>
                                 <cpt:property id="nombre"/>
                                 <cpt:property id="marca"/>
                                 <cpt:property id="baja"/>

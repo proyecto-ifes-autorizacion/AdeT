@@ -84,6 +84,10 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     @Property()
     private LocalDateTime cierre;
 
+    @Column(allowsNull = "true", length = 80)
+    @Property()
+    private String cancelacion;
+
     @Column(allowsNull = "false")
     @Property()
     private EstadoAutorizacion estado;
@@ -106,6 +110,8 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     public String title(){
         return "Autorizacion: " + getIdAdeT();
     }
+
+    public boolean hideCancelacion() {return !(this.estado == EstadoAutorizacion.Cancelada);}
 
     public Autorizacion(){}
 
@@ -203,9 +209,13 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     public Autorizacion Cancelar(
 
             @ParameterLayout(named = "Cierre: ")
-            final LocalDateTime cierre){
+            final LocalDateTime cierre,
+
+            @ParameterLayout(named = "Motivo cancelacion: ")
+            final String cancelacion){
 
         this.cierre = cierre;
+        this.cancelacion = cancelacion;
         CambiarEstado(EstadoAutorizacion.Cancelada);
         return this;
     }

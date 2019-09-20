@@ -50,16 +50,10 @@ public class MarcaRepository {
     }
 
     @Programmatic
-    public Marca create(final String nombre, final boolean baja, final List<Modelo> modelos) {
-        final Marca marca = new Marca(nombre, baja, modelos);
+    public Marca create(final String nombre) {
+        final Marca marca = new Marca(nombre);
         repositoryService.persist(marca);
         return marca;
-    }
-
-    @Programmatic
-    public void delete(Marca marca){
-
-        repositoryService.remove(marca);
     }
 
     @javax.inject.Inject

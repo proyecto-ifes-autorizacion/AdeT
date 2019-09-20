@@ -196,12 +196,6 @@ public class Modelo implements Comparable<Modelo>, ObservadorGeneral {
     }
     //endregion
 
-    @Action(semantics = NON_IDEMPOTENT_ARE_YOU_SURE)
-    @ActionLayout(named = "eliminar")
-    public void delete() {
-        modeloRepository.delete(this);
-    }
-
     @javax.inject.Inject
     @javax.jdo.annotations.NotPersistent
     @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
