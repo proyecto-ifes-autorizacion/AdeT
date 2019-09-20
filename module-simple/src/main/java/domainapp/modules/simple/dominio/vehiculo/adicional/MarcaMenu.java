@@ -39,9 +39,6 @@ public class MarcaMenu {
     @MemberOrder(sequence = "1")
     public List<Marca> listAll() {
         List<Marca> marcas = marcarepository.listAll();
-        for(Marca marca : marcas){
-            marca.ObtenerModelos();
-        }
         return marcas;
     }
 
@@ -58,7 +55,6 @@ public class MarcaMenu {
             @ParameterLayout(named = "Marca: ")
             final Marca marca) {
 
-        marca.ObtenerModelos();
         return marca;
     }
 

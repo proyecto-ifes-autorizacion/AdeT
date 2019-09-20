@@ -42,8 +42,6 @@ public class AutorizacionMenu {
     )
     @MemberOrder(sequence = "3")
     public Autorizacion create(
-            final int idAdeT,
-
             @ParameterLayout(named = "Titulo: ")
             final String titulo,
 
@@ -53,7 +51,7 @@ public class AutorizacionMenu {
             @ParameterLayout(named = "Ubicacion: ")
             final String ubicacion) {
 
-        return autorizacionrepository.create(idAdeT, titulo, descripcion, ubicacion);
+        return autorizacionrepository.create(titulo, descripcion, ubicacion);
     }
 
     @javax.inject.Inject

@@ -72,7 +72,7 @@ public class Vehiculo implements Comparable<Vehiculo>, ObservadorGeneral {
     @Title()
     private String dominio;
 
-    @Column(allowsNull = "false")
+    @Column(allowsNull = "false", name = "modelo_id")
     @Property()
     private Modelo modelo;
 

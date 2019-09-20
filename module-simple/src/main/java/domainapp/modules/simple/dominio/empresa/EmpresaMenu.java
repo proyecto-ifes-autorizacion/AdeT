@@ -35,9 +35,6 @@ public class EmpresaMenu {
     @MemberOrder(sequence = "1")
     public List<Empresa> listAll() {
         List<Empresa> empresas = empresarepository.Listar();
-        for (Empresa empresa : empresas){
-            empresa.ObtenerTrabadoresYVehiculos();
-        }
         return empresas;
     }
 
@@ -54,7 +51,6 @@ public class EmpresaMenu {
             @ParameterLayout(named = "Empresa: ")
             final Empresa empresa) {
 
-        empresa.ObtenerTrabadoresYVehiculos();
         return empresa;
     }
 

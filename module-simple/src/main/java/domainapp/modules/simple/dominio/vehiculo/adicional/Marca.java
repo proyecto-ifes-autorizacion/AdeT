@@ -6,6 +6,7 @@ import javax.jdo.annotations.Column;
 import javax.jdo.annotations.DatastoreIdentity;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.Join;
 import javax.jdo.annotations.NotPersistent;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
@@ -83,7 +84,7 @@ public class Marca implements Comparable<Marca>, SujetoGeneral {
     @Title()
     private String nombre;
 
-    @Persistent(mappedBy = "marca", dependentElement = "true")
+    @Persistent(mappedBy = "marca")
     @Column(allowsNull = "true")
     @Property()
     private List<Modelo> modelos;
@@ -158,13 +159,6 @@ public class Marca implements Comparable<Marca>, SujetoGeneral {
             final String nombre){
 
         modelos.add(modeloRepository.create(nombre,this));
-        return this;
-    }
-
-    @Programmatic
-    public Marca ObtenerModelos() {
-
-        setModelos(modeloRepository.ListModeloByMarca(this));
         return this;
     }
 

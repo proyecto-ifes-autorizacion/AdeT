@@ -1,11 +1,14 @@
 package domainapp.modules.simple.dominio.empresa;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.apache.isis.applib.annotation.*;
 import org.apache.isis.applib.services.i18n.TranslatableString;
 
 import javax.jdo.annotations.*;
+
+import com.google.common.collect.Lists;
 
 import domainapp.modules.simple.dominio.SujetoGeneral;
 import domainapp.modules.simple.dominio.trabajador.Trabajador;
@@ -80,12 +83,12 @@ public class Empresa implements Comparable<Empresa>, SujetoGeneral {
     @Property()
     private EstadoEmpresa estado;
 
-    @Persistent(mappedBy = "empresa", dependentElement = "true")
+    @Persistent(mappedBy = "empresa", defaultFetchGroup = "true")
     @Column(allowsNull = "true")
     @Property()
     private List<Trabajador> trabajadores;
 
-    @Persistent(mappedBy = "empresa", dependentElement = "true")
+    @Persistent(mappedBy = "empresa", defaultFetchGroup = "true")
     @Column(allowsNull = "true")
     @Property()
     private List<Vehiculo> vehiculos;
@@ -232,13 +235,6 @@ public class Empresa implements Comparable<Empresa>, SujetoGeneral {
     @Programmatic
     public EstadoEmpresa ObtenerEstado(){
         return this.estado;
-    }
-
-    @Programmatic
-    public Empresa ObtenerTrabadoresYVehiculos(){
-        setTrabajadores(trabajadorRepository.Listar(this));
-        setVehiculos(vehiculoRepository.List(this));
-        return this;
     }
 
     //region > compareTo, toString

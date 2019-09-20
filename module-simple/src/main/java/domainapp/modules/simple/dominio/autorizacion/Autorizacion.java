@@ -58,10 +58,9 @@ import lombok.Setter;
         bookmarking = BookmarkPolicy.AS_ROOT
 )
 @Getter @Setter
-@XmlJavaTypeAdapter(PersistentEntityAdapter.class)
 public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
 
-    @Column(allowsNull = "false")
+    @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
     @Property(hidden = Where.EVERYWHERE)
     private int idAdeT;
 
@@ -89,12 +88,12 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     @Property()
     private EstadoAutorizacion estado;
 
-    @Column(allowsNull = "true")
+    @Column(allowsNull = "true", name = "solicitante_id")
     @Property()
     @PropertyLayout(named = "Trabajador")
     private Trabajador solicitante;
 
-    @Column(allowsNull = "true")
+    @Column(allowsNull = "true", name = "vehiculo_id")
     @Property()
     @PropertyLayout(named = "Vehiculo")
     private Vehiculo solicitanteVehiculo;
@@ -110,10 +109,8 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
 
     public Autorizacion(){}
 
-    public Autorizacion(
-            int idAdeT, String titulo, String descripcion, String ubicacion){
+    public Autorizacion(String titulo, String descripcion, String ubicacion){
 
-        this.idAdeT = idAdeT;
         this.estado = EstadoAutorizacion.Abierta;
         this.titulo = titulo;
         this.descripcion = descripcion;
