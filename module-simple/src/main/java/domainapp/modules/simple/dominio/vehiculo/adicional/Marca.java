@@ -105,6 +105,10 @@ public class Marca implements Comparable<Marca>, SujetoGeneral {
         return marcaRepository.ListByBaja(true);
     }
 
+    public String iconName(){
+        return this.baja ? "off" : "on";
+    }
+
     public Marca(){}
 
     public Marca(String nombre){
