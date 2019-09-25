@@ -124,6 +124,13 @@ public class Modelo implements Comparable<Modelo>, ObservadorGeneral {
         return marca.getNombre()+" "+getNombre();
     }
 
+    public String iconName(){
+        if (this.bajaMarca){
+            return "error";
+        } else
+            return this.baja ? "off" : "on";
+    }
+
     public Modelo(String nombre, Marca marca, boolean baja, boolean bajaMarca){
 
         this.nombre = nombre;
