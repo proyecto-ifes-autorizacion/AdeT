@@ -102,6 +102,10 @@ public class Empresa implements Comparable<Empresa>, SujetoGeneral {
         return "Longitud Excedida en: " + (longitud-largo)+" "+((longitud-largo) == 1 ? "caracter.":"caracteres.");
     }
 
+    public String inconName(){
+        return "Empresa";
+    }
+
     public Empresa(){}
 
     public Empresa(
