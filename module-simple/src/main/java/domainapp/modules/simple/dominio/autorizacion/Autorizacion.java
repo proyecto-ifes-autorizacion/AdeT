@@ -174,6 +174,7 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
 
         this.apertura = apertura;
         CambiarEstado(EstadoAutorizacion.Liberada);
+        Notificar();
         return this;
     }
 
@@ -217,6 +218,7 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
         this.cierre = cierre;
         this.cancelacion = cancelacion;
         CambiarEstado(EstadoAutorizacion.Cancelada);
+        Notificar();
         return this;
     }
 
@@ -236,6 +238,7 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
 
         this.cierre = cierre;
         CambiarEstado(EstadoAutorizacion.Cerrada);
+        Notificar();
         return this;
     }
 
@@ -366,7 +369,8 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
 
     @Override
     public void Notificar() {
-
+        this.solicitante.Actuliazar(this.estado);
+        this.solicitanteVehiculo.Actuliazar(this.estado);
     }
     //endregion
 

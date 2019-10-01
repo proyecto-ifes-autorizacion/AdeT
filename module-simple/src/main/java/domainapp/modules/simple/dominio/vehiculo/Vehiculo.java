@@ -10,7 +10,9 @@ import javax.jdo.annotations.*;
 import org.joda.time.LocalDate;
 
 import domainapp.modules.simple.dominio.EstadoGeneral;
+import domainapp.modules.simple.dominio.ObservadorAutorizacion;
 import domainapp.modules.simple.dominio.ObservadorGeneral;
+import domainapp.modules.simple.dominio.autorizacion.EstadoAutorizacion;
 import domainapp.modules.simple.dominio.empresa.Empresa;
 import domainapp.modules.simple.dominio.empresa.EmpresaRepository;
 import domainapp.modules.simple.dominio.empresa.EstadoEmpresa;
@@ -65,7 +67,7 @@ import lombok.Setter;
         bookmarking = BookmarkPolicy.AS_ROOT
 )
 @Getter @Setter
-public class Vehiculo implements Comparable<Vehiculo>, ObservadorGeneral {
+public class Vehiculo implements Comparable<Vehiculo>, ObservadorGeneral, ObservadorAutorizacion {
 
     @Column(allowsNull = "false", length = largo)
     @Property()
@@ -223,6 +225,15 @@ public class Vehiculo implements Comparable<Vehiculo>, ObservadorGeneral {
             this.bajaEmpresa = false;
         } else {
             this.bajaEmpresa = true;
+        }
+    }
+
+    @Override
+    public void Actuliazar(final EstadoAutorizacion estadoAutorizacion) {
+        if (this.estado == EstadoGeneral.Habilitado && estadoAutorizacion == EstadoAutorizacion.Liberada){
+            this.estado = EstadoGeneral.Ejecucion;
+        } else if (this.estado == EstadoGeneral.Ejecucion && estadoAutorizacion != EstadoAutorizacion.Liberada){
+            this.estado = EstadoGeneral.Habilitado;
         }
     }
 
