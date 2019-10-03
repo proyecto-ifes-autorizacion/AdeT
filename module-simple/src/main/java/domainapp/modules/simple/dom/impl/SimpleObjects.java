@@ -47,7 +47,7 @@ import org.apache.isis.applib.services.repository.RepositoryService;
 )
 public class SimpleObjects {
 
-    @Action(semantics = SemanticsOf.SAFE)
+    @Programmatic()
     @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT)
     @MemberOrder(sequence = "1")
     public List<SimpleObject> listAll() {
@@ -55,7 +55,7 @@ public class SimpleObjects {
     }
 
 
-    @Action(semantics = SemanticsOf.SAFE)
+    @Programmatic()
     @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT)
     @MemberOrder(sequence = "2")
     public List<SimpleObject> findByName(
@@ -92,7 +92,7 @@ public class SimpleObjects {
     }
 
     public static class CreateDomainEvent extends ActionDomainEvent<SimpleObjects> {}
-    @Action(domainEvent = CreateDomainEvent.class)
+    @Programmatic()
     @MemberOrder(sequence = "3")
     public SimpleObject create(
             @ParameterLayout(named="Name")
