@@ -32,6 +32,17 @@ public class TrabajadorRepository {
                         "findByEmpresa",
                         "empresa", empresa));
     }
+    
+    @Programmatic
+    public List<Trabajador> Listar(Empresa empresa, EstadoGeneral estado){
+
+        return repositoryService.allMatches(
+                new QueryDefault<>(
+                        Trabajador.class,
+                        "findByEmpresaAndEstado",
+                        "empresa", empresa,
+                        "estado", estado));
+    }
 
     @Programmatic
     public List<Trabajador> Listar(EstadoGeneral estado){
