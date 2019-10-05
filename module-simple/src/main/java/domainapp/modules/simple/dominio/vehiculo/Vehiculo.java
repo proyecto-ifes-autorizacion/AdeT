@@ -57,8 +57,14 @@ import lombok.Setter;
                 name = "findByEstado", language = "JDOQL",
                 value = "SELECT "
                         + "FROM domainapp.modules.simple.dominio.vehiculo.Vehiculo "
-                        + "WHERE estado == :estado ")
+                        + "WHERE estado == :estado "),
+        @Query(
+                name = "findByEmpresaAndEstado", language = "JDOQL",
+                value = "SELECT "
+                        + "FROM domainapp.modules.simple.dominio.vehiculo.Vehiculo "
+                        + "WHERE empresa == :empresa && estado == :estado")
 })
+
 @Unique(name = "Vehiculo_dominio_UNQ", members = { "dominio" })
 @DomainObject(
         editing = Editing.DISABLED

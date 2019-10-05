@@ -47,6 +47,17 @@ public class VehiculoRepository {
     }
 
     @Programmatic
+    public List<Vehiculo> List(Empresa empresa, EstadoGeneral estado){
+
+        return repositoryService.allMatches(
+                new QueryDefault<>(
+                        Vehiculo.class,
+                        "findByEmpresaAndEstado",
+                        "empresa", empresa,
+                        "estado", estado));
+    }
+
+    @Programmatic
     public Vehiculo findByDominio(final String dominio) {
 
         return repositoryService.uniqueMatch(
