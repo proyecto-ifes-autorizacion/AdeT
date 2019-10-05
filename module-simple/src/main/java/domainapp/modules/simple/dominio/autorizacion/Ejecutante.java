@@ -93,7 +93,19 @@ public class Ejecutante implements Comparable<Ejecutante>, ObservadorGeneral, Su
         this.trabajadores = trabajadores;
         this.vehiculos = vehiculos;
     }
-    
+
+    public Empresa getEmpresa(){
+        return this.empresa;
+    }
+
+    public List<Trabajador> getTrabajadores(){
+        return this.trabajadores;
+    }
+
+    public List<Vehiculo> getVehiculos(){
+        return this.vehiculos;
+    }
+
     @Action()
     @ActionLayout(named = "Agregar")
     public Ejecutante AgregarTrabajador(

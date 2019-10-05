@@ -356,6 +356,47 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
         return empresaRepository.Listar(EstadoEmpresa.Habilitada);
     }
 
+    //************************************************************************
+    //****************Propiedades de entiadad ejecutante**********************
+    //************************************************************************
+    @NotPersistent()
+    @Property()
+    private Empresa ejecutanteEmpresa;
+
+    @NotPersistent()
+    @Property()
+    private List<Trabajador> ejecutantesTrabajadores;
+
+    @NotPersistent()
+    @Property()
+    private List<Vehiculo> ejecutantesVehiculos;
+
+    @NotPersistent()
+    @Property()
+    private int indice = 0;
+
+    @NotPersistent()
+    public Empresa getEjecutanteEmpresa(){
+        return this.ejecutantes.get(this.indice).getEmpresa();
+    }
+
+    @NotPersistent()
+    public List<Trabajador> getEjecutantesTrabajadores(){
+        return this.ejecutantes.get(this.indice).getTrabajadores();
+    }
+
+    @NotPersistent()
+    public List<Vehiculo> getEjecutantesVehiculos(){
+        return this.ejecutantes.get(this.indice).getVehiculos();
+    }
+
+    //**********Metodo para notificar a las entidades dependientes**********
+    @Override
+    public void Notificar() {
+        this.solicitante.Actuliazar(this.estado);
+        this.solicitanteVehiculo.Actuliazar(this.estado);
+    }
+
     //region > compareTo, toString
     @Override
     public int compareTo(final Autorizacion other) {
@@ -365,12 +406,6 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     @Override
     public String toString() {
         return org.apache.isis.applib.util.ObjectContracts.toString(this, "idAdeT");
-    }
-
-    @Override
-    public void Notificar() {
-        this.solicitante.Actuliazar(this.estado);
-        this.solicitanteVehiculo.Actuliazar(this.estado);
     }
     //endregion
 
