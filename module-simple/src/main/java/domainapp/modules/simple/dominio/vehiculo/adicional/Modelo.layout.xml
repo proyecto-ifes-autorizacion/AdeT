@@ -10,7 +10,7 @@
         </bs3:col>
     </bs3:row>
     <bs3:row>
-        <bs3:col span="4">
+        <bs3:col span="6">
             <bs3:tabGroup>
                 <bs3:tab name="General">
                     <bs3:row>
@@ -21,8 +21,8 @@
                                 <cpt:action id="Desactivar"/>
                                 <cpt:property id="nombre"/>
                                 <cpt:property id="marca"/>
-                                <cpt:property id="baja"/>
-                                <cpt:property id="bajaMarca"/>
+                                <cpt:property id="baja" hidden="ALL_TABLES"/>
+                                <cpt:property id="bajaMarca" hidden="ALL_TABLES"/>
                             </cpt:fieldSet>
                         </bs3:col>
                     </bs3:row>
@@ -43,7 +43,7 @@
                 </bs3:tab>
             </bs3:tabGroup>
         </bs3:col>
-        <bs3:col span="8">
+        <bs3:col span="6">
             <bs3:tabGroup>
                 <bs3:tab name="Modelos">
                     <bs3:row>
