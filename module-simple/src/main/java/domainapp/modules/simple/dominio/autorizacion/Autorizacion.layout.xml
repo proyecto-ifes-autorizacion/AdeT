@@ -22,18 +22,14 @@
                                 <cpt:property id="ubicacion"/>
                             </cpt:fieldSet>
                         </bs3:col>
-                        <bs3:col span="4">
-                            <cpt:fieldSet name="Actividad">
-                                <cpt:action id="Anular"/>
-                                <cpt:action id="Liberar"/>
-                                <cpt:action id="Cerrar"/>
-                                <cpt:action id="Cancelar"/>
-                                <cpt:property id="estado"/>
-                                <cpt:property id="apertura"/>
-                                <cpt:property id="cierre"/>
-                                <cpt:property id="cancelacion" multiLine="2" hidden="ALL_TABLES"/>
-                            </cpt:fieldSet>
-                        </bs3:col>
+                    </bs3:row>
+                </bs3:tab>
+            </bs3:tabGroup>
+        </bs3:col>
+        <bs3:col span="12">
+            <bs3:tabGroup>
+                <bs3:tab>
+                    <bs3:row>
                         <bs3:col span="4">
                             <cpt:fieldSet name="Solicitante">
                                 <cpt:action id="AgregarSolicitante"/>
@@ -44,6 +40,18 @@
                                 <cpt:property id="solicitanteVehiculo">
                                     <cpt:action id="QuitarSolicitanteVehiculo"/>
                                 </cpt:property>
+                            </cpt:fieldSet>
+                        </bs3:col>
+                        <bs3:col span="4">
+                            <cpt:fieldSet name="Actividad">
+                                <cpt:action id="Anular"/>
+                                <cpt:action id="Liberar"/>
+                                <cpt:action id="Cerrar"/>
+                                <cpt:action id="Cancelar"/>
+                                <cpt:property id="estado"/>
+                                <cpt:property id="apertura"/>
+                                <cpt:property id="cierre"/>
+                                <cpt:property id="cancelacion" multiLine="2" hidden="ALL_TABLES"/>
                             </cpt:fieldSet>
                         </bs3:col>
                     </bs3:row>
@@ -57,6 +65,7 @@
                         <bs3:col span="12" size="MD">
                             <cpt:collection defaultView="table" id="ejecutantes">
                                 <cpt:action id="AgregarEjecutante"/>
+                                <cpt:action id="QuitarEjecutante"/>
                             </cpt:collection>
                         </bs3:col>
                     </bs3:row>
