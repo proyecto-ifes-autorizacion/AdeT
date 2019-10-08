@@ -7,6 +7,7 @@ import org.apache.isis.applib.query.QueryDefault;
 import org.apache.isis.applib.services.repository.RepositoryService;
 
 import domainapp.modules.simple.dominio.empresa.Empresa;
+import domainapp.modules.simple.dominio.trabajador.Trabajador;
 
 @DomainService(
         nature = NatureOfService.DOMAIN,
@@ -15,18 +16,30 @@ import domainapp.modules.simple.dominio.empresa.Empresa;
 public class EjecutanteRepository {
 
     @Programmatic
-    public List<Ejecutante> listAll() {
+    public List<Ejecutante> Listar() {
+
         return repositoryService.allInstances(Ejecutante.class);
     }
 
     @Programmatic
-    public Ejecutante findByAutorizacion(final Autorizacion autorizacion) {
+    public List<Ejecutante> Listar(final Autorizacion autorizacion) {
 
-        return repositoryService.uniqueMatch(
+        return repositoryService.allMatches(
                 new QueryDefault<>(
                         Ejecutante.class,
                         "findByAutorizacion",
                         "autorizacion", autorizacion));
+    }
+
+    @Programmatic
+    public Ejecutante Listar(final Autorizacion autorizacion, final Empresa empresa){
+
+        return repositoryService.uniqueMatch(
+                new QueryDefault<>(
+                        Ejecutante.class,
+                        "findByAutorizacionAndEmpresa",
+                        "autorizacion", autorizacion,
+                        "empresa", empresa));
     }
 
     @Programmatic
@@ -48,13 +61,9 @@ public class EjecutanteRepository {
     }
 
     @Programmatic
-    public Ejecutante findOrCreate(final Autorizacion autorizacion, final Empresa empresa) {
+    public void delete(final Ejecutante ejecutante){
 
-        Ejecutante ejecutante = findByAutorizacion(autorizacion);
-        if (ejecutante == null) {
-            ejecutante = create(autorizacion, empresa);
-        }
-        return ejecutante;
+        repositoryService.remove(ejecutante);
     }
 
     @javax.inject.Inject

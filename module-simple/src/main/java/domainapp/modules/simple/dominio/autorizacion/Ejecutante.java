@@ -6,8 +6,6 @@ import org.apache.isis.applib.annotation.*;
 
 import javax.jdo.annotations.*;
 
-import com.google.common.collect.Lists;
-
 import domainapp.modules.simple.dominio.EstadoGeneral;
 import domainapp.modules.simple.dominio.ObservadorGeneral;
 import domainapp.modules.simple.dominio.SujetoGeneral;
@@ -45,7 +43,12 @@ import lombok.Setter;
                 name = "findByAutorizacion", language = "JDOQL",
                 value = "SELECT "
                         + "FROM domainapp.modules.simple.dominio.autorizacion.Ejecutante "
-                        + "WHERE autorizacion == :autorizacion ")
+                        + "WHERE autorizacion == :autorizacion "),
+        @Query(
+                name = "findByAutorizacionAndEmpresa", language = "JDOQL",
+                value = "SELECT "
+                        + "FROM domainapp.modules.simple.dominio.autorizacion.Ejecutante "
+                        + "WHERE autorizacion == :autorizacion && empresa == :empresa ")
 })
 @DomainObject(
         editing = Editing.DISABLED
@@ -94,6 +97,10 @@ public class Ejecutante implements Comparable<Ejecutante>, ObservadorGeneral, Su
         this.vehiculos = vehiculos;
     }
 
+    public String title(){
+        return this.empresa.getNombreFantasia();
+    }
+
     public Empresa getEmpresa(){
         return this.empresa;
     }
@@ -106,74 +113,35 @@ public class Ejecutante implements Comparable<Ejecutante>, ObservadorGeneral, Su
         return this.vehiculos;
     }
 
-    @Action()
-    @ActionLayout(named = "Agregar")
-    public Ejecutante AgregarTrabajador(
-            
-            @Parameter(optionality = Optionality.MANDATORY)
-            @ParameterLayout(named = "Trabajador: ")        
-            final Trabajador trabajador){
-
+    @Programmatic()
+    public void AgregarTrabajador(final Trabajador trabajador){
         this.trabajadores.add(trabajador);
-        return this;
     }
 
-    public List<Trabajador> choices0AgregarTrabajador() {
-        List<Trabajador> trabajadores;
-        trabajadores = trabajadorRepository.Listar(EstadoGeneral.Habilitado);
-        trabajadores.removeAll(this.trabajadores);
-        return trabajadores;
-    }
-
-    @Action()
-    @ActionLayout(named = "Quitar")
-    public Ejecutante QuitarTrabajador(
-
-            @Parameter(optionality = Optionality.MANDATORY)
-            @ParameterLayout(named = "Trabajador: ")
-            final Trabajador trabajador){
-
+    @Programmatic()
+    public void QuitarTrabajador(final Trabajador trabajador){
         this.trabajadores.remove(trabajador);
-        return this;
     }
 
-    public List<Trabajador> choices0QuitarTrabajador() {
-        return this.trabajadores;
-    }
-
-    @Action()
-    @ActionLayout(named = "Agregar")
-    public Ejecutante AgregarVehiculo(
-
-            @Parameter(optionality = Optionality.MANDATORY)
-            @ParameterLayout(named = "Vehiculo: ")
-            final Vehiculo vehiculo){
-
+    @Programmatic()
+    public void AgregarVehiculo(final Vehiculo vehiculo){
         this.vehiculos.add(vehiculo);
-        return this;
     }
 
-    public List<Vehiculo> choices0AgregarVehiculo() {
-        List<Vehiculo> vehiculos;
-        vehiculos = vehiculoRepository.List(EstadoGeneral.Habilitado);
-        vehiculos.removeAll(this.vehiculos);
-        return vehiculos;
-    }
-
-    @Action()
-    @ActionLayout(named = "Quitar")
-    public Ejecutante QuitarVehiculo(
-
-            @Parameter(optionality = Optionality.MANDATORY)
-            @ParameterLayout(named = "Vehiculo: ")
-            final Vehiculo vehiculo){
-
+    @Programmatic()
+    public void QuitarVehiculo(final Vehiculo vehiculo){
         this.vehiculos.remove(vehiculo);
-        return this;
     }
 
-    public List<Vehiculo> choices0QuitarVehiculo() {
-        return this.vehiculos;
+    //Metodo para notificar a las entidades dependientes
+    @Override
+    public void Actuliazar() {
+
+    }
+
+    @Override
+    public void Notificar() {
+
     }
 
     //region > compareTo, toString
@@ -186,26 +154,6 @@ public class Ejecutante implements Comparable<Ejecutante>, ObservadorGeneral, Su
     public String toString() {
         return org.apache.isis.applib.util.ObjectContracts.toString(this, "autorizacion");
     }
-
-    @Override
-    public void Actuliazar() {
-
-    }
-
-    @Override
-    public void Notificar() {
-
-    }
     //endregion
-
-    @javax.inject.Inject
-    @javax.jdo.annotations.NotPersistent
-    @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
-    TrabajadorRepository trabajadorRepository;
-
-    @javax.inject.Inject
-    @javax.jdo.annotations.NotPersistent
-    @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
-    VehiculoRepository vehiculoRepository;
 
 }
