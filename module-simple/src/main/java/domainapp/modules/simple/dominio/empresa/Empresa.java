@@ -154,6 +154,10 @@ public class Empresa implements Comparable<Empresa>, SujetoGeneral {
         return empresaRepository.Listar(EstadoEmpresa.Borrada);
     }
 
+    public String getNombreFantasia(){
+        return this.nombreFantasia;
+    }
+
     @Action()
     @ActionLayout(named = "Editar")
     public Empresa update(
