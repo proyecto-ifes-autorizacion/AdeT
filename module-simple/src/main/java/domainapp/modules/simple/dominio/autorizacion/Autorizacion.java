@@ -7,6 +7,9 @@ import org.apache.isis.applib.annotation.*;
 
 import javax.jdo.annotations.*;
 
+import com.google.common.collect.Lists;
+import com.google.inject.internal.cglib.proxy.$Enhancer;
+
 import org.joda.time.LocalDateTime;
 
 import domainapp.modules.simple.dominio.EstadoGeneral;
@@ -108,64 +111,33 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     private EstadoAutorizacion estado;
 
     @Column(allowsNull = "true", name = "sol_empresa_id")
-    @Property(editing = Editing.ENABLED)
+    @Property()
     @PropertyLayout(named = "Empresa")
     private Empresa solicitanteEmpresa;
 
-    public List<Empresa> choicesSolicitanteEmpresa() {
-        return empresaRepository.Listar(EstadoEmpresa.Habilitada);
-    }
-
-    public String disableSolicitanteEmpresa() {
-        return this.estado != EstadoAutorizacion.Abierta ? "x" : null;
-    }
-
     @Column(allowsNull = "true", name = "sol_trabajador_id")
-    @Property(editing = Editing.ENABLED)
+    @Property()
     @PropertyLayout(named = "Trabajador")
     private Trabajador solicitanteTrabajador;
 
-    public List<Trabajador> choicesSolicitanteTrabajador() {
-        return trabajadorRepository.Listar(this.solicitanteEmpresa, EstadoGeneral.Habilitado);
-    }
-
-    public String disableSolicitanteTrabajador() {
-        if (this.estado == EstadoAutorizacion.Abierta) {
-            return this.solicitanteEmpresa == null ? "x" : null;
-        } else {
-            return "x";
-        }
-    }
-
     @Column(allowsNull = "true", name = "sol_vehiculo_id")
-    @Property(editing = Editing.ENABLED)
+    @Property()
     @PropertyLayout(named = "Vehiculo")
     private Vehiculo solicitanteVehiculo;
-
-    public List<Vehiculo> choicesSolicitanteVehiculo() {
-        return vehiculoRepository.List(this.solicitanteEmpresa, EstadoGeneral.Habilitado);
-    }
-
-    public String disableSolicitanteVehiculo() {
-        if (this.estado == EstadoAutorizacion.Abierta) {
-            return this.solicitanteEmpresa == null ? "x" : null;
-        } else {
-            return "x";
-        }
-    }
 
     @Persistent(mappedBy = "autorizacion", dependentElement = "true")
     @Column(allowsNull = "true")
     @Property()
     private List<Ejecutante> ejecutantes;
 
-    public String title(){
+    public String title() {
         return "Autorizacion: " + getIdAdeT();
     }
 
-    public Autorizacion(){}
+    public Autorizacion() {
+    }
 
-    public Autorizacion(EstadoAutorizacion estado){
+    public Autorizacion(EstadoAutorizacion estado) {
 
         this.estado = estado;
     }
@@ -173,7 +145,7 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     public Autorizacion(
             int idAdeT, EstadoAutorizacion estado, String titulo, String descripcion, String ubicacion,
             LocalDateTime apertura, LocalDateTime cierre, Empresa solicitanteEmpresa, Trabajador solicitanteTrabajador,
-            Vehiculo solicitanteVehiculo, List<Ejecutante> ejecutantes){
+            Vehiculo solicitanteVehiculo, List<Ejecutante> ejecutantes) {
 
         this.idAdeT = idAdeT;
         this.estado = estado;
@@ -188,38 +160,15 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
         this.ejecutantes = ejecutantes;
     }
 
-//    @Action()
-//    @ActionLayout(named = "Editar")
-//    public Autorizacion update(
-//            @ParameterLayout(named = "Titulo: ")
-//            final String titulo,
-//
-//            @ParameterLayout(named = "Descripcion: ", multiLine = 10)
-//            final String descripcion,
-//
-//            @ParameterLayout(named = "Ubicacion: ")
-//            final String ubicacion){
-//
-//        this.titulo = titulo;
-//        this.descripcion = descripcion;
-//        this.ubicacion = ubicacion;
-//        return this;
-//    }
-//
-//    public String default0Update() {return getTitulo();}
-//    public String default1Update() {return getDescripcion();}
-//    public String default2Update() {return getUbicacion();}
-
     @Programmatic
-    public void CambiarEstado(EstadoAutorizacion estado){
+    public void CambiarEstado(EstadoAutorizacion estado) {
         this.estado = estado;
     }
 
     @Action()
     public Autorizacion Liberar(
 
-            @ParameterLayout(named = "Apertura: ")
-            final LocalDateTime apertura){
+            @ParameterLayout(named = "Apertura: ") final LocalDateTime apertura) {
 
         this.apertura = apertura;
         CambiarEstado(EstadoAutorizacion.Liberada);
@@ -233,9 +182,9 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
 
     public String disableLiberar() {
         String error = null;
-        if (this.solicitanteTrabajador == null){
-            error ="Complete Solicitante";
-        } else if (this.solicitanteVehiculo == null){
+        if (this.solicitanteTrabajador == null) {
+            error = "Complete Solicitante";
+        } else if (this.solicitanteVehiculo == null) {
             error = "Complete Vehiculo Solicitante";
         }
         return error;
@@ -246,7 +195,7 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     }
 
     @Action()
-    public Autorizacion Anular(){
+    public Autorizacion Anular() {
         CambiarEstado(EstadoAutorizacion.Anulada);
         return this;
     }
@@ -258,11 +207,9 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     @Action()
     public Autorizacion Cancelar(
 
-            @ParameterLayout(named = "Cierre: ")
-            final LocalDateTime cierre,
+            @ParameterLayout(named = "Cierre: ") final LocalDateTime cierre,
 
-            @ParameterLayout(named = "Motivo cancelacion: ")
-            final String cancelacion){
+            @ParameterLayout(named = "Motivo cancelacion: ") final String cancelacion) {
 
         this.cierre = cierre;
         this.cancelacion = cancelacion;
@@ -282,8 +229,7 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     @Action()
     public Autorizacion Cerrar(
 
-            @ParameterLayout(named = "Cierre: ")
-            final LocalDateTime cierre){
+            @ParameterLayout(named = "Cierre: ") final LocalDateTime cierre) {
 
         this.cierre = cierre;
         CambiarEstado(EstadoAutorizacion.Cerrada);
@@ -300,9 +246,83 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     }
 
     @Action()
-    public Autorizacion Abrir(){
+    public Autorizacion Abrir() {
         CambiarEstado(EstadoAutorizacion.Abierta);
         return this;
+    }
+
+    @Action()
+    @ActionLayout(named = "Agregar")
+    public Autorizacion AgregarEmpresaSolicitante(
+            @Parameter(optionality = Optionality.MANDATORY)
+            @ParameterLayout(named = "Empresa")
+            final Empresa empresa) {
+
+        this.solicitanteEmpresa = empresa;
+        return this;
+    }
+
+    public List<Empresa> choices0AgregarEmpresaSolicitante() {
+        return empresaRepository.Listar(EstadoEmpresa.Habilitada);
+    }
+
+    public boolean hideAgregarEmpresaSolicitante() {
+        if (this.estado == EstadoAutorizacion.Abierta) {
+            return this.solicitanteEmpresa != null;
+        } else {
+            return true;
+        }
+    }
+
+    @Action()
+    @ActionLayout(named = "Editar")
+    public Autorizacion EditarEmpresaSolicitante(
+            @Parameter(optionality = Optionality.MANDATORY)
+            @ParameterLayout(named = "Empresa")
+            final Empresa empresa) {
+
+        if (this.solicitanteEmpresa != empresa) {
+
+            this.solicitanteTrabajador = null;
+            this.solicitanteVehiculo = null;
+        }
+
+        this.solicitanteEmpresa = empresa;
+        return this;
+    }
+
+    public List<Empresa> choices0EditarEmpresaSolicitante() {
+        return empresaRepository.Listar(EstadoEmpresa.Habilitada);
+    }
+
+    public Empresa default0EditarEmpresaSolicitante() {
+        return this.solicitanteEmpresa;
+    }
+
+    public boolean hideEditarEmpresaSolicitante() {
+        if (this.estado == EstadoAutorizacion.Abierta) {
+            return this.solicitanteEmpresa == null;
+        } else {
+            return true;
+        }
+    }
+
+    @Action()
+    @ActionLayout(named = "Quitar")
+    public Autorizacion QuitarEmpresaSolicitante(){
+
+        this.solicitanteEmpresa = null;
+        this.solicitanteTrabajador = null;
+        this.solicitanteVehiculo = null;
+        return this;
+    }
+
+    public boolean hideQuitarEmpresaSolicitante() {
+        if (this.estado == EstadoAutorizacion.Abierta) {
+            return this.solicitanteEmpresa == null;
+        } else {
+            return true;
+        }
     }
 
 //    @Action()
