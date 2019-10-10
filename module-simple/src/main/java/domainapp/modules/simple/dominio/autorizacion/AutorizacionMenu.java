@@ -41,17 +41,9 @@ public class AutorizacionMenu {
     @Action(
     )
     @MemberOrder(sequence = "3")
-    public Autorizacion create(
-            @ParameterLayout(named = "Titulo: ")
-            final String titulo,
+    public Autorizacion create() {
 
-            @ParameterLayout(named = "Descripcion", multiLine = 10)
-            final String descripcion,
-
-            @ParameterLayout(named = "Ubicacion: ")
-            final String ubicacion) {
-
-        return autorizacionrepository.create(titulo, descripcion, ubicacion);
+        return autorizacionrepository.create();
     }
 
     @javax.inject.Inject

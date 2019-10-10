@@ -1,12 +1,11 @@
 package domainapp.modules.simple.dominio.autorizacion;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.apache.isis.applib.annotation.*;
-import org.apache.isis.schema.utils.jaxbadapters.PersistentEntityAdapter;
 
 import javax.jdo.annotations.*;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.joda.time.LocalDateTime;
 
@@ -64,17 +63,29 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     @Property(hidden = Where.EVERYWHERE)
     private int idAdeT;
 
-    @Column(allowsNull = "false", length = 40)
-    @Property()
+    @Column(allowsNull = "true", length = 40)
+    @Property(editing = Editing.ENABLED)
     private String titulo;
 
-    @Column(allowsNull = "false", length = 4000)
-    @Property()
+    public String disableTitulo() {
+        return this.estado != EstadoAutorizacion.Abierta ? "x" : null;
+    }
+
+    @Column(allowsNull = "true", length = 4000)
+    @Property(editing = Editing.ENABLED)
     private String descripcion;
 
-    @Column(allowsNull = "false", length = 60)
-    @Property()
+    public String disableDescripcion() {
+        return this.estado != EstadoAutorizacion.Abierta ? "x" : null;
+    }
+
+    @Column(allowsNull = "true", length = 60)
+    @Property(editing = Editing.ENABLED)
     private String ubicacion;
+
+    public String disableUbicacion() {
+        return this.estado != EstadoAutorizacion.Abierta ? "x" : null;
+    }
 
     @Column(allowsNull = "true")
     @Property()
@@ -88,19 +99,60 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     @Property()
     private String cancelacion;
 
+    public boolean hideCancelacion() {
+        return !(this.estado == EstadoAutorizacion.Cancelada);
+    }
+
     @Column(allowsNull = "false")
     @Property()
     private EstadoAutorizacion estado;
 
-    @Column(allowsNull = "true", name = "solicitante_id")
-    @Property()
-    @PropertyLayout(named = "Trabajador")
-    private Trabajador solicitante;
+    @Column(allowsNull = "true", name = "sol_empresa_id")
+    @Property(editing = Editing.ENABLED)
+    @PropertyLayout(named = "Empresa")
+    private Empresa solicitanteEmpresa;
 
-    @Column(allowsNull = "true", name = "vehiculo_id")
-    @Property()
+    public List<Empresa> choicesSolicitanteEmpresa() {
+        return empresaRepository.Listar(EstadoEmpresa.Habilitada);
+    }
+
+    public String disableSolicitanteEmpresa() {
+        return this.estado != EstadoAutorizacion.Abierta ? "x" : null;
+    }
+
+    @Column(allowsNull = "true", name = "sol_trabajador_id")
+    @Property(editing = Editing.ENABLED)
+    @PropertyLayout(named = "Trabajador")
+    private Trabajador solicitanteTrabajador;
+
+    public List<Trabajador> choicesSolicitanteTrabajador() {
+        return trabajadorRepository.Listar(this.solicitanteEmpresa, EstadoGeneral.Habilitado);
+    }
+
+    public String disableSolicitanteTrabajador() {
+        if (this.estado == EstadoAutorizacion.Abierta) {
+            return this.solicitanteEmpresa == null ? "x" : null;
+        } else {
+            return "x";
+        }
+    }
+
+    @Column(allowsNull = "true", name = "sol_vehiculo_id")
+    @Property(editing = Editing.ENABLED)
     @PropertyLayout(named = "Vehiculo")
     private Vehiculo solicitanteVehiculo;
+
+    public List<Vehiculo> choicesSolicitanteVehiculo() {
+        return vehiculoRepository.List(this.solicitanteEmpresa, EstadoGeneral.Habilitado);
+    }
+
+    public String disableSolicitanteVehiculo() {
+        if (this.estado == EstadoAutorizacion.Abierta) {
+            return this.solicitanteEmpresa == null ? "x" : null;
+        } else {
+            return "x";
+        }
+    }
 
     @Persistent(mappedBy = "autorizacion", dependentElement = "true")
     @Column(allowsNull = "true")
@@ -111,21 +163,17 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
         return "Autorizacion: " + getIdAdeT();
     }
 
-    public boolean hideCancelacion() {return !(this.estado == EstadoAutorizacion.Cancelada);}
-
     public Autorizacion(){}
 
-    public Autorizacion(String titulo, String descripcion, String ubicacion){
+    public Autorizacion(EstadoAutorizacion estado){
 
-        this.estado = EstadoAutorizacion.Abierta;
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-        this.ubicacion = ubicacion;
+        this.estado = estado;
     }
 
     public Autorizacion(
             int idAdeT, EstadoAutorizacion estado, String titulo, String descripcion, String ubicacion,
-            LocalDateTime apertura, LocalDateTime cierre, Trabajador solicitante, Vehiculo solicitanteVehiculo, List<Ejecutante> ejecutantes){
+            LocalDateTime apertura, LocalDateTime cierre, Empresa solicitanteEmpresa, Trabajador solicitanteTrabajador,
+            Vehiculo solicitanteVehiculo, List<Ejecutante> ejecutantes){
 
         this.idAdeT = idAdeT;
         this.estado = estado;
@@ -134,32 +182,33 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
         this.ubicacion = ubicacion;
         this.apertura = apertura;
         this.cierre = cierre;
-        this.solicitante = solicitante;
+        this.solicitanteEmpresa = solicitanteEmpresa;
+        this.solicitanteTrabajador = solicitanteTrabajador;
         this.solicitanteVehiculo = solicitanteVehiculo;
         this.ejecutantes = ejecutantes;
     }
 
-    @Action()
-    @ActionLayout(named = "Editar")
-    public Autorizacion update(
-            @ParameterLayout(named = "Titulo: ")
-            final String titulo,
-
-            @ParameterLayout(named = "Descripcion: ", multiLine = 10)
-            final String descripcion,
-
-            @ParameterLayout(named = "Ubicacion: ")
-            final String ubicacion){
-
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-        this.ubicacion = ubicacion;
-        return this;
-    }
-
-    public String default0Update() {return getTitulo();}
-    public String default1Update() {return getDescripcion();}
-    public String default2Update() {return getUbicacion();}
+//    @Action()
+//    @ActionLayout(named = "Editar")
+//    public Autorizacion update(
+//            @ParameterLayout(named = "Titulo: ")
+//            final String titulo,
+//
+//            @ParameterLayout(named = "Descripcion: ", multiLine = 10)
+//            final String descripcion,
+//
+//            @ParameterLayout(named = "Ubicacion: ")
+//            final String ubicacion){
+//
+//        this.titulo = titulo;
+//        this.descripcion = descripcion;
+//        this.ubicacion = ubicacion;
+//        return this;
+//    }
+//
+//    public String default0Update() {return getTitulo();}
+//    public String default1Update() {return getDescripcion();}
+//    public String default2Update() {return getUbicacion();}
 
     @Programmatic
     public void CambiarEstado(EstadoAutorizacion estado){
@@ -184,7 +233,7 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
 
     public String disableLiberar() {
         String error = null;
-        if (this.solicitante == null){
+        if (this.solicitanteTrabajador == null){
             error ="Complete Solicitante";
         } else if (this.solicitanteVehiculo == null){
             error = "Complete Vehiculo Solicitante";
@@ -256,90 +305,90 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
         return this;
     }
 
-    @Action()
-    @ActionLayout(named = "Agregar")
-    public Autorizacion AgregarSolicitante(
-            @Parameter(optionality = Optionality.MANDATORY)
-            @ParameterLayout(named = "Trabajador")
-            final Trabajador solicitante,
-
-            @Parameter(optionality = Optionality.OPTIONAL)
-            @ParameterLayout(named = "Vehiculo")
-            final Vehiculo solicitanteVehiculo){
-
-        this.solicitante = solicitante;
-        this.solicitanteVehiculo = solicitanteVehiculo;
-        return this;
-    }
-
-    public List<Trabajador> choices0AgregarSolicitante() {return trabajadorRepository.Listar(EstadoGeneral.Habilitado);}
-    public List<Vehiculo> choices1AgregarSolicitante() {return vehiculoRepository.List(EstadoGeneral.Habilitado);}
-
-    public boolean hideAgregarSolicitante() {
-        if (this.estado == EstadoAutorizacion.Abierta){
-            return !(this.solicitante == null && this.solicitanteVehiculo == null);
-        }
-        return true;
-    }
-
-    @Action()
-    @ActionLayout(named = "Editar")
-    public Autorizacion EditarSolicitante(
-            @Parameter(optionality = Optionality.MANDATORY)
-            @ParameterLayout(named = "Trabajador")
-            final Trabajador solicitante,
-
-            @Parameter(optionality = Optionality.OPTIONAL)
-            @ParameterLayout(named = "Vehiculo")
-            final Vehiculo solicitanteVehiculo){
-
-        this.solicitante = solicitante;
-        this.solicitanteVehiculo = solicitanteVehiculo;
-        return this;
-    }
-
-    public Trabajador default0EditarSolicitante() {return this.solicitante;}
-    public List<Trabajador> choices0EditarSolicitante() {return trabajadorRepository.Listar(EstadoGeneral.Habilitado);}
-
-    public Vehiculo default1EditarSolicitante() {return this.solicitanteVehiculo;}
-    public List<Vehiculo> choices1EditarSolicitante() {return vehiculoRepository.List(EstadoGeneral.Habilitado);}
-
-    public boolean hideEditarSolicitante() {
-        if (this.estado == EstadoAutorizacion.Abierta){
-            return this.solicitante == null && this.solicitanteVehiculo == null;
-        }
-        return true;
-    }
-
-    @Action()
-    @ActionLayout(named = "Quitar", position = ActionLayout.Position.RIGHT)
-    public Autorizacion QuitarSolicitanteTrabajador(){
-        this.solicitante = null;
-        return this;
-    }
-
-    public boolean hideQuitarSolicitanteTrabajador() {
-        if (this.estado == EstadoAutorizacion.Abierta) {
-            return this.solicitante == null;
-        } else {
-            return true;
-        }
-    }
-
-    @Action()
-    @ActionLayout(named = "Quitar", position = ActionLayout.Position.RIGHT)
-    public Autorizacion QuitarSolicitanteVehiculo(){
-        this.solicitanteVehiculo = null;
-        return this;
-    }
-
-    public boolean hideQuitarSolicitanteVehiculo() {
-        if (this.estado == EstadoAutorizacion.Abierta){
-            return this.solicitanteVehiculo == null;
-        } else {
-            return true;
-        }
-    }
+//    @Action()
+//    @ActionLayout(named = "Agregar")
+//    public Autorizacion AgregarSolicitante(
+//            @Parameter(optionality = Optionality.MANDATORY)
+//            @ParameterLayout(named = "Trabajador")
+//            final Trabajador solicitante,
+//
+//            @Parameter(optionality = Optionality.OPTIONAL)
+//            @ParameterLayout(named = "Vehiculo")
+//            final Vehiculo solicitanteVehiculo){
+//
+//        this.solicitanteTrabajador = solicitante;
+//        this.solicitanteVehiculo = solicitanteVehiculo;
+//        return this;
+//    }
+//
+//    public List<Trabajador> choices0AgregarSolicitante() {return trabajadorRepository.Listar(EstadoGeneral.Habilitado);}
+//    public List<Vehiculo> choices1AgregarSolicitante() {return vehiculoRepository.List(EstadoGeneral.Habilitado);}
+//
+//    public boolean hideAgregarSolicitante() {
+//        if (this.estado == EstadoAutorizacion.Abierta){
+//            return !(this.solicitante == null && this.solicitanteVehiculo == null);
+//        }
+//        return true;
+//    }
+//
+//    @Action()
+//    @ActionLayout(named = "Editar")
+//    public Autorizacion EditarSolicitante(
+//            @Parameter(optionality = Optionality.MANDATORY)
+//            @ParameterLayout(named = "Trabajador")
+//            final Trabajador solicitante,
+//
+//            @Parameter(optionality = Optionality.OPTIONAL)
+//            @ParameterLayout(named = "Vehiculo")
+//            final Vehiculo solicitanteVehiculo){
+//
+//        this.solicitante = solicitante;
+//        this.solicitanteVehiculo = solicitanteVehiculo;
+//        return this;
+//    }
+//
+//    public Trabajador default0EditarSolicitante() {return this.solicitante;}
+//    public List<Trabajador> choices0EditarSolicitante() {return trabajadorRepository.Listar(EstadoGeneral.Habilitado);}
+//
+//    public Vehiculo default1EditarSolicitante() {return this.solicitanteVehiculo;}
+//    public List<Vehiculo> choices1EditarSolicitante() {return vehiculoRepository.List(EstadoGeneral.Habilitado);}
+//
+//    public boolean hideEditarSolicitante() {
+//        if (this.estado == EstadoAutorizacion.Abierta){
+//            return this.solicitante == null && this.solicitanteVehiculo == null;
+//        }
+//        return true;
+//    }
+//
+//    @Action()
+//    @ActionLayout(named = "Quitar", position = ActionLayout.Position.RIGHT)
+//    public Autorizacion QuitarSolicitanteTrabajador(){
+//        this.solicitante = null;
+//        return this;
+//    }
+//
+//    public boolean hideQuitarSolicitanteTrabajador() {
+//        if (this.estado == EstadoAutorizacion.Abierta) {
+//            return this.solicitante == null;
+//        } else {
+//            return true;
+//        }
+//    }
+//
+//    @Action()
+//    @ActionLayout(named = "Quitar", position = ActionLayout.Position.RIGHT)
+//    public Autorizacion QuitarSolicitanteVehiculo(){
+//        this.solicitanteVehiculo = null;
+//        return this;
+//    }
+//
+//    public boolean hideQuitarSolicitanteVehiculo() {
+//        if (this.estado == EstadoAutorizacion.Abierta){
+//            return this.solicitanteVehiculo == null;
+//        } else {
+//            return true;
+//        }
+//    }
 
     @Action()
     @ActionLayout(named = "Agregar")
@@ -353,47 +402,90 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     }
 
     public List<Empresa> choices0AgregarEjecutante() {
+
         return empresaRepository.Listar(EstadoEmpresa.Habilitada);
+    }
+
+    @Action()
+    @ActionLayout(named = "Quitar")
+    public Autorizacion QuitarEjecutante(
+            @Parameter(optionality = Optionality.MANDATORY)
+            @ParameterLayout(named = "Empresa")
+            final Ejecutante ejecutante){
+
+        ejecutanteRepository.delete(ejecutante);
+        return this;
+    }
+
+    public List<Ejecutante> choices0QuitarEjecutante() {
+
+        return ejecutanteRepository.Listar(this);
     }
 
     //************************************************************************
     //****************Propiedades de entiadad ejecutante**********************
     //************************************************************************
-    @NotPersistent()
-    @Property()
-    private Empresa ejecutanteEmpresa;
-
-    @NotPersistent()
-    @Property()
-    private List<Trabajador> ejecutantesTrabajadores;
-
-    @NotPersistent()
-    @Property()
-    private List<Vehiculo> ejecutantesVehiculos;
-
-    @NotPersistent()
-    @Property()
-    private int indice = 0;
-
-    @NotPersistent()
-    public Empresa getEjecutanteEmpresa(){
-        return this.ejecutantes.get(this.indice).getEmpresa();
-    }
-
-    @NotPersistent()
-    public List<Trabajador> getEjecutantesTrabajadores(){
-        return this.ejecutantes.get(this.indice).getTrabajadores();
-    }
-
-    @NotPersistent()
-    public List<Vehiculo> getEjecutantesVehiculos(){
-        return this.ejecutantes.get(this.indice).getVehiculos();
-    }
+//    @NotPersistent()
+//    private static int indice;
+//
+//    public int defaultIndice() { return 0; }
+//
+//    @Programmatic
+//    public int Cant(){
+//        return this.ejecutantes.size();
+//    }
+//
+//    @Action()
+//    public Autorizacion Siguiente(){
+//        this.ejecutantes.iterator().next();
+//        this.indice = this.indice ++;
+//        return this;
+//    }
+//
+//    public String disableSiguiente() {
+//        if (this.indice <= Cant()){
+//            return null;
+//        } else {
+//            return "limite";
+//        }
+//    }
+//
+//    @Action()
+//    public Autorizacion Anterior(){
+//        this.indice = this.indice --;
+//        return this;
+//    }
+//
+//    public String disableAnterior() {
+//        if (0 <= this.indice){
+//            return null;
+//        } else {
+//            return "limite";
+//        }
+//    }
+//
+//    @NotPersistent()
+//    private Empresa ejecutanteEmpresa;
+//
+//    public void getEjecutanteEmpresa(){
+//        if (Cant() == 0){
+//            this.ejecutanteEmpresa = null;
+//        } else {
+//            this.ejecutanteEmpresa = this.ejecutantes.get(indice).getEmpresa();
+//        }
+//    }
+//
+//    @NotPersistent()
+//    private List<Trabajador> ejecutantesTrabajadores;
+//
+//    public void getEjecutantesTrabajadores(){
+//        this.ejecutantesTrabajadores = ejecutanteRepository.Listar(this, ejecutanteEmpresa).getTrabajadores();
+//    }
 
     //**********Metodo para notificar a las entidades dependientes**********
     @Override
     public void Notificar() {
-        this.solicitante.Actuliazar(this.estado);
+        this.solicitanteTrabajador.Actuliazar(this.estado);
         this.solicitanteVehiculo.Actuliazar(this.estado);
     }
 
@@ -423,6 +515,11 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     @javax.jdo.annotations.NotPersistent
     @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
     VehiculoRepository vehiculoRepository;
+
+    @javax.inject.Inject
+    @javax.jdo.annotations.NotPersistent
+    @lombok.Getter(AccessLevel.NONE) @lombok.Setter(AccessLevel.NONE)
+    Ejecutante ejecutante;
 
     @javax.inject.Inject
     @javax.jdo.annotations.NotPersistent

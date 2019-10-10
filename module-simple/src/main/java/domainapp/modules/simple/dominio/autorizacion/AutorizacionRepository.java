@@ -40,8 +40,9 @@ public class AutorizacionRepository {
     }
 
     @Programmatic
-    public Autorizacion create(final String titulo, final String descripcion, final String ubicacion) {
-        Autorizacion autorizacion = new Autorizacion(titulo, descripcion, ubicacion);
+    public Autorizacion create() {
+        final EstadoAutorizacion estado = EstadoAutorizacion.Abierta;
+        Autorizacion autorizacion = new Autorizacion(estado);
         repositoryService.persist(autorizacion);
         return autorizacion;
     }
