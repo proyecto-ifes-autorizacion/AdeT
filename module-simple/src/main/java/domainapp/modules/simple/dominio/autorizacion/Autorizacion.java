@@ -325,6 +325,85 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
         }
     }
 
+    @Action()
+    @ActionLayout(named = "Agregar")
+    public Autorizacion AgregarTrabajadorSolicitante(
+            @Parameter(optionality = Optionality.MANDATORY)
+            @ParameterLayout(named = "Trabajador")
+            final Trabajador trabajador){
+
+        this.solicitanteTrabajador = trabajador;
+        return this;
+    }
+
+    public List<Trabajador> choices0AgregarTrabajadorSolicitante() {
+        return trabajadorRepository.Listar(this.solicitanteEmpresa, EstadoGeneral.Habilitado);
+    }
+
+    public boolean hideAgregarTrabajadorSolicitante() {
+        if (this.estado != EstadoAutorizacion.Abierta) {
+            return true;
+        } else if (this.solicitanteEmpresa == null) {
+            return true;
+        } else if (this.solicitanteTrabajador != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Action()
+    @ActionLayout(named = "Editar")
+    public Autorizacion EditarTrabajadorSolicitante(
+            @Parameter(optionality = Optionality.MANDATORY)
+            @ParameterLayout(named = "Trabajador")
+            final Trabajador trabajador){
+
+        this.solicitanteTrabajador = trabajador;
+        return this;
+    }
+
+    public List<Trabajador> choices0EditarTrabajadorSolicitante() {
+        return trabajadorRepository.Listar(this.solicitanteEmpresa, EstadoGeneral.Habilitado);
+    }
+
+    public boolean hideEditarTrabajadorSolicitante() {
+        if (this.estado != EstadoAutorizacion.Abierta) {
+            return true;
+        } else if (this.solicitanteEmpresa == null) {
+            return true;
+        } else if (this.solicitanteTrabajador == null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public Trabajador default0EditarTrabajadorSolicitante() {
+        return this.solicitanteTrabajador;
+    }
+
+    @Action()
+    @ActionLayout(named = "Quitar")
+    public Autorizacion QuitarTrabajadorSolicitante(){
+
+        this.solicitanteTrabajador = null;
+        return this;
+    }
+
+    public boolean hideQuitarTrabajadorSolicitante() {
+        if (this.estado != EstadoAutorizacion.Abierta) {
+            return true;
+        } else if (this.solicitanteEmpresa == null) {
+            return true;
+        } else if (this.solicitanteTrabajador == null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
 //    @Action()
 //    @ActionLayout(named = "Agregar")
 //    public Autorizacion AgregarSolicitante(

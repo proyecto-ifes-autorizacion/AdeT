@@ -41,6 +41,9 @@
                                     <cpt:action id="QuitarEmpresaSolicitante" promptStyle="INLINE"/>
                                 </cpt:property>
                                 <cpt:property id="solicitanteTrabajador">
+                                    <cpt:action id="AgregarTrabajadorSolicitante" promptStyle="INLINE"/>
+                                    <cpt:action id="EditarTrabajadorSolicitante" promptStyle="INLINE"/>
+                                    <cpt:action id="QuitarTrabajadorSolicitante" promptStyle="INLINE"/>
                                 </cpt:property>
                                 <cpt:property id="solicitanteVehiculo">
                                 </cpt:property>
