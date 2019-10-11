@@ -46,6 +46,9 @@
                                     <cpt:action id="QuitarTrabajadorSolicitante" promptStyle="INLINE"/>
                                 </cpt:property>
                                 <cpt:property id="solicitanteVehiculo">
+                                    <cpt:action id="AgregarVehiculoSolicitante" promptStyle="INLINE"/>
+                                    <cpt:action id="EditarVehiculoSolicitante" promptStyle="INLINE"/>
+                                    <cpt:action id="QuitarVehiculoSolicitante" promptStyle="INLINE"/>
                                 </cpt:property>
                             </cpt:fieldSet>
                         </bs3:col>

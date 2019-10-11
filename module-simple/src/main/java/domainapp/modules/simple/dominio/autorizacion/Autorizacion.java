@@ -403,6 +403,85 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
         }
     }
 
+    @Action()
+    @ActionLayout(named = "Agregar")
+    public Autorizacion AgregarVehiculoSolicitante(
+            @Parameter(optionality = Optionality.MANDATORY)
+            @ParameterLayout(named = "Vehiculo")
+            final Vehiculo vehiculo){
+
+        this.solicitanteVehiculo = vehiculo;
+        return this;
+    }
+
+    public List<Vehiculo> choices0AgregarVehiculoSolicitante() {
+        return vehiculoRepository.List(this.solicitanteEmpresa, EstadoGeneral.Habilitado);
+    }
+
+    public boolean hideAgregarVehiculoSolicitante() {
+        if (this.estado != EstadoAutorizacion.Abierta) {
+            return true;
+        } else if (this.solicitanteEmpresa == null) {
+            return true;
+        } else if (this.solicitanteVehiculo != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Action()
+    @ActionLayout(named = "Editar")
+    public Autorizacion EditarVehiculoSolicitante(
+            @Parameter(optionality = Optionality.MANDATORY)
+            @ParameterLayout(named = "Vehiculo")
+            final Vehiculo vehiculo){
+
+        this.solicitanteVehiculo = vehiculo;
+        return this;
+    }
+
+    public List<Vehiculo> choices0EditarVehiculoSolicitante() {
+        return vehiculoRepository.List(this.solicitanteEmpresa, EstadoGeneral.Habilitado);
+    }
+
+    public boolean hideEditarVehiculoSolicitante() {
+        if (this.estado != EstadoAutorizacion.Abierta) {
+            return true;
+        } else if (this.solicitanteEmpresa == null) {
+            return true;
+        } else if (this.solicitanteVehiculo == null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public Vehiculo default0EditarVehiculoSolicitante() {
+        return this.solicitanteVehiculo;
+    }
+
+    @Action()
+    @ActionLayout(named = "Quitar")
+    public Autorizacion QuitarVehiculoSolicitante(){
+
+        this.solicitanteVehiculo = null;
+        return this;
+    }
+
+    public boolean hideQuitarVehiculoSolicitante() {
+        if (this.estado != EstadoAutorizacion.Abierta) {
+            return true;
+        } else if (this.solicitanteEmpresa == null) {
+            return true;
+        } else if (this.solicitanteVehiculo == null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
 
 //    @Action()
 //    @ActionLayout(named = "Agregar")
