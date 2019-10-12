@@ -1,6 +1,5 @@
 package domainapp.modules.simple.dominio.autorizacion;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.apache.isis.applib.annotation.*;
@@ -98,8 +97,7 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     @Property()
     private LocalDateTime cierre;
 
-    @NotPersistent()
-    @Property()
+    @Property(notPersisted = true)
     private String tiempo;
 
     public String getTiempo() {
@@ -546,45 +544,39 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     //************************************************************************
     //****************Propiedades de entiadad ejecutante**********************
     //************************************************************************
+
+    @Property(notPersisted = true)
+    private Empresa ejecutanteEmpresa;
+
+    @Collection(notPersisted = true)
+    private List<Trabajador> ejecutanteTrabajadores;
+
+    @Collection(notPersisted = true)
+    private List<Vehiculo> ejecutanteVehiculos;
+
+//    @Property(notPersisted = true)
+//    private IteradorEjecutante iterador = IteradorEjecutante.GetInstacia();
+
 //    @NotPersistent()
-//    private static int indice;
+//    private int indice;
 //
-//    public int defaultIndice() { return 0; }
-//
-//    @Programmatic
-//    public int Cant(){
-//        return this.ejecutantes.size();
+//    public int getIndice(){
+//        iterador.reinicio(this.idAdeT);
+//        return iterador.getIterador();
 //    }
 //
 //    @Action()
 //    public Autorizacion Siguiente(){
-//        this.ejecutantes.iterator().next();
-//        this.indice = this.indice ++;
+//        iterador.setIterador(iterador.getIterador()+1);
 //        return this;
-//    }
-//
-//    public String disableSiguiente() {
-//        if (this.indice <= Cant()){
-//            return null;
-//        } else {
-//            return "limite";
-//        }
 //    }
 //
 //    @Action()
 //    public Autorizacion Anterior(){
-//        this.indice = this.indice --;
+//        iterador.setIterador(iterador.getIterador()-1);
 //        return this;
 //    }
-//
-//    public String disableAnterior() {
-//        if (0 <= this.indice){
-//            return null;
-//        } else {
-//            return "limite";
-//        }
-//    }
-//
+
 //    @NotPersistent()
 //    private Empresa ejecutanteEmpresa;
 //

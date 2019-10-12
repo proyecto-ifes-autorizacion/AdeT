@@ -25,15 +25,24 @@
                                 <cpt:property id="ubicacion"/>
                             </cpt:fieldSet>
                         </bs3:col>
+                        <bs3:col span="4">
+                            <cpt:fieldSet name="Actividad">
+                                <cpt:property id="estado"/>
+                                <cpt:property id="apertura"/>
+                                <cpt:property id="cierre"/>
+                                <cpt:property id="tiempo"/>
+                                <cpt:property id="cancelacion" multiLine="2" hidden="ALL_TABLES"/>
+                            </cpt:fieldSet>
+                        </bs3:col>
                     </bs3:row>
                 </bs3:tab>
             </bs3:tabGroup>
         </bs3:col>
-        <bs3:col span="12">
+        <bs3:col span="4">
             <bs3:tabGroup>
                 <bs3:tab>
                     <bs3:row>
-                        <bs3:col span="4">
+                        <bs3:col span="12">
                             <cpt:fieldSet name="Solicitante">
                                 <cpt:property id="solicitanteEmpresa">
                                     <cpt:action id="AgregarEmpresaSolicitante" promptStyle="INLINE"/>
@@ -52,23 +61,6 @@
                                 </cpt:property>
                             </cpt:fieldSet>
                         </bs3:col>
-                        <bs3:col span="4">
-                            <cpt:fieldSet name="Actividad">
-                                <cpt:property id="estado"/>
-                                <cpt:property id="apertura"/>
-                                <cpt:property id="cierre"/>
-                                <cpt:property id="tiempo"/>
-                                <cpt:property id="cancelacion" multiLine="2" hidden="ALL_TABLES"/>
-                            </cpt:fieldSet>
-                        </bs3:col>
-                    </bs3:row>
-                </bs3:tab>
-            </bs3:tabGroup>
-        </bs3:col>
-        <bs3:col span="4">
-            <bs3:tabGroup>
-                <bs3:tab name="Ejecutantes">
-                    <bs3:row>
                         <bs3:col span="12" size="MD">
                             <cpt:collection defaultView="table" id="ejecutantes">
                                 <cpt:action id="AgregarEjecutante"/>
@@ -89,10 +81,10 @@
                             </cpt:fieldSet>
                         </bs3:col>
                         <bs3:col span="6" size="MD">
-                            <cpt:collection defaultView="table" id="ejecutantesTrabajadores"/>
+                            <cpt:collection defaultView="table" id="ejecutanteTrabajadores"/>
                         </bs3:col>
                         <bs3:col span="6" size="MD">
-                            <cpt:collection defaultView="table" id="ejecutantesVehiculos"/>
+                            <cpt:collection defaultView="table" id="ejecutanteVehiculos"/>
                         </bs3:col>
                     </bs3:row>
                 </bs3:tab>

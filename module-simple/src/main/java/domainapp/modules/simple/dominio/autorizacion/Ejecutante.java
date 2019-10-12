@@ -60,7 +60,7 @@ import lombok.Setter;
 public class Ejecutante implements Comparable<Ejecutante>, ObservadorGeneral, SujetoGeneral {
 
     @Column(allowsNull = "false")
-    @Property()
+    @Property(hidden = Where.EVERYWHERE)
     private Autorizacion autorizacion;
 
     @Column(allowsNull = "false")
