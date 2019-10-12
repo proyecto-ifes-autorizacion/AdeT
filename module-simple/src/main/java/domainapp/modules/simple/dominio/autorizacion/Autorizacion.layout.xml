@@ -57,6 +57,7 @@
                                 <cpt:property id="estado"/>
                                 <cpt:property id="apertura"/>
                                 <cpt:property id="cierre"/>
+                                <cpt:property id="tiempo"/>
                                 <cpt:property id="cancelacion" multiLine="2" hidden="ALL_TABLES"/>
                             </cpt:fieldSet>
                         </bs3:col>
