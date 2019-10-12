@@ -181,13 +181,21 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     }
 
     public String disableLiberar() {
-        String error = null;
-        if (this.solicitanteTrabajador == null) {
-            error = "Complete Solicitante";
+        if (this.titulo == null) {
+            return "Complete Titulo";
+        } else if (this.descripcion == null) {
+            return "Complete Descripcion";
+        } else if (this.ubicacion == null) {
+            return "Complete Ubicacion";
+        } else if (this.solicitanteEmpresa == null) {
+            return "Complete Empresa Solicitante";
+        } else if (this.solicitanteTrabajador == null) {
+            return "Complete Trabajador Solicitante";
         } else if (this.solicitanteVehiculo == null) {
-            error = "Complete Vehiculo Solicitante";
+            return "Complete Vehiculo Solicitante";
+        } else {
+            return null;
         }
-        return error;
     }
 
     public boolean hideLiberar() {
@@ -480,93 +488,6 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
             return false;
         }
     }
-
-
-
-//    @Action()
-//    @ActionLayout(named = "Agregar")
-//    public Autorizacion AgregarSolicitante(
-//            @Parameter(optionality = Optionality.MANDATORY)
-//            @ParameterLayout(named = "Trabajador")
-//            final Trabajador solicitante,
-//
-//            @Parameter(optionality = Optionality.OPTIONAL)
-//            @ParameterLayout(named = "Vehiculo")
-//            final Vehiculo solicitanteVehiculo){
-//
-//        this.solicitanteTrabajador = solicitante;
-//        this.solicitanteVehiculo = solicitanteVehiculo;
-//        return this;
-//    }
-//
-//    public List<Trabajador> choices0AgregarSolicitante() {return trabajadorRepository.Listar(EstadoGeneral.Habilitado);}
-//    public List<Vehiculo> choices1AgregarSolicitante() {return vehiculoRepository.List(EstadoGeneral.Habilitado);}
-//
-//    public boolean hideAgregarSolicitante() {
-//        if (this.estado == EstadoAutorizacion.Abierta){
-//            return !(this.solicitante == null && this.solicitanteVehiculo == null);
-//        }
-//        return true;
-//    }
-//
-//    @Action()
-//    @ActionLayout(named = "Editar")
-//    public Autorizacion EditarSolicitante(
-//            @Parameter(optionality = Optionality.MANDATORY)
-//            @ParameterLayout(named = "Trabajador")
-//            final Trabajador solicitante,
-//
-//            @Parameter(optionality = Optionality.OPTIONAL)
-//            @ParameterLayout(named = "Vehiculo")
-//            final Vehiculo solicitanteVehiculo){
-//
-//        this.solicitante = solicitante;
-//        this.solicitanteVehiculo = solicitanteVehiculo;
-//        return this;
-//    }
-//
-//    public Trabajador default0EditarSolicitante() {return this.solicitante;}
-//    public List<Trabajador> choices0EditarSolicitante() {return trabajadorRepository.Listar(EstadoGeneral.Habilitado);}
-//
-//    public Vehiculo default1EditarSolicitante() {return this.solicitanteVehiculo;}
-//    public List<Vehiculo> choices1EditarSolicitante() {return vehiculoRepository.List(EstadoGeneral.Habilitado);}
-//
-//    public boolean hideEditarSolicitante() {
-//        if (this.estado == EstadoAutorizacion.Abierta){
-//            return this.solicitante == null && this.solicitanteVehiculo == null;
-//        }
-//        return true;
-//    }
-//
-//    @Action()
-//    @ActionLayout(named = "Quitar", position = ActionLayout.Position.RIGHT)
-//    public Autorizacion QuitarSolicitanteTrabajador(){
-//        this.solicitante = null;
-//        return this;
-//    }
-//
-//    public boolean hideQuitarSolicitanteTrabajador() {
-//        if (this.estado == EstadoAutorizacion.Abierta) {
-//            return this.solicitante == null;
-//        } else {
-//            return true;
-//        }
-//    }
-//
-//    @Action()
-//    @ActionLayout(named = "Quitar", position = ActionLayout.Position.RIGHT)
-//    public Autorizacion QuitarSolicitanteVehiculo(){
-//        this.solicitanteVehiculo = null;
-//        return this;
-//    }
-//
-//    public boolean hideQuitarSolicitanteVehiculo() {
-//        if (this.estado == EstadoAutorizacion.Abierta){
-//            return this.solicitanteVehiculo == null;
-//        } else {
-//            return true;
-//        }
-//    }
 
     @Action()
     @ActionLayout(named = "Agregar")
