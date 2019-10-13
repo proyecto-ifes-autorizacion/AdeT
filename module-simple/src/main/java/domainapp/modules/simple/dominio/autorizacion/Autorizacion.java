@@ -542,7 +542,7 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     }
 
     //************************************************************************
-    //****************Propiedades de entiadad ejecutante**********************
+    //****************Propiedades de entidad ejecutante**********************
     //************************************************************************
 
     @Property(notPersisted = true)
@@ -554,28 +554,28 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     @Collection(notPersisted = true)
     private List<Vehiculo> ejecutanteVehiculos;
 
-//    @Property(notPersisted = true)
-//    private IteradorEjecutante iterador = IteradorEjecutante.GetInstacia();
+    @Property(notPersisted = true, hidden = Where.EVERYWHERE)
+    private IteradorEjecutante iterador = IteradorEjecutante.getInstance();
 
-//    @NotPersistent()
-//    private int indice;
-//
-//    public int getIndice(){
-//        iterador.reinicio(this.idAdeT);
-//        return iterador.getIterador();
-//    }
-//
-//    @Action()
-//    public Autorizacion Siguiente(){
-//        iterador.setIterador(iterador.getIterador()+1);
-//        return this;
-//    }
-//
-//    @Action()
-//    public Autorizacion Anterior(){
-//        iterador.setIterador(iterador.getIterador()-1);
-//        return this;
-//    }
+    @NotPersistent()
+    @Property(hidden = Where.ALL_TABLES)
+    private int indice;
+
+    public int getIndice(){
+        return iterador.getIterador();
+    }
+
+    @Action()
+    public Autorizacion Siguiente(){
+        iterador.setIterador(iterador.getIterador()+1);
+        return this;
+    }
+
+    @Action()
+    public Autorizacion Anterior(){
+        iterador.setIterador(iterador.getIterador()-1);
+        return this;
+    }
 
 //    @NotPersistent()
 //    private Empresa ejecutanteEmpresa;

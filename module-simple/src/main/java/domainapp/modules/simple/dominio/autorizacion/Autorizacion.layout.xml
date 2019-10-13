@@ -77,6 +77,8 @@
                     <bs3:row>
                         <bs3:col span="12">
                             <cpt:fieldSet name="Ejecutante">
+                                <cpt:action id="Anterior"/>
+                                <cpt:action id="Siguiente"/>
                                 <cpt:property id="ejecutanteEmpresa"/>
                             </cpt:fieldSet>
                         </bs3:col>
