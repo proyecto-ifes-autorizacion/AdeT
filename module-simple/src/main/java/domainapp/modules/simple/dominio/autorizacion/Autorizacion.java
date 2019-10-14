@@ -548,6 +548,7 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     //************************************************************************
 
     @Property(notPersisted = true)
+    @PropertyLayout(named = "Empresa")
     private Empresa ejecutanteEmpresa;
 
     public Empresa getEjecutanteEmpresa(){
@@ -555,6 +556,7 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     }
 
     @Collection(notPersisted = true)
+    @CollectionLayout(named = "Trabajador")
     private List<Trabajador> ejecutanteTrabajadores;
 
     public List<Trabajador> getEjecutanteTrabajadores(){
@@ -562,6 +564,7 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     }
 
     @Collection(notPersisted = true)
+    @CollectionLayout(named = "Vehiculo")
     private List<Vehiculo> ejecutanteVehiculos;
 
     public List<Vehiculo> getEjecutanteVehiculos(){
