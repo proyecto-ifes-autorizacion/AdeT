@@ -706,6 +706,20 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
         return vehiculos;
     }
 
+    public boolean hideAgregarVehiculoEjecutante() {
+        if (this.estado != EstadoAutorizacion.Abierta){
+            return true;
+        } else {
+            return this.ejecutantes.size() < 1;
+        }
+    }
+
+    public String disableAgregarVehiculoEjecutante() {
+        List<Vehiculo> vehiculos = vehiculoRepository.List(this.ejecutantes.get(iterador.getIterador()).getEmpresa(), EstadoGeneral.Habilitado);
+        vehiculos.removeAll(this.ejecutantes.get(iterador.getIterador()).getVehiculos());
+        return vehiculos.size() < 1 ? "No hay mas vehiculos disponibles" : null;
+    }
+
     @Action()
     @ActionLayout(named = "Quitar")
     public Autorizacion QuitarVehiculoEjecutante(
