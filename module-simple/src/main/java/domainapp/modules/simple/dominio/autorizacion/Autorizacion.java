@@ -529,15 +529,15 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     }
 
     public boolean hideAgregarEjecutante() {
-        if (this.estado != EstadoAutorizacion.Abierta){
-            return true;
-        } else {
-            List<Empresa> empresas = empresaRepository.Listar(EstadoEmpresa.Habilitada);
-            for (Ejecutante ejecutante : ejecutantes) {
-                empresas.remove(ejecutante.getEmpresa());
-            }
-            return empresas.size() < 1;
+        return this.estado != EstadoAutorizacion.Abierta;
+    }
+
+    public String disableAgregarEjecutante() {
+        List<Empresa> empresas = empresaRepository.Listar(EstadoEmpresa.Habilitada);
+        for (Ejecutante ejecutante : ejecutantes) {
+            empresas.remove(ejecutante.getEmpresa());
         }
+        return empresas.size() < 1 ? "No hay Empresas disponibles" : null;
     }
 
     @Action()
@@ -557,11 +557,11 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     }
 
     public boolean hideQuitarEjecutante() {
-        if (this.estado != EstadoAutorizacion.Abierta){
-            return true;
-        } else {
-            return ejecutanteRepository.Listar(this).size() < 1;
-        }
+        return this.estado != EstadoAutorizacion.Abierta;
+    }
+
+    public String disableQuitarEjecutante() {
+        return ejecutanteRepository.Listar(this).size() < 1 ? "La lista de Empresas esta vacia" : null;
     }
 
     //************************************************************************
