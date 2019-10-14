@@ -639,6 +639,37 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
         return ejecutantes.get(iterador.getIterador()).getTrabajadores();
     }
 
+    @Action()
+    @ActionLayout(named = "Agregar")
+    public Autorizacion AgregarVehiculoEjecutante(
+            @Parameter(optionality = Optionality.MANDATORY)
+            @ParameterLayout(named = "Vehiculo")
+            final Vehiculo vehiculo){
+
+        this.ejecutantes.get(iterador.getIterador()).AgregarVehiculo(vehiculo);
+        return this;
+    }
+
+    public List<Vehiculo> choices0AgregarVehiculoEjecutante() {
+        List<Vehiculo> vehiculos = vehiculoRepository.List(this.ejecutantes.get(iterador.getIterador()).getEmpresa(), EstadoGeneral.Habilitado);
+        vehiculos.removeAll(this.ejecutantes.get(iterador.getIterador()).getVehiculos());
+        return vehiculos;
+    }
+
+    @Action()
+    @ActionLayout(named = "Quitar")
+    public Autorizacion QuitarVehiculoEjecutante(
+            @Parameter(optionality = Optionality.MANDATORY)
+            @ParameterLayout(named = "Vehiculo")
+            final Vehiculo vehiculo){
+
+        this.ejecutantes.get(iterador.getIterador()).QuitarVehiculo(vehiculo);
+        return this;
+    }
+
+    public List<Vehiculo> choices0QuitarVehiculoEjecutante() {
+        return ejecutantes.get(iterador.getIterador()).getVehiculos();
+    }
 
     //**********Metodo para notificar a las entidades dependientes**********
     @Override

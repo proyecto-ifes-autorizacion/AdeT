@@ -89,7 +89,10 @@
                             </cpt:collection>
                         </bs3:col>
                         <bs3:col span="6" size="MD">
-                            <cpt:collection defaultView="table" id="ejecutanteVehiculos"/>
+                            <cpt:collection defaultView="table" id="ejecutanteVehiculos">
+                                <cpt:action id="AgregarVehiculoEjecutante"/>
+                                <cpt:action id="QuitarVehiculoEjecutante"/>
+                            </cpt:collection>
                         </bs3:col>
                     </bs3:row>
                 </bs3:tab>
