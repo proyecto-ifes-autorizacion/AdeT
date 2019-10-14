@@ -677,6 +677,18 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
         return ejecutantes.get(iterador.getIterador()).getTrabajadores();
     }
 
+    public boolean hideQuitarTrabajadorEjecutante() {
+        if (this.estado != EstadoAutorizacion.Abierta){
+            return true;
+        } else {
+            return this.ejecutantes.size() < 1;
+        }
+    }
+
+    public String disableQuitarTrabajadorEjecutante() {
+        return this.ejecutantes.get(iterador.getIterador()).getTrabajadores().size() < 1 ? "La lista de trabajadores esta vacia" : null;
+    }
+
     @Action()
     @ActionLayout(named = "Agregar")
     public Autorizacion AgregarVehiculoEjecutante(
