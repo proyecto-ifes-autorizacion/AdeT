@@ -648,6 +648,20 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
         return trabajadores;
     }
 
+    public boolean hideAgregarTrabajadorEjecutante() {
+        if (this.estado != EstadoAutorizacion.Abierta){
+            return true;
+        } else {
+            return this.ejecutantes.size() < 1;
+        }
+    }
+
+    public String disableAgregarTrabajadorEjecutante() {
+        List<Trabajador> trabajadores = trabajadorRepository.Listar(this.ejecutantes.get(iterador.getIterador()).getEmpresa(), EstadoGeneral.Habilitado);
+        trabajadores.removeAll(this.ejecutantes.get(iterador.getIterador()).getTrabajadores());
+        return trabajadores.size() < 1 ? "No hay mas trabajadores disponibles" : null;
+    }
+
     @Action()
     @ActionLayout(named = "Quitar")
     public Autorizacion QuitarTrabajadorEjecutante(
