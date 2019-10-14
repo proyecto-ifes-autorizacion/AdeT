@@ -226,7 +226,7 @@ public class Vehiculo implements Comparable<Vehiculo>, ObservadorGeneral, Observ
     public boolean hideBorrar() {return this.estado == EstadoGeneral.Borrado;}
 
     @Override
-    public void Actuliazar() {
+    public void Actualizar() {
         if (empresa.ObtenerEstado() == EstadoEmpresa.Habilitada){
             this.bajaEmpresa = false;
         } else {
@@ -235,7 +235,7 @@ public class Vehiculo implements Comparable<Vehiculo>, ObservadorGeneral, Observ
     }
 
     @Override
-    public void Actuliazar(final EstadoAutorizacion estadoAutorizacion) {
+    public void Actualizar(final EstadoAutorizacion estadoAutorizacion) {
         if (this.estado == EstadoGeneral.Habilitado && estadoAutorizacion == EstadoAutorizacion.Liberada){
             this.estado = EstadoGeneral.Ejecucion;
         } else if (this.estado == EstadoGeneral.Ejecucion && estadoAutorizacion != EstadoAutorizacion.Liberada){
@@ -245,7 +245,7 @@ public class Vehiculo implements Comparable<Vehiculo>, ObservadorGeneral, Observ
 
     @Programmatic
     public boolean BajaEmpresa(){
-        Actuliazar();
+        Actualizar();
         return this.bajaEmpresa;
     }
 

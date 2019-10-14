@@ -179,6 +179,11 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     }
 
     @Programmatic
+    public EstadoAutorizacion ObtenerEstado(){
+        return this.estado;
+    }
+
+    @Programmatic
     public void CambiarEstado(EstadoAutorizacion estado) {
         this.estado = estado;
     }
@@ -750,8 +755,11 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     //**********Metodo para notificar a las entidades dependientes**********
     @Override
     public void Notificar() {
-        this.solicitanteTrabajador.Actuliazar(this.estado);
-        this.solicitanteVehiculo.Actuliazar(this.estado);
+        this.solicitanteTrabajador.Actualizar(this.estado);
+        this.solicitanteVehiculo.Actualizar(this.estado);
+        for (Ejecutante ejecuntate : ejecutantes) {
+            ejecuntate.Actualizar();
+        }
     }
 
     //region > compareTo, toString

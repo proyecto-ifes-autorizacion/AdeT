@@ -233,10 +233,10 @@ public class Empresa implements Comparable<Empresa>, SujetoGeneral {
     public void Notificar() {
 
         for (Trabajador trabajador : trabajadores){
-            trabajador.Actuliazar();
+            trabajador.Actualizar();
         }
         for (Vehiculo vehiculo : vehiculos){
-            vehiculo.Actuliazar();
+            vehiculo.Actualizar();
         }
     }
 

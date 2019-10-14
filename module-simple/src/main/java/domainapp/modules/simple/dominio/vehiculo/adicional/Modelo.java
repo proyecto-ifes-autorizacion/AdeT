@@ -187,7 +187,7 @@ public class Modelo implements Comparable<Modelo>, ObservadorGeneral {
     public boolean hideActivar() {return !this.baja;}
     public boolean hideDesactivar() {return this.baja;}
 
-    @Override public void Actuliazar() {
+    @Override public void Actualizar() {
         setBajaMarca(marca.getBaja());
     }
 

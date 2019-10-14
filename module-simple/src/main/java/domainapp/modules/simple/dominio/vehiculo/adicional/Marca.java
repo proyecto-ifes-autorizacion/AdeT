@@ -176,7 +176,7 @@ public class Marca implements Comparable<Marca>, SujetoGeneral {
     @Override
     public void Notificar() {
         for (Modelo modelo: modelos) {
-            modelo.Actuliazar();
+            modelo.Actualizar();
         }
     }
 

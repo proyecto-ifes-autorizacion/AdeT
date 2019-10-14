@@ -135,13 +135,18 @@ public class Ejecutante implements Comparable<Ejecutante>, ObservadorGeneral, Su
 
     //Metodo para notificar a las entidades dependientes
     @Override
-    public void Actuliazar() {
-
+    public void Actualizar() {
+        Notificar();
     }
 
     @Override
     public void Notificar() {
-
+        for (Trabajador trabajador : trabajadores) {
+            trabajador.Actualizar(this.autorizacion.ObtenerEstado());
+        }
+        for (Vehiculo vehiculo : vehiculos) {
+            vehiculo.Actualizar(this.autorizacion.ObtenerEstado());
+        }
     }
 
     //region > compareTo, toString

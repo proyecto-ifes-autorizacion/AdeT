@@ -248,7 +248,7 @@ public class Trabajador implements Comparable<Trabajador>, ObservadorGeneral, Ob
     public boolean hideBorrar() {return this.estado == EstadoGeneral.Borrado;}
 
     @Override
-    public void Actuliazar() {
+    public void Actualizar() {
         if (empresa.ObtenerEstado() == EstadoEmpresa.Habilitada){
             this.bajaEmpresa = false;
         } else {
@@ -257,7 +257,7 @@ public class Trabajador implements Comparable<Trabajador>, ObservadorGeneral, Ob
     }
 
     @Override
-    public void Actuliazar(final EstadoAutorizacion estadoAutorizacion) {
+    public void Actualizar(final EstadoAutorizacion estadoAutorizacion) {
         if (this.estado == EstadoGeneral.Habilitado && estadoAutorizacion == EstadoAutorizacion.Liberada){
             this.estado = EstadoGeneral.Ejecucion;
         } else if (this.estado == EstadoGeneral.Ejecucion && estadoAutorizacion != EstadoAutorizacion.Liberada){
@@ -267,7 +267,7 @@ public class Trabajador implements Comparable<Trabajador>, ObservadorGeneral, Ob
 
     @Programmatic
     public boolean BajaEmpresa(){
-        Actuliazar();
+        Actualizar();
         return this.bajaEmpresa;
     }
 
