@@ -521,7 +521,6 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     }
 
     public List<Empresa> choices0AgregarEjecutante() {
-
         return empresaRepository.Listar(EstadoEmpresa.Habilitada);
     }
 
@@ -537,7 +536,6 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     }
 
     public List<Ejecutante> choices0QuitarEjecutante() {
-
         return ejecutanteRepository.Listar(this);
     }
 
@@ -548,11 +546,23 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     @Property(notPersisted = true)
     private Empresa ejecutanteEmpresa;
 
+    public Empresa getEjecutanteEmpresa(){
+        return this.ejecutantes.size() > 0 ? this.ejecutantes.get(iterador.getIterador()).getEmpresa() : null;
+    }
+
     @Collection(notPersisted = true)
     private List<Trabajador> ejecutanteTrabajadores;
 
+    public List<Trabajador> getEjecutanteTrabajadores(){
+        return this.ejecutantes.size() > 0 ? this.ejecutantes.get(iterador.getIterador()).getTrabajadores() : this.ejecutanteTrabajadores;
+    }
+
     @Collection(notPersisted = true)
     private List<Vehiculo> ejecutanteVehiculos;
+
+    public List<Vehiculo> getEjecutanteVehiculos(){
+        return this.ejecutantes.size() > 0 ? this.ejecutantes.get(iterador.getIterador()).getVehiculos() : this.ejecutanteVehiculos;
+    }
 
     @Property(notPersisted = true, hidden = Where.EVERYWHERE)
     private IteradorEjecutante iterador = IteradorEjecutante.getInstance();
@@ -571,29 +581,30 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
         return this;
     }
 
+    public String disableSiguiente() {
+        return this.iterador.getIterador() < this.ejecutantes.size() - 1 ? null : "Ultima Posición";
+    }
+
+    public boolean hideSiguiente() {
+        return this.ejecutantes.size() < 2;
+    }
+
     @Action()
     public Autorizacion Anterior(){
         iterador.setIterador(iterador.getIterador()-1);
         return this;
     }
 
-//    @NotPersistent()
-//    private Empresa ejecutanteEmpresa;
-//
-//    public void getEjecutanteEmpresa(){
-//        if (Cant() == 0){
-//            this.ejecutanteEmpresa = null;
-//        } else {
-//            this.ejecutanteEmpresa = this.ejecutantes.get(indice).getEmpresa();
-//        }
-//    }
-//
-//    @NotPersistent()
-//    private List<Trabajador> ejecutantesTrabajadores;
-//
-//    public void getEjecutantesTrabajadores(){
-//        this.ejecutantesTrabajadores = ejecutanteRepository.Listar(this, ejecutanteEmpresa).getTrabajadores();
-//    }
+    public String disableAnterior() {
+        return 0 < this.iterador.getIterador() ? null : "Primera Posición";
+    }
+
+    public boolean hideAnterior() {
+        return this.ejecutantes.size() < 2;
+    }
+
+    
+
 
     //**********Metodo para notificar a las entidades dependientes**********
     @Override
