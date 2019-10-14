@@ -735,6 +735,18 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
         return ejecutantes.get(iterador.getIterador()).getVehiculos();
     }
 
+    public boolean hideQuitarVehiculoEjecutante() {
+        if (this.estado != EstadoAutorizacion.Abierta){
+            return true;
+        } else {
+            return this.ejecutantes.size() < 1;
+        }
+    }
+
+    public String disableQuitarVehiculoEjecutante() {
+        return this.ejecutantes.get(iterador.getIterador()).getVehiculos().size() < 1 ? "La lista de vehiculos esta vacia" : null;
+    }
+
     //**********Metodo para notificar a las entidades dependientes**********
     @Override
     public void Notificar() {
