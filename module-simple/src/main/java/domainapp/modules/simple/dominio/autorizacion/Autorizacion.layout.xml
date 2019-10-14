@@ -83,7 +83,10 @@
                             </cpt:fieldSet>
                         </bs3:col>
                         <bs3:col span="6" size="MD">
-                            <cpt:collection defaultView="table" id="ejecutanteTrabajadores"/>
+                            <cpt:collection defaultView="table" id="ejecutanteTrabajadores">
+                                <cpt:action id="AgregarTrabajadorEjecutante"/>
+                                <cpt:action id="QuitarTrabajadorEjecutante"/>
+                            </cpt:collection>
                         </bs3:col>
                         <bs3:col span="6" size="MD">
                             <cpt:collection defaultView="table" id="ejecutanteVehiculos"/>

@@ -521,7 +521,11 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     }
 
     public List<Empresa> choices0AgregarEjecutante() {
-        return empresaRepository.Listar(EstadoEmpresa.Habilitada);
+        List<Empresa> empresas = empresaRepository.Listar(EstadoEmpresa.Habilitada);
+        for (Ejecutante ejecutante: ejecutantes) {
+            empresas.remove(ejecutante.getEmpresa());
+        }
+        return empresas;
     }
 
     @Action()
@@ -603,7 +607,37 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
         return this.ejecutantes.size() < 2;
     }
 
-    
+    @Action()
+    @ActionLayout(named = "Agregar")
+    public Autorizacion AgregarTrabajadorEjecutante(
+            @Parameter(optionality = Optionality.MANDATORY)
+            @ParameterLayout(named = "Trabajador")
+            final Trabajador trabajador){
+
+        this.ejecutantes.get(iterador.getIterador()).AgregarTrabajador(trabajador);
+        return this;
+    }
+
+    public List<Trabajador> choices0AgregarTrabajadorEjecutante() {
+        List<Trabajador> trabajadores = trabajadorRepository.Listar(this.ejecutantes.get(iterador.getIterador()).getEmpresa(), EstadoGeneral.Habilitado);
+        trabajadores.removeAll(this.ejecutantes.get(iterador.getIterador()).getTrabajadores());
+        return trabajadores;
+    }
+
+    @Action()
+    @ActionLayout(named = "Quitar")
+    public Autorizacion QuitarTrabajadorEjecutante(
+            @Parameter(optionality = Optionality.MANDATORY)
+            @ParameterLayout(named = "Trabajador")
+            final Trabajador trabajador){
+
+        this.ejecutantes.get(iterador.getIterador()).QuitarTrabajador(trabajador);
+        return this;
+    }
+
+    public List<Trabajador> choices0QuitarTrabajadorEjecutante() {
+        return ejecutantes.get(iterador.getIterador()).getTrabajadores();
+    }
 
 
     //**********Metodo para notificar a las entidades dependientes**********
