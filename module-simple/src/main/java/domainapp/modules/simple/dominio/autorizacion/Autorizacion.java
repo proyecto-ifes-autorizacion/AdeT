@@ -189,7 +189,7 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     }
 
     @Programmatic
-    public void CambiarEstado(EstadoAutorizacion estado) {
+    private void CambiarEstado(EstadoAutorizacion estado) {
         this.estado = estado;
     }
 
@@ -219,8 +219,10 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
             return "Complete Empresa Solicitante";
         } else if (this.solicitanteTrabajador == null) {
             return "Complete Trabajador Solicitante";
-        } else if (this.solicitanteVehiculo == null) {
-            return "Complete Vehiculo Solicitante";
+        } else if (this.ejecutantes.size() == 0) {
+            return "Complete Ejecutante";
+        } else if (VerificarEjecutantes()) {
+            return "Complete los Trabajadores ejecutantes";
         } else {
             return null;
         }
@@ -228,6 +230,17 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
 
     public boolean hideLiberar() {
         return this.estado != EstadoAutorizacion.Abierta;
+    }
+
+    @Programmatic
+    private boolean VerificarEjecutantes(){
+        boolean resultado = false;
+        for (Ejecutante ejecutante : ejecutantes) {
+            if (ejecutante.getTrabajadores().size() == 0){
+                resultado = true;
+            }
+        }
+        return resultado;
     }
 
     @Action()
