@@ -97,7 +97,7 @@ public class Vehiculo implements Comparable<Vehiculo>, ObservadorGeneral, Observ
     private EstadoGeneral estado;
 
     @Column(allowsNull = "false")
-    @Property()
+    @Property(hidden = Where.ALL_TABLES)
     private boolean bajaEmpresa;
 
     @NotPersistent()

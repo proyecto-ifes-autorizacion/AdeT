@@ -297,12 +297,6 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     }
 
     @Action()
-    public Autorizacion Abrir() {
-        CambiarEstado(EstadoAutorizacion.Abierta);
-        return this;
-    }
-
-    @Action()
     @ActionLayout(named = "Agregar")
     public Autorizacion AgregarEmpresaSolicitante(
             @Parameter(optionality = Optionality.MANDATORY)
@@ -619,7 +613,7 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     private IteradorEjecutante iterador = IteradorEjecutante.getInstance();
 
     @NotPersistent()
-    @Property(hidden = Where.ALL_TABLES)
+    @Property(hidden = Where.EVERYWHERE)
     private int indice;
 
     public int getIndice(){

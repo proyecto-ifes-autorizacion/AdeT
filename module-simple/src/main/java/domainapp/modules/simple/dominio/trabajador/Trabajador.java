@@ -100,7 +100,7 @@ public class Trabajador implements Comparable<Trabajador>, ObservadorGeneral, Ob
     private EstadoGeneral estado;
 
     @Column(allowsNull = "false")
-    @Property()
+    @Property(hidden = Where.ALL_TABLES)
     private boolean bajaEmpresa;
 
     @NotPersistent()
