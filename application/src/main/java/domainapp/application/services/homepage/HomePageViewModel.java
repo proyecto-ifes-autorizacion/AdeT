@@ -20,12 +20,15 @@ package domainapp.application.services.homepage;
 
 import java.util.List;
 
+import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.Nature;
 import org.apache.isis.applib.services.i18n.TranslatableString;
 
-import domainapp.modules.simple.dom.impl.SimpleObject;
-import domainapp.modules.simple.dom.impl.SimpleObjects;
+//import domainapp.modules.simple.dom.impl.SimpleObject;
+//import domainapp.modules.simple.dom.impl.SimpleObjects;
+import domainapp.modules.simple.dominio.autorizacion.Autorizacion;
+import domainapp.modules.simple.dominio.autorizacion.AutorizacionRepository;
 
 @DomainObject(
         nature = Nature.VIEW_MODEL,
@@ -34,13 +37,14 @@ import domainapp.modules.simple.dom.impl.SimpleObjects;
 public class HomePageViewModel {
 
     public TranslatableString title() {
-        return TranslatableString.tr("{num} objects", "num", getObjects().size());
+        return TranslatableString.tr("{num} Autorizaciones", "num", getAutorizaciones().size());
     }
 
-    public List<SimpleObject> getObjects() {
-        return simpleObjects.listAll();
+    @ActionLayout(named = "Autorizaciones abiertas")
+    public List<Autorizacion> getAutorizaciones() {
+        return autorizacionRepository.listAll();
     }
 
     @javax.inject.Inject
-    SimpleObjects simpleObjects;
+    AutorizacionRepository autorizacionRepository;
 }
