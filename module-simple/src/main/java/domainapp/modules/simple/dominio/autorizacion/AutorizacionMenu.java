@@ -22,7 +22,7 @@ public class AutorizacionMenu {
     public java.util.List<Autorizacion> listAll() {
 
         iterador.reinicio();
-        return autorizacionrepository.listAll();
+        return autorizacionrepository.Listar();
     }
 
     @Action(semantics = SemanticsOf.SAFE)

@@ -13,8 +13,18 @@ import org.apache.isis.applib.services.repository.RepositoryService;
 public class AutorizacionRepository {
 
     @Programmatic
-    public List<Autorizacion> listAll() {
+    public List<Autorizacion> Listar() {
         return repositoryService.allInstances(Autorizacion.class);
+    }
+
+    @Programmatic
+    public List<Autorizacion> Listar(EstadoAutorizacion estado){
+
+        return repositoryService.allMatches(
+                new QueryDefault<>(
+                        Autorizacion.class,
+                        "findByEstado",
+                        "estado", estado));
     }
 
     @Programmatic

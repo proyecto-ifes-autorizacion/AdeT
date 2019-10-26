@@ -49,7 +49,12 @@ import lombok.Setter;
                 name = "findByIdAdeT", language = "JDOQL",
                 value = "SELECT "
                         + "FROM domainapp.modules.simple.dominio.autorizacion.Autorizacion "
-                        + "WHERE idAdeT == :idAdeT ")
+                        + "WHERE idAdeT == :idAdeT "),
+        @Query(
+                name = "findByEstado", language = "JDOQL",
+                value = "SELECT "
+                        + "FROM domainapp.modules.simple.dominio.autorizacion.Autorizacion "
+                        + "WHERE estado == :estado ")
 })
 @Unique(name = "Autorizacion_idAdeT_UNQ", members = { "idAdeT" })
 @DomainObject(

@@ -42,7 +42,7 @@ public class HomePageViewModel {
 
     @ActionLayout(named = "Autorizaciones abiertas")
     public List<Autorizacion> getAutorizaciones() {
-        return autorizacionRepository.listAll();
+        return autorizacionRepository.Listar();
     }
 
     @javax.inject.Inject
