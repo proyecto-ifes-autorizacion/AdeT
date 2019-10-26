@@ -35,17 +35,17 @@
                     <bs3:row>
                         <bs3:col span="4">
                             <cpt:fieldSet name="Solicitante">
-                                <cpt:property id="solicitanteEmpresa">
+                                <cpt:property id="solicitanteEmpresa" hidden="ALL_TABLES">
                                     <cpt:action id="AgregarEmpresaSolicitante" promptStyle="INLINE"/>
                                     <cpt:action id="EditarEmpresaSolicitante" promptStyle="INLINE"/>
                                     <cpt:action id="QuitarEmpresaSolicitante" promptStyle="INLINE"/>
                                 </cpt:property>
-                                <cpt:property id="solicitanteTrabajador">
+                                <cpt:property id="solicitanteTrabajador" hidden="ALL_TABLES">
                                     <cpt:action id="AgregarTrabajadorSolicitante" promptStyle="INLINE"/>
                                     <cpt:action id="EditarTrabajadorSolicitante" promptStyle="INLINE"/>
                                     <cpt:action id="QuitarTrabajadorSolicitante" promptStyle="INLINE"/>
                                 </cpt:property>
-                                <cpt:property id="solicitanteVehiculo">
+                                <cpt:property id="solicitanteVehiculo" hidden="ALL_TABLES">
                                     <cpt:action id="AgregarVehiculoSolicitante" promptStyle="INLINE"/>
                                     <cpt:action id="EditarVehiculoSolicitante" promptStyle="INLINE"/>
                                     <cpt:action id="QuitarVehiculoSolicitante" promptStyle="INLINE"/>
@@ -91,7 +91,7 @@
                             <cpt:fieldSet name="Ejecutante">
                                 <cpt:action id="Anterior"/>
                                 <cpt:action id="Siguiente"/>
-                                <cpt:property id="ejecutanteEmpresa"/>
+                                <cpt:property id="ejecutanteEmpresa" hidden="ALL_TABLES"/>
                             </cpt:fieldSet>
                         </bs3:col>
                         <bs3:col span="6" size="MD">
