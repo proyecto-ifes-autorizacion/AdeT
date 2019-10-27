@@ -29,13 +29,8 @@
                         </bs3:col>
                     </bs3:row>
                 </bs3:tab>
-                <bs3:tab name="Metadata">
-                    <bs3:row>
-                        <bs3:col span="12">
-                            <cpt:fieldSet name="Metadata"/>
-                        </bs3:col>
-                    </bs3:row>
-                </bs3:tab>
+            </bs3:tabGroup>
+            <bs3:tabGroup>
                 <bs3:tab name="Trabajadores">
                     <bs3:row>
                         <bs3:col span="12" size="MD">
@@ -47,13 +42,6 @@
                     <bs3:row>
                         <bs3:col span="12" size="MD">
                             <cpt:collection defaultView="table" id="vehiculos"/>
-                        </bs3:col>
-                    </bs3:row>
-                </bs3:tab>
-                <bs3:tab name="Other">
-                    <bs3:row>
-                        <bs3:col span="12">
-                            <cpt:fieldSet name="Other" unreferencedProperties="true"/>
                         </bs3:col>
                     </bs3:row>
                 </bs3:tab>
@@ -79,6 +67,24 @@
                     <bs3:row>
                         <bs3:col span="12" size="MD">
                             <cpt:collection defaultView="table" id="borrada"/>
+                        </bs3:col>
+                    </bs3:row>
+                </bs3:tab>
+            </bs3:tabGroup>
+        </bs3:col>
+        <bs3:col>
+            <bs3:tabGroup>
+                <bs3:tab name="Metadata">
+                    <bs3:row>
+                        <bs3:col span="12">
+                            <cpt:fieldSet name="Metadata"/>
+                        </bs3:col>
+                    </bs3:row>
+                </bs3:tab>
+                <bs3:tab name="Other">
+                    <bs3:row>
+                        <bs3:col span="12">
+                            <cpt:fieldSet name="Other" unreferencedProperties="true"/>
                         </bs3:col>
                     </bs3:row>
                 </bs3:tab>
