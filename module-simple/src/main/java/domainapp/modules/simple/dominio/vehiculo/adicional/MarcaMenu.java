@@ -64,6 +64,7 @@ public class MarcaMenu {
     @ActionLayout(named = "Crear")
     @MemberOrder(sequence = "3")
     public Marca create(
+            @Parameter(maxLength = 30)
             @ParameterLayout(named = "Marca: ")
             final String nombre) {
 

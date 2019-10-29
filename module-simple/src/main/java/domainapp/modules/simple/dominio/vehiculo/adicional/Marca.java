@@ -79,7 +79,7 @@ import static org.apache.isis.applib.annotation.SemanticsOf.NON_IDEMPOTENT_ARE_Y
 @Getter @Setter
 public class Marca implements Comparable<Marca>, SujetoGeneral {
 
-    @Column(allowsNull = "false", length = 40)
+    @Column(allowsNull = "false", length = 30)
     @Property()
     @Title()
     private String nombre;
@@ -132,7 +132,7 @@ public class Marca implements Comparable<Marca>, SujetoGeneral {
     @Action()
     @ActionLayout(named = "Editar")
     public Marca Update(
-            @Parameter(maxLength = 40)
+            @Parameter(maxLength = 30)
             @ParameterLayout(named = "Marca: ")
             final String nombre){
         setNombre(nombre);
@@ -165,7 +165,7 @@ public class Marca implements Comparable<Marca>, SujetoGeneral {
     @Action()
     @ActionLayout(named = "Agregar")
     public Marca AgregarModelos(
-            @Parameter(maxLength = 40)
+            @Parameter(maxLength = 30)
             @ParameterLayout(named = "Modelo")
             final String nombre){
 
