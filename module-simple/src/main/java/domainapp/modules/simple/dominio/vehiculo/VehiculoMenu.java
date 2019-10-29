@@ -68,6 +68,7 @@ public class VehiculoMenu {
             @ParameterLayout(named = "Modelo: ")
             final Modelo modelo,
 
+            @Parameter(maxLength = 20)
             @ParameterLayout(named = "Dominio: ")
             final String dominio,
 

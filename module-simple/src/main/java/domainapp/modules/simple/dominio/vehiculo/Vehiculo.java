@@ -75,7 +75,7 @@ import lombok.Setter;
 @Getter @Setter
 public class Vehiculo implements Comparable<Vehiculo>, ObservadorGeneral, ObservadorAutorizacion {
 
-    @Column(allowsNull = "false", length = largo)
+    @Column(allowsNull = "false", length = 20)
     @Property()
     @Title()
     private String dominio;
@@ -99,15 +99,6 @@ public class Vehiculo implements Comparable<Vehiculo>, ObservadorGeneral, Observ
     @Column(allowsNull = "false")
     @Property(hidden = Where.ALL_TABLES)
     private boolean bajaEmpresa;
-
-    @NotPersistent()
-    @Property(hidden = Where.EVERYWHERE)
-    private final int largo = 20;
-
-    @Programmatic()
-    private String longitudExcesiva(final int longitud){
-        return "Longitud Excedida en: " + (longitud-largo)+" "+((longitud-largo) == 1 ? "caracter.":"caracteres.");
-    }
 
     public String title(){
         return modelo.title()+", "+getDominio();
@@ -188,9 +179,6 @@ public class Vehiculo implements Comparable<Vehiculo>, ObservadorGeneral, Observ
     public List<Modelo> choices1Update() {return modeloRepository.ListActivos();}
 
     public String default2Update() {return getDominio();}
-    public TranslatableString validate2Update(final String dominio) {
-        return dominio.length() <= largo ? null : TranslatableString.tr(longitudExcesiva(dominio.length()));
-    }
 
     public LocalDate default3Update() {return getFechaAlta();}
 
