@@ -61,15 +61,19 @@ public class EmpresaMenu {
     @ActionLayout(named = "Crear")
     @MemberOrder(sequence = "3")
     public Empresa create(
+            @Parameter(maxLength = 40)
             @ParameterLayout(named = "Nombre Fantasia: ")
             final String nombreFantasia,
 
+            @Parameter(maxLength = 40)
             @ParameterLayout(named = "Razon Social: ")
             final String razonSocial,
 
+            @Parameter(maxLength = 40)
             @ParameterLayout(named = "Direccion: ")
             final String direccion,
 
+            @Parameter(maxLength = 40)
             @ParameterLayout(named = "Telefono: ")
             final String telefono) {
 

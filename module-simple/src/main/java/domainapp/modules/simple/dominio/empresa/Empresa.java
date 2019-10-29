@@ -62,20 +62,20 @@ import lombok.Setter;
 @Getter @Setter
 public class Empresa implements Comparable<Empresa>, SujetoGeneral {
 
-    @Column(allowsNull = "false", length = largo)
+    @Column(allowsNull = "false", length = 40)
     @Property()
     @Title()
     private String nombreFantasia;
 
-    @Column(allowsNull = "false", length = largo)
+    @Column(allowsNull = "false", length = 40)
     @Property()
     private String razonSocial;
 
-    @Column(allowsNull = "false", length = largo)
+    @Column(allowsNull = "false", length = 40)
     @Property()
     private String direccion;
 
-    @Column(allowsNull = "false", length = largo)
+    @Column(allowsNull = "false", length = 40)
     @Property()
     private String telefono;
 
@@ -93,17 +93,14 @@ public class Empresa implements Comparable<Empresa>, SujetoGeneral {
     @Property()
     private List<Vehiculo> vehiculos;
 
-    @NotPersistent()
-    @Property(hidden = Where.EVERYWHERE)
-    private final int largo = 40;
-
-    @Programmatic()
-    private String longitudExcesiva(final int longitud){
-        return "Longitud Excedida en: " + (longitud-largo)+" "+((longitud-largo) == 1 ? "caracter.":"caracteres.");
-    }
-
-    public String inconName(){
-        return "Empresa";
+    public String iconName(){
+        if (this.estado == EstadoEmpresa.Habilitada){
+            return "Habilitada";
+        } else if (this.estado == EstadoEmpresa.Inhabilitada){
+            return "Inhabilitada";
+        } else {
+            return "Borrada";
+        }
     }
 
     public Empresa(){}
@@ -161,14 +158,21 @@ public class Empresa implements Comparable<Empresa>, SujetoGeneral {
     @Action()
     @ActionLayout(named = "Editar")
     public Empresa update(
+            @Parameter(maxLength = 40)
             @ParameterLayout(named = "Nombre Fantasia: ")
-            String nombreFantasia,
+            final String nombreFantasia,
+
+            @Parameter(maxLength = 40)
             @ParameterLayout(named = "Razon Social: ")
-            String razonSocial,
+            final String razonSocial,
+
+            @Parameter(maxLength = 40)
             @ParameterLayout(named = "Direccion: ")
-            String direccion,
+            final String direccion,
+
+            @Parameter(maxLength = 40)
             @ParameterLayout(named = "Telefono: ")
-            String telefono){
+            final String telefono){
 
         this.nombreFantasia = nombreFantasia;
         this.razonSocial = razonSocial;
@@ -179,27 +183,11 @@ public class Empresa implements Comparable<Empresa>, SujetoGeneral {
 
     public String default0Update() {return getNombreFantasia();}
 
-    public TranslatableString validate0Update(final String nombreFantasia) {
-        return nombreFantasia.length() <= largo ? null : TranslatableString.tr(longitudExcesiva(nombreFantasia.length()));
-    }
-
     public String default1Update() {return getRazonSocial();}
-
-    public TranslatableString validate1Update(final String razonSocial) {
-        return razonSocial.length() <= largo ? null : TranslatableString.tr(longitudExcesiva(razonSocial.length()));
-    }
 
     public String default2Update() {return getDireccion();}
 
-    public TranslatableString validate2Update(final String direccion) {
-        return direccion.length() <= largo ? null : TranslatableString.tr(longitudExcesiva(direccion.length()));
-    }
-
     public String default3Update() {return getTelefono();}
-
-    public TranslatableString validate3Update(final String telefono) {
-        return telefono.length() <= largo ? null : TranslatableString.tr(longitudExcesiva(telefono.length()));
-    }
 
     @Programmatic
     public void CambiarEstado(EstadoEmpresa estado){
