@@ -59,12 +59,15 @@ public class TrabajadorMenu {
     @MemberOrder(sequence = "3")
     public Trabajador create(
 
+            @Parameter(maxLength = 13)
             @ParameterLayout(named = "Cuil: ")
             final String cuil,
 
+            @Parameter(maxLength = 40)
             @ParameterLayout(named = "Nombre: ")
             final String nombre,
 
+            @Parameter(maxLength = 40)
             @ParameterLayout(named = "Apellido: ")
             final String apellido,
 

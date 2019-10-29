@@ -79,11 +79,11 @@ public class Trabajador implements Comparable<Trabajador>, ObservadorGeneral, Ob
     @Property()
     private String cuil;
 
-    @Column(allowsNull = "false", length = largo)
+    @Column(allowsNull = "false", length = 40)
     @Property()
     private String nombre;
 
-    @Column(allowsNull = "false", length = largo)
+    @Column(allowsNull = "false", length = 40)
     @Property()
     private String apellido;
 
@@ -102,15 +102,6 @@ public class Trabajador implements Comparable<Trabajador>, ObservadorGeneral, Ob
     @Column(allowsNull = "false")
     @Property(hidden = Where.ALL_TABLES)
     private boolean bajaEmpresa;
-
-    @NotPersistent()
-    @Property(hidden = Where.EVERYWHERE)
-    private final int largo = 40;
-
-    @Programmatic()
-    private String longitudExcesiva(final int longitud){
-        return "Longitud Excedida en: " + (longitud-largo)+" "+((longitud-largo) == 1 ? "caracter.":"caracteres.");
-    }
 
     public String title(){
         return getApellido()+", "+getNombre();
@@ -175,17 +166,24 @@ public class Trabajador implements Comparable<Trabajador>, ObservadorGeneral, Ob
     @Action()
     @ActionLayout(named = "Editar")
     public Trabajador update(
+            @Parameter(maxLength = 13)
             @ParameterLayout(named = "Cuil: ")
-            String cuil,
+            final String cuil,
+
+            @Parameter(maxLength = 40)
             @ParameterLayout(named = "Nombre: ")
-            String nombre,
+            final String nombre,
+
+            @Parameter(maxLength = 40)
             @ParameterLayout(named = "Apellido: ")
-            String apellido,
+            final String apellido,
+
             @ParameterLayout(named = "Fecha Nacimiento: ")
-            LocalDate fechaNacimiento,
+            final LocalDate fechaNacimiento,
+
             @Parameter(optionality = Optionality.MANDATORY)
             @ParameterLayout(named = "Empresa: ")
-            Empresa empresa){
+            final Empresa empresa){
 
         this.cuil = cuil;
         this.nombre = nombre;
@@ -198,14 +196,8 @@ public class Trabajador implements Comparable<Trabajador>, ObservadorGeneral, Ob
     public String default0Update() {return getCuil();}
 
     public String default1Update() {return getNombre();}
-    public TranslatableString validate1Update(final String nombre) {
-        return nombre.length() <= largo ? null : TranslatableString.tr(longitudExcesiva(nombre.length()));
-    }
 
     public String default2Update() {return getApellido();}
-    public TranslatableString validate2Update(final String apellido) {
-        return apellido.length() <= largo ? null : TranslatableString.tr(longitudExcesiva(apellido.length()));
-    }
 
     public LocalDate default3Update() {return getFechaNacimiento();}
 
