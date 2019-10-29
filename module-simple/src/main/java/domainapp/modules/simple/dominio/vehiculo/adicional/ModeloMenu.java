@@ -64,6 +64,7 @@ public class ModeloMenu {
     @ActionLayout(named = "Crear")
     @MemberOrder(sequence = "3")
     public Modelo create(
+            @Parameter(maxLength = 30)
             @ParameterLayout(named = "Modelo: ")
             final String nombre,
 

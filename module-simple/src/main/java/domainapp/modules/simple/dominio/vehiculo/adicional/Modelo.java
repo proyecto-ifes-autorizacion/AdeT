@@ -90,7 +90,7 @@ import static org.apache.isis.applib.annotation.SemanticsOf.NON_IDEMPOTENT_ARE_Y
 
 public class Modelo implements Comparable<Modelo>, ObservadorGeneral {
 
-    @Column(allowsNull = "false", length = 40)
+    @Column(allowsNull = "false", length = 30)
     @Property()
     private String nombre;
 
@@ -152,7 +152,7 @@ public class Modelo implements Comparable<Modelo>, ObservadorGeneral {
     @Action()
     @ActionLayout(named = "Editar")
     public Modelo Update(
-            @Parameter(maxLength = 40)
+            @Parameter(maxLength = 30)
             @ParameterLayout(named = "Modelo: ")
             final String nombre){
         setNombre(nombre);
