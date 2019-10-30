@@ -17,7 +17,7 @@ public class AutorizacionMenu {
     private IteradorEjecutante iterador = IteradorEjecutante.getInstance();
 
     @Action(semantics = SemanticsOf.SAFE, restrictTo = RestrictTo.PROTOTYPING)
-    @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT)
+    @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT, named = "Listado de Autorizaciones")
     @MemberOrder(sequence = "1")
     public java.util.List<Autorizacion> listAll() {
 
@@ -26,7 +26,7 @@ public class AutorizacionMenu {
     }
 
     @Action(semantics = SemanticsOf.SAFE)
-    @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT)
+    @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT, named = "Buscar")
     @MemberOrder(sequence = "2")
     public java.util.List<Autorizacion> findByIdAdeT(
             final int idAdeT) {

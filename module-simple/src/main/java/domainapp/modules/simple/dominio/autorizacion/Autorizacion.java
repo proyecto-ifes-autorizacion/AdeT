@@ -86,7 +86,7 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
         return this.estado != EstadoAutorizacion.Abierta ? "x" : null;
     }
 
-    @Column(allowsNull = "true", length = 60)
+    @Column(allowsNull = "true", length = 40)
     @Property(editing = Editing.ENABLED)
     private String ubicacion;
 
@@ -768,7 +768,9 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     @Override
     public void Notificar() {
         this.solicitanteTrabajador.Actualizar(this.estado);
-        this.solicitanteVehiculo.Actualizar(this.estado);
+        if (this.solicitanteVehiculo != null){
+            this.solicitanteVehiculo.Actualizar(this.estado);
+        }
         for (Ejecutante ejecuntate : ejecutantes) {
             ejecuntate.Actualizar();
         }
