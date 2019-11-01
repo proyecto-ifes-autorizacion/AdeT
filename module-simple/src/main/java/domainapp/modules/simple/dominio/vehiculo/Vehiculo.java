@@ -104,6 +104,18 @@ public class Vehiculo implements Comparable<Vehiculo>, ObservadorGeneral, Observ
         return modelo.title()+", "+getDominio();
     }
 
+    public String iconName(){
+        if (this.estado == EstadoGeneral.Ejecucion){
+            return "Ejecucion";
+        } else if (this.estado == EstadoGeneral.Habilitado){
+            return "Habilitado";
+        } else if (this.estado == EstadoGeneral.Inhabilitado){
+            return "Inhabilitado";}
+        else {
+            return "Borrado";
+        }
+    }
+
     public Vehiculo(){}
 
     public Vehiculo(String dominio, Modelo modelo, LocalDate fechaAlta, Empresa empresa){
