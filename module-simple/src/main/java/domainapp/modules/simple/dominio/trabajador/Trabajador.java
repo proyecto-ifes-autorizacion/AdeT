@@ -107,6 +107,18 @@ public class Trabajador implements Comparable<Trabajador>, ObservadorGeneral, Ob
         return getApellido()+", "+getNombre();
     }
 
+    public String iconName(){
+        if (this.estado == EstadoGeneral.Ejecucion){
+            return "Ejecucion";
+        } else if (this.estado == EstadoGeneral.Habilitado){
+            return "Habilitado";
+        } else if (this.estado == EstadoGeneral.Inhabilitado){
+            return "Inhabilitado";}
+        else {
+            return "Borrado";
+        }
+    }
+
     public Trabajador(){}
 
     public Trabajador(
