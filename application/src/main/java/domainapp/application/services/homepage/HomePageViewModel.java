@@ -29,6 +29,7 @@ import org.apache.isis.applib.services.i18n.TranslatableString;
 //import domainapp.modules.simple.dom.impl.SimpleObjects;
 import domainapp.modules.simple.dominio.autorizacion.Autorizacion;
 import domainapp.modules.simple.dominio.autorizacion.AutorizacionRepository;
+import domainapp.modules.simple.dominio.autorizacion.EstadoAutorizacion;
 
 @DomainObject(
         nature = Nature.VIEW_MODEL,
@@ -42,7 +43,9 @@ public class HomePageViewModel {
 
     @ActionLayout(named = "Autorizaciones abiertas")
     public List<Autorizacion> getAutorizaciones() {
-        return autorizacionRepository.Listar();
+        List<Autorizacion> autorizaciones = autorizacionRepository.Listar(EstadoAutorizacion.Abierta);
+        autorizaciones.addAll(autorizacionRepository.Listar(EstadoAutorizacion.Liberada));
+        return autorizaciones;
     }
 
     @javax.inject.Inject
