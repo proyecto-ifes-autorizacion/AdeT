@@ -207,6 +207,10 @@ public class Trabajador implements Comparable<Trabajador>, ObservadorGeneral, Ob
 
     public String default0Update() {return getCuil();}
 
+    public String validate0Update(final String cuil) {
+        return ValidarCuil(cuil);
+    }
+    
     public String default1Update() {return getNombre();}
 
     public String default2Update() {return getApellido();}
@@ -216,6 +220,27 @@ public class Trabajador implements Comparable<Trabajador>, ObservadorGeneral, Ob
     public Empresa default4Update() {return getEmpresa();}
     public List<Empresa> choices4Update() {
         return empresaRepository.Listar(EstadoEmpresa.Habilitada);
+    }
+
+    @Programmatic
+    private String ValidarCuil(final String cuil){
+        if (Character.isDigit(cuil.charAt(0)) &&
+                Character.isDigit(cuil.charAt(1)) &&
+                (Character.compare(cuil.charAt(2),'-') == 0)&&
+                Character.isDigit(cuil.charAt(3)) &&
+                Character.isDigit(cuil.charAt(4)) &&
+                Character.isDigit(cuil.charAt(5)) &&
+                Character.isDigit(cuil.charAt(6)) &&
+                Character.isDigit(cuil.charAt(7)) &&
+                Character.isDigit(cuil.charAt(8)) &&
+                Character.isDigit(cuil.charAt(9)) &&
+                Character.isDigit(cuil.charAt(10)) &&
+                (Character.compare(cuil.charAt(11),'-') == 0)&&
+                Character.isDigit(cuil.charAt(12))){
+            return null;
+        } else {
+            return "Formato no valido XX-XXXXXXXX-X";
+        }
     }
 
     @Programmatic

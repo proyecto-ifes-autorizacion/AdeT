@@ -81,7 +81,31 @@ public class TrabajadorMenu {
         return trabajadorrepository.create(cuil, nombre, apellido, fechaNacimiento, empresa);
     }
 
+    public String validate0Create(final String cuil) {
+        return ValidarCuil(cuil);
+    }
     public List<Empresa> choices4Create() {return empresaRepository.Listar();}
+
+    @Programmatic
+    private String ValidarCuil(final String cuil){
+        if (Character.isDigit(cuil.charAt(0)) &&
+                Character.isDigit(cuil.charAt(1)) &&
+                (Character.compare(cuil.charAt(2),'-') == 0)&&
+                Character.isDigit(cuil.charAt(3)) &&
+                Character.isDigit(cuil.charAt(4)) &&
+                Character.isDigit(cuil.charAt(5)) &&
+                Character.isDigit(cuil.charAt(6)) &&
+                Character.isDigit(cuil.charAt(7)) &&
+                Character.isDigit(cuil.charAt(8)) &&
+                Character.isDigit(cuil.charAt(9)) &&
+                Character.isDigit(cuil.charAt(10)) &&
+                (Character.compare(cuil.charAt(11),'-') == 0)&&
+                Character.isDigit(cuil.charAt(12))){
+            return null;
+        } else {
+            return "Formato no valido XX-XXXXXXXX-X";
+        }
+    }
 
     @javax.inject.Inject
     TrabajadorRepository trabajadorrepository;
