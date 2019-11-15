@@ -47,9 +47,7 @@ public class EjecutarReportes {
             parameters.put("ds", ds);
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, ds);
-
             JasperExportManager.exportReportToPdfFile(jasperPrint,rutaSalida);
-            byte[] pdfBytes = JasperExportManager.exportReportToPdf(jasperPrint);
 
             JRPdfExporter pdfExporter = new JRPdfExporter();
             pdfExporter.setExporterInput(new SimpleExporterInput(jasperPrint));
