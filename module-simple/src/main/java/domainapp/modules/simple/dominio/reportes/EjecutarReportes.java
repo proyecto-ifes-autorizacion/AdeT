@@ -26,7 +26,7 @@ public class EjecutarReportes {
 
     public void ListadoVehiculoPDF(List<Vehiculo> vehiculos){
         try {
-            File rutaEntrada = new File("C:\\Users\\4G\\Desktop\\Proyecto_Final\\Codigo\\AdeT\\module-simple\\src\\main\\java\\domainapp\\modules\\simple\\dominio\\reportes\\ListadoVehiculo.jrxml");
+            File rutaEntrada = new File(getClass().getResource("ListadoVehiculo.jrxml").getPath());
             String rutaSalida = System.getProperty("user.home") + File.separatorChar + "Downloads\\ListadoVehiculos.pdf";
 
             List<RepoVehiculo> repoVehiculos = new ArrayList<RepoVehiculo>();
