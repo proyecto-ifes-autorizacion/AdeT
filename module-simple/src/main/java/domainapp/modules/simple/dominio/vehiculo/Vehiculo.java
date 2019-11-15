@@ -3,7 +3,6 @@ package domainapp.modules.simple.dominio.vehiculo;
 import java.util.List;
 
 import org.apache.isis.applib.annotation.*;
-import org.apache.isis.applib.services.i18n.TranslatableString;
 
 import javax.jdo.annotations.*;
 
@@ -115,6 +114,12 @@ public class Vehiculo implements Comparable<Vehiculo>, ObservadorGeneral, Observ
             return "Borrado";
         }
     }
+
+    public String RepoDominio(){ return this.dominio; }
+    public String RepoModelo(){ return this.modelo.title(); }
+    public LocalDate RepoFechaAlta(){ return this.fechaAlta; }
+    public String RepoEmpresa(){ return this.empresa.getNombreFantasia(); }
+    public String RepoEstado() {return this.estado.toString(); }
 
     public Vehiculo(){}
 

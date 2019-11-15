@@ -11,6 +11,7 @@ import org.apache.isis.applib.annotation.*;
 
 import domainapp.modules.simple.dominio.empresa.Empresa;
 import domainapp.modules.simple.dominio.empresa.EmpresaRepository;
+import domainapp.modules.simple.dominio.reportes.EjecutarReportes;
 import domainapp.modules.simple.dominio.vehiculo.adicional.Modelo;
 import domainapp.modules.simple.dominio.vehiculo.adicional.ModeloRepository;
 
@@ -24,6 +25,12 @@ import domainapp.modules.simple.dominio.vehiculo.adicional.ModeloRepository;
         menuOrder = ""
 )
 public class VehiculoMenu {
+
+    @Action()
+    public void Reporte(){
+        EjecutarReportes ejecutarReportes = new EjecutarReportes();
+        ejecutarReportes.ListadoVehiculoPDF(vehiculorepository.List());
+    }
 
     @Action(
             semantics = SemanticsOf.SAFE,
