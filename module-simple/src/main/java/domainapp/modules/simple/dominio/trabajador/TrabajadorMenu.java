@@ -10,6 +10,7 @@ import org.apache.isis.applib.annotation.*;
 
 import domainapp.modules.simple.dominio.empresa.Empresa;
 import domainapp.modules.simple.dominio.empresa.EmpresaRepository;
+import domainapp.modules.simple.dominio.reportes.EjecutarReportes;
 
 @DomainService(
         nature = NatureOfService.VIEW_MENU_ONLY,
@@ -21,6 +22,13 @@ import domainapp.modules.simple.dominio.empresa.EmpresaRepository;
         menuOrder = ""
 )
 public class TrabajadorMenu {
+
+    @Action()
+    public List<Trabajador> ExportarListado() {
+        EjecutarReportes ejecutarReportes = new EjecutarReportes();
+        ejecutarReportes.ListadoTrabajadorPDF(trabajadorrepository.Listar());
+        return trabajadorrepository.Listar();
+    }
 
     @Action(
             semantics = SemanticsOf.SAFE,

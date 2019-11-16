@@ -11,6 +11,7 @@ import java.util.Map;
 import org.apache.isis.applib.services.i18n.TranslatableString;
 
 import domainapp.modules.simple.dominio.empresa.Empresa;
+import domainapp.modules.simple.dominio.trabajador.Trabajador;
 import domainapp.modules.simple.dominio.vehiculo.Vehiculo;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -90,6 +91,44 @@ public class EjecutarReportes {
             JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
             JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(repoEmpresas);
+
+            Map<String, Object> parameters = new HashMap<String, Object>();
+            parameters.put("ds", ds);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, ds);
+            JasperExportManager.exportReportToPdfFile(jasperPrint,rutaSalida);
+
+            JRPdfExporter pdfExporter = new JRPdfExporter();
+            pdfExporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+            ByteArrayOutputStream pdfReportStream = new ByteArrayOutputStream();
+            pdfExporter.setExporterOutput(new SimpleOutputStreamExporterOutput(pdfReportStream));
+            pdfExporter.exportReport();
+
+            pdfReportStream.close();
+        } catch (Exception e) {
+            TranslatableString.tr("Error al mostrar el reporte: "+e);
+        }
+
+    }
+
+    public void ListadoTrabajadorPDF(List<Trabajador> trabajadores){
+        try {
+            File rutaEntrada = Entrada("ListadoTrabajador.jrxml");
+            String rutaSalida = Salida("ListadoTrabajadores.pdf");
+
+            List<RepoTrabajador> repoTrabajadores = new ArrayList<RepoTrabajador>();
+            repoTrabajadores.add(new RepoTrabajador());
+
+            for (Trabajador trabajador : trabajadores) {
+                RepoTrabajador repoTrabajador = new RepoTrabajador(trabajador.RepoCuil(), trabajador.RepoNombre(), trabajador.RepoApellido(), trabajador.RepoFechaNacimiento(), trabajador.RepoEmpresa(), trabajador.RepoEstado());
+                repoTrabajadores.add(repoTrabajador);
+            }
+
+            InputStream input = new FileInputStream(rutaEntrada);
+            JasperDesign jasperDesign = JRXmlLoader.load(input);
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+            JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(repoTrabajadores);
 
             Map<String, Object> parameters = new HashMap<String, Object>();
             parameters.put("ds", ds);

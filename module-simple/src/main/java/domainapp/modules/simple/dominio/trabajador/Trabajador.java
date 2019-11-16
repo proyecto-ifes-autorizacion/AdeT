@@ -119,6 +119,13 @@ public class Trabajador implements Comparable<Trabajador>, ObservadorGeneral, Ob
         }
     }
 
+    public String RepoCuil(){ return this.cuil; }
+    public String RepoNombre(){ return this.nombre; }
+    public String RepoApellido(){ return this.apellido; }
+    public String RepoFechaNacimiento(){ return this.fechaNacimiento.toString("dd-MM-yyyy"); }
+    public String RepoEmpresa(){ return this.empresa.getNombreFantasia(); }
+    public String RepoEstado() {return this.estado.toString(); }
+
     public Trabajador(){}
 
     public Trabajador(
