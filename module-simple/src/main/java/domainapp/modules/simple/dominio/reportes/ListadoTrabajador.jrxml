@@ -63,7 +63,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="25"/>
 				</textElement>
-				<text><![CDATA["Listado de Trabajadores"]]></text>
+				<text><![CDATA[Listado de Trabajadores]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -234,17 +234,17 @@
 		<band height="40" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField>
-				<reportElement x="475" y="0" width="40" height="40" uuid="cfdfe04f-2bbb-4f17-825d-bb1a665f0ed5">
+				<reportElement x="455" y="0" width="50" height="40" uuid="cfdfe04f-2bbb-4f17-825d-bb1a665f0ed5">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Pagina " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="515" y="0" width="40" height="40" uuid="060368c6-2987-497b-a4cf-5e8a967388b4">
+				<reportElement x="505" y="0" width="50" height="40" uuid="060368c6-2987-497b-a4cf-5e8a967388b4">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>

@@ -24,6 +24,7 @@ import domainapp.modules.simple.dominio.reportes.EjecutarReportes;
 public class TrabajadorMenu {
 
     @Action()
+    @ActionLayout(named = "Listado Exportado")
     public List<Trabajador> ExportarListado() {
         EjecutarReportes ejecutarReportes = new EjecutarReportes();
         ejecutarReportes.ListadoTrabajadorPDF(trabajadorrepository.Listar());
