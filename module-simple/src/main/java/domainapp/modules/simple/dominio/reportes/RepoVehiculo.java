@@ -1,9 +1,5 @@
 package domainapp.modules.simple.dominio.reportes;
 
-import org.joda.time.LocalDate;
-
-import domainapp.modules.simple.dominio.vehiculo.Vehiculo;
-
 public class RepoVehiculo {
 
     private String dominio;

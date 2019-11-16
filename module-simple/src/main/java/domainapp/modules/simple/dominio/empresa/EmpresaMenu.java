@@ -10,6 +10,7 @@ import javax.jdo.annotations.*;
 import com.google.common.collect.Lists;
 import com.google.inject.internal.cglib.proxy.$MethodProxy;
 
+import domainapp.modules.simple.dominio.reportes.EjecutarReportes;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,6 +24,13 @@ import lombok.Setter;
         menuOrder = ""
 )
 public class EmpresaMenu {
+
+    @Action()
+    public List<Empresa> ExportarListado(){
+        EjecutarReportes ejecutarReportes = new EjecutarReportes();
+        ejecutarReportes.ListadoEmpresaPDF(empresarepository.Listar());
+        return empresarepository.Listar();
+    }
 
     @Action(
             semantics = SemanticsOf.SAFE,

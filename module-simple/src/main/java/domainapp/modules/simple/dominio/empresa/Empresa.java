@@ -103,6 +103,12 @@ public class Empresa implements Comparable<Empresa>, SujetoGeneral {
         }
     }
 
+    public String RepoNombreFantasia(){ return this.nombreFantasia; }
+    public String RepoRazonSocial(){ return this.razonSocial; }
+    public String RepoDireccion(){ return this.direccion; }
+    public String RepoTelefono(){ return this.telefono; }
+    public String RepoEstado(){ return this.estado.toString(); }
+
     public Empresa(){}
 
     public Empresa(

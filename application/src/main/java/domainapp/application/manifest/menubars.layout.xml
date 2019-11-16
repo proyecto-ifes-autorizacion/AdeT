@@ -47,6 +47,9 @@
                 <mb3:serviceAction objectType="Empresa" id="listAll">
                     <cpt:named>Listar</cpt:named>
                 </mb3:serviceAction>
+                <mb3:serviceAction objectType="Empresa" id="ExportarListado">
+                    <cpt:named>Exportar Listado a PDF</cpt:named>
+                </mb3:serviceAction>
             </mb3:section>
         </mb3:menu>
 
@@ -76,6 +79,9 @@
                 </mb3:serviceAction>
                 <mb3:serviceAction objectType="Vehiculo" id="listAll">
                     <cpt:named>Listar</cpt:named>
+                </mb3:serviceAction>
+                <mb3:serviceAction objectType="Vehiculo" id="ExportarListado">
+                    <cpt:named>Exportar Listado a PDF</cpt:named>
                 </mb3:serviceAction>
             </mb3:section>
         </mb3:menu>

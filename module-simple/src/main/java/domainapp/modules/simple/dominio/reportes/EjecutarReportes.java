@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.apache.isis.applib.services.i18n.TranslatableString;
+
+import domainapp.modules.simple.dominio.empresa.Empresa;
 import domainapp.modules.simple.dominio.vehiculo.Vehiculo;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -24,10 +26,18 @@ import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 
 public class EjecutarReportes {
 
+    private File Entrada(String nombre){
+        return new File(getClass().getResource(nombre).getPath());
+    }
+
+    private String Salida(String nombre){
+        return System.getProperty("user.home") + File.separatorChar + "Downloads" + File.separatorChar + nombre;
+    }
+
     public void ListadoVehiculoPDF(List<Vehiculo> vehiculos){
         try {
-            File rutaEntrada = new File(getClass().getResource("ListadoVehiculo.jrxml").getPath());
-            String rutaSalida = System.getProperty("user.home") + File.separatorChar + "Downloads\\ListadoVehiculos.pdf";
+            File rutaEntrada = Entrada("ListadoVehiculo.jrxml");
+            String rutaSalida = Salida("ListadoVehiculos.pdf");
 
             List<RepoVehiculo> repoVehiculos = new ArrayList<RepoVehiculo>();
             repoVehiculos.add(new RepoVehiculo());
@@ -42,6 +52,44 @@ public class EjecutarReportes {
             JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
             JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(repoVehiculos);
+
+            Map<String, Object> parameters = new HashMap<String, Object>();
+            parameters.put("ds", ds);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, ds);
+            JasperExportManager.exportReportToPdfFile(jasperPrint,rutaSalida);
+
+            JRPdfExporter pdfExporter = new JRPdfExporter();
+            pdfExporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+            ByteArrayOutputStream pdfReportStream = new ByteArrayOutputStream();
+            pdfExporter.setExporterOutput(new SimpleOutputStreamExporterOutput(pdfReportStream));
+            pdfExporter.exportReport();
+
+            pdfReportStream.close();
+        } catch (Exception e) {
+            TranslatableString.tr("Error al mostrar el reporte: "+e);
+        }
+
+    }
+
+    public void ListadoEmpresaPDF(List<Empresa> empresas){
+        try {
+            File rutaEntrada = Entrada("ListadoEmpresa.jrxml");
+            String rutaSalida = Salida("ListadoEmpresas.pdf");
+
+            List<RepoEmpresa> repoEmpresas = new ArrayList<RepoEmpresa>();
+            repoEmpresas.add(new RepoEmpresa());
+
+            for (Empresa empresa : empresas) {
+                RepoEmpresa repoEmpresa = new RepoEmpresa(empresa.RepoNombreFantasia(), empresa.RepoRazonSocial(), empresa.RepoDireccion(), empresa.RepoTelefono(), empresa.RepoEstado());
+                repoEmpresas.add(repoEmpresa);
+            }
+
+            InputStream input = new FileInputStream(rutaEntrada);
+            JasperDesign jasperDesign = JRXmlLoader.load(input);
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+            JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(repoEmpresas);
 
             Map<String, Object> parameters = new HashMap<String, Object>();
             parameters.put("ds", ds);

@@ -27,9 +27,10 @@ import domainapp.modules.simple.dominio.vehiculo.adicional.ModeloRepository;
 public class VehiculoMenu {
 
     @Action()
-    public void Reporte(){
+    public List<Vehiculo> ExportarListado(){
         EjecutarReportes ejecutarReportes = new EjecutarReportes();
         ejecutarReportes.ListadoVehiculoPDF(vehiculorepository.List());
+        return vehiculorepository.List();
     }
 
     @Action(
