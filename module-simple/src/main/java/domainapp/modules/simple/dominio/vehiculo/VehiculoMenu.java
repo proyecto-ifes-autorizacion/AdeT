@@ -27,6 +27,7 @@ import domainapp.modules.simple.dominio.vehiculo.adicional.ModeloRepository;
 public class VehiculoMenu {
 
     @Action()
+    @ActionLayout(named = "Listado Exportado")
     public List<Vehiculo> ExportarListado(){
         EjecutarReportes ejecutarReportes = new EjecutarReportes();
         ejecutarReportes.ListadoVehiculoPDF(vehiculorepository.List());
