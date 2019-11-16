@@ -26,6 +26,7 @@ import lombok.Setter;
 public class EmpresaMenu {
 
     @Action()
+    @ActionLayout(named = "Listado Exportado")
     public List<Empresa> ExportarListado(){
         EjecutarReportes ejecutarReportes = new EjecutarReportes();
         ejecutarReportes.ListadoEmpresaPDF(empresarepository.Listar());
