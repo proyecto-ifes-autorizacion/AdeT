@@ -32,6 +32,9 @@
                 <mb3:serviceAction objectType="Autorizacion" id="listAll">
                     <cpt:named>Listar</cpt:named>
                 </mb3:serviceAction>
+                <mb3:serviceAction objectType="Autorizacion" id="ExportarListado">
+                    <cpt:named>Exportar Listado a PDF</cpt:named>
+                </mb3:serviceAction>
             </mb3:section>
         </mb3:menu>
 

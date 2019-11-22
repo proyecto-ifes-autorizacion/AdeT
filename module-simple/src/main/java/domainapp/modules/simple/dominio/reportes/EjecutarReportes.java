@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import org.apache.isis.applib.services.i18n.TranslatableString;
 
+import domainapp.modules.simple.dominio.autorizacion.Autorizacion;
 import domainapp.modules.simple.dominio.empresa.Empresa;
 import domainapp.modules.simple.dominio.trabajador.Trabajador;
 import domainapp.modules.simple.dominio.vehiculo.Vehiculo;
@@ -129,6 +130,44 @@ public class EjecutarReportes {
             JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
             JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(repoTrabajadores);
+
+            Map<String, Object> parameters = new HashMap<String, Object>();
+            parameters.put("ds", ds);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, ds);
+            JasperExportManager.exportReportToPdfFile(jasperPrint,rutaSalida);
+
+            JRPdfExporter pdfExporter = new JRPdfExporter();
+            pdfExporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+            ByteArrayOutputStream pdfReportStream = new ByteArrayOutputStream();
+            pdfExporter.setExporterOutput(new SimpleOutputStreamExporterOutput(pdfReportStream));
+            pdfExporter.exportReport();
+
+            pdfReportStream.close();
+        } catch (Exception e) {
+            TranslatableString.tr("Error al mostrar el reporte: "+e);
+        }
+
+    }
+
+    public void ListadoAutorizacionPDF(List<Autorizacion> autorizaciones){
+        try {
+            File rutaEntrada = Entrada("ListadoAutorizacion.jrxml");
+            String rutaSalida = Salida("ListadoAutorizaciones.pdf");
+
+            List<RepoAutorizacion> repoAutorizaciones = new ArrayList<RepoAutorizacion>();
+            repoAutorizaciones.add(new RepoAutorizacion());
+
+            for (Autorizacion autorizacion : autorizaciones) {
+                RepoAutorizacion repoAutorizacion = new RepoAutorizacion(autorizacion.RepoIdAdeT(), autorizacion.RepoTitulo(), autorizacion.RepoUbicacion(), autorizacion.RepoEstado(), autorizacion.RepoApertura(), autorizacion.RepoCierre(), autorizacion.RepoTiempo());
+                repoAutorizaciones.add(repoAutorizacion);
+            }
+
+            InputStream input = new FileInputStream(rutaEntrada);
+            JasperDesign jasperDesign = JRXmlLoader.load(input);
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+            JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(repoAutorizaciones);
 
             Map<String, Object> parameters = new HashMap<String, Object>();
             parameters.put("ds", ds);

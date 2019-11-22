@@ -157,6 +157,27 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
         return "Autorizacion: " + getIdAdeT();
     }
 
+    public int RepoIdAdeT(){ return this.idAdeT; }
+
+    public String RepoTitulo(){ return this.titulo; }
+    public String RepoUbicacion(){ return this.ubicacion; }
+    public String RepoEstado(){ return this.estado.toString(); }
+    public String RepoApertura(){
+        if (this.apertura == null){
+            return "";
+        } else {
+            return this.apertura.toString("dd-MM-yyyy");
+        }
+    }
+    public String RepoCierre(){
+        if (this.cierre == null){
+            return "";
+        } else {
+            return this.cierre.toString("dd-MM-yyyy");
+        }
+    }
+    public String RepoTiempo(){ return getTiempo(); }
+
     public Autorizacion() {
     }
 
