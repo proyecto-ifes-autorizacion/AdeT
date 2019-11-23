@@ -33,13 +33,26 @@ public class EjecutarReportes {
     }
 
     private String Salida(String nombre){
-        return System.getProperty("user.home") + File.separatorChar + "Downloads" + File.separatorChar + nombre;
+        String ruta = System.getProperty("user.home") + File.separatorChar + "Downloads" + File.separatorChar + nombre;
+        String adicion = "";
+        int x = 0;
+        while (ExisteArchivo(ruta, adicion)) {
+            x++;
+            adicion = "-" + x;
+        }
+        return ruta + adicion + ".pdf";
     }
+
+    private boolean ExisteArchivo(String ruta, String adicion){
+        File archivo = new File(ruta + adicion + ".pdf");
+        return archivo.exists();
+    }
+
 
     public void ListadoVehiculoPDF(List<Vehiculo> vehiculos){
         try {
             File rutaEntrada = Entrada("ListadoVehiculo.jrxml");
-            String rutaSalida = Salida("ListadoVehiculos.pdf");
+            String rutaSalida = Salida("ListadoVehiculos");
 
             List<RepoVehiculo> repoVehiculos = new ArrayList<RepoVehiculo>();
             repoVehiculos.add(new RepoVehiculo());
@@ -77,7 +90,7 @@ public class EjecutarReportes {
     public void ListadoEmpresaPDF(List<Empresa> empresas){
         try {
             File rutaEntrada = Entrada("ListadoEmpresa.jrxml");
-            String rutaSalida = Salida("ListadoEmpresas.pdf");
+            String rutaSalida = Salida("ListadoEmpresas");
 
             List<RepoEmpresa> repoEmpresas = new ArrayList<RepoEmpresa>();
             repoEmpresas.add(new RepoEmpresa());
@@ -115,7 +128,7 @@ public class EjecutarReportes {
     public void ListadoTrabajadorPDF(List<Trabajador> trabajadores){
         try {
             File rutaEntrada = Entrada("ListadoTrabajador.jrxml");
-            String rutaSalida = Salida("ListadoTrabajadores.pdf");
+            String rutaSalida = Salida("ListadoTrabajadores");
 
             List<RepoTrabajador> repoTrabajadores = new ArrayList<RepoTrabajador>();
             repoTrabajadores.add(new RepoTrabajador());
@@ -153,7 +166,7 @@ public class EjecutarReportes {
     public void ListadoAutorizacionPDF(List<Autorizacion> autorizaciones){
         try {
             File rutaEntrada = Entrada("ListadoAutorizacion.jrxml");
-            String rutaSalida = Salida("ListadoAutorizaciones.pdf");
+            String rutaSalida = Salida("ListadoAutorizaciones");
 
             List<RepoAutorizacion> repoAutorizaciones = new ArrayList<RepoAutorizacion>();
             repoAutorizaciones.add(new RepoAutorizacion());
