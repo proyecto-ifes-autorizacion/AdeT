@@ -48,25 +48,14 @@ public class EjecutarReportes {
         return archivo.exists();
     }
 
-
-    public void ListadoVehiculoPDF(List<Vehiculo> vehiculos){
+    private void ExportarReporteTipoLista(String entrada, String salida, JRBeanCollectionDataSource ds){
         try {
-            File rutaEntrada = Entrada("ListadoVehiculo.jrxml");
-            String rutaSalida = Salida("ListadoVehiculos");
+            File rutaEntrada = Entrada(entrada);
+            String rutaSalida = Salida(salida);
 
-            List<RepoVehiculo> repoVehiculos = new ArrayList<RepoVehiculo>();
-            repoVehiculos.add(new RepoVehiculo());
-
-            for (Vehiculo vehiculo : vehiculos) {
-                RepoVehiculo repoVehiculo = new RepoVehiculo(vehiculo.RepoDominio(), vehiculo.RepoModelo(), vehiculo.RepoFechaAlta().toString("dd-MM-yyyy"), vehiculo.RepoEmpresa(), vehiculo.RepoEstado());
-                repoVehiculos.add(repoVehiculo);
-            }
-            
             InputStream input = new FileInputStream(rutaEntrada);
             JasperDesign jasperDesign = JRXmlLoader.load(input);
             JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-
-            JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(repoVehiculos);
 
             Map<String, Object> parameters = new HashMap<String, Object>();
             parameters.put("ds", ds);
@@ -84,121 +73,62 @@ public class EjecutarReportes {
         } catch (Exception e) {
             TranslatableString.tr("Error al mostrar el reporte: "+e);
         }
+    }
 
+    public void ListadoVehiculoPDF(List<Vehiculo> vehiculos){
+
+        List<RepoVehiculo> repoVehiculos = new ArrayList<RepoVehiculo>();
+        repoVehiculos.add(new RepoVehiculo());
+
+        for (Vehiculo vehiculo : vehiculos) {
+            RepoVehiculo repoVehiculo = new RepoVehiculo(vehiculo.RepoDominio(), vehiculo.RepoModelo(), vehiculo.RepoFechaAlta().toString("dd-MM-yyyy"), vehiculo.RepoEmpresa(), vehiculo.RepoEstado());
+            repoVehiculos.add(repoVehiculo);
+        }
+
+        JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(repoVehiculos);
+        ExportarReporteTipoLista("ListadoVehiculo.jrxml","ListadoVehiculos", ds);
     }
 
     public void ListadoEmpresaPDF(List<Empresa> empresas){
-        try {
-            File rutaEntrada = Entrada("ListadoEmpresa.jrxml");
-            String rutaSalida = Salida("ListadoEmpresas");
 
-            List<RepoEmpresa> repoEmpresas = new ArrayList<RepoEmpresa>();
-            repoEmpresas.add(new RepoEmpresa());
+        List<RepoEmpresa> repoEmpresas = new ArrayList<RepoEmpresa>();
+        repoEmpresas.add(new RepoEmpresa());
 
-            for (Empresa empresa : empresas) {
-                RepoEmpresa repoEmpresa = new RepoEmpresa(empresa.RepoNombreFantasia(), empresa.RepoRazonSocial(), empresa.RepoDireccion(), empresa.RepoTelefono(), empresa.RepoEstado());
-                repoEmpresas.add(repoEmpresa);
-            }
-
-            InputStream input = new FileInputStream(rutaEntrada);
-            JasperDesign jasperDesign = JRXmlLoader.load(input);
-            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-
-            JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(repoEmpresas);
-
-            Map<String, Object> parameters = new HashMap<String, Object>();
-            parameters.put("ds", ds);
-
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, ds);
-            JasperExportManager.exportReportToPdfFile(jasperPrint,rutaSalida);
-
-            JRPdfExporter pdfExporter = new JRPdfExporter();
-            pdfExporter.setExporterInput(new SimpleExporterInput(jasperPrint));
-            ByteArrayOutputStream pdfReportStream = new ByteArrayOutputStream();
-            pdfExporter.setExporterOutput(new SimpleOutputStreamExporterOutput(pdfReportStream));
-            pdfExporter.exportReport();
-
-            pdfReportStream.close();
-        } catch (Exception e) {
-            TranslatableString.tr("Error al mostrar el reporte: "+e);
+        for (Empresa empresa : empresas) {
+            RepoEmpresa repoEmpresa = new RepoEmpresa(empresa.RepoNombreFantasia(), empresa.RepoRazonSocial(), empresa.RepoDireccion(), empresa.RepoTelefono(), empresa.RepoEstado());
+            repoEmpresas.add(repoEmpresa);
         }
 
+        JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(repoEmpresas);
+        ExportarReporteTipoLista("ListadoEmpresa.jrxml", "ListadoEmpresas", ds);
     }
 
     public void ListadoTrabajadorPDF(List<Trabajador> trabajadores){
-        try {
-            File rutaEntrada = Entrada("ListadoTrabajador.jrxml");
-            String rutaSalida = Salida("ListadoTrabajadores");
 
-            List<RepoTrabajador> repoTrabajadores = new ArrayList<RepoTrabajador>();
-            repoTrabajadores.add(new RepoTrabajador());
+        List<RepoTrabajador> repoTrabajadores = new ArrayList<RepoTrabajador>();
+        repoTrabajadores.add(new RepoTrabajador());
 
-            for (Trabajador trabajador : trabajadores) {
-                RepoTrabajador repoTrabajador = new RepoTrabajador(trabajador.RepoCuil(), trabajador.RepoNombre(), trabajador.RepoApellido(), trabajador.RepoFechaNacimiento(), trabajador.RepoEmpresa(), trabajador.RepoEstado());
-                repoTrabajadores.add(repoTrabajador);
-            }
-
-            InputStream input = new FileInputStream(rutaEntrada);
-            JasperDesign jasperDesign = JRXmlLoader.load(input);
-            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-
-            JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(repoTrabajadores);
-
-            Map<String, Object> parameters = new HashMap<String, Object>();
-            parameters.put("ds", ds);
-
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, ds);
-            JasperExportManager.exportReportToPdfFile(jasperPrint,rutaSalida);
-
-            JRPdfExporter pdfExporter = new JRPdfExporter();
-            pdfExporter.setExporterInput(new SimpleExporterInput(jasperPrint));
-            ByteArrayOutputStream pdfReportStream = new ByteArrayOutputStream();
-            pdfExporter.setExporterOutput(new SimpleOutputStreamExporterOutput(pdfReportStream));
-            pdfExporter.exportReport();
-
-            pdfReportStream.close();
-        } catch (Exception e) {
-            TranslatableString.tr("Error al mostrar el reporte: "+e);
+        for (Trabajador trabajador : trabajadores) {
+            RepoTrabajador repoTrabajador = new RepoTrabajador(trabajador.RepoCuil(), trabajador.RepoNombre(), trabajador.RepoApellido(), trabajador.RepoFechaNacimiento(), trabajador.RepoEmpresa(), trabajador.RepoEstado());
+            repoTrabajadores.add(repoTrabajador);
         }
 
+        JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(repoTrabajadores);
+        ExportarReporteTipoLista("ListadoTrabajador.jrxml", "ListadoTrabajadores", ds);
     }
 
     public void ListadoAutorizacionPDF(List<Autorizacion> autorizaciones){
-        try {
-            File rutaEntrada = Entrada("ListadoAutorizacion.jrxml");
-            String rutaSalida = Salida("ListadoAutorizaciones");
 
-            List<RepoAutorizacion> repoAutorizaciones = new ArrayList<RepoAutorizacion>();
-            repoAutorizaciones.add(new RepoAutorizacion());
+        List<RepoAutorizacion> repoAutorizaciones = new ArrayList<RepoAutorizacion>();
+        repoAutorizaciones.add(new RepoAutorizacion());
 
-            for (Autorizacion autorizacion : autorizaciones) {
-                RepoAutorizacion repoAutorizacion = new RepoAutorizacion(autorizacion.RepoIdAdeT(), autorizacion.RepoTitulo(), autorizacion.RepoUbicacion(), autorizacion.RepoEstado(), autorizacion.RepoApertura(), autorizacion.RepoCierre(), autorizacion.RepoTiempo());
-                repoAutorizaciones.add(repoAutorizacion);
-            }
-
-            InputStream input = new FileInputStream(rutaEntrada);
-            JasperDesign jasperDesign = JRXmlLoader.load(input);
-            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-
-            JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(repoAutorizaciones);
-
-            Map<String, Object> parameters = new HashMap<String, Object>();
-            parameters.put("ds", ds);
-
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, ds);
-            JasperExportManager.exportReportToPdfFile(jasperPrint,rutaSalida);
-
-            JRPdfExporter pdfExporter = new JRPdfExporter();
-            pdfExporter.setExporterInput(new SimpleExporterInput(jasperPrint));
-            ByteArrayOutputStream pdfReportStream = new ByteArrayOutputStream();
-            pdfExporter.setExporterOutput(new SimpleOutputStreamExporterOutput(pdfReportStream));
-            pdfExporter.exportReport();
-
-            pdfReportStream.close();
-        } catch (Exception e) {
-            TranslatableString.tr("Error al mostrar el reporte: "+e);
+        for (Autorizacion autorizacion : autorizaciones) {
+            RepoAutorizacion repoAutorizacion = new RepoAutorizacion(autorizacion.RepoIdAdeT(), autorizacion.RepoTitulo(), autorizacion.RepoUbicacion(), autorizacion.RepoEstado(), autorizacion.RepoApertura(), autorizacion.RepoCierre(), autorizacion.RepoTiempo());
+            repoAutorizaciones.add(repoAutorizacion);
         }
 
+        JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(repoAutorizaciones);
+        ExportarReporteTipoLista("ListadoAutorizacion.jrxml", "ListadoAutorizaciones", ds);
     }
 
 }
