@@ -301,7 +301,8 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     @Action()
     public Autorizacion Cerrar(
 
-            @ParameterLayout(named = "Cierre: ") final LocalDateTime cierre) {
+            @ParameterLayout(named = "Cierre: ")
+            final LocalDateTime cierre) {
 
         this.cierre = cierre;
         CambiarEstado(EstadoAutorizacion.Cerrada);
