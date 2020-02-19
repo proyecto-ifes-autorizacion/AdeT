@@ -34,8 +34,7 @@ public class EmpresaMenu {
     }
 
     @Action(
-            semantics = SemanticsOf.SAFE,
-            restrictTo = RestrictTo.PROTOTYPING
+            semantics = SemanticsOf.SAFE
     )
     @ActionLayout(
             bookmarking = BookmarkPolicy.AS_ROOT,

@@ -32,8 +32,7 @@ public class TrabajadorMenu {
     }
 
     @Action(
-            semantics = SemanticsOf.SAFE,
-            restrictTo = RestrictTo.PROTOTYPING
+            semantics = SemanticsOf.SAFE
     )
     @ActionLayout(
             bookmarking = BookmarkPolicy.AS_ROOT,

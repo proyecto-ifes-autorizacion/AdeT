@@ -27,7 +27,7 @@ public class AutorizacionMenu {
     @Property(notPersisted = true, hidden = Where.EVERYWHERE)
     private IteradorEjecutante iterador = IteradorEjecutante.getInstance();
 
-    @Action(semantics = SemanticsOf.SAFE, restrictTo = RestrictTo.PROTOTYPING)
+    @Action(semantics = SemanticsOf.SAFE)
     @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT, named = "Listado de Autorizaciones")
     @MemberOrder(sequence = "1")
     public List<Autorizacion> listAll() {
