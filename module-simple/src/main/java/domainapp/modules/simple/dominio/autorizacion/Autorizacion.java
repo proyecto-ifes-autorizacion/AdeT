@@ -108,17 +108,19 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     public String getTiempo() {
         long diferancia;
         if (this.apertura != null && this.cierre != null){
-            diferancia = (this.cierre.getDayOfYear() - this.apertura.getDayOfYear()) * 1440 +
+            diferancia = (this.cierre.getYear() - this.apertura.getYear()) * 525600 +
+                    (this.cierre.getDayOfYear() - this.apertura.getDayOfYear()) * 1440 +
                     (this.cierre.getHourOfDay() - this.apertura.getHourOfDay()) * 60 +
                     this.cierre.getMinuteOfHour() - this.apertura.getMinuteOfHour();
         } else if (this.apertura != null) {
-            diferancia = (LocalDateTime.now().getDayOfYear() - this.apertura.getDayOfYear()) * 1440 +
+            diferancia = (LocalDateTime.now().getYear() - this.apertura.getYear()) * 525600 +
+                    (LocalDateTime.now().getDayOfYear() - this.apertura.getDayOfYear()) * 1440 +
                     (LocalDateTime.now().getHourOfDay() - this.apertura.getHourOfDay()) * 60 +
                     LocalDateTime.now().getMinuteOfHour() - this.apertura.getMinuteOfHour();
         } else {
             diferancia = 0;
         }
-        return Long.toString((diferancia / 1440) % 24) + " D " + Long.toString((diferancia / 60) % 24) +" h " + Long.toString(diferancia % 60) + " m ";
+        return Long.toString((diferancia / 1440)) + " D " + Long.toString((diferancia / 60) % 24) +" h " + Long.toString(diferancia % 60) + " m ";
     }
 
     @Column(allowsNull = "true", length = 80)
