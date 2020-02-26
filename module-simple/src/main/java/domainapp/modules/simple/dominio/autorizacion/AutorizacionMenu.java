@@ -1,8 +1,12 @@
 package domainapp.modules.simple.dominio.autorizacion;
 
+import java.io.IOException;
 import java.util.List;
 import org.apache.isis.applib.annotation.*;
+import org.apache.isis.applib.value.Blob;
+
 import domainapp.modules.simple.dominio.reportes.EjecutarReportes;
+import net.sf.jasperreports.engine.JRException;
 
 @DomainService(
         nature = NatureOfService.VIEW_MENU_ONLY,
@@ -17,10 +21,9 @@ public class AutorizacionMenu {
 
     @Action()
     @ActionLayout(named = "Listado Exportado")
-    public List<Autorizacion> ExportarListado() {
+    public Blob ExportarListado() throws JRException, IOException {
         EjecutarReportes ejecutarReportes = new EjecutarReportes();
-        ejecutarReportes.ListadoAutorizacionPDF(autorizacionrepository.Listar());
-        return autorizacionrepository.Listar();
+        return ejecutarReportes.ListadoAutorizacionPDF(autorizacionrepository.Listar());
     }
 
 

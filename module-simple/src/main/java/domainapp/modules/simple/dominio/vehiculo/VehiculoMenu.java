@@ -1,5 +1,6 @@
 package domainapp.modules.simple.dominio.vehiculo;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -8,12 +9,14 @@ import com.google.common.collect.Lists;
 import org.joda.time.LocalDate;
 
 import org.apache.isis.applib.annotation.*;
+import org.apache.isis.applib.value.Blob;
 
 import domainapp.modules.simple.dominio.empresa.Empresa;
 import domainapp.modules.simple.dominio.empresa.EmpresaRepository;
 import domainapp.modules.simple.dominio.reportes.EjecutarReportes;
 import domainapp.modules.simple.dominio.vehiculo.adicional.Modelo;
 import domainapp.modules.simple.dominio.vehiculo.adicional.ModeloRepository;
+import net.sf.jasperreports.engine.JRException;
 
 @DomainService(
         nature = NatureOfService.VIEW_MENU_ONLY,
@@ -28,10 +31,9 @@ public class VehiculoMenu {
 
     @Action()
     @ActionLayout(named = "Listado Exportado")
-    public List<Vehiculo> ExportarListado(){
+    public Blob ExportarListado() throws JRException, IOException {
         EjecutarReportes ejecutarReportes = new EjecutarReportes();
-        ejecutarReportes.ListadoVehiculoPDF(vehiculorepository.List());
-        return vehiculorepository.List();
+        return ejecutarReportes.ListadoVehiculoPDF(vehiculorepository.List());
     }
 
     @Action(

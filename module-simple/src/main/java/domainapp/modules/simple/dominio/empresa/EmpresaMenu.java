@@ -1,9 +1,11 @@
 package domainapp.modules.simple.dominio.empresa;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.apache.isis.applib.annotation.*;
 import org.apache.isis.applib.services.i18n.TranslatableString;
+import org.apache.isis.applib.value.Blob;
 
 import javax.jdo.annotations.*;
 
@@ -13,6 +15,7 @@ import com.google.inject.internal.cglib.proxy.$MethodProxy;
 import domainapp.modules.simple.dominio.reportes.EjecutarReportes;
 import lombok.Getter;
 import lombok.Setter;
+import net.sf.jasperreports.engine.JRException;
 
 @DomainService(
         nature = NatureOfService.VIEW_MENU_ONLY,
@@ -27,10 +30,9 @@ public class EmpresaMenu {
 
     @Action()
     @ActionLayout(named = "Listado Exportado")
-    public List<Empresa> ExportarListado(){
+    public Blob ExportarListado() throws JRException, IOException {
         EjecutarReportes ejecutarReportes = new EjecutarReportes();
-        ejecutarReportes.ListadoEmpresaPDF(empresarepository.Listar());
-        return empresarepository.Listar();
+        return ejecutarReportes.ListadoEmpresaPDF(empresarepository.Listar());
     }
 
     @Action(

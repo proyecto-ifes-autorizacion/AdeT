@@ -1,5 +1,6 @@
 package domainapp.modules.simple.dominio.trabajador;
 
+import java.io.IOException;
 import java.util.List;
 
 import com.google.common.collect.Lists;
@@ -7,10 +8,12 @@ import com.google.common.collect.Lists;
 import org.joda.time.LocalDate;
 
 import org.apache.isis.applib.annotation.*;
+import org.apache.isis.applib.value.Blob;
 
 import domainapp.modules.simple.dominio.empresa.Empresa;
 import domainapp.modules.simple.dominio.empresa.EmpresaRepository;
 import domainapp.modules.simple.dominio.reportes.EjecutarReportes;
+import net.sf.jasperreports.engine.JRException;
 
 @DomainService(
         nature = NatureOfService.VIEW_MENU_ONLY,
@@ -25,10 +28,9 @@ public class TrabajadorMenu {
 
     @Action()
     @ActionLayout(named = "Listado Exportado")
-    public List<Trabajador> ExportarListado() {
+    public Blob ExportarListado() throws JRException, IOException {
         EjecutarReportes ejecutarReportes = new EjecutarReportes();
-        ejecutarReportes.ListadoTrabajadorPDF(trabajadorrepository.Listar());
-        return trabajadorrepository.Listar();
+        return ejecutarReportes.ListadoTrabajadorPDF(trabajadorrepository.Listar());
     }
 
     @Action(
