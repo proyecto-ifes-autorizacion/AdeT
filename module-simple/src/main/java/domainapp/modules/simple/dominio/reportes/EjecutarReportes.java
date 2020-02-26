@@ -99,7 +99,7 @@ public class EjecutarReportes {
         return ExportarReporte(jasperPrint, salida);
     }
 
-    public static Blob ExportarReporte(JasperPrint jasperPrint, String nombreArchivo) throws JRException, IOException{
+    private static Blob ExportarReporte(JasperPrint jasperPrint, String nombreArchivo) throws JRException, IOException{
         File pdf = File.createTempFile("output.", ".pdf");
         JasperExportManager.exportReportToPdfStream(jasperPrint, new FileOutputStream(pdf));
 
