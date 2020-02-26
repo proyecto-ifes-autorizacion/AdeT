@@ -50,7 +50,7 @@ msgid "Clear Hints"
 msgstr ""
 
 
-#: org.apache.isis.core.runtime.services.i18n.po.TranslationServicePoMenu#resetTranslationCache()
+#: org.apache.isis.core.runtime.services.i18n.po.TranslationServicePoMenu#  resetTranslationCache()
 msgid "Clear translation cache"
 msgstr "Limpiar la caché de traducciones"
 
@@ -447,12 +447,12 @@ msgstr "Load more"
 
 #: org.apache.isis.viewer.wicket.ui.pages.login.WicketSignInPage
 msgid "loginHeader"
-msgstr "Login"
+msgstr "Iniciar Sesion"
 
 
 #: org.apache.isis.viewer.wicket.ui.pages.entity.EntityPage
 msgid "logoutLabel"
-msgstr "Logout"
+msgstr "Cerrar sesion"
 
 
 #: domainapp.dom.simple.SimpleObject
@@ -477,17 +477,17 @@ msgstr "OK"
 
 #: org.apache.isis.viewer.wicket.ui.pages.login.WicketSignInPage
 msgid "passwordLabel"
-msgstr "Password"
+msgstr "Contraseña"
 
 
 #: org.apache.isis.viewer.wicket.ui.pages.login.WicketSignInPage
 msgid "rememberMeLabel"
-msgstr "Remember Me"
+msgstr "Recordar datos de ingreso"
 
 
 #: org.apache.isis.viewer.wicket.ui.pages.login.WicketSignInPage
 msgid "resetButtonLabel"
-msgstr "Reset"
+msgstr "Blanquear"
 
 
 #: org.wicketstuff.select2.Select2Choice
@@ -507,12 +507,12 @@ msgstr "You can only select 1 item"
 
 #: org.apache.isis.viewer.wicket.ui.pages.login.WicketSignInPage
 msgid "signInButtonLabel"
-msgstr "Sign in"
+msgstr "Ingresar"
 
 
 #: org.apache.isis.viewer.wicket.ui.pages.login.WicketSignInPage
 msgid "usernameLabel"
-msgstr "Username"
+msgstr "Nombre de usuario"
 
 
 #: domainapp.app.services.homepage.HomePageViewModel#title()
@@ -587,7 +587,7 @@ msgstr "There was a problem while updating the password. Please try again."
 #: org.apache.isis.viewer.wicket.ui.pages.accmngt.register.RegisterPage
 #: org.apache.isis.viewer.wicket.ui.pages.accmngt.password_reset.PasswordResetPage
 msgid "passwordLabel"
-msgstr "Password"
+msgstr "Contraseña"
 
 
 #: org.apache.isis.viewer.wicket.ui.pages.accmngt.signup.RegistrationFormPage
@@ -595,7 +595,7 @@ msgstr "Password"
 #: org.apache.isis.viewer.wicket.ui.pages.login.WicketSignInPage
 #: org.apache.isis.viewer.wicket.ui.pages.accmngt.password_reset.PasswordResetPage
 msgid "passwordPlaceholder"
-msgstr "Enter password"
+msgstr "Ingrese contraseña"
 
 
 #: org.apache.isis.viewer.wicket.ui.pages.accmngt.password_reset.PasswordResetPage
@@ -661,7 +661,7 @@ msgstr "The provided username is already in use"
 #: org.apache.isis.viewer.wicket.ui.pages.accmngt.register.RegisterPage
 #: org.apache.isis.viewer.wicket.ui.pages.accmngt.password_reset.PasswordResetPage
 msgid "usernameLabel"
-msgstr "Username"
+msgstr "Nombre de usuario"
 
 
 #: org.apache.isis.viewer.wicket.ui.pages.accmngt.signup.RegistrationFormPage
@@ -669,5 +669,5 @@ msgstr "Username"
 #: org.apache.isis.viewer.wicket.ui.pages.login.WicketSignInPage
 #: org.apache.isis.viewer.wicket.ui.pages.accmngt.password_reset.PasswordResetPage
 msgid "usernamePlaceholder"
-msgstr "Username"
+msgstr "Nombre de usuario"
 
