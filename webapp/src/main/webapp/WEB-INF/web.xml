@@ -229,10 +229,9 @@
 
     <context-param>
         <param-name>configuration</param-name>
-        <!-- 
         <param-value>deployment</param-value>
-         -->
-        <param-value>development</param-value>
+<!--        <param-value>development</param-value>-->
+<!--        Se modifico a deployment para hacer desaparecer la debuggerbar-->
     </context-param>
     
    
