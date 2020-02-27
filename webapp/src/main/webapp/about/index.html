@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>AdeT &mdash; Autorizaciones de Trabajo</title>
+    <title>AdeT - Autorizaciones de Trabajo</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="about/css/style.css">
     <link rel="stylesheet" href="about/css/bootstrap.min.css">
     <link rel="stylesheet" href="about/css/jquery-ui.css">
+
+    <link rel="stylesheet" href="about/css/font-awesome.min.css">
     
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -46,25 +48,104 @@
 
   
      
-    <div class="site-blocks-cover overlay" style="background-image: url(about/images/hero_2.jpg);" data-aos="fade" id="home-section">
+    <div class="site-blocks-cover overlay" style="background-image: url(about/images/background.jpg);" data-aos="fade" id="home-section">
 
       <div class="container">
         <div class="row align-items-center justify-content-center">
 
           
           <div class="col-md-8 mt-lg-5 text-center">
+<style>
+  .imagenlogo {
+    max-width: 100%;
+    height: auto;
+    max-height: 150px;
+    display: table;
+    margin: 0 auto;
+}
+.flex {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+
+}
+
+.app-btn {
+  width: 50%;
+  max-width: 280px;
+  color: #fff;
+  margin: 20px 10px;
+  text-align: left;
+  border-radius: 5px;
+  text-decoration: none;
+  font-family: "Lucida Grande", sans-serif;
+  font-size: 10px;
+  text-transform: uppercase;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.app-btn.blu {
+  background-color: #101010;
+  -webkit-transition: background-color 0.25s linear;
+  transition: background-color 0.25s linear;
+}
+.app-btn.blu:hover {
+  background-color: #454545;
+  text-decoration: none;
+  ;
+
+}
+.app-btn p {
+  margin-top: 10px;
+}
+
+.app-btn i {
+  width: 20%;
+  text-align: center;
+  font-size: 28px;
+  margin-right: 7px;
+  color:white;
+}
+
+.app-btn.a {
+text-decoration: none;
+}
+
+.app-btn .big-txt {
+  font-size: 17px;
+  text-transform: capitalize;
+}
+
+</style>
+            <img class="imagenlogo" src="about/images/Logo-principal.png">
+
             <h1 data-aos="fade-up">Autorizaciones de Trabajo</h1>
             <p class="mb-5 desc" data-aos="fade-up" data-aos-delay="100">Sistema para la gestion integral de permisos de trabajo</p>
             <div data-aos="fade-up" data-aos-delay="100">
-              <a href="/wicket" class="btn smoothscroll btn-primary mr-2 mb-2">Ingresar</a>
+              <a href="/wicket" class="btn smoothscroll btn-primary mr-2 mb-2">Iniciar Sesi&oacute;n</a>
             </div>
+
+            
+            <!-- #### Boton para bajar apk #### -->
+            <div class="flex">
+            <a class="app-btn blu flex vert" href="http://google.com">
+              <i class="fa fa-android" aria-hidden="true"></i>
+              <p>Descargar app<br/> <span class="big-txt">para Android</span></p>
+            </a>
+          </div>
+            <!-- #### Boton para bajar apk #### -->
+          
 
             <!-- #### Boton para acceder a Swagger #### -->
             <div data-aos="fade-up" data-aos-delay="100">
               <a href="/swagger-ui/index.html" class="btn smoothscroll btn-secondary mr-2 mb-2">Swagger</a>
             </div>
-          </div>
             <!-- #### Boton para acceder a Swagger #### -->
+          </div>
+            
         </div>
       </div>
 

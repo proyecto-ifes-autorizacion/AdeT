@@ -245,7 +245,7 @@ jQuery(document).ready(function($) {
 	  });
 	  
 	};
-	siteCarousel();
+	//siteCarousel();
 
 	var siteStellar = function() {
 		$(window).stellar({
@@ -271,7 +271,7 @@ jQuery(document).ready(function($) {
 		});
 				
 	};
-	siteCountDown();
+	//siteCountDown();
 
 	var siteDatePicker = function() {
 
@@ -285,7 +285,7 @@ jQuery(document).ready(function($) {
 	var siteSticky = function() {
 		$(".js-sticky-header").sticky({topSpacing:0});
 	};
-	siteSticky();
+	//siteSticky();
 
 	// navigation
   var OnePageNavigation = function() {
@@ -349,7 +349,7 @@ jQuery(document).ready(function($) {
 	  });
   }
 
-  siteIstotope();
+  //siteIstotope();
 
 
   $('.fancybox').on('click', function() {

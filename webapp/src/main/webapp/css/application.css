@@ -17,3 +17,10 @@
  *  under the License.
  */
 
+
+ /* etiqueta para reemplazar la de boostrap y ubicar mejor el logo del navbar */
+ .navbar-brand{
+     padding: 5px 5px;
+ }
+
+ 
