@@ -447,12 +447,12 @@ msgstr "Load more"
 
 #: org.apache.isis.viewer.wicket.ui.pages.login.WicketSignInPage
 msgid "loginHeader"
-msgstr "Iniciar Sesion"
+msgstr "Iniciar Sesión"
 
 
 #: org.apache.isis.viewer.wicket.ui.pages.entity.EntityPage
 msgid "logoutLabel"
-msgstr "Cerrar sesion"
+msgstr "Cerrar sesión"
 
 
 #: domainapp.dom.simple.SimpleObject
