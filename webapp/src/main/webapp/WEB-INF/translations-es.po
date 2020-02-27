@@ -62,12 +62,12 @@ msgstr ""
 
 #: org.apache.isis.viewer.wicket.ui.pages.entity.EntityPage
 msgid "CollectionContentsAsAjaxTablePanelFactory.Table"
-msgstr "Table"
+msgstr "Tabla"
 
 
 #: org.apache.isis.viewer.wicket.ui.pages.entity.EntityPage
 msgid "CollectionContentsAsUnresolvedPanel.Hide"
-msgstr "Hide"
+msgstr "Ocultar"
 
 
 #: org.apache.isis.applib.services.layout.LayoutService$Style#COMPLETE
@@ -77,7 +77,7 @@ msgstr ""
 
 #: org.apache.isis.applib.services.config.ConfigurationServiceMenu#configuration()
 msgid "Configuration"
-msgstr ""
+msgstr "Preferencias"
 
 
 #: org.apache.isis.core.runtime.system.session.IsisSessionFactoryBuilder
@@ -417,12 +417,12 @@ msgstr "YAML"
 
 #: org.apache.isis.viewer.wicket.ui.pages.entity.EntityPage
 msgid "aboutLabel"
-msgstr "About"
+msgstr "Sobre"
 
 
 #: org.apache.isis.viewer.wicket.ui.pages.entity.EntityPage
 msgid "cancelLabel"
-msgstr "Cancel"
+msgstr "Cancelar"
 
 
 #: domainapp.dom.simple.SimpleObject
@@ -524,17 +524,17 @@ msgstr ""
 #: org.apache.isis.viewer.wicket.ui.pages.accmngt.register.RegisterPage
 #: org.apache.isis.viewer.wicket.ui.pages.accmngt.password_reset.PasswordResetPage
 msgid "confirmPasswordLabel"
-msgstr "Confirm password"
+msgstr "Confirmar contraseña"
 
 
 #: org.apache.isis.viewer.wicket.ui.pages.entity.EntityPage
 msgid "datatable.no-records-found"
-msgstr "No Records Found"
+msgstr "No se encontraron resultados"
 
 
 #: org.apache.isis.viewer.wicket.ui.pages.entity.EntityPage
 msgid "editLabel"
-msgstr "Edit"
+msgstr "Editar"
 
 
 #: org.apache.isis.viewer.wicket.ui.pages.accmngt.signup.RegistrationFormPage
