@@ -24,10 +24,29 @@ $(document).ready(function() {
 		$("button.btn[type=reset]").hide();
 		//Esto oculta el boton blanquear del formulario
 
-	  } //end Pagina Login
+	} //end Pagina Login
 
 
 	  //Esto aplica en todas las paginas excepto Login
 	  $("footer").remove();
 	  //Esto oculta el footer que no se pudo ocultar de otra manera
-});
+
+	
+	//Verifica si se encuentra en la pagina de Autorizacion
+	if ($("body").find(".isis-dominio-Autorizacion").length > 0){ 
+	
+	//verifica cada medio segundo si existe el div del datepicker para aplicarle css
+	window.setInterval(function(){
+		if ( $('div.datepicker.col-sm-6').length ){
+			console.log("Existe el div datepicker");
+			$('div.datepicker.col-sm-6').removeClass('col-sm-6').addClass('col-sm-5').addClass('col-md-offset-2');
+			$('div.timepicker.col-sm-6').removeClass('col-sm-6').addClass('col-sm-5').addClass('col-md-offset-2');
+			$('div.bootstrap-datetimepicker-widget').css('left','-90px');
+		}else{
+			console.log("No existe el div datepicker");
+		}
+
+	  }, 500);
+	}// end Pagina Autorizacion
+
+}); //end document.ready function
