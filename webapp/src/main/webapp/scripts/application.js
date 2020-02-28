@@ -14,6 +14,11 @@ $(document).ready(function() {
 		$("form:not(.filter) :input:visible:enabled").eq(0).attr("placeholder", "Ingrese nombre de usuario");
 		$("form:not(.filter) :input:visible:enabled").eq(1).attr("placeholder", "Ingrese contraseña");
 		//Esto cambia el placeholder que no se pudo traducir
+		
+		$("form:not(.filter) :input:visible:enabled").eq(0).attr("value", "admin");
+		$("form:not(.filter) :input:visible:enabled").eq(1).attr("value", "admin");
+		$("button.btn[type=submit]").click();
+		//Esto sirve para autocompletar los campos del Login y apreta Ingresar automaticamente
 
 		$("img[src$='/about/images/Logo-login.png']").wrap("<a href='/'> </a>");
 		//Esto aplica un HREF a la imagen del logo
