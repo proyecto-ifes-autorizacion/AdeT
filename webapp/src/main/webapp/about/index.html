@@ -14,8 +14,28 @@
 
     <link rel="stylesheet" href="about/css/font-awesome.min.css">
     
+    <script type="text/javascript">
+    function muestraBotonLogin(){
+      var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      var IniciarSesionDiv = document.getElementById("IniciarSesionDiv");
+      var AndroidDiv = document.getElementById("AndroidDiv");
+      var SwaggerDiv = document.getElementById("SwaggerDiv");
+      if (isMobile) {
+          //alert("You are using Mobile");
+          IniciarSesionDiv.style.display = "none";
+          AndroidDiv.style.display = "";
+          SwaggerDiv.style.display = "none";
+      } else {
+        //alert("You are using Desktop")
+        IniciarSesionDiv.style.display = "";
+        AndroidDiv.style.display = "none";
+        SwaggerDiv.style.display = "";
+      }
+    }
+    </script>
+
   </head>
-  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+  <body onload="muestraBotonLogin()" data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
   
 
   <div id="overlayer"></div>
@@ -74,7 +94,7 @@
 }
 
 .app-btn {
-  width: 50%;
+  width: 60%;
   max-width: 280px;
   color: #fff;
   margin: 20px 10px;
@@ -124,13 +144,15 @@ text-decoration: none;
 
             <h1 data-aos="fade-up">Autorizaciones de Trabajo</h1>
             <p class="mb-5 desc" data-aos="fade-up" data-aos-delay="100">Sistema para la gestion integral de permisos de trabajo</p>
-            <div data-aos="fade-up" data-aos-delay="100">
+            
+
+            <div id="IniciarSesionDiv" data-aos="fade-up" data-aos-delay="100">
               <a href="/wicket" class="btn smoothscroll btn-primary mr-2 mb-2">Iniciar Sesi&oacute;n</a>
             </div>
 
             
             <!-- #### Boton para bajar apk #### -->
-            <div class="flex">
+            <div id="AndroidDiv" class="flex">
             <a class="app-btn blu flex vert" href="/AdeT.apk">
               <i class="fa fa-android" aria-hidden="true"></i>
               <p>Descargar app<br/> <span class="big-txt">para Android</span></p>
@@ -140,7 +162,7 @@ text-decoration: none;
           
 
             <!-- #### Boton para acceder a Swagger #### -->
-            <div data-aos="fade-up" data-aos-delay="100">
+            <div id="SwaggerDiv" data-aos="fade-up" data-aos-delay="100">
               <a href="/swagger-ui/index.html" class="btn smoothscroll btn-secondary mr-2 mb-2">Swagger</a>
             </div>
             <!-- #### Boton para acceder a Swagger #### -->
