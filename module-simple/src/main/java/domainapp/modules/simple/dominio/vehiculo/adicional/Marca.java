@@ -27,6 +27,7 @@ import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.Programmatic;
 import org.apache.isis.applib.annotation.Property;
 import org.apache.isis.applib.annotation.Publishing;
+import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.annotation.Title;
 
 import domainapp.modules.simple.dominio.SujetoGeneral;
@@ -147,7 +148,7 @@ public class Marca implements Comparable<Marca>, SujetoGeneral {
         return this;
     }
 
-    @Action()
+    @Action(semantics = SemanticsOf.IDEMPOTENT_ARE_YOU_SURE)
     public Marca Desactivar(){
         CambiarEstado(true);
         return this;

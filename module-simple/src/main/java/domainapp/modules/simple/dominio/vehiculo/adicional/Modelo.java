@@ -26,6 +26,7 @@ import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.Programmatic;
 import org.apache.isis.applib.annotation.Property;
 import org.apache.isis.applib.annotation.Publishing;
+import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.annotation.Title;
 
 import domainapp.modules.simple.dominio.ObservadorGeneral;
@@ -178,7 +179,7 @@ public class Modelo implements Comparable<Modelo>, ObservadorGeneral {
         return this;
     }
 
-    @Action
+    @Action(semantics = SemanticsOf.IDEMPOTENT_ARE_YOU_SURE)
     public Modelo Desactivar(){
         CambiarEstado(true);
         return this;
