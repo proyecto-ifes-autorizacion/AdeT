@@ -9,15 +9,20 @@ $(document).ready(function() {
 		$('body').css('background-color', 'grey');
 		$('body').css('background-image', 'url("/about/images/background.jpg")');
 		$('body').css('color', '#ffffff');
+		$('body').css('position', 'relative');
+		$('body').css('height', 'calc(100vh)');
+		$('body').css('background-size', 'cover');
+		$('body').css('background-repeat', 'no-repeat');
+		$('body').css('background-position', 'center center');
 		//Esto aplica color de letra, color de fondo e imagen de fondo
 
 		$("form:not(.filter) :input:visible:enabled").eq(0).attr("placeholder", "Ingrese nombre de usuario");
 		$("form:not(.filter) :input:visible:enabled").eq(1).attr("placeholder", "Ingrese contraseña");
 		//Esto cambia el placeholder que no se pudo traducir
 		
-		$("form:not(.filter) :input:visible:enabled").eq(0).attr("value", "admin");
-		$("form:not(.filter) :input:visible:enabled").eq(1).attr("value", "admin");
-		$("button.btn[type=submit]").click();
+		//$("form:not(.filter) :input:visible:enabled").eq(0).attr("value", "admin");
+		//$("form:not(.filter) :input:visible:enabled").eq(1).attr("value", "admin");
+		//$("button.btn[type=submit]").click();
 		//Esto sirve para autocompletar los campos del Login y apreta Ingresar automaticamente
 
 		$("img[src$='/about/images/Logo-login.png']").wrap("<a href='/'> </a>");
@@ -29,18 +34,43 @@ $(document).ready(function() {
 		$("button.btn[type=reset]").hide();
 		//Esto oculta el boton blanquear del formulario
 
+	}else{
+			$('body').css('background-color', 'grey');
+    		$('body').css('background-image', 'url("/about/images/background-grey.png")');
+    		$('body').css('color', 'baclk');
+    		$('body').css('position', 'relative');
+    		$('body').css('height', 'calc(100vh)');
+    		$('body').css('background-size', 'cover');
+    		$('body').css('background-repeat', 'no-repeat');
+    		$('body').css('background-position', 'center center');
 	} //end Pagina Login
 
 
-	  //Esto aplica en todas las paginas excepto Login
-	  $("footer").remove();
-	  //Esto oculta el footer que no se pudo ocultar de otra manera
+
+
+    //Esto aplica en todas las paginas excepto Login
+    $("footer").remove();
+    //Esto oculta el footer que no se pudo ocultar de otra manera
+
+    $('h4.iconAndTitle').css('display','none');
+    //Esto oculta el titulo de la pagina principal
+
+    $("table").on('click', 'tr', function ()
+    {
+    var eachTr = $(this).find('td:eq(0)').find("a").attr("href");
+    window.location.href = eachTr;
+    });
+   //Esto agarra tablas y le convierte cada fila en clickeable con el atributo del icono
+    $("table").find('td').each (function() {
+     $(this).css('cursor','pointer')
+    });
+    //Esto le agrega a cada fila CSS para que tenga el curson tipo manito hipervinculo
 
 	
 	//Verifica si se encuentra en la pagina de Autorizacion
 	if ($("body").find(".isis-dominio-Autorizacion").length > 0){ 
 	
-	//verifica cada medio segundo si existe el div del datepicker para aplicarle css
+	//verifica cada medio segundo si existe el div del datepicker para aplicarle css y ajustarlo a pantalla
 	window.setInterval(function(){
 		if ( $('div.datepicker.col-sm-6').length ){
 			console.log("Existe el div datepicker");
