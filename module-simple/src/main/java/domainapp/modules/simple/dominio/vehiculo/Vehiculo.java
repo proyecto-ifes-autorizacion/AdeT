@@ -214,13 +214,13 @@ public class Vehiculo implements Comparable<Vehiculo>, ObservadorGeneral, Observ
         return this;
     }
 
-    @Action()
+    @Action(semantics = SemanticsOf.IDEMPOTENT_ARE_YOU_SURE)
     public Vehiculo Inhabilitar(){
         CambiarEstado(EstadoGeneral.Inhabilitado);
         return this;
     }
 
-    @Action()
+    @Action(semantics = SemanticsOf.IDEMPOTENT_ARE_YOU_SURE)
     public Vehiculo Borrar(){
         CambiarEstado(EstadoGeneral.Borrado);
         return this;
