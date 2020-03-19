@@ -38,5 +38,16 @@
 /*etiqueta para agregar color black al sidebar para cuando pide alguna accion*/
  #sidebar-wrapper {
      background-color: white;
-     width: 40%;
+     width: 45%;
+}
+
+/*etiqueta para que el checkbox disabled sea mas gris y se vea desabilitado */
+.cbx-disabled {
+    background: #ecf0f1;
+    border: 2px solid #dce4ec;
+}
+
+
+.panel-default {
+    border-color: #d6d6d6;
 }
