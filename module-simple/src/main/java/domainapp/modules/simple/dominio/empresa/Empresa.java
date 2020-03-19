@@ -207,13 +207,13 @@ public class Empresa implements Comparable<Empresa>, SujetoGeneral {
         return this;
     }
 
-    @Action()
+    @Action(semantics = SemanticsOf.IDEMPOTENT_ARE_YOU_SURE)
     public Empresa Inhabilitar(){
         CambiarEstado(EstadoEmpresa.Inhabilitada);
         return this;
     }
 
-    @Action()
+    @Action(semantics = SemanticsOf.IDEMPOTENT_ARE_YOU_SURE)
     public Empresa Borrar(){
         CambiarEstado(EstadoEmpresa.Borrada);
         return this;
