@@ -125,10 +125,6 @@ msgid "Configuration"
 msgstr "Configuraciones"
 
 
-
-
-
-
 #: org.apache.isis.core.runtime.system.session.IsisSessionFactoryBuilder
 msgid "Confirm"
 msgstr "Confirmar"
@@ -520,7 +516,7 @@ msgstr "Objects"
 
 #: org.apache.isis.viewer.wicket.ui.pages.entity.EntityPage
 msgid "okLabel"
-msgstr "OK"
+msgstr "Aceptar"
 
 
 #: org.apache.isis.viewer.wicket.ui.pages.login.WicketSignInPage
