@@ -266,7 +266,7 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
         return resultado;
     }
 
-    @Action()
+    @Action(semantics = SemanticsOf.IDEMPOTENT_ARE_YOU_SURE)
     public Autorizacion Anular() {
         CambiarEstado(EstadoAutorizacion.Anulada);
         return this;
