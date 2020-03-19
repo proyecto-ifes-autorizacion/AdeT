@@ -267,13 +267,13 @@ public class Trabajador implements Comparable<Trabajador>, ObservadorGeneral, Ob
         return this;
     }
 
-    @Action()
+    @Action(semantics = SemanticsOf.IDEMPOTENT_ARE_YOU_SURE)
     public Trabajador Inhabilitar(){
         CambiarEstado(EstadoGeneral.Inhabilitado);
         return this;
     }
 
-    @Action()
+    @Action(semantics = SemanticsOf.IDEMPOTENT_ARE_YOU_SURE)
     public Trabajador Borrar(){
         CambiarEstado(EstadoGeneral.Borrado);
         return this;
