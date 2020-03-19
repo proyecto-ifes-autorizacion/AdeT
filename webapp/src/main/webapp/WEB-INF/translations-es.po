@@ -75,9 +75,58 @@ msgid "Complete"
 msgstr ""
 
 
+#: org.isisaddons.module.security.dom.user.ApplicationUserMenu#findUsers()
+msgid "Find Users"
+msgstr "Buscar Usuario"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUserMenu#newLocalUser()
+msgid "New Local User"
+msgstr "Nuevo Usuario Local"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUserMenu#allUsers()
+msgid "All Users"
+msgstr "Todos los Usuarios"
+
+
+#: org.isisaddons.module.security.dom.role.ApplicationRoleMenu#findRoles()
+msgid "Find Roles"
+msgstr "Buscar Rol"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRoleMenu#newRole()
+msgid "New Role"
+msgstr "Nuevo Rol"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRoleMenu#allRoles()
+msgid "All Roles"
+msgstr "Todos los roles"
+
+
+#: org.isisaddons.module.security.dom.tenancy.ApplicationTenancyMenu#findTenancies()
+msgid "Find Tenancies"
+msgstr "Buscar Tenencia"
+
+#: org.isisaddons.module.security.dom.tenancy.ApplicationTenancyMenu#newTenancy()
+msgid "New Tenancy"
+msgstr "Nueva Tenencia"
+
+
+#: org.isisaddons.module.security.dom.permission.ApplicationPermissionMenu#findOrphanedPermissions()
+msgid "Find Orphaned Permissions"
+msgstr "Buscar Permisos Heredados"
+
+
+#: org.isisaddons.module.security.app.user.MeService#me()
+msgid "Me"
+msgstr "Mis datos personales"
+
+
 #: org.apache.isis.applib.services.config.ConfigurationServiceMenu#configuration()
 msgid "Configuration"
-msgstr "Preferencias"
+msgstr "Configuraciones"
+
+
+
+
 
 
 #: org.apache.isis.core.runtime.system.session.IsisSessionFactoryBuilder
@@ -182,7 +231,6 @@ msgstr ""
 #: org.apache.isis.applib.annotation.SemanticsOf#IDEMPOTENT
 msgid "Idempotent"
 msgstr ""
-
 
 #: org.apache.isis.applib.annotation.SemanticsOf#IDEMPOTENT_ARE_YOU_SURE
 msgid "Idempotent Are You Sure"
