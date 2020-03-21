@@ -22,18 +22,7 @@
  .navbar-brand{
      padding: 5px 5px;
  }
-/* etiqueta para ocultar columnas en las tablas de detalles de autorizacion*/
- .isis-dominio-Trabajador-fechaNacimiento,
- .isis-dominio-Trabajador-empresa,
- .isis-dominio-Trabajador-estado,
 
- .isis-dominio-Vehiculo-empresa,
- .isis-dominio-Vehiculo-fechaAlta,
- .isis-dominio-Vehiculo-estado
-
- {
- display:none;
- }
 
 /*etiqueta para agregar color black al sidebar para cuando pide alguna accion*/
  #sidebar-wrapper {
