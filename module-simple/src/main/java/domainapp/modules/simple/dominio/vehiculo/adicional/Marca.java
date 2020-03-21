@@ -84,7 +84,7 @@ public class Marca implements Comparable<Marca>, SujetoGeneral {
     @Title()
     private String nombre;
 
-    @Persistent(mappedBy = "marca")
+    @Persistent(mappedBy = "marca", defaultFetchGroup = "true")
     @Column(allowsNull = "true")
     @Property()
     private List<Modelo> modelos;
