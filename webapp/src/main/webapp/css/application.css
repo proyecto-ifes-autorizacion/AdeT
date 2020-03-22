@@ -23,6 +23,19 @@
      padding: 5px 5px;
  }
 
+/* etiquetas para reemplazar el color del header de los contenedores de informacion */
+.panel-default > .panel-heading {
+    color: #000000;
+    background-color: #79c0e2;
+    border-color: #ecf0f1;
+}
+/*etiqueta para cambiar el color de la primer fila de titulos de una tabla */
+.headers {
+background-color: #e4e4e4;
+    color: #000;
+}
+/*etiqueta para cambiar de color de letra a la primer fila de titulos de una tabla */
+table.table tr.headers th a { color: #000000; }
 
 /*etiqueta para agregar color black al sidebar para cuando pide alguna accion*/
  #sidebar-wrapper {
