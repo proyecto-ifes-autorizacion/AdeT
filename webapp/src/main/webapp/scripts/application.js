@@ -35,15 +35,15 @@ $(document).ready(function() {
 		//Esto oculta el boton blanquear del formulario
 
 	}else{
-        $('body').css('background-color', 'grey');
+        $('body').css('background-color', 'white');
         $('body').css('background-image', 'url("/about/images/background-grey.png")');
-        $('body').css('color', 'baclk');
+        $('body').css('background-repeat', 'repeat-y');
+        $('body').css('color', 'black');
         $('body').css('position', 'relative');
         $('body').css('height', 'calc(100vh)');
         $('body').css('background-size', 'cover');
-        $('body').css('background-repeat', 'no-repeat');
         $('body').css('background-position', 'center center');
-	} //end Pagina Login
+	} //end IF Pagina Login
 
 	if ($("body").find("div.entityPage.isis-dominio-Autorizacion").length > 0){
 	//Verifica si se encuentra en la pagina de Autorizacion detalles
@@ -56,17 +56,21 @@ $(document).ready(function() {
     $('.isis-dominio-Vehiculo-empresa').css('display', 'none');
     $('.isis-dominio-Vehiculo-fechaAlta').css('display', 'none');
     $('.isis-dominio-Vehiculo-estado').css('display', 'none');
-	}
+	}//end IF Pagina Autorizacion
 
-
+    //###########################################################//
     //Esto aplica en todas las paginas excepto Login
     $("footer").remove();
     //Esto oculta el footer que no se pudo ocultar de otra manera
 
-    $('h4.iconAndTitle').css('display','none');
     //Esto oculta el titulo de la pagina principal
+    $('h4.iconAndTitle').css('display','none');
+
+    //Esto traduce el boton Show All que se encuentra en tablas con paginas
+    $( "button:contains('Show all')" ).text( "Mostrar Todos" );
 
 
+    //Esto agarra tablas y le convierte cada fila en clickeable con el atributo href del icono
     $("table").on('click', 'tr', function ()
     {
     if( !$(this).hasClass("norecords-tr") && !$(this).hasClass("navigation")){
@@ -75,9 +79,7 @@ $(document).ready(function() {
     }
     );
 
-   /*if( $("table").find('tr').hasClass("norecords-tr") ){*/
-
-   //Esto agarra tablas y le convierte cada fila en clickeable con el atributo del icono
+    //Esto agarra tablas y le agrega estilo de manito hipervinculo a cada fila SINO mouse comun -no tipo texto-
     $("table").find('td').each(function() {
     if( !$(this).hasClass("norecords-td")  && !$(this).hasClass("navigation") ){
      $(this).css('cursor','pointer')
@@ -85,7 +87,6 @@ $(document).ready(function() {
      $(this).css('cursor','default')
      }
     });
-    //Esto le agrega a cada fila CSS para que tenga el curson tipo manito hipervinculo
 
 	
 	//Verifica si se encuentra en la pagina de Autorizacion
