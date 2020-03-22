@@ -15,7 +15,7 @@
                 <bs3:tab>
                     <bs3:row>
                         <bs3:col span="12">
-                            <cpt:fieldSet name="General">
+                            <cpt:fieldSet name="Detalles de Autorizacion">
                                 <cpt:action id="Anular"/>
                                 <cpt:action id="Liberar"/>
                                 <cpt:action id="Cerrar"/>
