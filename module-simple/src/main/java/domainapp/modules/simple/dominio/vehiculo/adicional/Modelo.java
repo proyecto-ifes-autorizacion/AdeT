@@ -18,6 +18,7 @@ import javax.jdo.annotations.VersionStrategy;
 import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.BookmarkPolicy;
+import org.apache.isis.applib.annotation.CollectionLayout;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.Editing;
@@ -25,6 +26,7 @@ import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.Programmatic;
 import org.apache.isis.applib.annotation.Property;
+import org.apache.isis.applib.annotation.PropertyLayout;
 import org.apache.isis.applib.annotation.Publishing;
 import org.apache.isis.applib.annotation.Title;
 
@@ -100,20 +102,24 @@ public class Modelo implements Comparable<Modelo>, ObservadorGeneral {
 
     @Column(allowsNull = "false")
     @Property()
+    @PropertyLayout(named = "Modelo Desactivado")
     private boolean baja;
 
     @Column(allowsNull = "false")
     @Property()
+    @PropertyLayout(named = "Marca Dasactivada")
     private boolean bajaMarca;
 
 
     @NotPersistent()
+    @CollectionLayout(named = "Modelos Activos")
     public List<Modelo> getActivas(){
 
         return modeloRepository.ListByBaja(false);
     }
 
     @NotPersistent()
+    @CollectionLayout(named = "Modelos Desactivados")
     public List<Modelo> getInactivas(){
 
         return modeloRepository.ListByBaja(true);
@@ -125,10 +131,10 @@ public class Modelo implements Comparable<Modelo>, ObservadorGeneral {
     }
 
     public String iconName(){
-        if (this.bajaMarca){
-            return "error";
+        if (this.baja){
+            return "off";
         } else
-            return this.baja ? "off" : "on";
+            return this.bajaMarca ? "error" : "on";
     }
 
     public Modelo(String nombre, Marca marca, boolean baja, boolean bajaMarca){
