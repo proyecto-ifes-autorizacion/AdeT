@@ -28,6 +28,7 @@
     color: #000000;
     background-color: #79c0e2;
     border-color: #ecf0f1;
+    font-weight: bold;
 }
 /*etiqueta para cambiar el color de la primer fila de titulos de una tabla */
 .headers {
@@ -47,9 +48,47 @@ table.table tr.headers th a { color: #000000; }
 .cbx-disabled {
     background: #ecf0f1;
     border: 2px solid #dce4ec;
+    color: #8e8e8e;
 }
 
+/*etiqueta para mejorar el borde de las pestañas a un gris oscuro igual que el borde inferior */
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+    color: #2c3e50;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-bottom-color: transparent;
+    cursor: default;
+}
 
+/*etiqueta para dar un borde mas oscuro a los containers de informacion*/
 .panel-default {
     border-color: #d6d6d6;
 }
+
+/*etiqueta para establecer fondo blanco en los containers de informacion*/
+.tab-content {
+    background-color: white;
+}
+
+input:-moz-read-only { /* For Firefox */
+  background-color: yellow;
+}
+.form-control[readonly],
+.form-control[readonly]:focus,
+input:read-only {
+    background-color: #f5f5f5;
+    cursor: default;
+    border-width: 0px;
+}
+
+/*baja el padding top del contenedor */
+#page-content-wrapper{
+padding: 0px 50px 0px 50px;
+
+}
+
+/*baja el padding al contenedor */
+.entityHeaderPanel{
+padding-top: 10px
+}
+
