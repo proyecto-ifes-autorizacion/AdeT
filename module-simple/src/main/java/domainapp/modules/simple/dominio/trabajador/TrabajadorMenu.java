@@ -27,46 +27,8 @@ import net.sf.jasperreports.engine.JRException;
 public class TrabajadorMenu {
 
     @Action()
-    @ActionLayout(named = "Listado Exportado")
-    public Blob ExportarListado() throws JRException, IOException {
-        EjecutarReportes ejecutarReportes = new EjecutarReportes();
-        return ejecutarReportes.ListadoTrabajadorPDF(trabajadorrepository.Listar());
-    }
-
-    @Action(
-            semantics = SemanticsOf.SAFE
-    )
-    @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT,
-            named = "Listado de Trabajadores"
-    )
+    @ActionLayout(named = "Crear Trabajador")
     @MemberOrder(sequence = "1")
-    public java.util.List<Trabajador> listAll() {
-        return trabajadorrepository.Listar();
-    }
-
-    @Action(
-            semantics = SemanticsOf.SAFE
-    )
-    @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT,
-            named = "Buscar"
-    )
-    @MemberOrder(sequence = "2")
-    public Trabajador findByCuil(
-            @Parameter(optionality = Optionality.MANDATORY)
-            @ParameterLayout(named = "Trabajador: ")
-            final Trabajador trabajador) {
-
-        return trabajador;
-    }
-
-    public List<Trabajador> choices0FindByCuil() {return trabajadorrepository.Listar();}
-
-    @Action(
-    )
-    @ActionLayout(named = "Crear")
-    @MemberOrder(sequence = "3")
     public Trabajador create(
 
             @Parameter(maxLength = 13)
@@ -96,6 +58,7 @@ public class TrabajadorMenu {
     }
     public List<Empresa> choices4Create() {return empresaRepository.Listar();}
 
+
     @Programmatic
     private String ValidarCuil(final String cuil){
         if (Character.isDigit(cuil.charAt(0)) &&
@@ -115,6 +78,36 @@ public class TrabajadorMenu {
         } else {
             return "Formato no valido XX-XXXXXXXX-X";
         }
+    }
+
+
+    @Action(semantics = SemanticsOf.SAFE)
+    @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT, named = "Buscar Trabajador")
+    @MemberOrder(sequence = "2")
+    public Trabajador findByCuil(
+            @Parameter(optionality = Optionality.MANDATORY)
+            @ParameterLayout(named = "Por Nombre: ")
+            final Trabajador trabajador) {
+
+        return trabajador;
+    }
+
+    public List<Trabajador> choices0FindByCuil() {return trabajadorrepository.Listar();}
+
+
+    @Action(semantics = SemanticsOf.SAFE)
+    @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT, named = "Listado de Trabajadores")
+    @MemberOrder(sequence = "2")
+    public java.util.List<Trabajador> listAll() {
+        return trabajadorrepository.Listar();
+    }
+
+
+    @Action()
+    @ActionLayout(named = "Listado Exportado")
+    public Blob ExportarListado() throws JRException, IOException {
+        EjecutarReportes ejecutarReportes = new EjecutarReportes();
+        return ejecutarReportes.ListadoTrabajadorPDF(trabajadorrepository.Listar());
     }
 
     @javax.inject.Inject
