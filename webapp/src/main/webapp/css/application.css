@@ -92,3 +92,21 @@ padding: 0px 50px 0px 50px;
 padding-top: 10px
 }
 
+
+/*############## ESTILO DE BOTONES ##############*/
+.btn-default,
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.btn-default:hover,
+.btn-primary:hover {
+    background-color: #3d95f3;
+    border: 2px solid #4ea3ff;
+}
+.btn-default:focus,
+.btn-primary:focus {
+    background-color: #3d95f3;
+    border: 2px solid #4ea3ff;
+}

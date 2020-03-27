@@ -51,7 +51,8 @@ $(document).ready(function() {
 if ($("body").find("div.entityPage.isis-domainapp-application-services-homepage-HomePageViewModel").length > 0){
     window.setInterval(function(){
     //Esto agarra tablas y: le aplica href a las filas, cambia el cursor, quita el boton mostrar como Tabla
-    ConvierteTablaEnClickeableAplicaCursor()
+    ConvierteTablaEnClickeableAplicaCursor();
+    QuitarBotonMostrarEnTabla();
     }, 250);
 }//end IF Pagina Home
 
