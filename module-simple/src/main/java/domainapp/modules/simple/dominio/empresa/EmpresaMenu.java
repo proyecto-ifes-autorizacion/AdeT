@@ -29,47 +29,8 @@ import net.sf.jasperreports.engine.JRException;
 public class EmpresaMenu {
 
     @Action()
-    @ActionLayout(named = "Listado Exportado")
-    public Blob ExportarListado() throws JRException, IOException {
-        EjecutarReportes ejecutarReportes = new EjecutarReportes();
-        return ejecutarReportes.ListadoEmpresaPDF(empresarepository.Listar());
-    }
-
-    @Action(
-            semantics = SemanticsOf.SAFE
-    )
-    @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT,
-            named = "Listado de Empresas"
-    )
+    @ActionLayout(named = "Crear Empresa")
     @MemberOrder(sequence = "1")
-    public List<Empresa> listAll() {
-        List<Empresa> empresas = empresarepository.Listar();
-        return empresas;
-    }
-
-    @Action(
-            semantics = SemanticsOf.SAFE
-    )
-    @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT,
-            named = "Buscar"
-    )
-    @MemberOrder(sequence = "2")
-    public Empresa findByNombreFantasia(
-            @Parameter(optionality = Optionality.MANDATORY)
-            @ParameterLayout(named = "Empresa: ")
-            final Empresa empresa) {
-
-        return empresa;
-    }
-
-    public List<Empresa> choices0FindByNombreFantasia() {return empresarepository.Listar();}
-
-    @Action(
-    )
-    @ActionLayout(named = "Crear")
-    @MemberOrder(sequence = "3")
     public Empresa create(
             @Parameter(maxLength = 40)
             @ParameterLayout(named = "Nombre Fantasia: ")
@@ -88,6 +49,37 @@ public class EmpresaMenu {
             final String telefono) {
 
         return empresarepository.create(nombreFantasia, razonSocial, direccion, telefono);
+    }
+
+
+    @Action(semantics = SemanticsOf.SAFE)
+    @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT, named = "Buscar Empresa")
+    @MemberOrder(sequence = "2")
+    public Empresa findByNombreFantasia(
+            @Parameter(optionality = Optionality.MANDATORY)
+            @ParameterLayout(named = "Por nombre: ")
+            final Empresa empresa) {
+
+        return empresa;
+    }
+
+    public List<Empresa> choices0FindByNombreFantasia() {return empresarepository.Listar();}
+
+
+    @Action(semantics = SemanticsOf.SAFE)
+    @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT, named = "Listado de Empresas")
+    @MemberOrder(sequence = "3")
+    public List<Empresa> listAll() {
+        List<Empresa> empresas = empresarepository.Listar();
+        return empresas;
+    }
+
+
+    @Action()
+    @ActionLayout(named = "Listado Exportado")
+    public Blob ExportarListado() throws JRException, IOException {
+        EjecutarReportes ejecutarReportes = new EjecutarReportes();
+        return ejecutarReportes.ListadoEmpresaPDF(empresarepository.Listar());
     }
 
     @javax.inject.Inject
