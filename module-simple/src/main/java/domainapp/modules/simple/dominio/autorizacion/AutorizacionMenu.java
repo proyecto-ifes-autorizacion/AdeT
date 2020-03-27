@@ -20,27 +20,17 @@ import net.sf.jasperreports.engine.JRException;
 public class AutorizacionMenu {
 
     @Action()
-    @ActionLayout(named = "Listado Exportado")
-    public Blob ExportarListado() throws JRException, IOException {
-        EjecutarReportes ejecutarReportes = new EjecutarReportes();
-        return ejecutarReportes.ListadoAutorizacionPDF(autorizacionrepository.Listar());
-    }
-
-
-    @Property(notPersisted = true, hidden = Where.EVERYWHERE)
-    private IteradorEjecutante iterador = IteradorEjecutante.getInstance();
-
-    @Action(semantics = SemanticsOf.SAFE)
-    @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT, named = "Listado de Autorizaciones")
+    @ActionLayout(named = "Crear Autorizacion")
     @MemberOrder(sequence = "1")
-    public List<Autorizacion> listAll() {
+    public Autorizacion create() {
 
         iterador.reinicio();
-        return autorizacionrepository.Listar();
+        return autorizacionrepository.create();
     }
 
+
     @Action(semantics = SemanticsOf.SAFE)
-    @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT, named = "Buscar")
+    @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT, named = "Buscar Autorizacion")
     @MemberOrder(sequence = "2")
     public List<Autorizacion> findByIdAdeT(
 
@@ -52,13 +42,25 @@ public class AutorizacionMenu {
         return autorizacionrepository.Listar(estadoAutorizacion);
     }
 
-    @Action()
+
+    @Action(semantics = SemanticsOf.SAFE)
+    @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT, named = "Listado de Autorizaciones")
     @MemberOrder(sequence = "3")
-    public Autorizacion create() {
+    public List<Autorizacion> listAll() {
 
         iterador.reinicio();
-        return autorizacionrepository.create();
+        return autorizacionrepository.Listar();
     }
+
+    @Action()
+    @ActionLayout(named = "Listado Exportado")
+    public Blob ExportarListado() throws JRException, IOException {
+        EjecutarReportes ejecutarReportes = new EjecutarReportes();
+        return ejecutarReportes.ListadoAutorizacionPDF(autorizacionrepository.Listar());
+    }
+
+    @Property(notPersisted = true, hidden = Where.EVERYWHERE)
+    private IteradorEjecutante iterador = IteradorEjecutante.getInstance();
 
     @javax.inject.Inject
     AutorizacionRepository autorizacionrepository;
