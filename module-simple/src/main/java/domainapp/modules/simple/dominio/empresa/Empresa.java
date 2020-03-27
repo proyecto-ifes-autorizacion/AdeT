@@ -143,16 +143,19 @@ public class Empresa implements Comparable<Empresa>, SujetoGeneral {
     }
 
     @NotPersistent
+    @CollectionLayout(named = "Empresas Habilitadas")
     public List<Empresa> getHabilitada(){
         return empresaRepository.Listar(EstadoEmpresa.Habilitada);
     }
 
     @NotPersistent
+    @CollectionLayout(named = "Empresas Inhabilitadas")
     public List<Empresa> getInhabilitada(){
         return empresaRepository.Listar(EstadoEmpresa.Inhabilitada);
     }
 
     @NotPersistent
+    @CollectionLayout(named = "Empresas Borradas")
     public List<Empresa> getBorrada(){
         return empresaRepository.Listar(EstadoEmpresa.Borrada);
     }

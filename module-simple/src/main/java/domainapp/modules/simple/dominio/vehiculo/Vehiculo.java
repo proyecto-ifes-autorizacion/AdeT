@@ -144,21 +144,25 @@ public class Vehiculo implements Comparable<Vehiculo>, ObservadorGeneral, Observ
     }
 
     @NotPersistent
+    @CollectionLayout(named = "Vehiculos en Ejecucion")
     public List<Vehiculo> getEjecucion(){
         return vehiculoRepository.List(EstadoGeneral.Ejecucion);
     }
 
     @NotPersistent
+    @CollectionLayout(named = "Vehiculos Habilitados")
     public List<Vehiculo> getHabilitado(){
         return vehiculoRepository.List(EstadoGeneral.Habilitado);
     }
 
     @NotPersistent
+    @CollectionLayout(named = "Vehiculos Inhabilitados")
     public List<Vehiculo> getInhabilitado(){
         return vehiculoRepository.List(EstadoGeneral.Inhabilitado);
     }
 
     @NotPersistent
+    @CollectionLayout(named = "Vehiculos Borrados")
     public List<Vehiculo> getBorrado(){
         return vehiculoRepository.List(EstadoGeneral.Borrado);
     }

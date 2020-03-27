@@ -19,6 +19,7 @@ import javax.jdo.annotations.VersionStrategy;
 import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.BookmarkPolicy;
+import org.apache.isis.applib.annotation.CollectionLayout;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.Editing;
@@ -26,6 +27,7 @@ import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.Programmatic;
 import org.apache.isis.applib.annotation.Property;
+import org.apache.isis.applib.annotation.PropertyLayout;
 import org.apache.isis.applib.annotation.Publishing;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.annotation.Title;
@@ -85,22 +87,25 @@ public class Marca implements Comparable<Marca>, SujetoGeneral {
     @Title()
     private String nombre;
 
-    @Persistent(mappedBy = "marca")
+    @Persistent(mappedBy = "marca", defaultFetchGroup = "true")
     @Column(allowsNull = "true")
     @Property()
     private List<Modelo> modelos;
 
     @Column(allowsNull = "false")
     @Property()
+    @PropertyLayout(named = "Desactivada")
     private boolean baja;
 
     @NotPersistent()
+    @CollectionLayout(named = "Marcas Activas")
     public List<Marca> getActivas(){
 
         return marcaRepository.ListByBaja(false);
     }
 
     @NotPersistent()
+    @CollectionLayout(named = "Marcas Desactivadas")
     public List<Marca> getInactivas(){
 
         return marcaRepository.ListByBaja(true);
