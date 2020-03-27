@@ -110,3 +110,8 @@ padding-top: 10px
     background-color: #3d95f3;
     border: 2px solid #4ea3ff;
 }
+
+.containerConBorde {
+  border: 1px solid #d4d4d4;
+  padding-top: 20px;
+}
