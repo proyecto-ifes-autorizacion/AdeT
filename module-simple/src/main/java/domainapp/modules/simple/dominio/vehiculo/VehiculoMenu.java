@@ -30,44 +30,8 @@ import net.sf.jasperreports.engine.JRException;
 public class VehiculoMenu {
 
     @Action()
-    @ActionLayout(named = "Listado Exportado")
-    public Blob ExportarListado() throws JRException, IOException {
-        EjecutarReportes ejecutarReportes = new EjecutarReportes();
-        return ejecutarReportes.ListadoVehiculoPDF(vehiculorepository.List());
-    }
-
-    @Action(
-            semantics = SemanticsOf.SAFE
-    )
-    @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT,
-            named = "Listado de Vehiculos"
-    )
-    @MemberOrder(sequence = "1")
-    public List<Vehiculo> listAll() {return vehiculorepository.List();}
-
-    @Action(
-            semantics = SemanticsOf.SAFE
-    )
-    @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT,
-            named = "Buscar"
-    )
-    @MemberOrder(sequence = "2")
-    public Vehiculo findByDominio(
-            @Parameter(optionality = Optionality.MANDATORY)
-            @ParameterLayout(named = "Vehiculo: ")
-            final Vehiculo vehiculo) {
-
-        return vehiculo;
-    }
-
-    public List<Vehiculo> choices0FindByDominio() {return vehiculorepository.List();}
-
-    @Action(
-    )
     @ActionLayout(named = "Crear")
-    @MemberOrder(sequence = "3")
+    @MemberOrder(sequence = "1")
     public Vehiculo create(
 
             @Parameter(optionality = Optionality.MANDATORY)
@@ -91,6 +55,34 @@ public class VehiculoMenu {
     public List<Empresa> choices0Create() {return empresaRepository.Listar();}
 
     public List<Modelo> choices1Create() {return modeloRepository.ListActivos();}
+
+
+    @Action(semantics = SemanticsOf.SAFE)
+    @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT, named = "Listado de Vehiculos")
+    @MemberOrder(sequence = "2")
+    public List<Vehiculo> listAll() {return vehiculorepository.List();}
+
+
+    @Action(semantics = SemanticsOf.SAFE)
+    @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT, named = "Buscar Vehiculo")
+    @MemberOrder(sequence = "3")
+    public Vehiculo findByDominio(
+            @Parameter(optionality = Optionality.MANDATORY)
+            @ParameterLayout(named = "Vehiculo: ")
+            final Vehiculo vehiculo) {
+
+        return vehiculo;
+    }
+
+    public List<Vehiculo> choices0FindByDominio() {return vehiculorepository.List();}
+
+
+    @Action()
+    @ActionLayout(named = "Listado Exportado")
+    public Blob ExportarListado() throws JRException, IOException {
+        EjecutarReportes ejecutarReportes = new EjecutarReportes();
+        return ejecutarReportes.ListadoVehiculoPDF(vehiculorepository.List());
+    }
 
     @javax.inject.Inject
     VehiculoRepository vehiculorepository;

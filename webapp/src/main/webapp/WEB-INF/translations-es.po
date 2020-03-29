@@ -518,7 +518,6 @@ msgstr "Objects"
 msgid "okLabel"
 msgstr "Aceptar"
 
-
 #: org.apache.isis.viewer.wicket.ui.pages.login.WicketSignInPage
 msgid "passwordLabel"
 msgstr "Contraseña"
@@ -715,3 +714,895 @@ msgstr "Nombre de usuario"
 msgid "usernamePlaceholder"
 msgstr "Nombre de usuario"
 
+
+
+
+
+
+#: org.apache.isis.viewer.wicket.ui.pages.login.WicketSignInPage
+msgid "AutoLabel.CSS.required"
+msgstr "AutoLabel.CSS.required"
+
+#: domainapp.application.services.homepage.HomePageService#homePage()
+msgid "Home Page"
+msgstr "Pagina de inicio"
+
+#: domainapp.application.services.homepage.HomePageViewModel
+msgid "autorizaciones"
+msgstr "autorizaciones"
+
+#: domainapp.application.services.homepage.HomePageViewModel#title()
+msgid "{num} Autorizaciones"
+msgstr "{num} Autorizaciones"
+
+#: domainapp.application.services.homepage.HomePageViewModel#clearHints()
+msgid "Clear Hints"
+msgstr "Clear Hints"
+
+#: domainapp.application.services.homepage.HomePageViewModel#downloadLayoutXml()
+msgid "Download Layout Xml"
+msgstr "Download Layout Xml"
+
+#: domainapp.application.services.homepage.HomePageViewModel#rebuildMetamodel()
+msgid "Rebuild Metamodel"
+msgstr "Rebuild Metamodel"
+
+#: domainapp.application.services.homepage.HomePageViewModel#openRestApi()
+msgid "Open Rest Api"
+msgstr "Open Rest Api"
+
+#: domainapp.application.services.homepage.HomePageViewModel#autorizaciones
+msgid "Autorizaciones"
+msgstr "Autorizaciones"
+
+#: domainapp.modules.simple.dominio.trabajador.TrabajadorMenu
+msgid "Trabajador"
+msgstr "Trabajador"
+
+#: domainapp.modules.simple.dom.impl.SimpleObjects
+msgid "Simple Objects"
+msgstr "Simple Objects"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUserMenu
+msgid "Security"
+msgstr "Security"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRoleMenu
+msgid "Security"
+msgstr "Security"
+
+#: org.isisaddons.module.security.dom.tenancy.ApplicationTenancyMenu
+msgid "Security"
+msgstr "Security"
+
+#: org.isisaddons.module.security.app.feature.ApplicationFeatureViewModels
+msgid "Security"
+msgstr "Security"
+
+#: org.isisaddons.module.security.dom.permission.ApplicationPermissionMenu
+msgid "Security"
+msgstr "Security"
+
+#: org.apache.isis.applib.services.hsqldb.HsqlDbManagerMenu
+msgid "Prototyping"
+msgstr "Prototyping"
+
+#: domainapp.modules.simple.dominio.autorizacion.AutorizacionMenu#listAll()
+msgid "Listado de Autorizaciones"
+msgstr "Listado de Autorizaciones"
+
+#: domainapp.modules.simple.dominio.autorizacion.AutorizacionMenu#findByIdAdeT()
+msgid "Buscar Autorizacion"
+msgstr "Buscar Autorizacion"
+
+#: domainapp.modules.simple.dominio.autorizacion.AutorizacionMenu#create()
+msgid "Crear Autorizacion"
+msgstr "Crear Autorizacion"
+
+#: domainapp.modules.simple.dominio.autorizacion.AutorizacionMenu#ExportarListado()
+msgid "Listado Exportado"
+msgstr "Listado Exportado"
+
+#: domainapp.modules.simple.dominio.empresa.EmpresaMenu#listAll()
+msgid "Listado de Empresas"
+msgstr "Listado de Empresas"
+
+#: domainapp.modules.simple.dominio.empresa.EmpresaMenu#create()
+msgid "Crear Empresa"
+msgstr "Crear Empresa"
+
+#: domainapp.modules.simple.dominio.empresa.EmpresaMenu#findByNombreFantasia()
+msgid "Buscar Empresa"
+msgstr "Buscar Empresa"
+
+#: domainapp.modules.simple.dominio.empresa.EmpresaMenu#ExportarListado()
+msgid "Listado Exportado"
+msgstr "Listado Exportado"
+
+#: domainapp.modules.simple.dominio.autorizacion.AutorizacionMenu#findByIdAdeT(domainapp.modules.simple.dominio.autorizacion.EstadoAutorizacion)
+msgid "Estado: "
+msgstr "Estado: "
+
+#: domainapp.modules.simple.dominio.empresa.EmpresaMenu#create(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+msgid "Nombre Fantasia: "
+msgstr "Nombre Fantasia: "
+
+#: domainapp.modules.simple.dominio.empresa.EmpresaMenu#create(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+msgid "Razon Social: "
+msgstr "Razon Social: "
+
+#: domainapp.modules.simple.dominio.empresa.EmpresaMenu#create(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+msgid "Direccion: "
+msgstr "Direccion: "
+
+#: domainapp.modules.simple.dominio.empresa.EmpresaMenu#create(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+msgid "Telefono: "
+msgstr "Telefono: "
+
+#: domainapp.modules.simple.dominio.empresa.EmpresaMenu#findByNombreFantasia(domainapp.modules.simple.dominio.empresa.Empresa)
+msgid "Por nombre: "
+msgstr "Por nombre: "
+
+
+
+#: domainapp.modules.simple.dominio.trabajador.TrabajadorMenu#listAll()
+msgid "Listado de Trabajadores"
+msgstr "Listado de Trabajadores"
+
+#: domainapp.modules.simple.dominio.trabajador.TrabajadorMenu#create()
+msgid "Crear Trabajador"
+msgstr "Crear Trabajador"
+
+#: domainapp.modules.simple.dominio.trabajador.TrabajadorMenu#findByCuil()
+msgid "Buscar Trabajador"
+msgstr "Buscar Trabajador"
+
+#: domainapp.modules.simple.dominio.trabajador.TrabajadorMenu#ExportarListado()
+msgid "Listado Exportado"
+msgstr "Listado Exportado"
+
+
+#: domainapp.modules.simple.dominio.trabajador.TrabajadorMenu#create(java.lang.String,java.lang.String,java.lang.String,org.joda.time.LocalDate,domainapp.modules.simple.dominio.empresa.Empresa)
+msgid "Cuil: "
+msgstr "Cuil: "
+
+#: domainapp.modules.simple.dominio.trabajador.TrabajadorMenu#create(java.lang.String,java.lang.String,java.lang.String,org.joda.time.LocalDate,domainapp.modules.simple.dominio.empresa.Empresa)
+msgid "Nombre: "
+msgstr "Nombre: "
+
+#: domainapp.modules.simple.dominio.trabajador.TrabajadorMenu#create(java.lang.String,java.lang.String,java.lang.String,org.joda.time.LocalDate,domainapp.modules.simple.dominio.empresa.Empresa)
+msgid "Apellido: "
+msgstr "Apellido: "
+
+#: domainapp.modules.simple.dominio.trabajador.TrabajadorMenu#create(java.lang.String,java.lang.String,java.lang.String,org.joda.time.LocalDate,domainapp.modules.simple.dominio.empresa.Empresa)
+msgid "Fecha Nacimiento: "
+msgstr "Fecha Nacimiento: "
+
+#: domainapp.modules.simple.dominio.trabajador.TrabajadorMenu#create(java.lang.String,java.lang.String,java.lang.String,org.joda.time.LocalDate,domainapp.modules.simple.dominio.empresa.Empresa)
+msgid "Empresa: "
+msgstr "Empresa: "
+
+#: domainapp.modules.simple.dominio.trabajador.TrabajadorMenu#findByCuil(domainapp.modules.simple.dominio.trabajador.Trabajador)
+msgid "Por Nombre: "
+msgstr "Por Nombre: "
+
+#: domainapp.modules.simple.dominio.vehiculo.VehiculoMenu#create()
+msgid "Crear"
+msgstr "Crear"
+
+#: domainapp.modules.simple.dominio.vehiculo.VehiculoMenu#listAll()
+msgid "Listado de Vehiculos"
+msgstr "Listado de Vehiculos"
+
+#: domainapp.modules.simple.dominio.vehiculo.VehiculoMenu#findByDominio()
+msgid "Buscar Vehiculo"
+msgstr "Buscar Vehiculo"
+
+#: domainapp.modules.simple.dominio.vehiculo.VehiculoMenu#ExportarListado()
+msgid "Listado Exportado"
+msgstr "Listado Exportado"
+
+#: domainapp.modules.simple.dominio.vehiculo.adicional.MarcaMenu#create()
+msgid "Crear Marca"
+msgstr "Crear Marca"
+
+#: domainapp.modules.simple.dominio.vehiculo.adicional.MarcaMenu#findByNombre()
+msgid "Buscar Marca"
+msgstr "Buscar Marca"
+
+#: domainapp.modules.simple.dominio.vehiculo.adicional.MarcaMenu#listAll()
+msgid "Listado de Marcas"
+msgstr "Listado de Marcas"
+
+#: domainapp.modules.simple.dominio.vehiculo.adicional.ModeloMenu#create()
+msgid "Crear Modelo"
+msgstr "Crear Modelo"
+
+#: domainapp.modules.simple.dominio.vehiculo.adicional.ModeloMenu#findByNombre()
+msgid "Buscar Modelo"
+msgstr "Buscar Modelo"
+
+#: domainapp.modules.simple.dominio.vehiculo.adicional.ModeloMenu#listAll()
+msgid "Listado de Modelos"
+msgstr "Listado de Modelos"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUserMenu#newDelegateUser()
+msgid "New Delegate User"
+msgstr "Nuevo usuario delegado"
+
+#: org.isisaddons.module.security.dom.tenancy.ApplicationTenancyMenu#allTenancies()
+msgid "All Tenancies"
+msgstr "Todas las herencias"
+
+#: org.isisaddons.module.security.app.feature.ApplicationFeatureViewModels#allPackages()
+msgid "All Packages"
+msgstr "Todos los paquetes"
+
+#: org.isisaddons.module.security.app.feature.ApplicationFeatureViewModels#allClasses()
+msgid "All Classes"
+msgstr "Todas las Clases"
+
+#: org.isisaddons.module.security.app.feature.ApplicationFeatureViewModels#allActions()
+msgid "All Actions"
+msgstr "Todas las Acciones"
+
+#: org.isisaddons.module.security.app.feature.ApplicationFeatureViewModels#allProperties()
+msgid "All Properties"
+msgstr "Todas las Propiedades"
+
+#: org.isisaddons.module.security.app.feature.ApplicationFeatureViewModels#allCollections()
+msgid "All Collections"
+msgstr "Todas las Colecciones"
+
+#: org.isisaddons.module.security.dom.permission.ApplicationPermissionMenu#allPermissions()
+msgid "All Permissions"
+msgstr "Todos los Permisos"
+
+#: org.apache.isis.applib.services.layout.LayoutServiceMenu#downloadLayouts()
+msgid "Download Object Layouts (ZIP)"
+msgstr "Descargar Layouts de Objetos"
+
+#: org.apache.isis.applib.services.layout.LayoutServiceMenu#downloadMenuBarsLayout()
+msgid "Download Menu Bars Layout (XML)"
+msgstr "Descargar Layout de Menus (XML)"
+
+#: org.apache.isis.applib.services.metamodel.MetaModelServicesMenu#downloadMetaModel()
+msgid "Download Meta Model (CSV)"
+msgstr "Descargar Meta Modelo (CSV)"
+
+#: org.apache.isis.applib.services.metamodel.MetaModelServicesMenu#downloadMetaModelXml()
+msgid "Download Meta Model (XML)"
+msgstr "Descargar Meta Modelo (XML)"
+
+#: org.apache.isis.applib.services.swagger.SwaggerServiceMenu#openSwaggerUi()
+msgid "Open Swagger Ui"
+msgstr "Abrir Swagger Ui"
+
+#: org.apache.isis.applib.services.swagger.SwaggerServiceMenu#openRestApi()
+msgid "Open Rest Api"
+msgstr "Abrir Open Rest Api"
+
+#: org.apache.isis.applib.services.swagger.SwaggerServiceMenu#downloadSwaggerSchemaDefinition()
+msgid "Download Swagger Schema Definition"
+msgstr "Descargar Esquema de definicion de Swagger"
+
+#: org.apache.isis.core.runtime.services.i18n.po.TranslationServicePoMenu#resetTranslationCache()
+msgid "Clear translation cache"
+msgstr "Limpiar cache de traduccion"
+
+#: org.apache.isis.applib.services.hsqldb.HsqlDbManagerMenu#hsqlDbManager()
+msgid "HSQL DB Manager"
+msgstr "Administrador de BD HSQL"
+
+
+#: domainapp.modules.simple.dominio.vehiculo.VehiculoMenu#create(domainapp.modules.simple.dominio.empresa.Empresa,domainapp.modules.simple.dominio.vehiculo.adicional.Modelo,java.lang.String,org.joda.time.LocalDate)
+msgid "Empresa: "
+msgstr "Empresa: "
+
+#: domainapp.modules.simple.dominio.vehiculo.VehiculoMenu#create(domainapp.modules.simple.dominio.empresa.Empresa,domainapp.modules.simple.dominio.vehiculo.adicional.Modelo,java.lang.String,org.joda.time.LocalDate)
+msgid "Modelo: "
+msgstr "Modelo: "
+
+#: domainapp.modules.simple.dominio.vehiculo.VehiculoMenu#create(domainapp.modules.simple.dominio.empresa.Empresa,domainapp.modules.simple.dominio.vehiculo.adicional.Modelo,java.lang.String,org.joda.time.LocalDate)
+msgid "Dominio: "
+msgstr "Dominio: "
+
+#: domainapp.modules.simple.dominio.vehiculo.VehiculoMenu#create(domainapp.modules.simple.dominio.empresa.Empresa,domainapp.modules.simple.dominio.vehiculo.adicional.Modelo,java.lang.String,org.joda.time.LocalDate)
+msgid "Fecha Alta: "
+msgstr "Fecha Alta: "
+
+
+#: domainapp.modules.simple.dominio.vehiculo.VehiculoMenu#findByDominio(domainapp.modules.simple.dominio.vehiculo.Vehiculo)
+msgid "Vehiculo: "
+msgstr "Vehiculo: "
+
+#: domainapp.modules.simple.dominio.vehiculo.adicional.MarcaMenu#create(java.lang.String)
+msgid "Marca: "
+msgstr "Marca: "
+
+#: domainapp.modules.simple.dominio.vehiculo.adicional.MarcaMenu#findByNombre(domainapp.modules.simple.dominio.vehiculo.adicional.Marca)
+msgid "Por Nombre: "
+msgstr "Por Nombre: "
+
+#: domainapp.modules.simple.dominio.vehiculo.adicional.ModeloMenu#create(java.lang.String,domainapp.modules.simple.dominio.vehiculo.adicional.Marca)
+msgid "Modelo: "
+msgstr "Modelo: "
+
+#: domainapp.modules.simple.dominio.vehiculo.adicional.ModeloMenu#create(java.lang.String,domainapp.modules.simple.dominio.vehiculo.adicional.Marca)
+msgid "Marca: "
+msgstr "Marca: "
+
+#: domainapp.modules.simple.dominio.vehiculo.adicional.ModeloMenu#findByNombre(domainapp.modules.simple.dominio.vehiculo.adicional.Modelo)
+msgid "Por Nombre: "
+msgstr "Por Nombre: "
+
+
+
+#: org.isisaddons.module.security.dom.user.ApplicationUserMenu#findUsers(java.lang.String)
+msgid "Search"
+msgstr "Por nombre"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUserMenu#newDelegateUser(java.lang.String,org.isisaddons.module.security.dom.role.ApplicationRole,java.lang.Boolean)
+msgid "Name"
+msgstr "Nombre"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUserMenu#newDelegateUser(java.lang.String,org.isisaddons.module.security.dom.role.ApplicationRole,java.lang.Boolean)
+msgid "Initial role"
+msgstr "Rol Inicial"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUserMenu#newDelegateUser(java.lang.String,org.isisaddons.module.security.dom.role.ApplicationRole,java.lang.Boolean)
+msgid "Enabled?"
+msgstr "¿Habilitado?"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUserMenu#newLocalUser(java.lang.String,org.apache.isis.applib.value.Password,org.apache.isis.applib.value.Password,org.isisaddons.module.security.dom.role.ApplicationRole,java.lang.Boolean,java.lang.String)
+msgid "Name"
+msgstr "Nombre"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUserMenu#newLocalUser(java.lang.String,org.apache.isis.applib.value.Password,org.apache.isis.applib.value.Password,org.isisaddons.module.security.dom.role.ApplicationRole,java.lang.Boolean,java.lang.String)
+msgid "Password"
+msgstr "Contraseña"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUserMenu#newLocalUser(java.lang.String,org.apache.isis.applib.value.Password,org.apache.isis.applib.value.Password,org.isisaddons.module.security.dom.role.ApplicationRole,java.lang.Boolean,java.lang.String)
+msgid "Repeat password"
+msgstr "Repita Contraseña"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUserMenu#newLocalUser(java.lang.String,org.apache.isis.applib.value.Password,org.apache.isis.applib.value.Password,org.isisaddons.module.security.dom.role.ApplicationRole,java.lang.Boolean,java.lang.String)
+msgid "Initial role"
+msgstr "Rol Inicial"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUserMenu#newLocalUser(java.lang.String,org.apache.isis.applib.value.Password,org.apache.isis.applib.value.Password,org.isisaddons.module.security.dom.role.ApplicationRole,java.lang.Boolean,java.lang.String)
+msgid "Enabled?"
+msgstr "¿Habilitado?"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUserMenu#newLocalUser(java.lang.String,org.apache.isis.applib.value.Password,org.apache.isis.applib.value.Password,org.isisaddons.module.security.dom.role.ApplicationRole,java.lang.Boolean,java.lang.String)
+msgid "Email Address"
+msgstr "E-mail"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRoleMenu#findRoles(java.lang.String)
+msgid "Search"
+msgstr "Por nombre"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRoleMenu#newRole(java.lang.String,java.lang.String)
+msgid "Name"
+msgstr "Nombre"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRoleMenu#newRole(java.lang.String,java.lang.String)
+msgid "Description"
+msgstr "Descripcion"
+
+#: org.isisaddons.module.security.dom.tenancy.ApplicationTenancyMenu#findTenancies(java.lang.String)
+msgid "Partial Name Or Path"
+msgstr "Parte del nombre o Ruta"
+
+#: org.isisaddons.module.security.dom.tenancy.ApplicationTenancyMenu#newTenancy(java.lang.String,java.lang.String,org.isisaddons.module.security.dom.tenancy.ApplicationTenancy)
+msgid "Name"
+msgstr "Nombre"
+
+#: org.isisaddons.module.security.dom.tenancy.ApplicationTenancyMenu#newTenancy(java.lang.String,java.lang.String,org.isisaddons.module.security.dom.tenancy.ApplicationTenancy)
+msgid "Path"
+msgstr "Ruta"
+
+#: org.isisaddons.module.security.dom.tenancy.ApplicationTenancyMenu#newTenancy(java.lang.String,java.lang.String,org.isisaddons.module.security.dom.tenancy.ApplicationTenancy)
+msgid "Parent"
+msgstr "Padre"
+
+#: org.isisaddons.module.security.app.user.MeService#me()
+msgid "Looks up ApplicationUser entity corresponding to your user account"
+msgstr "Busca entidad ApplicationUser correspondiente a tu cuenta de usuario"
+
+#: org.apache.isis.applib.services.layout.LayoutServiceMenu#downloadMenuBarsLayout(java.lang.String,org.apache.isis.applib.services.menu.MenuBarsService$Type)
+msgid "File name"
+msgstr "Nombre de archivo"
+
+#: org.apache.isis.applib.services.metamodel.MetaModelServicesMenu#downloadMetaModel(java.lang.String)
+msgid ".csv file name"
+msgstr "nombre de archivo .csv"
+
+#: org.apache.isis.applib.services.metamodel.MetaModelServicesMenu#downloadMetaModelXml(java.util.List,java.lang.String)
+msgid "Packages"
+msgstr "Paquetes"
+
+#: org.apache.isis.applib.services.metamodel.MetaModelServicesMenu#downloadMetaModelXml(java.util.List,java.lang.String)
+msgid ".xml file name"
+msgstr "nombre de archivo .xml"
+
+#: org.apache.isis.applib.services.swagger.SwaggerServiceMenu#downloadSwaggerSchemaDefinition(java.lang.String,org.apache.isis.applib.services.swagger.SwaggerService$Visibility,org.apache.isis.applib.services.swagger.SwaggerService$Format)
+msgid "Filename"
+msgstr "Nombre de archivo"
+
+#: org.apache.isis.viewer.wicket.ui.pages.home.HomePage
+msgid "logoutLabel"
+msgstr "Cerrar Sesion"
+
+#: org.apache.isis.viewer.wicket.ui.pages.home.HomePage
+msgid "aboutLabel"
+msgstr "Sobre"
+
+#: org.apache.isis.viewer.wicket.ui.pages.home.HomePage
+msgid "okLabel"
+msgstr "Aceptar"
+
+#: org.apache.isis.viewer.wicket.ui.pages.home.HomePage
+msgid "cancelLabel"
+msgstr "Cancelar"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser
+msgid "Id"
+msgstr "ID"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser
+msgid "Name"
+msgstr "Nombre"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser
+msgid "Contact Details"
+msgstr "Informacion de Contacto"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser
+msgid "Status"
+msgstr "Estado"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser
+msgid "AtPath"
+msgstr "Atributos de Ruta"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser
+msgid "roles"
+msgstr "roles"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser
+msgid "permissions"
+msgstr "permisos"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#name
+msgid "Name"
+msgstr "Nombre"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#username
+msgid "Username"
+msgstr "Nombre de Usuario"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#emailAddress
+msgid "Email Address"
+msgstr "E-mail"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#phoneNumber
+msgid "Phone Number"
+msgstr "Numero telefonico"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#faxNumber
+msgid "Fax Number"
+msgstr "Numero de Fax"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#accountType
+msgid "Account Type"
+msgstr "Tipo de cuenta"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#hasPassword
+msgid "Has Password"
+msgstr "Tiene Contraseña"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#status
+msgid "Status"
+msgstr "Estado"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#atPath
+msgid "At Path"
+msgstr "Atrib. de Ruta"
+
+#: org.isisaddons.module.security.dom.user.AccountType#LOCAL
+msgid "Local"
+msgstr "Local"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUserStatus#ENABLED
+msgid "Enabled"
+msgstr "Habilitado"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#updateUsername()
+msgid "Update Username"
+msgstr "Actualizar Nombre de Usuario"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#updateEmailAddress()
+msgid "Update Email Address"
+msgstr "Actualizar E-mail"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#updatePhoneNumber()
+msgid "Update Phone Number"
+msgstr "Actualizar Numero de telefono"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#updateFaxNumber()
+msgid "Update Fax Number"
+msgstr "Actualizar Numero de Fax"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#updateAccountType()
+msgid "Update Account Type"
+msgstr "Actualizar Tipo de Cuenta"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#updatePassword()
+msgid "Update Password"
+msgstr "Actualizar Contraseña"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#resetPassword()
+msgid "Reset Password"
+msgstr "Reestablecer Contraseña"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#unlock()
+msgid "Enable"
+msgstr "Habilitar"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#updateAtPath()
+msgid "Update At Path"
+msgstr "Actualizar atributo de Ruta"
+
+#: org.apache.isis.viewer.wicket.ui.pages.standalonecollection.StandaloneCollectionPage
+msgid "logoutLabel"
+msgstr "Cerrar Sesion"
+
+#: org.apache.isis.viewer.wicket.ui.pages.standalonecollection.StandaloneCollectionPage
+msgid "OrderByLink.CSS.none"
+msgstr "OrderByLink.CSS.none"
+
+#: org.apache.isis.viewer.wicket.ui.pages.standalonecollection.StandaloneCollectionPage
+msgid "OddEvenItem.CSS.even"
+msgstr "OddEvenItem.CSS.even"
+
+#: org.apache.isis.viewer.wicket.ui.pages.standalonecollection.StandaloneCollectionPage
+msgid "OddEvenItem.CSS.odd"
+msgstr "OddEvenItem.CSS.odd"
+
+#: org.apache.isis.viewer.wicket.ui.pages.standalonecollection.StandaloneCollectionPage
+msgid "aboutLabel"
+msgstr "Sobre"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser
+msgid "Metadata"
+msgstr "Metadata"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#lock()
+msgid "Disable"
+msgstr "Deshabilitar"
+
+#: org.apache.isis.viewer.wicket.ui.pages.standalonecollection.StandaloneCollectionPage
+msgid "okLabel"
+msgstr "Aceptar"
+
+#: org.apache.isis.viewer.wicket.ui.pages.standalonecollection.StandaloneCollectionPage
+msgid "cancelLabel"
+msgstr "Cancelar"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole
+msgid "General"
+msgstr "General"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole
+msgid "permissions"
+msgstr "permisos"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole
+msgid "users"
+msgstr "usuarios"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#name
+msgid "Name"
+msgstr "Nombre"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#description
+msgid "Description"
+msgstr "Descripcion"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#updateName()
+msgid "Update Name"
+msgstr "Actualizar Nombre"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#updateDescription()
+msgid "Update Description"
+msgstr "Actualizar Descripcion"
+
+#: org.isisaddons.module.security.dom.tenancy.ApplicationTenancyMenu#findTenancies(java.lang.String)
+msgid "String to search for, wildcard (*) can be used"
+msgstr "Texto a buscar, comodin (*) puede ser usado"
+
+
+#: org.isisaddons.module.security.dom.permission.ApplicationPermission#delete()
+msgid "Delete"
+msgstr "Borrar"
+
+#: org.isisaddons.module.security.dom.permission.ApplicationPermission
+msgid "Role"
+msgstr "Rol"
+
+#: org.isisaddons.module.security.dom.permission.ApplicationPermission
+msgid "Metadata"
+msgstr "Metadata"
+
+#: org.isisaddons.module.security.dom.permission.ApplicationPermission
+msgid "Permissions"
+msgstr "Permisos"
+
+#: org.isisaddons.module.security.dom.permission.ApplicationPermission
+msgid "Feature"
+msgstr "Funcionalidad"
+
+#: org.isisaddons.module.security.dom.permission.ApplicationPermission#role
+msgid "Role"
+msgstr "Rol"
+
+#: org.isisaddons.module.security.dom.permission.ApplicationPermission#rule
+msgid "Rule"
+msgstr "Regla"
+
+#: org.isisaddons.module.security.dom.permission.ApplicationPermission#mode
+msgid "Mode"
+msgstr "Modo"
+
+#: org.isisaddons.module.security.dom.permission.ApplicationPermission#type
+msgid "Type"
+msgstr "Tipo"
+
+#: org.isisaddons.module.security.dom.permission.ApplicationPermission#featureFqn
+msgid "Feature Fqn"
+msgstr "Funcionalidad Fqn"
+
+#: org.isisaddons.module.security.dom.permission.ApplicationPermissionRule#ALLOW
+msgid "Allow"
+msgstr "Permitir"
+
+#: org.isisaddons.module.security.dom.permission.ApplicationPermissionMode#CHANGING
+msgid "Changing"
+msgstr "Puede cambiar"
+
+#: org.isisaddons.module.security.dom.permission.ApplicationPermission#updateRole()
+msgid "Update Role"
+msgstr "Actualizar Rol"
+
+#: org.isisaddons.module.security.dom.permission.ApplicationPermission#allow()
+msgid "Allow"
+msgstr "Permitir"
+
+#: org.isisaddons.module.security.dom.permission.ApplicationPermission#veto()
+msgid "Veto"
+msgstr "Veto"
+
+#: org.isisaddons.module.security.dom.permission.ApplicationPermission#viewing()
+msgid "Viewing"
+msgstr "Puede ver"
+
+#: org.isisaddons.module.security.dom.permission.ApplicationPermission#changing()
+msgid "Changing"
+msgstr "Puede Cambiar"
+
+#: org.isisaddons.module.security.dom.permission.ApplicationPermissionRule#VETO
+msgid "Veto"
+msgstr "Veto"
+
+#: org.isisaddons.module.security.dom.permission.ApplicationPermissionMode#VIEWING
+msgid "Viewing"
+msgstr "Puede Ver"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#delete()
+msgid "Delete"
+msgstr "Borrar"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#open()
+msgid "Open"
+msgstr "Abrir"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#familyName
+msgid "Family Name"
+msgstr "Apellido"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#givenName
+msgid "Given Name"
+msgstr "Nombre"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#knownAs
+msgid "Known As"
+msgstr "Conocido como"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#updateName()
+msgid "Update Name"
+msgstr "Actualizar Nombre"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#datanucleusIdLong()
+msgid "Id"
+msgstr "Identificacion"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#clearHints()
+msgid "Clear Hints"
+msgstr "Limpiar Hints"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#datanucleusVersionLong()
+msgid "Version"
+msgstr "Version"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#datanucleusVersionTimestamp()
+msgid "Version"
+msgstr "Version"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#roles
+msgid "Roles"
+msgstr "Roles"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#addRole()
+msgid "Add"
+msgstr "Agregar"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#removeRole()
+msgid "Remove"
+msgstr "Quitar"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#permissions()
+msgid "Permissions"
+msgstr "Permisos"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#filterPermissions()
+msgid "Filter Permissions"
+msgstr "Filtrar Permisos"
+
+#: org.isisaddons.module.security.app.user.UserPermissionViewModel
+msgid "Permission"
+msgstr "Permiso"
+
+#: org.isisaddons.module.security.app.user.UserPermissionViewModel
+msgid "Cause"
+msgstr "Causa"
+
+#: org.isisaddons.module.security.app.user.UserPermissionViewModel#verb
+msgid "Verb"
+msgstr "Verb"
+
+#: org.isisaddons.module.security.app.user.UserPermissionViewModel#feature
+msgid "Feature"
+msgstr "Funcionalidad"
+
+#: org.isisaddons.module.security.app.user.UserPermissionViewModel#viewingPermission
+msgid "Viewing Permission"
+msgstr "Permiso Puede Ver"
+
+#: org.isisaddons.module.security.app.user.UserPermissionViewModel#changingPermission
+msgid "Changing Permission"
+msgstr "Permiso Puede Cambiar"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#updateUsername(java.lang.String)
+msgid "Username"
+msgstr "Usuario"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#updateName(java.lang.String,java.lang.String,java.lang.String)
+msgid "Family Name"
+msgstr "Apellido"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#updateName(java.lang.String,java.lang.String,java.lang.String)
+msgid "Given Name"
+msgstr "Nombre"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#updateName(java.lang.String,java.lang.String,java.lang.String)
+msgid "Known As"
+msgstr "Conocido Como"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#updateEmailAddress(java.lang.String)
+msgid "Email"
+msgstr "E-mail"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#updatePhoneNumber(java.lang.String)
+msgid "Phone"
+msgstr "Telefono"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#updateFaxNumber(java.lang.String)
+msgid "Fax"
+msgstr "Fax"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#updatePassword(org.apache.isis.applib.value.Password,org.apache.isis.applib.value.Password,org.apache.isis.applib.value.Password)
+msgid "Existing password"
+msgstr "Contraseña Actual"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#updatePassword(org.apache.isis.applib.value.Password,org.apache.isis.applib.value.Password,org.apache.isis.applib.value.Password)
+msgid "New password"
+msgstr "Nueva Contraseña"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#updatePassword(org.apache.isis.applib.value.Password,org.apache.isis.applib.value.Password,org.apache.isis.applib.value.Password)
+msgid "Re-enter password"
+msgstr "Repetir Contraseña"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#resetPassword(org.apache.isis.applib.value.Password,org.apache.isis.applib.value.Password)
+msgid "New password"
+msgstr "Nueva Contraseña"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#resetPassword(org.apache.isis.applib.value.Password,org.apache.isis.applib.value.Password)
+msgid "Repeat password"
+msgstr "Repite Contraseña"
+
+#: org.isisaddons.module.security.dom.user.ApplicationUser#updateAtPath(java.lang.String)
+msgid "AtPath"
+msgstr "Atrib. Ruta"
+
+#: org.isisaddons.module.security.app.user.ApplicationUser_filterPermissions#$$(java.lang.String,java.lang.String)
+msgid "Package"
+msgstr "Paquete"
+
+#: org.isisaddons.module.security.app.user.ApplicationUser_filterPermissions#$$(java.lang.String,java.lang.String)
+msgid "Class"
+msgstr "Clase"
+
+#: org.apache.isis.viewer.wicket.ui.pages.entity.EntityPage
+msgid "OrderByLink.CSS.none"
+msgstr "OrderByLink.CSS.none"
+
+#: org.apache.isis.viewer.wicket.ui.pages.entity.EntityPage
+msgid "NavigatorLabel"
+msgstr "NavigatorLabel"
+
+#: org.apache.isis.viewer.wicket.ui.pages.entity.EntityPage
+msgid "PagingNavigator.first"
+msgstr "PagingNavigator.first"
+
+#: org.apache.isis.viewer.wicket.ui.pages.entity.EntityPage
+msgid "PagingNavigator.previous"
+msgstr "PagingNavigator.previous"
+
+#: org.apache.isis.viewer.wicket.ui.pages.entity.EntityPage
+msgid "PagingNavigation.page"
+msgstr "PagingNavigation.page"
+
+#: org.apache.isis.viewer.wicket.ui.pages.entity.EntityPage
+msgid "PagingNavigator.next"
+msgstr "PagingNavigator.next"
+
+#: org.apache.isis.viewer.wicket.ui.pages.entity.EntityPage
+msgid "PagingNavigator.last"
+msgstr "PagingNavigator.last"
+
+#: org.apache.isis.viewer.wicket.ui.pages.entity.EntityPage
+msgid "OddEvenItem.CSS.even"
+msgstr "OddEvenItem.CSS.even"
+
+#: org.apache.isis.viewer.wicket.ui.pages.entity.EntityPage
+msgid "OddEvenItem.CSS.odd"
+msgstr "OddEvenItem.CSS.odd"
+
+#: org.isisaddons.module.security.dom.permission.ApplicationPermission#datanucleusIdLong()
+msgid "Id"
+msgstr "ID"
+
+#: org.isisaddons.module.security.dom.permission.ApplicationPermission#clearHints()
+msgid "Clear Hints"
+msgstr "Limpiar Hints"
+
+#: org.isisaddons.module.security.dom.permission.ApplicationPermission#datanucleusVersionLong()
+msgid "Version"
+msgstr "Version"
+
+#: org.isisaddons.module.security.dom.permission.ApplicationPermission#datanucleusVersionTimestamp()
+msgid "Version"
+msgstr "Version"
+
+#: XXXXXXXX
+msgid "XXXXXXXX"
+msgstr "XXXXXXX"
+
+#: XXXXXXXX
+msgid "XXXXXXXX"
+msgstr "XXXXXXX"
+
+#: XXXXXXXX
+msgid "XXXXXXXX"
+msgstr "XXXXXXX"

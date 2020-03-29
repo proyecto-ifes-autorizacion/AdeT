@@ -28,30 +28,24 @@ import org.apache.isis.applib.annotation.SemanticsOf;
 )
 public class MarcaMenu {
 
-    @Action(
-            semantics = SemanticsOf.SAFE
-    )
-    @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT,
-            named = "Listado de Marcas"
-    )
+    @Action()
+    @ActionLayout(named = "Crear Marca")
     @MemberOrder(sequence = "1")
-    public List<Marca> listAll() {
-        List<Marca> marcas = marcarepository.listAll();
-        return marcas;
+    public Marca create(
+            @Parameter(maxLength = 30)
+            @ParameterLayout(named = "Marca: ")
+            final String nombre) {
+
+        return marcarepository.create(nombre);
     }
 
-    @Action(
-            semantics = SemanticsOf.SAFE
-    )
-    @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT,
-            named = "Buscar"
-    )
+
+    @Action(semantics = SemanticsOf.SAFE)
+    @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT, named = "Buscar Marca")
     @MemberOrder(sequence = "2")
     public Marca findByNombre(
             @Parameter(optionality = Optionality.MANDATORY)
-            @ParameterLayout(named = "Marca: ")
+            @ParameterLayout(named = "Por Nombre: ")
             final Marca marca) {
 
         return marca;
@@ -59,15 +53,13 @@ public class MarcaMenu {
 
     public List<Marca> choices0FindByNombre() {return marcarepository.listAll();}
 
-    @Action()
-    @ActionLayout(named = "Crear")
-    @MemberOrder(sequence = "3")
-    public Marca create(
-            @Parameter(maxLength = 30)
-            @ParameterLayout(named = "Marca: ")
-            final String nombre) {
 
-        return marcarepository.create(nombre);
+    @Action(semantics = SemanticsOf.SAFE)
+    @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT, named = "Listado de Marcas")
+    @MemberOrder(sequence = "3")
+    public List<Marca> listAll() {
+        List<Marca> marcas = marcarepository.listAll();
+        return marcas;
     }
 
     @javax.inject.Inject

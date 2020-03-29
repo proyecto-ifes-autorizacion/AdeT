@@ -28,40 +28,9 @@ import org.apache.isis.applib.annotation.SemanticsOf;
 )
 public class ModeloMenu {
 
-    @Action(
-            semantics = SemanticsOf.SAFE
-    )
-    @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT,
-            named = "Listado de Modelos"
-    )
+    @Action()
+    @ActionLayout(named = "Crear Modelo")
     @MemberOrder(sequence = "1")
-    public java.util.List<Modelo> listAll() {
-        return modelorepository.listAll();
-    }
-
-    @Action(
-            semantics = SemanticsOf.SAFE
-    )
-    @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT,
-            named = "Buscar"
-    )
-    @MemberOrder(sequence = "2")
-    public Modelo findByNombre(
-            @Parameter(optionality = Optionality.MANDATORY)
-            @ParameterLayout(named = "Modelo: ")
-            final Modelo modelo) {
-
-        return modelo;
-    }
-
-    public List<Modelo> choices0FindByNombre() {return modelorepository.listAll();}
-
-    @Action(
-    )
-    @ActionLayout(named = "Crear")
-    @MemberOrder(sequence = "3")
     public Modelo create(
             @Parameter(maxLength = 30)
             @ParameterLayout(named = "Modelo: ")
@@ -75,8 +44,28 @@ public class ModeloMenu {
     }
 
     public List<Marca> choices1Create() {
-
         return marcaRepository.listAll();
+    }
+
+
+    @Action(semantics = SemanticsOf.SAFE)
+    @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT, named = "Buscar Modelo")
+    @MemberOrder(sequence = "2")
+    public Modelo findByNombre(
+            @Parameter(optionality = Optionality.MANDATORY)
+            @ParameterLayout(named = "Por Nombre: ")
+            final Modelo modelo) {
+
+        return modelo;
+    }
+
+    public List<Modelo> choices0FindByNombre() {return modelorepository.listAll();}
+
+    @Action(semantics = SemanticsOf.SAFE)
+    @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT, named = "Listado de Modelos")
+    @MemberOrder(sequence = "3")
+    public java.util.List<Modelo> listAll() {
+        return modelorepository.listAll();
     }
 
     @javax.inject.Inject
