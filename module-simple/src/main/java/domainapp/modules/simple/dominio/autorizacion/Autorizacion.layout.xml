@@ -29,108 +29,101 @@
     </bs3:row>
 
     <bs3:row>
-    <bs3:col span="12">
-
+        <bs3:col span="12">
             <bs3:row>
-            <bs3:col span="4">
-
-                <bs3:row>
-                    <bs3:col span="12">
-
-                        <cpt:fieldSet name="Solicitante">
-                            <cpt:property id="solicitanteEmpresa" hidden="ALL_TABLES">
-                                <cpt:action id="AgregarEmpresaSolicitante" promptStyle="INLINE"/>
-                                <cpt:action id="EditarEmpresaSolicitante" promptStyle="INLINE"/>
-                                <cpt:action id="QuitarEmpresaSolicitante" promptStyle="INLINE"/>
-                            </cpt:property>
-                            <cpt:property id="solicitanteTrabajador" hidden="ALL_TABLES">
-                                <cpt:action id="AgregarTrabajadorSolicitante" promptStyle="INLINE"/>
-                                <cpt:action id="EditarTrabajadorSolicitante" promptStyle="INLINE"/>
-                                <cpt:action id="QuitarTrabajadorSolicitante" promptStyle="INLINE"/>
-                            </cpt:property>
-                            <cpt:property id="solicitanteVehiculo" hidden="ALL_TABLES">
-                                <cpt:action id="AgregarVehiculoSolicitante" promptStyle="INLINE"/>
-                                <cpt:action id="EditarVehiculoSolicitante" promptStyle="INLINE"/>
-                                <cpt:action id="QuitarVehiculoSolicitante" promptStyle="INLINE"/>
-                            </cpt:property>
-                        </cpt:fieldSet>
-                    </bs3:col>
-                </bs3:row>
-
-                <bs3:row>
-                    <bs3:col span="12">
-                        <cpt:collection defaultView="table" id="ejecutantes" paged="100">
-                            <cpt:action id="AgregarEjecutante"/>
-                            <cpt:action id="QuitarEjecutante"/>
-                        </cpt:collection>
-                    </bs3:col>
-                    <bs3:col span="6">
-                        <cpt:fieldSet name="Actividad">
-                            <cpt:property id="estado"/>
-                            <cpt:property id="cancelacion" multiLine="2" hidden="ALL_TABLES"/>
-                        </cpt:fieldSet>
-                    </bs3:col>
-
-                    <bs3:col span="6">
-                        <cpt:fieldSet name="Tiempo">
-                            <cpt:property id="apertura"/>
-                            <cpt:property id="cierre"/>
-                            <cpt:property id="tiempo"/>
-                        </cpt:fieldSet>
-                    </bs3:col>
-                </bs3:row>
-
-            </bs3:col>
-
-            <bs3:col span="8" cssClass="containerConBorde">
-                <bs3:row>
-                    <bs3:col span="12">
-                        <cpt:fieldSet name="Ejecutante">
-                            <cpt:action id="Anterior"/>
-                            <cpt:action id="Siguiente"/>
-                            <cpt:property id="ejecutanteEmpresa" hidden="ALL_TABLES"/>
-                        </cpt:fieldSet>
-                    </bs3:col>
-                    <bs3:col span="6" size="MD">
-                        <cpt:collection defaultView="table" id="ejecutanteTrabajadores">
-                            <cpt:action id="AgregarTrabajadorEjecutante"/>
-                            <cpt:action id="QuitarTrabajadorEjecutante"/>
-                        </cpt:collection>
-                    </bs3:col>
-                    <bs3:col span="6" size="MD">
-                        <cpt:collection defaultView="table" id="ejecutanteVehiculos">
-                            <cpt:action id="AgregarVehiculoEjecutante"/>
-                            <cpt:action id="QuitarVehiculoEjecutante"/>
-                        </cpt:collection>
-                    </bs3:col>
-                </bs3:row>
-            </bs3:col>
-
-            <bs3:col span="12">
-                <bs3:tabGroup>
-                    <bs3:tab name="Other">
-                        <bs3:row>
-                            <bs3:col span="12">
-                                <cpt:fieldSet name="Other" unreferencedProperties="true"/>
-                            </bs3:col>
-                        </bs3:row>
-                    </bs3:tab>
-                    <bs3:tab name="Metadata">
-                        <bs3:row>
-                            <bs3:col span="0">
-                                <cpt:fieldSet name="Metadata"/>
-                            </bs3:col>
-                        </bs3:row>
-                    </bs3:tab>
-                </bs3:tabGroup>
-            </bs3:col>
-            <bs3:col span="12">
-                <bs3:tabGroup unreferencedCollections="true"/>
-            </bs3:col>
-
+                <bs3:col span="4">
+                    <cpt:fieldSet name="Solicitante">
+                        <cpt:property id="solicitanteEmpresa" hidden="ALL_TABLES">
+                            <cpt:action id="AgregarEmpresaSolicitante" promptStyle="INLINE"/>
+                            <cpt:action id="EditarEmpresaSolicitante" promptStyle="INLINE"/>
+                            <cpt:action id="QuitarEmpresaSolicitante" promptStyle="INLINE"/>
+                        </cpt:property>
+                        <cpt:property id="solicitanteTrabajador" hidden="ALL_TABLES">
+                            <cpt:action id="AgregarTrabajadorSolicitante" promptStyle="INLINE"/>
+                            <cpt:action id="EditarTrabajadorSolicitante" promptStyle="INLINE"/>
+                            <cpt:action id="QuitarTrabajadorSolicitante" promptStyle="INLINE"/>
+                        </cpt:property>
+                        <cpt:property id="solicitanteVehiculo" hidden="ALL_TABLES">
+                            <cpt:action id="AgregarVehiculoSolicitante" promptStyle="INLINE"/>
+                            <cpt:action id="EditarVehiculoSolicitante" promptStyle="INLINE"/>
+                            <cpt:action id="QuitarVehiculoSolicitante" promptStyle="INLINE"/>
+                        </cpt:property>
+                    </cpt:fieldSet>
+                </bs3:col>
+                <bs3:col span="4">
+                    <cpt:fieldSet name="Actividad">
+                        <cpt:property id="estado"/>
+                        <cpt:property id="cancelacion" multiLine="2" hidden="ALL_TABLES"/>
+                    </cpt:fieldSet>
+                </bs3:col>
+                <bs3:col span="4">
+                    <cpt:fieldSet name="Tiempo">
+                        <cpt:property id="apertura"/>
+                        <cpt:property id="cierre"/>
+                        <cpt:property id="tiempo"/>
+                    </cpt:fieldSet>
+                </bs3:col>
             </bs3:row>
-    </bs3:col>
+        </bs3:col>
     </bs3:row>
 
+    <bs3:row>
+        <bs3:col span="4">
+            <bs3:row>
+                <bs3:col span="12">
+                    <cpt:collection defaultView="table" id="ejecutantes" paged="100">
+                        <cpt:action id="AgregarEjecutante"/>
+                        <cpt:action id="QuitarEjecutante"/>
+                    </cpt:collection>
+                </bs3:col>
+            </bs3:row>
+        </bs3:col>
+        <bs3:col span="8" cssClass="containerConBorde">
+            <bs3:row>
+                <bs3:col span="12">
+                    <cpt:fieldSet name="Ejecutante">
+                        <cpt:action id="Anterior"/>
+                        <cpt:action id="Siguiente"/>
+                        <cpt:property id="ejecutanteEmpresa" hidden="ALL_TABLES"/>
+                    </cpt:fieldSet>
+                </bs3:col>
+                <bs3:col span="6" size="MD">
+                    <cpt:collection defaultView="table" id="ejecutanteTrabajadores">
+                        <cpt:action id="AgregarTrabajadorEjecutante"/>
+                        <cpt:action id="QuitarTrabajadorEjecutante"/>
+                    </cpt:collection>
+                </bs3:col>
+                <bs3:col span="6" size="MD">
+                    <cpt:collection defaultView="table" id="ejecutanteVehiculos">
+                        <cpt:action id="AgregarVehiculoEjecutante"/>
+                        <cpt:action id="QuitarVehiculoEjecutante"/>
+                    </cpt:collection>
+                </bs3:col>
+            </bs3:row>
+        </bs3:col>
+    </bs3:row>
 
+    <bs3:row>
+        <bs3:col span="12">
+            <bs3:tabGroup>
+                <bs3:tab name="Other">
+                    <bs3:row>
+                        <bs3:col span="12">
+                            <cpt:fieldSet name="Other" unreferencedProperties="true"/>
+                        </bs3:col>
+                    </bs3:row>
+                </bs3:tab>
+                <bs3:tab name="Metadata">
+                    <bs3:row>
+                        <bs3:col span="0">
+                            <cpt:fieldSet name="Metadata"/>
+                        </bs3:col>
+                    </bs3:row>
+                </bs3:tab>
+            </bs3:tabGroup>
+        </bs3:col>
+        <bs3:col span="12">
+            <bs3:tabGroup unreferencedCollections="true"/>
+        </bs3:col>
+    </bs3:row>
 </bs3:grid>
