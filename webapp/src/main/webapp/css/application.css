@@ -111,6 +111,13 @@ padding-top: 10px
     border: 2px solid #4ea3ff;
 }
 
+/*el boton que esta deshabilitado lo pone completamente gris*/
+.btn[disabled]{
+    background-color: #95a5a6;
+    border-color: #95a5a6;
+}
+
+
 .containerConBorde {
   border: 1px solid #d4d4d4;
   padding-top: 20px;
