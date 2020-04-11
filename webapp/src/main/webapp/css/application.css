@@ -111,7 +111,33 @@ padding-top: 10px
     border: 2px solid #4ea3ff;
 }
 
+/*el boton que esta deshabilitado lo pone completamente gris*/
+.btn[disabled]{
+    background-color: #95a5a6;
+    border-color: #95a5a6;
+}
+
+/*Hace que los textos dentro los input de Detalles-Autorizacion no se muestren como hipervinculos y tenga el cursor tipo Texto*/
+a.scalarValueInlinePromptLink, a.form-control.scalarValueInlinePromptLink, a.form-control.scalarValueInlinePromptLink:hover {
+    color: black;
+    text-decoration: none;
+    cursor:text;
+}
+
 .containerConBorde {
   border: 1px solid #d4d4d4;
   padding-top: 20px;
+}
+
+.nav-tabs>li>a {
+    color: #2c3e50;
+    border: 1px solid #dddddd;
+    border-bottom-color: transparent;
+    background-color: #d1f1ff;
+}
+
+.nav-tabs>li>a:hover {
+    border: 1px solid #dddddd;
+    border-bottom-color: transparent;
+    background-color: #99dfff;
 }
