@@ -67,6 +67,7 @@ if ($("body").find("div.isis-Autorizacion-listAll.isis-dominio-Autorizacion").le
 
 //#################################### PAGINA DETALLES AUTORIZACION #########################################//
 	if ($("body").find("div.entityPage.isis-dominio-Autorizacion").length > 0){
+	window.setInterval(function(){
 	//Verifica si se encuentra en la pagina de Autorizacion detalles
 
 //    ConvierteTablaEnClickeableRemueveBotonAplicaCursor()
@@ -102,12 +103,11 @@ if ($("body").find("div.isis-Autorizacion-listAll.isis-dominio-Autorizacion").le
     //Esto le quita los href a los hipervinculos de la tabla Vehiculos
 
 
-
     $("div.property.isis-dominio-Autorizacion-ejecutanteEmpresa").find("a.entityUrlSource").contents().unwrap();
     //Esto le quita el atributo href a la empresa ejecutante seleccionada
 
 
-    $("div.panel-heading").find("div.additionalLinksAndSelectorDropDown.pull-right").remove();
+    $("div.panel-heading div.additionalLinksAndSelectorDropDown.pull-right").find("div.linksSelectorPanel").remove();
     //Esto remueve el boton "Mostrar como tabla" que aparece en el header de las tablas
 
 
@@ -119,6 +119,42 @@ if ($("body").find("div.isis-Autorizacion-listAll.isis-dominio-Autorizacion").le
     $('.isis-dominio-Vehiculo-empresa').css('display', 'none');
     $('.isis-dominio-Vehiculo-fechaAlta').css('display', 'none');
     $('.isis-dominio-Vehiculo-estado').css('display', 'none');
+
+
+
+    //if($("span.editing:contains('(none)')")){
+    $("span.editing:contains('(none)')").each(function(index) {
+        //console.log(index)
+        //console.log($("span.editing:contains('(none)')").html())
+
+        //console.log($( this ).html());
+        //console.log( $("span.editing:contains('(none)')").find("span.autoCompletePlaceholder span.entityIconAndTitlePanel.entityIconAndTitleComponentType" ).html());
+
+
+
+        if( $(this).find("span.autoCompletePlaceholder span.entityIconAndTitlePanel.entityIconAndTitleComponentType" ).has( "img" ).length){
+
+        console.log("El elemento none esta acompañado asique lo borra.")
+        //$("span.editing span:contains('(none)')").html($("span.editing span:contains('(none)')").html().replace('(none)',''));
+        $(this).html($(this).html().replace('(none)',''));
+        //$(this).html().replace('(none)','quitado');
+
+        //console.log($( "span:contains('(none)'):last-child" ).html())
+
+        //$( "span:last-child:contains('(none)')" ).html("No seleccionado aún");
+        }else{
+        console.log("El elemento none esta solo asique lo traduce.")
+        $(this).html($(this).html().replace('(none)','(Aún sin seleccionar)'));
+
+        //$("span.editing span:contains('(none)')").html($("span.editing span:contains('(none)')").html().replace('(none)','(Aún sin seleccionar)'));
+        //$("span.editing span:contains('(Aún sin seleccionar)')").html($("span.editing span:contains('(Aún sin seleccionar)')").html().replace('(Aún sin seleccionar)',''));
+        }
+
+    //console.log("aplicado")
+    });
+
+
+    }, 200);
 	}//end IF Pagina Autorizacion
 
 
@@ -332,7 +368,7 @@ if ($("body").find("div.isis-Autorizacion-listAll.isis-dominio-Autorizacion").le
 
 
     function QuitarBotonMostrarEnTabla(){
-        $("div.panel-heading").find("div.additionalLinksAndSelectorDropDown.pull-right").remove();
+        $("div.panel-heading div.additionalLinksAndSelectorDropDown.pull-right").find("div.linksSelectorPanel").remove();
         //Esto remueve el boton "Mostrar como tabla" que aparece en el header de las tablas
     }
 
