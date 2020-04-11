@@ -35,28 +35,28 @@
         </bs3:col>
         <bs3:col span="8">
             <bs3:tabGroup>
-                <bs3:tab name="Ejecucion">
+                <bs3:tab name="En Ejecucion">
                     <bs3:row>
                         <bs3:col span="12" size="MD">
                             <cpt:collection defaultView="table" id="ejecucion"/>
                         </bs3:col>
                     </bs3:row>
                 </bs3:tab>
-                <bs3:tab name="Habilitado">
+                <bs3:tab name="Habilitados">
                     <bs3:row>
                         <bs3:col span="12" size="MD">
                             <cpt:collection defaultView="table" id="habilitado"/>
                         </bs3:col>
                     </bs3:row>
                 </bs3:tab>
-                <bs3:tab name="Inhabilitado">
+                <bs3:tab name="Inhabilitados">
                     <bs3:row>
                         <bs3:col span="12" size="MD">
                             <cpt:collection defaultView="table" id="inhabilitado"/>
                         </bs3:col>
                     </bs3:row>
                 </bs3:tab>
-                <bs3:tab name="Borrado">
+                <bs3:tab name="Borrados">
                     <bs3:row>
                         <bs3:col span="12" size="MD">
                             <cpt:collection defaultView="table" id="borrado"/>

@@ -163,25 +163,25 @@ public class Trabajador implements Comparable<Trabajador>, ObservadorGeneral, Ob
     }
 
     @NotPersistent
-    @CollectionLayout(named = "Trabjadores en Ejecucion")
+    @CollectionLayout(named = "Trabajadores en Ejecucion")
     public List<Trabajador> getEjecucion(){
         return trabajadorRepository.Listar(EstadoGeneral.Ejecucion);
     }
 
     @NotPersistent
-    @CollectionLayout(named = "Trabjadores Habilitados")
+    @CollectionLayout(named = "Trabajadores Habilitados")
     public List<Trabajador> getHabilitado(){
         return trabajadorRepository.Listar(EstadoGeneral.Habilitado);
     }
 
     @NotPersistent
-    @CollectionLayout(named = "Trabjadores Inhabilitados")
+    @CollectionLayout(named = "Trabajadores Inhabilitados")
     public List<Trabajador> getInhabilitado(){
         return trabajadorRepository.Listar(EstadoGeneral.Inhabilitado);
     }
 
     @NotPersistent
-    @CollectionLayout(named = "Trabjadores Borrados")
+    @CollectionLayout(named = "Trabajadores Borrados")
     public List<Trabajador> getBorrado(){
         return trabajadorRepository.Listar(EstadoGeneral.Borrado);
     }

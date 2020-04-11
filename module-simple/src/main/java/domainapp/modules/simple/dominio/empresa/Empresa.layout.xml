@@ -49,21 +49,21 @@
         </bs3:col>
         <bs3:col span="6">
             <bs3:tabGroup>
-                <bs3:tab name="Habilitada">
+                <bs3:tab name="Habilitadas">
                     <bs3:row>
                         <bs3:col span="12" size="MD">
                             <cpt:collection defaultView="table" id="habilitada"/>
                         </bs3:col>
                     </bs3:row>
                 </bs3:tab>
-                <bs3:tab name="Inhabilitada">
+                <bs3:tab name="Inhabilitadas">
                     <bs3:row>
                         <bs3:col span="12" size="MD">
                             <cpt:collection defaultView="table" id="inhabilitada"/>
                         </bs3:col>
                     </bs3:row>
                 </bs3:tab>
-                <bs3:tab name="Borrada">
+                <bs3:tab name="Borradas">
                     <bs3:row>
                         <bs3:col span="12" size="MD">
                             <cpt:collection defaultView="table" id="borrada"/>
