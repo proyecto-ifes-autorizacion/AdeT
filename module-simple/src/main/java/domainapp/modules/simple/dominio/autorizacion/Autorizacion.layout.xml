@@ -68,7 +68,7 @@
     </bs3:row>
 
     <bs3:row>
-        <bs3:col span="4">
+        <bs3:col span="4" cssClass="containerSinBordePadding">
             <bs3:row>
                 <bs3:col span="12">
                     <cpt:collection defaultView="table" id="ejecutantes" paged="100">
