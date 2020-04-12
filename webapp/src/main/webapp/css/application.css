@@ -32,11 +32,13 @@
 }
 /*etiqueta para cambiar el color de la primer fila de titulos de una tabla */
 .headers {
-background-color: #e4e4e4;
+    background-color: #e4e4e4;
     color: #000;
 }
 /*etiqueta para cambiar de color de letra a la primer fila de titulos de una tabla */
-table.table tr.headers th a { color: #000000; }
+table.table tr.headers th a {
+    color: #000000;
+}
 
 /*etiqueta para agregar color black al sidebar para cuando pide alguna accion*/
  #sidebar-wrapper {
@@ -128,7 +130,12 @@ a.scalarValueInlinePromptLink, a.form-control.scalarValueInlinePromptLink, a.for
   border: 1px solid #d4d4d4;
   padding-top: 20px;
 }
+.containerSinBordePadding{
+    padding-top: 20px;
+}
 
+
+/*Estilos para mejorar las TABS*/
 .nav-tabs>li>a {
     color: #2c3e50;
     border: 1px solid #dddddd;
@@ -140,4 +147,58 @@ a.scalarValueInlinePromptLink, a.form-control.scalarValueInlinePromptLink, a.for
     border: 1px solid #dddddd;
     border-bottom-color: transparent;
     background-color: #99dfff;
+}
+
+
+a{
+text-decoration: none;
+color:black;
+}
+a:hover{
+text-decoration: underline;
+color:black;
+}
+
+table a:not(.btn), .table a:not(.btn) {
+    text-decoration: none;
+}
+
+
+/*Esto oculta el boton MostrarTabla */
+div.linksSelectorPanel > div.btn-group.viewLinks {
+display:none;
+}
+
+/*Aplica estilo al boton Mostrar Todos que aparece cuando hay varias paginas */
+.navigatorLabel .btn-link {
+    /*border: 1px solid black;*/
+    color: black;
+    background-color: #47a2ce;
+}
+
+.navigatorLabel .btn-link:hover {
+    /*border: 1px solid black;*/
+    color: white;
+    background-color: #79c0e2;
+}
+
+
+/*Estilo para paginador */
+.pagination>.disabled>span, .pagination>.disabled>span:hover, .pagination>.disabled>span:focus, .pagination>.disabled>a, .pagination>.disabled>a:hover, .pagination>.disabled>a:focus{
+background-color: #a9a9a9;
+text-decoration: none;
+}
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus{
+background-color: #0080bd;
+text-decoration: none;
+}
+
+.pagination>li>a{
+background-color: #47a2ce;
+text-decoration: none;
+}
+
+.pagination>li>a:hover{
+background-color: #79c0e2;
+text-decoration: none;
 }
