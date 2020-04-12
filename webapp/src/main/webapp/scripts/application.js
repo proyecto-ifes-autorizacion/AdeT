@@ -23,7 +23,7 @@ $(document).ready(function() {
 
     $("form:not(.filter) :input:visible:enabled").eq(0).attr("value", "admin");
     $("form:not(.filter) :input:visible:enabled").eq(1).attr("value", "admin");
-    $("button.btn[type=submit]").click();
+    //$("button.btn[type=submit]").click();
     //Esto sirve para autocompletar los campos del Login y apreta Ingresar automaticamente
 
     $("img[src$='/about/images/Logo-login.png']").wrap("<a href='/'> </a>");
@@ -79,10 +79,11 @@ $(document).ready(function() {
 	if(counterFocus == 0){
 	//alert($("div.property.isis-dominio-Autorizacion-titulo a.scalarValueInlinePromptLink.form-control.input-sm").is( ":focus" ))
 	//$("div.property.isis-dominio-Autorizacion-ubicacion a.scalarValueInlinePromptLink.form-control.input-sm").focus();
-	//$("div.property.isis-dominio-Autorizacion-titulo a.scalarValueInlinePromptLink.form-control.input-sm").blur();
+	$("div.property.isis-dominio-Autorizacion-titulo a.scalarValueInlinePromptLink.form-control.input-sm").blur();
 	counterFocus = 1;
 	}
 
+    QuitarBotonMostrarEnTabla();
 
     $("h4.iconAndTitle").find("a.entityUrlSource").contents().unwrap();
     //Esto le quita el href al titulo
@@ -202,6 +203,8 @@ $(document).ready(function() {
     if ($("body").find("div.entityPage.isis-dominio-Trabajador").length > 0){
     window.setInterval(function(){
 
+    QuitarBotonMostrarEnTabla();
+
     //$("div.property.isis-dominio-Trabajador-empresa").find("a.entityUrlSource").contents().unwrap();
     //Esto quita el hipervinculo de la empresa en los detalles del Trabajador
 
@@ -251,6 +254,8 @@ $(document).ready(function() {
 //#################################### PAGINA DETALLE VEHICULO #########################################//
     if ($("body").find("div.entityPage.isis-dominio-Vehiculo").length > 0){
     window.setInterval(function(){
+
+    QuitarBotonMostrarEnTabla();
 
     //$("div.property.isis-dominio-Vehiculo-empresa").find("a.entityUrlSource").contents().unwrap();
     //Esto quita el hipervinculo de la empresa de los detalles del Vehiculo
@@ -302,6 +307,8 @@ $(document).ready(function() {
     if ($("body").find("div.entityPage.isis-dominio-Marca").length > 0){
     window.setInterval(function(){
 
+    QuitarBotonMostrarEnTabla();
+
     $("div.modelos.domainapp-modules-simple-dominio-vehiculo-adicional-Modelo").find("div.isis-dominio-Modelo-marca").find("a.entityUrlSource").contents().unwrap();
     //Esto quita el hipervinculo de la Marca de la tabla Modelos
 
@@ -334,6 +341,8 @@ $(document).ready(function() {
 //#################################### PAGINA DETALLE MODELO #########################################//
     if ($("body").find("div.entityPage.isis-dominio-Modelo").length > 0){
     window.setInterval(function(){
+
+    QuitarBotonMostrarEnTabla();
 
     $("div.property.isis-dominio-Modelo-marca").find("a.entityUrlSource").contents().unwrap();
     //Esto quita el hipervinculo de la Marca en los detalles del Modelo
