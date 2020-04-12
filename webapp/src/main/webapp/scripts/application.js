@@ -4,73 +4,88 @@ $(document).ready(function() {
 	if ($("body").find(".accountManagementPanel").length > 0){ 
 	//Verifica si se encuentra en la pagina de Login
 
-		$(this).attr("title", "AdeT - Iniciar Sesión");
-		//Esto cambia el titulo de la pagina
+    $(this).attr("title", "AdeT - Iniciar Sesión");
+    //Esto cambia el titulo de la pagina
 
-		$('body').css('background-color', 'grey');
-		$('body').css('background-image', 'url("/about/images/background.jpg")');
-		$('body').css('color', '#ffffff');
-		$('body').css('position', 'relative');
-		$('body').css('height', 'calc(100vh)');
-		$('body').css('background-size', 'cover');
-		$('body').css('background-repeat', 'no-repeat');
-		$('body').css('background-position', 'center center');
-		//Esto aplica color de letra, color de fondo e imagen de fondo
+    $('body').css('background-color', '#5a5a66');
+    $('body').css('background-image', 'url("/about/images/background.jpg")');
+    $('body').css('color', '#ffffff');
+    $('body').css('position', 'relative');
+    $('body').css('height', 'calc(100vh)');
+    $('body').css('background-size', 'cover');
+    $('body').css('background-repeat', 'no-repeat');
+    $('body').css('background-position', 'center center');
+    //Esto aplica color de letra, color de fondo e imagen de fondo
 
-		$("form:not(.filter) :input:visible:enabled").eq(0).attr("placeholder", "Ingrese nombre de usuario");
-		$("form:not(.filter) :input:visible:enabled").eq(1).attr("placeholder", "Ingrese contraseña");
-		//Esto cambia el placeholder que no se pudo traducir
-		
-		$("form:not(.filter) :input:visible:enabled").eq(0).attr("value", "admin");
-		$("form:not(.filter) :input:visible:enabled").eq(1).attr("value", "admin");
-		$("button.btn[type=submit]").click();
-		//Esto sirve para autocompletar los campos del Login y apreta Ingresar automaticamente
+    $("form:not(.filter) :input:visible:enabled").eq(0).attr("placeholder", "Ingrese nombre de usuario");
+    $("form:not(.filter) :input:visible:enabled").eq(1).attr("placeholder", "Ingrese contraseña");
+    //Esto cambia el placeholder que no se pudo traducir
 
-		$("img[src$='/about/images/Logo-login.png']").wrap("<a href='/'> </a>");
-		//Esto aplica un HREF a la imagen del logo
+    $("form:not(.filter) :input:visible:enabled").eq(0).attr("value", "admin");
+    $("form:not(.filter) :input:visible:enabled").eq(1).attr("value", "admin");
+    $("button.btn[type=submit]").click();
+    //Esto sirve para autocompletar los campos del Login y apreta Ingresar automaticamente
 
-		$("button.btn[type=submit]").removeClass("btn-primary").addClass("btn-info");
-		//Esto cambia el css del boton Ingresar para que sea del color deseado
+    $("img[src$='/about/images/Logo-login.png']").wrap("<a href='/'> </a>");
+    //Esto aplica un HREF a la imagen del logo
 
-		$("button.btn[type=reset]").hide();
-		//Esto oculta el boton blanquear del formulario
+    $("button.btn[type=submit]").removeClass("btn-primary").addClass("btn-info");
+    //Esto cambia el css del boton Ingresar para que sea del color deseado
+
+    $("button.btn[type=reset]").hide();
+    //Esto oculta el boton blanquear del formulario
 
 	}else{
-        $('body').css('background-color', 'white');
-        $('body').css('background-image', 'url("/about/images/background-grey.png")');
-        $('body').css('background-repeat', 'repeat-y');
-        $('body').css('color', 'black');
-        $('body').css('position', 'relative');
-        $('body').css('height', 'calc(100vh)');
-        $('body').css('background-size', 'cover');
-        $('body').css('background-position', 'center center');
+    $('body').css('background-color', 'white');
+    $('body').css('background-image', 'url("/about/images/background-grey.png")');
+    $('body').css('background-repeat', 'repeat-y');
+    $('body').css('color', 'black');
+    $('body').css('position', 'relative');
+    $('body').css('height', 'calc(100vh)');
+    $('body').css('background-size', 'cover');
+    $('body').css('background-position', 'center center');
 	} //end IF Pagina Login
 
 
 //#################################### PAGINA HOME #########################################//
-if ($("body").find("div.entityPage.isis-domainapp-application-services-homepage-HomePageViewModel").length > 0){
+    if ($("body").find("div.entityPage.isis-domainapp-application-services-homepage-HomePageViewModel").length > 0){
+
+    $('h4.iconAndTitle').css('display','none');
+    //Esto oculta el titulo de la pagina principal
+
     window.setInterval(function(){
-    //Esto agarra tablas y: le aplica href a las filas, cambia el cursor, quita el boton mostrar como Tabla
     ConvierteTablaEnClickeableAplicaCursor();
+    //Esto agarra tablas y le aplica href a las filas, cambia el cursor, quita el boton mostrar como Tabla
+
     QuitarBotonMostrarEnTabla();
-    }, 250);
-}//end IF Pagina Home
+    }, 200);
+    }//end IF Pagina Home
 
 
 //#################################### PAGINA LISTAR AUTORIZACIONES #########################################//
-if ($("body").find("div.isis-Autorizacion-listAll.isis-dominio-Autorizacion").length > 0){
+    if ($("body").find("div.isis-Autorizacion-listAll.isis-dominio-Autorizacion").length > 0){
     window.setInterval(function(){
-    //Esto agarra tablas y: le aplica href a las filas, cambia el cursor, quita el boton mostrar como Tabla
     ConvierteTablaEnClickeableAplicaCursor()
-    }, 250);
-}//end IF Pagina Listar Autorizaciones
+    //Esto agarra tablas y: le aplica href a las filas, cambia el cursor, quita el boton mostrar como Tabla
+    }, 200);
+    }//end IF Pagina Listar Autorizaciones
 
 //#################################### PAGINA DETALLES AUTORIZACION #########################################//
 	if ($("body").find("div.entityPage.isis-dominio-Autorizacion").length > 0){
-	window.setInterval(function(){
-	//Verifica si se encuentra en la pagina de Autorizacion detalles
 
-//    ConvierteTablaEnClickeableRemueveBotonAplicaCursor()
+    counterFocus = 0;
+
+	window.setInterval(function(){
+	if(counterFocus == 0){
+	//alert($("div.property.isis-dominio-Autorizacion-titulo a.scalarValueInlinePromptLink.form-control.input-sm").is( ":focus" ))
+	//$("div.property.isis-dominio-Autorizacion-ubicacion a.scalarValueInlinePromptLink.form-control.input-sm").focus();
+	//$("div.property.isis-dominio-Autorizacion-titulo a.scalarValueInlinePromptLink.form-control.input-sm").blur();
+	counterFocus = 1;
+	}
+
+
+    $("h4.iconAndTitle").find("a.entityUrlSource").contents().unwrap();
+    //Esto le quita el href al titulo
 
     $("div.isis-dominio-Autorizacion-solicitanteEmpresa").find("a.entityUrlSource").contents().unwrap();
     //Esto le quita el atributo href al Solicitante Empresa
@@ -81,34 +96,21 @@ if ($("body").find("div.isis-Autorizacion-listAll.isis-dominio-Autorizacion").le
     $("div.isis-dominio-Autorizacion-solicitanteVehiculo").find("a.entityUrlSource").contents().unwrap();
     //Esto le quita el atributo href al Solicitante Vehiculo
 
+
     $("div.ejecutantes.domainapp-modules-simple-dominio-autorizacion-Ejecutante table thead").remove();
     //Esto borra el header de la tabla Empresas Ejecutantes
-
-    $("div.ejecutantes.domainapp-modules-simple-dominio-autorizacion-Ejecutante table tbody").find('td').each(function() {
-    if( $(this).find("a.entityUrlSource") ){
-    $(this).find("a.entityUrlSource").contents().unwrap();
-     }
-    });
-    //Esto le quita los href a los hipervinculos de la tabla Ejecutantes
-
-
-    $("div.ejecutanteTrabajadores.domainapp-modules-simple-dominio-trabajador-Trabajador table").find('a').each(function() {
-    $(this).contents().unwrap();
-    });
-    //Esto le quita los href a los hipervinculos de la tabla Trabajadores
-
-    $("div.ejecutanteVehiculos.domainapp-modules-simple-dominio-vehiculo-Vehiculo table").find('a').each(function() {
-    $(this).contents().unwrap();
-    });
-    //Esto le quita los href a los hipervinculos de la tabla Vehiculos
-
 
     $("div.property.isis-dominio-Autorizacion-ejecutanteEmpresa").find("a.entityUrlSource").contents().unwrap();
     //Esto le quita el atributo href a la empresa ejecutante seleccionada
 
+    $("div.ejecutantes.domainapp-modules-simple-dominio-autorizacion-Ejecutante table").find("a.entityUrlSource").contents().unwrap();
+    //Esto le quita los href a los hipervinculos de la tabla Ejecutantes
 
-    $("div.panel-heading div.additionalLinksAndSelectorDropDown.pull-right").find("div.linksSelectorPanel").remove();
-    //Esto remueve el boton "Mostrar como tabla" que aparece en el header de las tablas
+    $("div.ejecutanteTrabajadores.domainapp-modules-simple-dominio-trabajador-Trabajador table").find("a.entityUrlSource").contents().unwrap();
+    //Esto le quita los href a los hipervinculos de la tabla Trabajadores
+
+    $("div.ejecutanteVehiculos.domainapp-modules-simple-dominio-vehiculo-Vehiculo table").find("a.entityUrlSource").contents().unwrap();
+    //Esto le quita los href a los hipervinculos de la tabla Vehiculos
 
 
     /* etiqueta para ocultar columnas en las tablas de detalles de autorizacion*/
@@ -121,38 +123,19 @@ if ($("body").find("div.isis-Autorizacion-listAll.isis-dominio-Autorizacion").le
     $('.isis-dominio-Vehiculo-estado').css('display', 'none');
 
 
-
-    //if($("span.editing:contains('(none)')")){
     $("span.editing:contains('(none)')").each(function(index) {
         //console.log(index)
-        //console.log($("span.editing:contains('(none)')").html())
-
-        //console.log($( this ).html());
-        //console.log( $("span.editing:contains('(none)')").find("span.autoCompletePlaceholder span.entityIconAndTitlePanel.entityIconAndTitleComponentType" ).html());
-
-
-
         if( $(this).find("span.autoCompletePlaceholder span.entityIconAndTitlePanel.entityIconAndTitleComponentType" ).has( "img" ).length){
 
-        console.log("El elemento none esta acompañado asique lo borra.")
-        //$("span.editing span:contains('(none)')").html($("span.editing span:contains('(none)')").html().replace('(none)',''));
+        console.log("El elemento (none) esta acompañado asique lo borra.")
         $(this).html($(this).html().replace('(none)',''));
-        //$(this).html().replace('(none)','quitado');
-
-        //console.log($( "span:contains('(none)'):last-child" ).html())
-
-        //$( "span:last-child:contains('(none)')" ).html("No seleccionado aún");
         }else{
-        console.log("El elemento none esta solo asique lo traduce.")
+        console.log("El elemento (none) esta solo asique lo traduce.")
         $(this).html($(this).html().replace('(none)','(Aún sin seleccionar)'));
-
-        //$("span.editing span:contains('(none)')").html($("span.editing span:contains('(none)')").html().replace('(none)','(Aún sin seleccionar)'));
-        //$("span.editing span:contains('(Aún sin seleccionar)')").html($("span.editing span:contains('(Aún sin seleccionar)')").html().replace('(Aún sin seleccionar)',''));
         }
-
     //console.log("aplicado")
     });
-
+    //Este busca y traduce la palabra (none) cuando algo aun no esta seleccionado
 
     }, 200);
 	}//end IF Pagina Autorizacion
@@ -160,40 +143,56 @@ if ($("body").find("div.isis-Autorizacion-listAll.isis-dominio-Autorizacion").le
 
 //#################################### PAGINA LISTA EMPRESAS #########################################//
     if ($("body").find("div.isis-Empresa-listAll.isis-dominio-Empresa").length > 0){
+    console.log("Esta en pagina Listar-Empresas");
     window.setInterval(function(){
-    //Esto agarra tablas y: le aplica href a las filas, cambia el cursor, quita el boton mostrar como Tabla
+    //Esto agarra tablas y le aplica href a las filas, cambia el cursor, quita el boton mostrar como Tabla
     ConvierteTablaEnClickeableAplicaCursor();
-    }, 250);
+    }, 200);
     }//end if Pagina Lista Empresas
 
 
 //#################################### PAGINA DETALLES EMPRESA #########################################//
     if ($("body").find("div.entityPage.isis-dominio-Empresa").length > 0){
+    console.log("Esta en pagina Detalles-Empresa");
     window.setInterval(function(){
-    $("div.trabajadores.domainapp-modules-simple-dominio-trabajador-Trabajador").find("a.entityUrlSource").contents().unwrap();
-    //Esto quita el hipervinculo a la empresa del Trabajador
 
-    QuitarBotonMostrarEnTabla()
+    QuitarBotonMostrarEnTabla();
 
     $("div.trabajadores.domainapp-modules-simple-dominio-trabajador-Trabajador").find("div.isis-dominio-Trabajador-empresa").find("a.entityUrlSource").contents().unwrap();
-    //Esto quita el hipervinculo de la empresa de la tabla Trabajadores que esta dentro de detalles-empresa
+    //Esto quita el hipervinculo de la empresa de la tabla Trabajadores
 
-    $("div.vehiculos.domainapp-modules-simple-dominio-vehiculo-Vehiculo").find("a.entityUrlSource").contents().unwrap();
-    //Esto quita los hipervinculos de la tabla Vehiculos que esta dentro de detalles-empresa
-    }, 250);
+    ConvierteTablaEnClickeableAplicaCursor($("div.trabajadores.domainapp-modules-simple-dominio-trabajador-Trabajador").find("table"))
+
+
+    $("div.vehiculos.domainapp-modules-simple-dominio-vehiculo-Vehiculo").find("div.isis-dominio-Vehiculo-empresa").find("a.entityUrlSource").contents().unwrap();
+    //Esto quita el hipervinculo de la empresa de la tabla Vehiculos
+
+    $("div.vehiculos.domainapp-modules-simple-dominio-vehiculo-Vehiculo").find("div.isis-dominio-Vehiculo-modelo").find("a.entityUrlSource").contents().unwrap();
+    //Esto quita el hipervinculo del modelo de la tabla Vehiculos
+
+    ConvierteTablaEnClickeableAplicaCursor($("div.vehiculos.domainapp-modules-simple-dominio-vehiculo-Vehiculo").find("table"))
+
+    ConvierteTablaEnClickeableAplicaCursor($("div.habilitada.domainapp-modules-simple-dominio-empresa-Empresa").find("table"))
+
+    ConvierteTablaEnClickeableAplicaCursor($("div.inhabilitada.domainapp-modules-simple-dominio-empresa-Empresa").find("table"))
+
+    ConvierteTablaEnClickeableAplicaCursor($("div.borrada.domainapp-modules-simple-dominio-empresa-Empresa").find("table"))
+
+    }, 200);
     }//end if Pagina Detalles Empresa
 
 
 //#################################### PAGINA LISTA TRABAJADORES #########################################//
     if ($("body").find("div.isis-Trabajador-listAll.isis-dominio-Trabajador").length > 0){
     window.setInterval(function(){
-    //Esto agarra tablas y: le aplica href a las filas, cambia el cursor, quita el boton mostrar como Tabla
+
     ConvierteTablaEnClickeableAplicaCursor()
+    //Esto agarra tablas y le aplica href a las filas, cambia el cursor, quita el boton mostrar como Tabla
 
     $("div.isis-Trabajador-listAll.isis-dominio-Trabajador").find("div.isis-dominio-Trabajador-empresa").find("a.entityUrlSource").contents().unwrap();
     //Esto quita el hipervinculo de la empresa de la tabla Trabajadores
 
-    }, 250);
+    }, 200);
     //Esto hace que cada segundo aplique los cambios por si cambia de pagina
 
     }//end if Pagina Lista Trabajadores
@@ -204,31 +203,35 @@ if ($("body").find("div.isis-Autorizacion-listAll.isis-dominio-Autorizacion").le
     window.setInterval(function(){
 
     $("div.property.isis-dominio-Trabajador-empresa").find("a.entityUrlSource").contents().unwrap();
-    //Esto quita el hipervinculo de la empresa de la tabla Trabajadores
+    //Esto quita el hipervinculo de la empresa en los detalles del Trabajador
 
-    QuitarBotonMostrarEnTabla()
 
-    $("div.ejecucion.domainapp-modules-simple-dominio-trabajador-Trabajador").find("a.entityUrlSource").contents().unwrap();
+    $("div.ejecucion.domainapp-modules-simple-dominio-trabajador-Trabajador").find("div.isis-dominio-Trabajador-empresa").find("a.entityUrlSource").contents().unwrap();
     //Esto quita los hipervinculos de la tabla Ejecucion que esta dentro de detalles-trabajador
 
-    $("div.habilitado.domainapp-modules-simple-dominio-trabajador-Trabajador").find("a.entityUrlSource").contents().unwrap();
+    $("div.habilitado.domainapp-modules-simple-dominio-trabajador-Trabajador").find("div.isis-dominio-Trabajador-empresa").find("a.entityUrlSource").contents().unwrap();
     //Esto quita los hipervinculos de la tabla Habilitado que esta dentro de detalles-trabajador
 
-    $("div.inhabilitado.domainapp-modules-simple-dominio-trabajador-Trabajador").find("a.entityUrlSource").contents().unwrap();
+    $("div.inhabilitado.domainapp-modules-simple-dominio-trabajador-Trabajador").find("div.isis-dominio-Trabajador-empresa").find("a.entityUrlSource").contents().unwrap();
     //Esto quita los hipervinculos de la tabla Inhabilitado que esta dentro de detalles-trabajador
 
-    $("div.borrado.domainapp-modules-simple-dominio-trabajador-Trabajador").find("a.entityUrlSource").contents().unwrap();
+    $("div.borrado.domainapp-modules-simple-dominio-trabajador-Trabajador").find("div.isis-dominio-Trabajador-empresa").find("a.entityUrlSource").contents().unwrap();
     //Esto quita los hipervinculos de la tabla Borrado que esta dentro de detalles-trabajador
 
-    }, 250);
+    ConvierteTablaEnClickeableAplicaCursor($("div.ejecucion.domainapp-modules-simple-dominio-trabajador-Trabajador").find("table"))
+
+    ConvierteTablaEnClickeableAplicaCursor($("div.habilitado.domainapp-modules-simple-dominio-trabajador-Trabajador").find("table"))
+
+    ConvierteTablaEnClickeableAplicaCursor($("div.inhabilitado.domainapp-modules-simple-dominio-trabajador-Trabajador").find("table"))
+
+    ConvierteTablaEnClickeableAplicaCursor($("div.borrado.domainapp-modules-simple-dominio-trabajador-Trabajador").find("table"))
+    }, 200);
     }//end if Pagina Detalle Trabajador
 
 
 //#################################### PAGINA LISTA VEHICULOS #########################################//
     if ($("body").find("div.isis-Vehiculo-listAll.isis-dominio-Vehiculo").length > 0){
     window.setInterval(function(){
-    //Esto agarra tablas y: le aplica href a las filas, cambia el cursor, quita el boton mostrar como Tabla
-    ConvierteTablaEnClickeableAplicaCursor()
 
     $("div.isis-Vehiculo-listAll.isis-dominio-Vehiculo").find("div.isis-dominio-Vehiculo-modelo").find("a.entityUrlSource").contents().unwrap();
     //Esto quita el hipervinculo del modelo de la tabla Vehiculos
@@ -236,7 +239,10 @@ if ($("body").find("div.isis-Autorizacion-listAll.isis-dominio-Autorizacion").le
     $("div.isis-Vehiculo-listAll.isis-dominio-Vehiculo").find("div.isis-dominio-Vehiculo-empresa").find("a.entityUrlSource").contents().unwrap();
     //Esto quita el hipervinculo de la empresa de la tabla Vehiculo
 
-    }, 250);
+    ConvierteTablaEnClickeableAplicaCursor()
+    //Esto agarra tablas y le aplica href a las filas, cambia el cursor, quita el boton mostrar como Tabla
+
+    }, 200);
     //Esto hace que cada segundo aplique los cambios por si cambia de pagina
 
     }//end if Pagina Lista Vehiculos
@@ -246,37 +252,49 @@ if ($("body").find("div.isis-Autorizacion-listAll.isis-dominio-Autorizacion").le
     if ($("body").find("div.entityPage.isis-dominio-Vehiculo").length > 0){
     window.setInterval(function(){
 
-    $("div.property.isis-dominio-Vehiculo-modelo").find("a.entityUrlSource").contents().unwrap();
-    //Esto quita el hipervinculo del modelo de la tabla Vehiculo
-
     $("div.property.isis-dominio-Vehiculo-empresa").find("a.entityUrlSource").contents().unwrap();
-    //Esto quita el hipervinculo de la empresa de la tabla Vehiculo
+    //Esto quita el hipervinculo de la empresa de los detalles del Vehiculo
 
-    QuitarBotonMostrarEnTabla();
-    TraduceBotonShowAll();
+    $("div.property.isis-dominio-Vehiculo-modelo").find("a.entityUrlSource").contents().unwrap();
+    //Esto quita el hipervinculo del modelo de los detalles del Vehiculo
 
-    $("div.ejecucion.domainapp-modules-simple-dominio-vehiculo-Vehiculo").find("a.entityUrlSource").contents().unwrap();
-    //Esto quita los hipervinculos de la tabla Ejecucion que esta dentro de detalles-vehiculo
 
-    $("div.habilitado.domainapp-modules-simple-dominio-vehiculo-Vehiculo").find("a.entityUrlSource").contents().unwrap();
-    //Esto quita los hipervinculos de la tabla Habilitado que esta dentro de detalles-vehiculo
+    $("div.ejecucion.domainapp-modules-simple-dominio-vehiculo-Vehiculo").find("div.isis-dominio-Vehiculo-empresa").find("a.entityUrlSource").contents().unwrap();
+    $("div.ejecucion.domainapp-modules-simple-dominio-vehiculo-Vehiculo").find("div.isis-dominio-Vehiculo-modelo").find("a.entityUrlSource").contents().unwrap();
+    //Esto quita los hipervinculos Empresa y Modelo de la tabla Ejecucion
 
-    $("div.inhabilitado.domainapp-modules-simple-dominio-vehiculo-Vehiculo").find("a.entityUrlSource").contents().unwrap();
-    //Esto quita los hipervinculos de la tabla Inhabilitado que esta dentro de detalles-vehiculo
+    $("div.habilitado.domainapp-modules-simple-dominio-vehiculo-Vehiculo").find("div.isis-dominio-Vehiculo-empresa").find("a.entityUrlSource").contents().unwrap();
+    $("div.habilitado.domainapp-modules-simple-dominio-vehiculo-Vehiculo").find("div.isis-dominio-Vehiculo-modelo").find("a.entityUrlSource").contents().unwrap();
+    //Esto quita los hipervinculos Empresa y Modelo de la tabla Habilitados
 
-    $("div.borrado.domainapp-modules-simple-dominio-vehiculo-Vehiculo").find("a.entityUrlSource").contents().unwrap();
-    //Esto quita los hipervinculos de la tabla Borrado que esta dentro de detalles-vehiculo
+    $("div.inhabilitado.domainapp-modules-simple-dominio-vehiculo-Vehiculo").find("div.isis-dominio-Vehiculo-empresa").find("a.entityUrlSource").contents().unwrap();
+    $("div.inhabilitado.domainapp-modules-simple-dominio-vehiculo-Vehiculo").find("div.isis-dominio-Vehiculo-modelo").find("a.entityUrlSource").contents().unwrap();
+    //Esto quita los hipervinculos Empresa y Modelo de la tabla Inhabilitados
 
-    }, 250);
+    $("div.borrado.domainapp-modules-simple-dominio-vehiculo-Vehiculo").find("div.isis-dominio-Vehiculo-empresa").find("a.entityUrlSource").contents().unwrap();
+    $("div.borrado.domainapp-modules-simple-dominio-vehiculo-Vehiculo").find("div.isis-dominio-Vehiculo-modelo").find("a.entityUrlSource").contents().unwrap();
+    //Esto quita los hipervinculos Empresa y Modelo de la tabla Borrados
+
+    ConvierteTablaEnClickeableAplicaCursor($("div.ejecucion.domainapp-modules-simple-dominio-vehiculo-Vehiculo").find("table"))
+
+    ConvierteTablaEnClickeableAplicaCursor($("div.habilitado.domainapp-modules-simple-dominio-vehiculo-Vehiculo").find("table"))
+
+    ConvierteTablaEnClickeableAplicaCursor($("div.inhabilitado.domainapp-modules-simple-dominio-vehiculo-Vehiculo").find("table"))
+
+    ConvierteTablaEnClickeableAplicaCursor($("div.borrado.domainapp-modules-simple-dominio-vehiculo-Vehiculo").find("table"))
+
+    }, 200);
     }//end if Pagina Detalle Vehiculo
 
 
 //#################################### PAGINA LISTAR MARCAS #########################################//
     if ($("body").find("div.isis-Marca-listAll.isis-dominio-Marca").length > 0){
-        window.setInterval(function(){
-        //Esto agarra tablas y: le aplica href a las filas, cambia el cursor, quita el boton mostrar como Tabla
-        ConvierteTablaEnClickeableAplicaCursor();
-        }, 250);
+    window.setInterval(function(){
+
+    ConvierteTablaEnClickeableAplicaCursor();
+    //Esto agarra tablas y le aplica href a las filas, cambia el cursor, quita el boton mostrar como Tabla
+
+    }, 200);
     }//end IF Pagina Listar Marcas
 
 
@@ -285,27 +303,31 @@ if ($("body").find("div.isis-Autorizacion-listAll.isis-dominio-Autorizacion").le
     window.setInterval(function(){
 
     $("div.modelos.domainapp-modules-simple-dominio-vehiculo-adicional-Modelo").find("div.isis-dominio-Modelo-marca").find("a.entityUrlSource").contents().unwrap();
-    //Esto quita el hipervinculo del modelo de la tabla Vehiculo
+    //Esto quita el hipervinculo de la Marca de la tabla Modelos
 
-    ConvierteTablaEnClickeableAplicaCursor();
+    $("div.modelos.domainapp-modules-simple-dominio-vehiculo-adicional-Modelo").find("a.entityUrlSource").contents().unwrap();
+    //Esto quita el hipervinculo del icono de la tabla Modelos
 
-    QuitarBotonMostrarEnTabla();
-    TraduceBotonShowAll();
+    ConvierteTablaEnClickeableAplicaCursor($("div.activas.domainapp-modules-simple-dominio-vehiculo-adicional-Marca").find("table"))
 
-    }, 250);
+    ConvierteTablaEnClickeableAplicaCursor($("div.inactivas.domainapp-modules-simple-dominio-vehiculo-adicional-Marca").find("table"))
+
+    }, 200);
+
     }//end if Pagina Detalle Vehiculo
 
 
 //#################################### PAGINA LISTAR MODELOS #########################################//
     if ($("body").find("div.isis-Modelo-listAll.isis-dominio-Modelo").length > 0){
-        window.setInterval(function(){
+    window.setInterval(function(){
 
-        $("div.isis-Modelo-listAll.isis-dominio-Modelo").find("div.isis-dominio-Modelo-marca").find("a.entityUrlSource").contents().unwrap();
-        //Esto quita el hipervinculo de la marca de la tabla Activas
+    $("div.isis-Modelo-listAll.isis-dominio-Modelo").find("div.isis-dominio-Modelo-marca").find("a.entityUrlSource").contents().unwrap();
+    //Esto quita el hipervinculo de la marca
 
-        //Esto agarra tablas y: le aplica href a las filas, cambia el cursor, quita el boton mostrar como Tabla
-        ConvierteTablaEnClickeableAplicaCursor();
-        }, 250);
+    ConvierteTablaEnClickeableAplicaCursor();
+    //Esto agarra tablas y le aplica href a las filas, cambia el cursor, quita el boton mostrar como Tabla
+
+    }, 200);
     }//end IF Pagina Listar Modelos
 
 
@@ -314,47 +336,44 @@ if ($("body").find("div.isis-Autorizacion-listAll.isis-dominio-Autorizacion").le
     window.setInterval(function(){
 
     $("div.property.isis-dominio-Modelo-marca").find("a.entityUrlSource").contents().unwrap();
-    //Esto quita el hipervinculo del modelo de la tabla Modelo
+    //Esto quita el hipervinculo de la Marca en los detalles del Modelo
 
     $("div.activas.domainapp-modules-simple-dominio-vehiculo-adicional-Modelo").find("div.isis-dominio-Modelo-marca").find("a.entityUrlSource").contents().unwrap();
-    //Esto quita el hipervinculo de la marca de la tabla Activas
+    //Esto quita el hipervinculo de la marca de la tabla Modelos Activos
 
     $("div.inactivas.domainapp-modules-simple-dominio-vehiculo-adicional-Modelo").find("div.isis-dominio-Modelo-marca").find("a.entityUrlSource").contents().unwrap();
-    //Esto quita el hipervinculo de la marca de la tabla Activas
+    //Esto quita el hipervinculo de la marca de la tabla Modelos Inactivos
 
     ConvierteTablaEnClickeableAplicaCursor();
 
-    QuitarBotonMostrarEnTabla();
-    TraduceBotonShowAll();
-
-    }, 250);
+    }, 200);
     }//end if Pagina Detalle Vehiculo
 
 //#################################### APLICA PARA TODAS LAS PAGINAS #########################################//
-    if ($("body").find("div.entityPage.isis-domainapp-application-services-homepage-HomePageViewModel").length > 0){
-    //Esto oculta el titulo de la pagina principal
-    $('h4.iconAndTitle').css('display','none');
-    }else{
+
+    //}else{
     $("h4.iconAndTitle").find("a.entityUrlSource").contents().unwrap();
     //Esto le quita el atributo href al titulo de cada pagina
-    }
+    //}
 
 
     //Esto oculta el footer
     $("footer").remove();
 
 
-    function ConvierteTablaEnClickeableAplicaCursor(){
+    function ConvierteTablaEnClickeableAplicaCursor(element = "table"){
     //Esto agarra tablas y le convierte cada fila en clickeable con el atributo href del icono
-//    $("table tr:not(:first-child) td:not(:first-child)").on('click', 'tr', function (){
-    $("table tbody").on('click', 'tr', function (){
+    //$("table tr:not(:first-child) td:not(:first-child)").on('click', 'tr', function (){
+    //$("table tbody").on('click', 'tr', function (){
+    $(element).find("tbody").on('click', 'tr', function (){
         if( !$(this).hasClass("norecords-tr") && !$(this).hasClass("navigation")){
         window.location.href = $(this).find('td:eq(0)').find("a").attr("href");
         }
     });
 
     //Esto agarra tablas y le agrega estilo de manito hipervinculo a cada fila SINO mouse comun -no tipo texto-
-    $("table tbody").find('td').each(function() {
+    //$("table tbody").find('td').each(function() {
+    $(element).find("tbody td").each(function() {
     if( !$(this).hasClass("norecords-td")  && !$(this).hasClass("navigation") ){
      $(this).css('cursor','pointer')
      }else{
