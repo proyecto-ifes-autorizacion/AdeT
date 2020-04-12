@@ -202,7 +202,7 @@ $(document).ready(function() {
     if ($("body").find("div.entityPage.isis-dominio-Trabajador").length > 0){
     window.setInterval(function(){
 
-    $("div.property.isis-dominio-Trabajador-empresa").find("a.entityUrlSource").contents().unwrap();
+    //$("div.property.isis-dominio-Trabajador-empresa").find("a.entityUrlSource").contents().unwrap();
     //Esto quita el hipervinculo de la empresa en los detalles del Trabajador
 
 
@@ -252,7 +252,7 @@ $(document).ready(function() {
     if ($("body").find("div.entityPage.isis-dominio-Vehiculo").length > 0){
     window.setInterval(function(){
 
-    $("div.property.isis-dominio-Vehiculo-empresa").find("a.entityUrlSource").contents().unwrap();
+    //$("div.property.isis-dominio-Vehiculo-empresa").find("a.entityUrlSource").contents().unwrap();
     //Esto quita el hipervinculo de la empresa de los detalles del Vehiculo
 
     $("div.property.isis-dominio-Vehiculo-modelo").find("a.entityUrlSource").contents().unwrap();
