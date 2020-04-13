@@ -151,12 +151,12 @@ a.scalarValueInlinePromptLink, a.form-control.scalarValueInlinePromptLink, a.for
 
 
 a{
-text-decoration: none;
-color:black;
+    text-decoration: none;
+    color:black;
 }
 a:hover{
-text-decoration: underline;
-color:black;
+    text-decoration: underline;
+    color:black;
 }
 
 table a:not(.btn), .table a:not(.btn) {
@@ -165,9 +165,9 @@ table a:not(.btn), .table a:not(.btn) {
 
 
 /*Esto oculta el boton MostrarTabla */
-div.linksSelectorPanel > div.btn-group.viewLinks {
+/*div.linksSelectorPanel > div.btn-group.viewLinks {
 display:none;
-}
+}*/
 
 /*Aplica estilo al boton Mostrar Todos que aparece cuando hay varias paginas */
 .navigatorLabel .btn-link {
