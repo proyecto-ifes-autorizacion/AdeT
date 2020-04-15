@@ -103,9 +103,9 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     private LocalDateTime cierre;
 
     @Property(notPersisted = true)
-    private String tiempo;
+    private String duracion;
 
-    public String getTiempo() {
+    public String getDuracion() {
         long diferancia;
         if (this.apertura != null && this.cierre != null){
             diferancia = (this.cierre.getYear() - this.apertura.getYear()) * 525600 +
@@ -178,7 +178,7 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
             return this.cierre.toString("dd-MM-yyyy");
         }
     }
-    public String RepoTiempo(){ return getTiempo(); }
+    public String RepoDuracion(){ return getDuracion(); }
 
     public Autorizacion() {
     }

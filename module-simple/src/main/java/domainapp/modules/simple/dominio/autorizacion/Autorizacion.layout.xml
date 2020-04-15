@@ -60,7 +60,7 @@
                     <cpt:fieldSet name="Tiempo">
                         <cpt:property id="apertura"/>
                         <cpt:property id="cierre"/>
-                        <cpt:property id="tiempo"/>
+                        <cpt:property id="duracion"/>
                     </cpt:fieldSet>
                 </bs3:col>
             </bs3:row>

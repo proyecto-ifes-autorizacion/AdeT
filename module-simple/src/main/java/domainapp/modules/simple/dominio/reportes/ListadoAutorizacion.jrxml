@@ -39,7 +39,7 @@
 		<field name="cierre" class="java.lang.String"/>
 		<field name="estado" class="java.lang.String"/>
 		<field name="numero" class="java.lang.Integer"/>
-		<field name="tiempo" class="java.lang.String"/>
+		<field name="duracion" class="java.lang.String"/>
 	</subDataset>
 	<parameter name="ds" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
 	<queryString>
@@ -265,7 +265,7 @@
 									<font fontName="Arial" size="12"/>
 									<paragraph leftIndent="5" spacingAfter="0"/>
 								</textElement>
-								<text><![CDATA[Tiempo]]></text>
+								<text><![CDATA[Duracion]]></text>
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="30">
@@ -277,7 +277,7 @@
 									<font fontName="Arial" size="8"/>
 									<paragraph leftIndent="5"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{tiempo}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{duracion}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>

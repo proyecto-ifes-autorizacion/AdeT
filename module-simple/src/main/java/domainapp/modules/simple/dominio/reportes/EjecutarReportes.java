@@ -75,7 +75,7 @@ public class EjecutarReportes {
         repoAutorizaciones.add(new RepoAutorizacion());
 
         for (Autorizacion autorizacion : autorizaciones) {
-            RepoAutorizacion repoAutorizacion = new RepoAutorizacion(autorizacion.RepoIdAdeT(), autorizacion.RepoTitulo(), autorizacion.RepoUbicacion(), autorizacion.RepoEstado(), autorizacion.RepoApertura(), autorizacion.RepoCierre(), autorizacion.RepoTiempo());
+            RepoAutorizacion repoAutorizacion = new RepoAutorizacion(autorizacion.RepoIdAdeT(), autorizacion.RepoTitulo(), autorizacion.RepoUbicacion(), autorizacion.RepoEstado(), autorizacion.RepoApertura(), autorizacion.RepoCierre(), autorizacion.RepoDuracion());
             repoAutorizaciones.add(repoAutorizacion);
         }
 
