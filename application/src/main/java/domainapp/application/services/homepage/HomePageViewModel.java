@@ -38,7 +38,7 @@ import domainapp.modules.simple.dominio.autorizacion.EstadoAutorizacion;
 public class HomePageViewModel {
 
     public TranslatableString title() {
-        return TranslatableString.tr("{num} Autorizaciones", "num", getAutorizaciones().size());
+        return TranslatableString.tr("Listado de Autorizaciones (Abiertas/Liberadas)");
     }
 
     @ActionLayout(named = "Autorizaciones abiertas")
