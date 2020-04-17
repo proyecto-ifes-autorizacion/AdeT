@@ -60,6 +60,7 @@ table.table tr.headers th a {
     border: 1px solid #dddddd;
     border-bottom-color: transparent;
     cursor: default;
+    font-weight: 700;
 }
 
 /*etiqueta para dar un borde mas oscuro a los containers de informacion*/
