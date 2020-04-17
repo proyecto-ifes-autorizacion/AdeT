@@ -44,7 +44,7 @@ public class AutorizacionMenu {
 
 
     @Action(semantics = SemanticsOf.SAFE)
-    @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT, named = "Listado de Autorizaciones")
+    @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT, named = "Listado de Autorizaciones (Todas)")
     @MemberOrder(sequence = "3")
     public List<Autorizacion> listAll() {
 
