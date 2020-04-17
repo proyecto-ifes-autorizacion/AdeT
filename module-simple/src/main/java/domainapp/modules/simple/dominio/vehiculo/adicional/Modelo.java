@@ -54,7 +54,8 @@ import static org.apache.isis.applib.annotation.SemanticsOf.NON_IDEMPOTENT_ARE_Y
         @Query(
                 name = "find", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.vehiculo.adicional.Modelo "),
+                        + "FROM domainapp.modules.simple.dominio.vehiculo.adicional.Modelo "
+                        + "ORDER BY marca ASC, nombre ASC"),
         @Query(
                 name = "findByNombreContains", language = "JDOQL",
                 value = "SELECT "
@@ -69,17 +70,20 @@ import static org.apache.isis.applib.annotation.SemanticsOf.NON_IDEMPOTENT_ARE_Y
                 name = "ModeloByMarca", language = "JDOQL",
                 value = "SELECT "
                         + "FROM domainapp.modules.simple.dominio.vehiculo.adicional.Modelo "
-                        + "WHERE marca == :marca "),
+                        + "WHERE marca == :marca "
+                        + "ORDER BY marca ASC, nombre ASC"),
         @Query(
                 name = "ListByBaja", language = "JDOQL",
                 value = "SELECT "
                         + "FROM domainapp.modules.simple.dominio.vehiculo.adicional.Modelo "
-                        + "WHERE baja == :baja "),
+                        + "WHERE baja == :baja "
+                        + "ORDER BY marca ASC, nombre ASC"),
         @Query(
                 name = "ListActivo", language = "JDOQL",
                 value = "SELECT "
                         + "FROM domainapp.modules.simple.dominio.vehiculo.adicional.Modelo "
-                        + "WHERE baja == false && bajaMarca == false")
+                        + "WHERE baja == false && bajaMarca == false "
+                        + "ORDER BY marca ASC, nombre ASC")
 
 })
 @Unique(name = "Modelo_nombre_UNQ", members = { "nombre" })

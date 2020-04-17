@@ -17,7 +17,10 @@ public class ModeloRepository {
     @Programmatic
     public List<Modelo> listAll() {
 
-        return repositoryService.allInstances(Modelo.class);
+        return repositoryService.allMatches(
+                new QueryDefault<>(
+                        Modelo.class,
+                        "find"));
     }
 
     @Programmatic
