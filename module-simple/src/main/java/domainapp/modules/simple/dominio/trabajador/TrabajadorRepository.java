@@ -20,7 +20,10 @@ public class TrabajadorRepository {
     @Programmatic
     public List<Trabajador> Listar() {
 
-        return repositoryService.allInstances(Trabajador.class);
+        return repositoryService.allMatches(
+                new QueryDefault<>(
+                        Trabajador.class,
+                        "find"));
     }
 
     @Programmatic

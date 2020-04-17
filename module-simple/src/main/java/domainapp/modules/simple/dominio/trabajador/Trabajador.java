@@ -38,7 +38,8 @@ import lombok.Setter;
         @Query(
                 name = "find", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.trabajador.Trabajador "),
+                        + "FROM domainapp.modules.simple.dominio.trabajador.Trabajador "
+                        + "ORDER BY apellido ASC, nombre ASC"),
         @Query(
                 name = "findByCuilContains", language = "JDOQL",
                 value = "SELECT "
@@ -53,17 +54,20 @@ import lombok.Setter;
                 name = "findByEstado", language = "JDOQL",
                 value = "SELECT "
                         + "FROM domainapp.modules.simple.dominio.trabajador.Trabajador "
-                        + "WHERE estado == :estado "),
+                        + "WHERE estado == :estado "
+                        + "ORDER BY apellido ASC, nombre ASC"),
         @Query(
                 name = "findByEmpresa", language = "JDOQL",
                 value = "SELECT "
                         + "FROM domainapp.modules.simple.dominio.trabajador.Trabajador "
-                        + "WHERE empresa == :empresa "),
+                        + "WHERE empresa == :empresa "
+                        + "ORDER BY apellido ASC, nombre ASC"),
         @Query(
                 name = "findByEmpresaAndEstado", language = "JDOQL",
                 value = "SELECT "
                         + "FROM domainapp.modules.simple.dominio.trabajador.Trabajador "
-                        + "WHERE empresa == :empresa && estado == :estado")
+                        + "WHERE empresa == :empresa && estado == :estado "
+                        + "ORDER BY apellido ASC, nombre ASC")
 })
 @Unique(name = "Trabajador_cuil_UNQ", members = { "cuil" })
 @DomainObject(
