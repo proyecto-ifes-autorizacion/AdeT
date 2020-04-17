@@ -20,13 +20,11 @@ package domainapp.application.services.homepage;
 
 import java.util.List;
 
-import org.apache.isis.applib.annotation.ActionLayout;
+import org.apache.isis.applib.annotation.CollectionLayout;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.Nature;
 import org.apache.isis.applib.services.i18n.TranslatableString;
 
-//import domainapp.modules.simple.dom.impl.SimpleObject;
-//import domainapp.modules.simple.dom.impl.SimpleObjects;
 import domainapp.modules.simple.dominio.autorizacion.Autorizacion;
 import domainapp.modules.simple.dominio.autorizacion.AutorizacionRepository;
 import domainapp.modules.simple.dominio.autorizacion.EstadoAutorizacion;
@@ -41,7 +39,7 @@ public class HomePageViewModel {
         return TranslatableString.tr("Listado de Autorizaciones (Abiertas/Liberadas)");
     }
 
-    @ActionLayout(named = "Autorizaciones abiertas")
+    @CollectionLayout(named = "Listado de Autorizaciones (Abiertas/Liberadas)")
     public List<Autorizacion> getAutorizaciones() {
         List<Autorizacion> autorizaciones = autorizacionRepository.Listar(EstadoAutorizacion.Abierta);
         autorizaciones.addAll(autorizacionRepository.Listar(EstadoAutorizacion.Liberada));

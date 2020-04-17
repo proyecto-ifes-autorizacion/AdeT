@@ -14,7 +14,11 @@ public class AutorizacionRepository {
 
     @Programmatic
     public List<Autorizacion> Listar() {
-        return repositoryService.allInstances(Autorizacion.class);
+
+        return repositoryService.allMatches(
+                new QueryDefault<>(
+                        Autorizacion.class,
+                        "find"));
     }
 
     @Programmatic
