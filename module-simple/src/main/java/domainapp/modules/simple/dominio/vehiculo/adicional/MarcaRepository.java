@@ -16,7 +16,11 @@ public class MarcaRepository {
 
     @Programmatic
     public List<Marca> listAll() {
-        return repositoryService.allInstances(Marca.class);
+
+        return repositoryService.allMatches(
+                new QueryDefault<>(
+                        Marca.class,
+                        "find"));
     }
 
     @Programmatic
