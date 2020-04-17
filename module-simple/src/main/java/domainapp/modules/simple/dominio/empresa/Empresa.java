@@ -35,7 +35,8 @@ import lombok.Setter;
         @Query(
                 name = "find", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.empresa.Empresa "),
+                        + "FROM domainapp.modules.simple.dominio.empresa.Empresa "
+                        + "ORDER BY nombreFantasia ASC"),
         @Query(
                 name = "findByNombreFantasiaContains", language = "JDOQL",
                 value = "SELECT "
@@ -50,7 +51,8 @@ import lombok.Setter;
                 name = "findByEstado", language = "JDOQL",
                 value = "SELECT "
                         + "FROM domainapp.modules.simple.dominio.empresa.Empresa "
-                        + "WHERE estado == :estado ")
+                        + "WHERE estado == :estado "
+                        + "ORDER BY nombreFantasia ASC")
 })
 @Unique(name = "Empresa_nombreFantasia_UNQ", members = { "nombreFantasia" })
 @DomainObject(

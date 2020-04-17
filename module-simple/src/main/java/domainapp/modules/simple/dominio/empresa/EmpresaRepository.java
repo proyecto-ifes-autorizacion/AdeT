@@ -18,7 +18,13 @@ import lombok.Setter;
 public class EmpresaRepository {
 
     @Programmatic
-    public List<Empresa> Listar() {return repositoryService.allInstances(Empresa.class);}
+    public List<Empresa> Listar() {
+
+        return repositoryService.allMatches(
+                new QueryDefault<>(
+                        Empresa.class,
+                        "find"));
+    }
 
     @Programmatic
     public List<Empresa> Listar(final EstadoEmpresa estado){
