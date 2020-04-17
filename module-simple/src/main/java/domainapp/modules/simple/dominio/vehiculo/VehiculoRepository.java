@@ -23,7 +23,11 @@ public class VehiculoRepository {
 
     @Programmatic
     public List<Vehiculo> List() {
-        return repositoryService.allInstances(Vehiculo.class);
+
+        return repositoryService.allMatches(
+                new QueryDefault<>(
+                        Vehiculo.class,
+                        "find"));
     }
 
     @Programmatic

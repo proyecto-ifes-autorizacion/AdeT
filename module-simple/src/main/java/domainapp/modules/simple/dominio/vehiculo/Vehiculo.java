@@ -36,7 +36,8 @@ import lombok.Setter;
         @Query(
                 name = "find", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.modules.simple.dominio.vehiculo.Vehiculo "),
+                        + "FROM domainapp.modules.simple.dominio.vehiculo.Vehiculo "
+                        + "ORDER BY dominio ASC"),
         @Query(
                 name = "findByDominioContains", language = "JDOQL",
                 value = "SELECT "
@@ -51,17 +52,20 @@ import lombok.Setter;
                 name = "findByEmpresa", language = "JDOQL",
                 value = "SELECT "
                         + "FROM domainapp.modules.simple.dominio.vehiculo.Vehiculo "
-                        + "WHERE empresa == :empresa "),
+                        + "WHERE empresa == :empresa "
+                        + "ORDER BY dominio ASC"),
         @Query(
                 name = "findByEstado", language = "JDOQL",
                 value = "SELECT "
                         + "FROM domainapp.modules.simple.dominio.vehiculo.Vehiculo "
-                        + "WHERE estado == :estado "),
+                        + "WHERE estado == :estado "
+                        + "ORDER BY dominio ASC"),
         @Query(
                 name = "findByEmpresaAndEstado", language = "JDOQL",
                 value = "SELECT "
                         + "FROM domainapp.modules.simple.dominio.vehiculo.Vehiculo "
-                        + "WHERE empresa == :empresa && estado == :estado")
+                        + "WHERE empresa == :empresa && estado == :estado "
+                        + "ORDER BY dominio ASC")
 })
 
 @Unique(name = "Vehiculo_dominio_UNQ", members = { "dominio" })
