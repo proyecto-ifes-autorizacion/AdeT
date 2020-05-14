@@ -149,7 +149,8 @@
             <id>isis-swagger</id>
             <activation>
                 <property>
-                    <name>!skip.isis-swagger</name>
+                    <name>skip.isis-swagger</name>
+<!--                    Se qutio el simbolo ! para evitar error al ejecutar comando por consola 'mvn clean install'-->
                 </property>
             </activation>
             <build>
@@ -174,7 +175,7 @@
                                     <fileNamePrefix>swagger</fileNamePrefix>
                                 </configuration>
                             </execution>
-                        </executions>|
+                        </executions>
                         <dependencies>
                             <dependency>
                                 <groupId>${project.groupId}</groupId>
@@ -196,6 +197,7 @@
             <id>jdbc-hsqldb</id>
             <activation>
                 <property>
+<!--                    <name>!skip.jdbc-hsqldb</name>ORIGINAL-->
                     <name>!skip.jdbc-hsqldb</name>
                 </property>
             </activation>

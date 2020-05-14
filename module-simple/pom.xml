@@ -170,7 +170,8 @@
             <id>isis-validate</id>
             <activation>
                 <property>
-                    <name>!skip.isis-validate</name>
+                    <name>skip.isis-validate</name>
+<!--                Se qutio el simbolo ! para evitar error al ejecutar comando por consola 'mvn clean install'-->
                 </property>
             </activation>
             <build>
