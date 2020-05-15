@@ -73,9 +73,6 @@ table.table tr.headers th a {
     background-color: white;
 }
 
-input:-moz-read-only { /* For Firefox */
-  background-color: yellow;
-}
 .form-control[readonly],
 .form-control[readonly]:focus,
 input:read-only {
