@@ -23,9 +23,6 @@
 
     <display-name>Simple app</display-name>
 
-    <welcome-file-list>
-        <welcome-file>about/index.html</welcome-file>
-    </welcome-file-list>
 
     <!-- shiro security configuration -->
     <listener>
