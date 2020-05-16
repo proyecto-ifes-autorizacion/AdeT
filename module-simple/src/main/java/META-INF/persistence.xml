@@ -22,22 +22,5 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd" version="1.0">
 
     <persistence-unit name="simple">
-        <class>domainapp.modules.simple.dom.impl.SimpleObject</class>
-        <class>domainapp.modules.simple.dom.impl.SimpleObjects</class>
-        <class>domainapp.modules.simple.fixture.SimpleObjectBuilder</class>
-
-        <class>domainapp.modules.simple.dominio.trabajador.Trabajador</class>
-        <class>domainapp.modules.simple.dominio.trabajador.TrabajadorMenu</class>
-        <class>domainapp.modules.simple.dominio.trabajador.TrabajadorRepository</class>
-
-        <class>domainapp.modules.simple.dominio.vehiculo.adicional.Modelo</class>
-        <class>domainapp.modules.simple.dominio.vehiculo.adicional.ModeloMenu</class>
-        <class>domainapp.modules.simple.dominio.vehiculo.adicional.ModeloRepository</class>
-        <properties>
-            <property name="datanucleus.ConnectionURL" value="jdbc:postgresql://127.0.0.1:5432/AdeT"/>
-            <property name="datanucleus.ConnectionUserName" value="postgres"/>
-            <property name="datanucleus.ConnectionPassword" value="Passw0rd"/>
-        </properties>
-
     </persistence-unit>
 </persistence>
