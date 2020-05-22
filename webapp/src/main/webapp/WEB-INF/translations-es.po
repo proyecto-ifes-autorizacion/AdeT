@@ -549,9 +549,12 @@ msgstr "You can only select 1 item"
 
 
 #: org.apache.isis.viewer.wicket.ui.pages.login.WicketSignInPage
+msgid "signInFailed"
+msgstr "Usuario o Contraseña incorrectos"
+
+#: org.apache.isis.viewer.wicket.ui.pages.login.WicketSignInPage
 msgid "signInButtonLabel"
 msgstr "Ingresar"
-
 
 #: org.apache.isis.viewer.wicket.ui.pages.login.WicketSignInPage
 msgid "usernameLabel"

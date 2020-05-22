@@ -8,7 +8,7 @@ $(document).ready(function() {
     //Esto cambia el titulo de la pagina
 
     $('body').css('background-color', '#5a5a66');
-    $('body').css('background-image', 'url("/about/images/background.jpg")');
+    $('body').css('background-image', 'url("/images/background.jpg")');
     $('body').css('color', '#ffffff');
     $('body').css('position', 'relative');
     $('body').css('height', 'calc(100vh)');
@@ -16,6 +16,9 @@ $(document).ready(function() {
     $('body').css('background-repeat', 'no-repeat');
     $('body').css('background-position', 'center center');
     //Esto aplica color de letra, color de fondo e imagen de fondo
+
+    $('h2').css('margin-top', '-20px');
+    //Esto ajusta un poco mas arriba el titulo Iniciar Sesion
 
     $("form:not(.filter) :input:visible:enabled").eq(0).attr("placeholder", "Ingrese nombre de usuario");
     $("form:not(.filter) :input:visible:enabled").eq(1).attr("placeholder", "Ingrese contraseña");
@@ -26,7 +29,7 @@ $(document).ready(function() {
 //    $("button.btn[type=submit]").click();
     //Esto sirve para autocompletar los campos del Login y apreta Ingresar automaticamente
 
-    $("img[src$='/about/images/Logo-login.png']").wrap("<a href='/'> </a>");
+    $("img[src$='/images/Logo-login.png']").wrap("<a href='/'> </a>");
     //Esto aplica un HREF a la imagen del logo
 
     $("button.btn[type=submit]").removeClass("btn-primary").addClass("btn-info");
@@ -37,7 +40,7 @@ $(document).ready(function() {
 
 	}else{
     $('body').css('background-color', 'white');
-    $('body').css('background-image', 'url("/about/images/background-grey.png")');
+    $('body').css('background-image', 'url("/images/background-grey.png")');
     $('body').css('background-repeat', 'repeat-y');
     $('body').css('color', 'black');
     $('body').css('position', 'relative');
@@ -361,6 +364,11 @@ $(document).ready(function() {
 //#################################### APLICA PARA TODAS LAS PAGINAS #########################################//
 
     //}else{
+
+    $('head').append('<link href="/myico.ico" rel="shortcut icon" type="image/x-icon" />');
+    $('head').append('<link rel="icon" href="/myico.ico" type="image/x-icon">');
+    //Esto agrega icono a la pagina cuando se guarda en Favoritos
+
     $("h4.iconAndTitle").find("a.entityUrlSource").contents().unwrap();
     //Esto le quita el atributo href al titulo de cada pagina
     //}

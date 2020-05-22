@@ -56,7 +56,7 @@ public class AutorizacionMenu {
     @ActionLayout(named = "Listado Exportado")
     public Blob ExportarListado() throws JRException, IOException {
         EjecutarReportes ejecutarReportes = new EjecutarReportes();
-        return ejecutarReportes.ListadoAutorizacionPDF(autorizacionrepository.Listar());
+        return ejecutarReportes.ListadoAutorizacionesPDF(autorizacionrepository.Listar());
     }
 
     @Property(notPersisted = true, hidden = Where.EVERYWHERE)
