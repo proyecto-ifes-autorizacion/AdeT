@@ -8,7 +8,7 @@ $(document).ready(function() {
     //Esto cambia el titulo de la pagina
 
     $('body').css('background-color', '#5a5a66');
-    $('body').css('background-image', 'url("/images/background.jpg")');
+    $('body').css('background-image', 'url("/images/FondoInicio.jpg")');
     $('body').css('color', '#ffffff');
     $('body').css('position', 'relative');
     $('body').css('height', 'calc(100vh)');
@@ -24,9 +24,9 @@ $(document).ready(function() {
     $("form:not(.filter) :input:visible:enabled").eq(1).attr("placeholder", "Ingrese contraseña");
     //Esto cambia el placeholder que no se pudo traducir
 
-//    $("form:not(.filter) :input:visible:enabled").eq(0).attr("value", "admin");
-//    $("form:not(.filter) :input:visible:enabled").eq(1).attr("value", "admin");
-//    $("button.btn[type=submit]").click();
+    //$("form:not(.filter) :input:visible:enabled").eq(0).attr("value", "admin");
+    //$("form:not(.filter) :input:visible:enabled").eq(1).attr("value", "admin");
+    //$("button.btn[type=submit]").click();
     //Esto sirve para autocompletar los campos del Login y apreta Ingresar automaticamente
 
     $("img[src$='/images/Logo-login.png']").wrap("<a href='/'> </a>");
@@ -40,7 +40,7 @@ $(document).ready(function() {
 
 	}else{
     $('body').css('background-color', 'white');
-    $('body').css('background-image', 'url("/images/background-grey.png")');
+    $('body').css('background-image', 'url("/images/FondoGris.png")');
     $('body').css('background-repeat', 'repeat-y');
     $('body').css('color', 'black');
     $('body').css('position', 'relative');
@@ -53,7 +53,7 @@ $(document).ready(function() {
 //#################################### PAGINA HOME #########################################//
     if ($("body").find("div.entityPage.isis-domainapp-application-services-homepage-HomePageViewModel").length > 0){
 
-    $('h4.iconAndTitle').css('display','none');
+    //$('h4.iconAndTitle').css('display','none');
     //Esto oculta el titulo de la pagina principal
 
     window.setInterval(function(){

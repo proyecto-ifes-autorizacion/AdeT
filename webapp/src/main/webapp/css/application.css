@@ -18,10 +18,15 @@
  */
 
 
- /* etiqueta para reemplazar la de boostrap y ubicar mejor el logo del navbar */
- .navbar-brand{
-     padding: 5px 5px;
- }
+/* etiqueta para reemplazar la de boostrap y ubicar mejor el logo del navbar */
+.navbar-brand{
+ padding: 5px 5px;
+}
+
+/* etiquetas para ocultar el titulo de la pagina principal HOME */
+.entityPage.isis-domainapp-application-services-homepage-HomePageViewModel h4.iconAndTitle{
+display:none;
+}
 
 /* etiquetas para reemplazar el color del header de los contenedores de informacion */
 .panel-default > .panel-heading {
@@ -30,11 +35,13 @@
     border-color: #ecf0f1;
     font-weight: bold;
 }
+
 /*etiqueta para cambiar el color de la primer fila de titulos de una tabla */
 .headers {
     background-color: #e4e4e4;
     color: #000;
 }
+
 /*etiqueta para cambiar de color de letra a la primer fila de titulos de una tabla */
 table.table tr.headers th a {
     color: #000000;
