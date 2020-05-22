@@ -1,14 +1,12 @@
 package domainapp.modules.simple.dominio.reportes;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.apache.isis.applib.value.Blob;
 
 import domainapp.modules.simple.dominio.autorizacion.Autorizacion;
@@ -16,6 +14,7 @@ import domainapp.modules.simple.dominio.empresa.Empresa;
 import domainapp.modules.simple.dominio.trabajador.Trabajador;
 import domainapp.modules.simple.dominio.vehiculo.Vehiculo;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -27,49 +26,7 @@ import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
 public class EjecutarReportes {
 
-    public Blob ListadoVehiculoPDF(List<Vehiculo> vehiculos) throws JRException, IOException{
-
-        List<RepoVehiculo> repoVehiculos = new ArrayList<RepoVehiculo>();
-        repoVehiculos.add(new RepoVehiculo());
-
-        for (Vehiculo vehiculo : vehiculos) {
-            RepoVehiculo repoVehiculo = new RepoVehiculo(vehiculo.RepoDominio(), vehiculo.RepoModelo(), vehiculo.RepoFechaAlta().toString("dd-MM-yyyy"), vehiculo.RepoEmpresa(), vehiculo.RepoEstado());
-            repoVehiculos.add(repoVehiculo);
-        }
-
-        JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(repoVehiculos);
-        return GenerarReporteTipoLista("ListadoVehiculo.jrxml","ListadoVehiculos", ds);
-    }
-
-    public Blob ListadoEmpresaPDF(List<Empresa> empresas) throws JRException, IOException{
-
-        List<RepoEmpresa> repoEmpresas = new ArrayList<RepoEmpresa>();
-        repoEmpresas.add(new RepoEmpresa());
-
-        for (Empresa empresa : empresas) {
-            RepoEmpresa repoEmpresa = new RepoEmpresa(empresa.RepoNombreFantasia(), empresa.RepoRazonSocial(), empresa.RepoDireccion(), empresa.RepoTelefono(), empresa.RepoEstado());
-            repoEmpresas.add(repoEmpresa);
-        }
-
-        JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(repoEmpresas);
-        return GenerarReporteTipoLista("ListadoEmpresa.jrxml", "ListadoEmpresas", ds);
-    }
-
-    public Blob ListadoTrabajadorPDF(List<Trabajador> trabajadores) throws JRException, IOException{
-
-        List<RepoTrabajador> repoTrabajadores = new ArrayList<RepoTrabajador>();
-        repoTrabajadores.add(new RepoTrabajador());
-
-        for (Trabajador trabajador : trabajadores) {
-            RepoTrabajador repoTrabajador = new RepoTrabajador(trabajador.RepoCuil(), trabajador.RepoNombre(), trabajador.RepoApellido(), trabajador.RepoFechaNacimiento(), trabajador.RepoEmpresa(), trabajador.RepoEstado());
-            repoTrabajadores.add(repoTrabajador);
-        }
-
-        JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(repoTrabajadores);
-        return GenerarReporteTipoLista("ListadoTrabajador.jrxml", "ListadoTrabajadores", ds);
-    }
-
-    public Blob ListadoAutorizacionPDF(List<Autorizacion> autorizaciones) throws JRException, IOException{
+    public Blob ListadoAutorizacionesPDF(List<Autorizacion> autorizaciones) throws JRException, IOException{
 
         List<RepoAutorizacion> repoAutorizaciones = new ArrayList<RepoAutorizacion>();
         repoAutorizaciones.add(new RepoAutorizacion());
@@ -80,52 +37,64 @@ public class EjecutarReportes {
         }
 
         JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(repoAutorizaciones);
-        return GenerarReporteTipoLista("ListadoAutorizacion.jrxml", "ListadoAutorizaciones", ds);
+        return GenerarArchivoPDF("ListadoAutorizacionesDesing.jrxml", "Listado de Autorizaciones.pdf", ds);
+    }
+
+    public Blob ListadoTrabajadoresPDF(List<Trabajador> trabajadores) throws JRException, IOException{
+
+        List<RepoTrabajador> repoTrabajadores = new ArrayList<RepoTrabajador>();
+        repoTrabajadores.add(new RepoTrabajador());
+
+        for (Trabajador trabajador : trabajadores) {
+            RepoTrabajador repoTrabajador = new RepoTrabajador(trabajador.RepoCuil(), trabajador.RepoNombre(), trabajador.RepoApellido(), trabajador.RepoFechaNacimiento(), trabajador.RepoEmpresa(), trabajador.RepoEstado());
+            repoTrabajadores.add(repoTrabajador);
+        }
+
+        JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(repoTrabajadores);
+        return GenerarArchivoPDF("ListadoTrabajadoresDesing.jrxml", "Listado de Trabajadores.pdf", ds);
+    }
+
+    public Blob ListadoVehiculosPDF(List<Vehiculo> vehiculos) throws JRException, IOException{
+
+        List<RepoVehiculo> repoVehiculos = new ArrayList<RepoVehiculo>();
+        repoVehiculos.add(new RepoVehiculo());
+
+        for (Vehiculo vehiculo : vehiculos) {
+            RepoVehiculo repoVehiculo = new RepoVehiculo(vehiculo.RepoDominio(), vehiculo.RepoModelo(), vehiculo.RepoFechaAlta().toString("dd-MM-yyyy"), vehiculo.RepoEmpresa(), vehiculo.RepoEstado());
+            repoVehiculos.add(repoVehiculo);
+        }
+
+        JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(repoVehiculos);
+        return GenerarArchivoPDF("ListadoVehiculosDesing.jrxml","Listado de Vehiculos.pdf", ds);
+    }
+
+    public Blob ListadoEmpresasPDF(List<Empresa> empresas) throws JRException, IOException{
+
+        List<RepoEmpresa> repoEmpresas = new ArrayList<RepoEmpresa>();
+        repoEmpresas.add(new RepoEmpresa());
+
+        for (Empresa empresa : empresas) {
+            RepoEmpresa repoEmpresa = new RepoEmpresa(empresa.RepoNombreFantasia(), empresa.RepoRazonSocial(), empresa.RepoDireccion(), empresa.RepoTelefono(), empresa.RepoEstado());
+            repoEmpresas.add(repoEmpresa);
+        }
+
+        JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(repoEmpresas);
+        return GenerarArchivoPDF("ListadoEmpresasDesing.jrxml", "Listado de Empresas.pdf", ds);
     }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private Blob GenerarReporteTipoLista(String entrada, String salida, JRBeanCollectionDataSource ds) throws JRException, IOException{
-        File rutaEntrada = new File(getClass().getResource(entrada).getPath());
+    private Blob GenerarArchivoPDF(String archivoDesing, String nombreSalida, JRBeanCollectionDataSource ds) throws JRException, IOException{
 
-        InputStream input = new FileInputStream(rutaEntrada);
-        JasperDesign jasperDesign = JRXmlLoader.load(input);
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(archivoDesing);
+        JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
         JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("ds", ds);
-
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, ds);
-        return ExportarReporte(jasperPrint, salida);
+        byte[] contentBytes = JasperExportManager.exportReportToPdf(jasperPrint);
+
+        return new Blob(nombreSalida, "application/pdf", contentBytes);
     }
 
-    private static Blob ExportarReporte(JasperPrint jasperPrint, String nombreArchivo) throws JRException, IOException{
-        File pdf = File.createTempFile("output.", ".pdf");
-        JasperExportManager.exportReportToPdfStream(jasperPrint, new FileOutputStream(pdf));
-
-        byte[] fileContent = new byte[(int) pdf.length()];
-
-        if (!(pdf.exists())) {
-            try {
-                pdf.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        try {
-            FileInputStream fileInputStream = new FileInputStream(pdf);
-            fileInputStream.read(fileContent);
-            fileInputStream.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            return new Blob(nombreArchivo + ".pdf", "application/pdf", fileContent);
-
-        } catch (Exception e) {
-            byte[] result = new String("error en crear archivo").getBytes();
-            return new Blob("error.txt", "text/plain", result);
-        }
-    }
 }

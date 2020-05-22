@@ -7,11 +7,6 @@ $(document).ready(function() {
     $(this).attr("title", "AdeT - Iniciar Sesión");
     //Esto cambia el titulo de la pagina
 
-    $('head').append('<link href="/myico.ico" rel="shortcut icon" type="image/x-icon" />');
-    $('head').append('<link rel="icon" href="/myico.ico" type="image/x-icon">');
-
-
-
     $('body').css('background-color', '#5a5a66');
     $('body').css('background-image', 'url("/images/background.jpg")');
     $('body').css('color', '#ffffff');
@@ -31,7 +26,7 @@ $(document).ready(function() {
 
     $("form:not(.filter) :input:visible:enabled").eq(0).attr("value", "admin");
     $("form:not(.filter) :input:visible:enabled").eq(1).attr("value", "admin");
-    //$("button.btn[type=submit]").click();
+    $("button.btn[type=submit]").click();
     //Esto sirve para autocompletar los campos del Login y apreta Ingresar automaticamente
 
     $("img[src$='/images/Logo-login.png']").wrap("<a href='/'> </a>");
@@ -369,6 +364,11 @@ $(document).ready(function() {
 //#################################### APLICA PARA TODAS LAS PAGINAS #########################################//
 
     //}else{
+
+    $('head').append('<link href="/myico.ico" rel="shortcut icon" type="image/x-icon" />');
+    $('head').append('<link rel="icon" href="/myico.ico" type="image/x-icon">');
+    //Esto agrega icono a la pagina cuando se guarda en Favoritos
+
     $("h4.iconAndTitle").find("a.entityUrlSource").contents().unwrap();
     //Esto le quita el atributo href al titulo de cada pagina
     //}

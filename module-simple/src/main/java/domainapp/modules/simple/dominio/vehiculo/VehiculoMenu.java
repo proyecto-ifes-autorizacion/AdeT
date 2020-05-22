@@ -81,7 +81,7 @@ public class VehiculoMenu {
     @ActionLayout(named = "Listado Exportado")
     public Blob ExportarListado() throws JRException, IOException {
         EjecutarReportes ejecutarReportes = new EjecutarReportes();
-        return ejecutarReportes.ListadoVehiculoPDF(vehiculorepository.List());
+        return ejecutarReportes.ListadoVehiculosPDF(vehiculorepository.List());
     }
 
     @javax.inject.Inject

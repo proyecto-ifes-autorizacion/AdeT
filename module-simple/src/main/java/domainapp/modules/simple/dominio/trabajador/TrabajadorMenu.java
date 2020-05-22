@@ -107,7 +107,7 @@ public class TrabajadorMenu {
     @ActionLayout(named = "Listado Exportado")
     public Blob ExportarListado() throws JRException, IOException {
         EjecutarReportes ejecutarReportes = new EjecutarReportes();
-        return ejecutarReportes.ListadoTrabajadorPDF(trabajadorrepository.Listar());
+        return ejecutarReportes.ListadoTrabajadoresPDF(trabajadorrepository.Listar());
     }
 
     @javax.inject.Inject

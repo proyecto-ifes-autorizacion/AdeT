@@ -60,7 +60,7 @@
 					<bottomPen lineWidth="1.25"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="25"/>
+					<font size="25"/>
 				</textElement>
 				<text><![CDATA[Listado de Vehiculos]]></text>
 			</staticText>
@@ -89,7 +89,7 @@
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<textElement verticalAlignment="Middle">
-									<font fontName="Arial" size="12"/>
+									<font size="12"/>
 									<paragraph leftIndent="5" spacingAfter="0"/>
 								</textElement>
 								<text><![CDATA[Empresa]]></text>
@@ -101,7 +101,7 @@
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<textElement verticalAlignment="Middle">
-									<font fontName="Arial" size="10"/>
+									<font size="10"/>
 									<paragraph leftIndent="5"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{empresa}]]></textFieldExpression>
@@ -117,7 +117,7 @@
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<textElement verticalAlignment="Middle">
-									<font fontName="Arial" size="12"/>
+									<font size="12"/>
 									<paragraph leftIndent="5" spacingAfter="0"/>
 								</textElement>
 								<text><![CDATA[Modelo]]></text>
@@ -129,7 +129,7 @@
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<textElement verticalAlignment="Middle">
-									<font fontName="Arial" size="10"/>
+									<font size="10"/>
 									<paragraph leftIndent="5"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{modelo}]]></textFieldExpression>
@@ -145,7 +145,7 @@
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<textElement verticalAlignment="Middle">
-									<font fontName="Arial" size="12"/>
+									<font size="12"/>
 									<paragraph leftIndent="5" spacingAfter="0"/>
 								</textElement>
 								<text><![CDATA[Dominio]]></text>
@@ -157,7 +157,7 @@
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<textElement verticalAlignment="Middle">
-									<font fontName="Arial" size="10"/>
+									<font size="10"/>
 									<paragraph leftIndent="5"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{dominio}]]></textFieldExpression>
@@ -174,7 +174,7 @@
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<textElement verticalAlignment="Middle">
-									<font fontName="Arial" size="12"/>
+									<font size="12"/>
 									<paragraph leftIndent="5" spacingAfter="0"/>
 								</textElement>
 								<text><![CDATA[Fecha de Alta]]></text>
@@ -186,7 +186,7 @@
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<textElement verticalAlignment="Middle">
-									<font fontName="Arial" size="10"/>
+									<font size="10"/>
 									<paragraph leftIndent="5"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{fechaAlta}]]></textFieldExpression>
@@ -203,7 +203,7 @@
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<textElement verticalAlignment="Middle">
-									<font fontName="Arial" size="12"/>
+									<font size="12"/>
 									<paragraph leftIndent="5" spacingAfter="0"/>
 								</textElement>
 								<text><![CDATA[Estado]]></text>
@@ -215,7 +215,7 @@
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<textElement verticalAlignment="Middle">
-									<font fontName="Arial" size="10"/>
+									<font size="10"/>
 									<paragraph leftIndent="5"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
