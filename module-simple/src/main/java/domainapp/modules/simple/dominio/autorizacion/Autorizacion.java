@@ -158,7 +158,7 @@ public class Autorizacion implements Comparable<Autorizacion>, SujetoGeneral {
     private List<Ejecutante> ejecutantes;
 
     public String title() {
-        return "Autorizacion: " + getIdAdeT();
+        return getIdAdeT() == 0 ? "Autorizacion" : "Autorizacion: " + getIdAdeT();
     }
 
     public int RepoIdAdeT(){ return this.idAdeT; }
