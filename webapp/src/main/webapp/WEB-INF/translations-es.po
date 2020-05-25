@@ -519,6 +519,14 @@ msgid "okLabel"
 msgstr "Aceptar"
 
 #: org.apache.isis.viewer.wicket.ui.pages.login.WicketSignInPage
+msgid "username"
+msgstr "nombre de usuario"
+
+#: org.apache.isis.viewer.wicket.ui.pages.login.WicketSignInPage
+msgid "password"
+msgstr "contraseña"
+
+#: org.apache.isis.viewer.wicket.ui.pages.login.WicketSignInPage
 msgid "passwordLabel"
 msgstr "Contraseña"
 
