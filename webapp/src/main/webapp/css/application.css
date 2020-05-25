@@ -125,7 +125,10 @@ padding-top: 10px
 }
 
 /*Hace que los textos dentro los input de Detalles-Autorizacion no se muestren como hipervinculos y tenga el cursor tipo Texto*/
-a.scalarValueInlinePromptLink, a.form-control.scalarValueInlinePromptLink, a.form-control.scalarValueInlinePromptLink:hover {
+a.scalarValueInlinePromptLink,
+a.scalarValueInlinePromptLink:hover,
+a.form-control.scalarValueInlinePromptLink:hover,
+a.form-control.scalarValueInlinePromptLink:hover {
     color: black;
     text-decoration: none;
     cursor:text;
