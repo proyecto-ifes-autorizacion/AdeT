@@ -220,8 +220,9 @@ msgstr "Página de Inicio"
 
 #: domainapp.dom.simple.SimpleObject#datanucleusIdLong()
 #: org.apache.isis.core.metamodel.services.jdosupport.Persistable_datanucleusIdLong#$$()
+#: org.apache.isis.core.metamodel.services.jdosupport.Persistable_datanucleusIdLong#prop()
 msgid "Id"
-msgstr ""
+msgstr "Id"
 
 
 #: org.apache.isis.applib.annotation.SemanticsOf#IDEMPOTENT
@@ -247,10 +248,21 @@ msgstr ""
 msgid "Json"
 msgstr "JSON"
 
+#: org.apache.isis.applib.services.config.ConfigurationProperty
+msgid "key"
+msgstr "clave"
 
 #: org.apache.isis.applib.services.config.ConfigurationProperty#key
 msgid "Key"
-msgstr ""
+msgstr "Clave"
+
+#: org.apache.isis.applib.services.config.ConfigurationProperty
+msgid "Property"
+msgstr "Propiedad"
+
+#: org.apache.isis.applib.services.config.ConfigurationProperty#value
+msgid "Value"
+msgstr "Valor"
 
 
 #: domainapp.dom.simple.SimpleObjects#listAll()
@@ -338,7 +350,7 @@ msgstr "Parámetros"
 
 #: org.apache.isis.applib.services.swagger.SwaggerService$Visibility#PRIVATE
 msgid "Private"
-msgstr ""
+msgstr "Privado"
 
 
 #: org.apache.isis.applib.services.swagger.SwaggerService$Visibility#PRIVATE_WITH_PROTOTYPING
@@ -348,7 +360,7 @@ msgstr ""
 
 #: org.apache.isis.applib.services.appfeat.ApplicationMemberType#PROPERTY
 msgid "Property"
-msgstr ""
+msgstr "Propiedad"
 
 
 #: org.apache.isis.applib.services.fixturespec.FixtureScriptsDefault
@@ -362,7 +374,7 @@ msgstr "Prototipo"
 
 #: org.apache.isis.applib.services.swagger.SwaggerService$Visibility#PUBLIC
 msgid "Public"
-msgstr ""
+msgstr "Publico"
 
 
 #: domainapp.app.services.homepage.HomePageViewModel#rebuildMetamodel()
@@ -443,7 +455,7 @@ msgstr "Nombre de la Actualización"
 
 #: org.apache.isis.applib.services.config.ConfigurationProperty#value
 msgid "Value"
-msgstr ""
+msgstr "Valor"
 
 
 #: domainapp.dom.simple.SimpleObject#datanucleusVersionLong()
@@ -1329,10 +1341,288 @@ msgstr "Actualizar Nombre"
 msgid "Update Description"
 msgstr "Actualizar Descripcion"
 
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addPackage
+msgid "Rule"
+msgstr "Regla"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addPackage
+msgid "Mode"
+msgstr "Modo"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addPackage
+msgid "Package"
+msgstr "Paquete"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addClass
+msgid "Rule"
+msgstr "Regla"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addClass
+msgid "Mode"
+msgstr "Modo"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addClass
+msgid "Package"
+msgstr "Paquete"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addClass
+msgid "Class"
+msgstr "Clase"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addAction
+msgid "Rule"
+msgstr "Regla"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addAction
+msgid "Mode"
+msgstr "Modo"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addAction
+msgid "Package"
+msgstr "Paquete"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addAction
+msgid "Class"
+msgstr "Clase"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addAction
+msgid "Action"
+msgstr "Acccion"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addProperty
+msgid "Rule"
+msgstr "Regla"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addProperty
+msgid "Mode"
+msgstr "Modo"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addProperty
+msgid "Package"
+msgstr "Paquete"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addProperty
+msgid "Class"
+msgstr "Clase"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addProperty
+msgid "Property"
+msgstr "Propiedad"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addCollection
+msgid "Rule"
+msgstr "Regla"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addCollection
+msgid "Mode"
+msgstr "Modo"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addCollection
+msgid "Package"
+msgstr "Paquete"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addCollection
+msgid "Class"
+msgstr "Clase"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addCollection
+msgid "Collection"
+msgstr "Coleccion"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#removePermission
+msgid "Rule"
+msgstr "Regla"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#removePermission
+msgid "Type"
+msgstr "Tipo"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#removePermission
+msgid "Feature"
+msgstr "Caracteristica"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#delete()
+msgid "Delete"
+msgstr "Borrar"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#delete()
+msgid "Delete"
+msgstr "Borrar"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#datanucleusIdLong()
+msgid "Id"
+msgstr "Id"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#clearHints()
+msgid "Clear Hints"
+msgstr "Clear Hints"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#datanucleusVersionLong()
+msgid "Version"
+msgstr "Version"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#datanucleusVersionTimestamp()
+msgid "Version"
+msgstr "Version"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#permissions
+msgid "Permissions"
+msgstr "Permisos"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addPackage()
+msgid "Add Package"
+msgstr "Agregar Paquete"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addClass()
+msgid "Add Class"
+msgstr "Agregar Clase"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addAction()
+msgid "Add Action"
+msgstr "Agregar Accion"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addProperty()
+msgid "Add Property"
+msgstr "Agregar Propiedad"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addCollection()
+msgid "Add Collection"
+msgstr "Agregar Coleccion"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#removePermission()
+msgid "Remove Permission"
+msgstr "Quitar Permiso"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#users
+msgid "Users"
+msgstr "Usuarios"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addUser()
+msgid "Add"
+msgstr "Agregar"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#removeUser()
+msgid "Remove"
+msgstr "Borrar"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#updateName(java.lang.String)
+msgid "Name"
+msgstr "Nombre"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#updateDescription(java.lang.String)
+msgid "Description"
+msgstr "Descripcion"
+
+
 #: org.isisaddons.module.security.dom.tenancy.ApplicationTenancyMenu#findTenancies(java.lang.String)
 msgid "String to search for, wildcard (*) can be used"
 msgstr "Texto a buscar, comodin (*) puede ser usado"
 
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addPackage(org.isisaddons.module.security.dom.permission.ApplicationPermissionRule,org.isisaddons.module.security.dom.permission.ApplicationPermissionMode,java.lang.String)
+msgid "Rule"
+msgstr "Regla"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addPackage(org.isisaddons.module.security.dom.permission.ApplicationPermissionRule,org.isisaddons.module.security.dom.permission.ApplicationPermissionMode,java.lang.String)
+msgid "Mode"
+msgstr "Modo"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addPackage(org.isisaddons.module.security.dom.permission.ApplicationPermissionRule,org.isisaddons.module.security.dom.permission.ApplicationPermissionMode,java.lang.String)
+msgid "Package"
+msgstr "Paquete"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addClass(org.isisaddons.module.security.dom.permission.ApplicationPermissionRule,org.isisaddons.module.security.dom.permission.ApplicationPermissionMode,java.lang.String,java.lang.String)
+msgid "Mode"
+msgstr "Modo"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addClass(org.isisaddons.module.security.dom.permission.ApplicationPermissionRule,org.isisaddons.module.security.dom.permission.ApplicationPermissionMode,java.lang.String,java.lang.String)
+msgid "Rule"
+msgstr "Regla"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addClass(org.isisaddons.module.security.dom.permission.ApplicationPermissionRule,org.isisaddons.module.security.dom.permission.ApplicationPermissionMode,java.lang.String,java.lang.String)
+msgid "Package"
+msgstr "Paquete"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addClass(org.isisaddons.module.security.dom.permission.ApplicationPermissionRule,org.isisaddons.module.security.dom.permission.ApplicationPermissionMode,java.lang.String,java.lang.String)
+msgid "Class"
+msgstr "Clase"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addAction(org.isisaddons.module.security.dom.permission.ApplicationPermissionRule,org.isisaddons.module.security.dom.permission.ApplicationPermissionMode,java.lang.String,java.lang.String,java.lang.String)
+msgid "Rule"
+msgstr "Regla"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addClass(org.isisaddons.module.security.dom.permission.ApplicationPermissionRule,org.isisaddons.module.security.dom.permission.ApplicationPermissionMode,java.lang.String,java.lang.String)
+msgid "Rule"
+msgstr "Regla"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addAction(org.isisaddons.module.security.dom.permission.ApplicationPermissionRule,org.isisaddons.module.security.dom.permission.ApplicationPermissionMode,java.lang.String,java.lang.String,java.lang.String)
+msgid "Mode"
+msgstr "Modo"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addAction(org.isisaddons.module.security.dom.permission.ApplicationPermissionRule,org.isisaddons.module.security.dom.permission.ApplicationPermissionMode,java.lang.String,java.lang.String,java.lang.String)
+msgid "Package"
+msgstr "Paquete"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addAction(org.isisaddons.module.security.dom.permission.ApplicationPermissionRule,org.isisaddons.module.security.dom.permission.ApplicationPermissionMode,java.lang.String,java.lang.String,java.lang.String)
+msgid "Class"
+msgstr "Clase"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addAction(org.isisaddons.module.security.dom.permission.ApplicationPermissionRule,org.isisaddons.module.security.dom.permission.ApplicationPermissionMode,java.lang.String,java.lang.String,java.lang.String)
+msgid "Action"
+msgstr "Accion"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addProperty(org.isisaddons.module.security.dom.permission.ApplicationPermissionRule,org.isisaddons.module.security.dom.permission.ApplicationPermissionMode,java.lang.String,java.lang.String,java.lang.String)
+msgid "Rule"
+msgstr "Regla"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addProperty(org.isisaddons.module.security.dom.permission.ApplicationPermissionRule,org.isisaddons.module.security.dom.permission.ApplicationPermissionMode,java.lang.String,java.lang.String,java.lang.String)
+msgid "Mode"
+msgstr "Modo"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addProperty(org.isisaddons.module.security.dom.permission.ApplicationPermissionRule,org.isisaddons.module.security.dom.permission.ApplicationPermissionMode,java.lang.String,java.lang.String,java.lang.String)
+msgid "Package"
+msgstr "Paquete"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addProperty(org.isisaddons.module.security.dom.permission.ApplicationPermissionRule,org.isisaddons.module.security.dom.permission.ApplicationPermissionMode,java.lang.String,java.lang.String,java.lang.String)
+msgid "Class"
+msgstr "Clase"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addProperty(org.isisaddons.module.security.dom.permission.ApplicationPermissionRule,org.isisaddons.module.security.dom.permission.ApplicationPermissionMode,java.lang.String,java.lang.String,java.lang.String)
+msgid "Property"
+msgstr "Propiedad"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addCollection(org.isisaddons.module.security.dom.permission.ApplicationPermissionRule,org.isisaddons.module.security.dom.permission.ApplicationPermissionMode,java.lang.String,java.lang.String,java.lang.String)
+msgid "Rule"
+msgstr "Regla"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addCollection(org.isisaddons.module.security.dom.permission.ApplicationPermissionRule,org.isisaddons.module.security.dom.permission.ApplicationPermissionMode,java.lang.String,java.lang.String,java.lang.String)
+msgid "Mode"
+msgstr "Modo"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addCollection(org.isisaddons.module.security.dom.permission.ApplicationPermissionRule,org.isisaddons.module.security.dom.permission.ApplicationPermissionMode,java.lang.String,java.lang.String,java.lang.String)
+msgid "Package"
+msgstr "Paquete"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addCollection(org.isisaddons.module.security.dom.permission.ApplicationPermissionRule,org.isisaddons.module.security.dom.permission.ApplicationPermissionMode,java.lang.String,java.lang.String,java.lang.String)
+msgid "Class"
+msgstr "Clase"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#addCollection(org.isisaddons.module.security.dom.permission.ApplicationPermissionRule,org.isisaddons.module.security.dom.permission.ApplicationPermissionMode,java.lang.String,java.lang.String,java.lang.String)
+msgid "Collection"
+msgstr "Coleccion"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#removePermission(org.isisaddons.module.security.dom.permission.ApplicationPermissionRule,org.apache.isis.core.metamodel.services.appfeat.ApplicationFeatureType,java.lang.String)
+msgid "Rule"
+msgstr "Regla"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#removePermission(org.isisaddons.module.security.dom.permission.ApplicationPermissionRule,org.apache.isis.core.metamodel.services.appfeat.ApplicationFeatureType,java.lang.String)
+msgid "Type"
+msgstr "Tipo"
+
+#: org.isisaddons.module.security.dom.role.ApplicationRole#removePermission(org.isisaddons.module.security.dom.permission.ApplicationPermissionRule,org.apache.isis.core.metamodel.services.appfeat.ApplicationFeatureType,java.lang.String)
+msgid "Feature"
+msgstr "Caracteristica"
 
 #: org.isisaddons.module.security.dom.permission.ApplicationPermission#delete()
 msgid "Delete"
@@ -1353,6 +1643,26 @@ msgstr "Permisos"
 #: org.isisaddons.module.security.dom.permission.ApplicationPermission
 msgid "Feature"
 msgstr "Funcionalidad"
+
+#: org.apache.isis.core.metamodel.services.jdosupport.Persistable_datanucleusVersionLong#prop()
+msgid "Version"
+msgstr "Version"
+
+#: org.apache.isis.core.metamodel.services.jdosupport.Persistable_datanucleusVersionTimestamp#prop()
+msgid "Version"
+msgstr "Version"
+
+#: org.apache.isis.core.metamodel.services.appfeat.ApplicationFeatureType$1#PACKAGE
+msgid "Package"
+msgstr "Paquete"
+
+#: org.apache.isis.core.metamodel.services.appfeat.ApplicationFeatureType$2#CLASS
+msgid "Class"
+msgstr "Clase"
+
+#: org.apache.isis.core.metamodel.services.appfeat.ApplicationFeatureType$3#MEMBER
+msgid "Member"
+msgstr "Miembro"
 
 #: org.isisaddons.module.security.dom.permission.ApplicationPermission#role
 msgid "Role"
